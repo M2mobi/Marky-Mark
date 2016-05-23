@@ -9,11 +9,11 @@ public class ContentfulFlavor : Flavor {
     
     public var rules:[Rule] = [
         HeaderRule(),
-        UnorderedListRule(character:"*"),
-        UnorderedListRule(character:"+"),
-        UnorderedListRule(character:"-"),
-        OrderedListRule(),
-        AlphabeticallyOrderedListRule(),
+        ListRule(listTypes:[
+            AlphabeticListType(),
+            OrderedListType(),
+            UnOrderedListType()
+        ]),
         BlockQuoteRule(),
         HorizontalLineRule(),
         CodeBlockRule(),

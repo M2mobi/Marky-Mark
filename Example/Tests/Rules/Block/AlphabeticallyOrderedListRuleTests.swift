@@ -5,7 +5,7 @@
 
 import XCTest
 @testable import MarkyMark
-
+/*
 class AlphabeticallyOrderedListRuleTests: XCTestCase {
 
     var sut:AlphabeticallyOrderedListRule!
@@ -81,3 +81,4 @@ class AlphabeticallyOrderedListRuleTests: XCTestCase {
     }
 
 }
+*/

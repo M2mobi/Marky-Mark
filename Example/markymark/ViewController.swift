@@ -20,6 +20,11 @@ class ViewController: UIViewController {
         if let filepath = NSBundle.mainBundle().pathForResource("markdown", ofType: "txt") {
             markdown = try! NSString(contentsOfFile: filepath, usedEncoding: nil) as String
         }
+        for _ in 0...10 {
+            measure {
+                let _ = markyMark.parseMarkDown(markdown)
+            }
+        }
 
         let markDownItems = markyMark.parseMarkDown(markdown)
 
@@ -43,4 +48,12 @@ class ViewController: UIViewController {
         
         super.viewDidLoad()
     }
+}
+
+func measure(completion: () -> ()) {
+    let startDate: NSDate = NSDate()
+    completion()
+    let endDate: NSDate = NSDate()
+    let timeInterval: Double = endDate.timeIntervalSinceDate(startDate)
+    print("seconds: \(timeInterval)")
 }

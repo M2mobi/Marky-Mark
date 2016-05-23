@@ -21,7 +21,8 @@ class ListMarkDownItemFactory {
         var listMarkDownItems:[ListMarkDownItem] = []
 
         while(lines.count > 0) {
-            guard let rule = rules.filter({ $0.recognizesLines(lines) }).first else { break; }
+            let rule = rules.first!
+            //guard let rule = rules.filter({ $0.recognizesLines(lines) }).first else { break; }
 
             let numberOfLines = numberOfLinesOnLevel(level, rules:rules, lines:lines) //-> This doesn't seem right, needs to check for any list rule..
 
@@ -34,7 +35,7 @@ class ListMarkDownItemFactory {
 
             if let listMarkDownItem = listMarkDownItem  as? ListMarkDownItem {
                 
-                listMarkDownItem.listItems = getListItemForLines(linesForListItem, rules: rules, level: level + 1)
+                listMarkDownItem.listItems = getListItemForLines(linesForListItem, rules: [rule], level: level + 1)
                 listMarkDownItems.append(listMarkDownItem)
             }
         }
@@ -65,7 +66,8 @@ class ListMarkDownItemFactory {
         var i = 0
 
         for line in lines {
-            guard let rule = rules.filter({ $0.recognizesLines([line]) }).first else { break; }
+            let rule = rules.first!
+            //guard let rule = rules.filter({ $0.recognizesLines([line]) }).first else { break; }
 
             if rule.getLevel(line) == level && i != 0 {
                 break

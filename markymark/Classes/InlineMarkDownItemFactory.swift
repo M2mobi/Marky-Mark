@@ -28,6 +28,10 @@ class InlineMarkDownItemFactory {
     func getInlineMarkDownItemsForLines(content:String, ruleRangePairs:[RuleRangePair]? = nil) -> [MarkDownItem]? {
         let ruleRangePairs = ruleRangePairs ?? getRuleRangePairsForLines(content)
 
+        if !containsInlineFormattingRules(ruleRangePairs) {
+            return [defaultRule.createMarkDownItemWithLines([content])]
+        }
+
         var markDownItems:[MarkDownItem] = []
 
         for ruleRangePair in ruleRangePairs {
@@ -37,7 +41,7 @@ class InlineMarkDownItemFactory {
             let string = content.subString(range)
             let markDownItem = rule.createMarkDownItemWithLines([string])
 
-            if containsInlineFormattingRules(ruleRangePairs) && markDownItem.allowsChildMarkDownItems() {
+            if markDownItem.allowsChildMarkDownItems() {
                 markDownItem.markDownItems = getInlineMarkDownItemsForLines(markDownItem.content)
             } else {
                 markDownItem.markDownItems = [defaultRule.createMarkDownItemWithLines([markDownItem.content])]
@@ -79,7 +83,6 @@ class InlineMarkDownItemFactory {
     }
 
     private func getRuleRangePairsForLines(content:String) -> [RuleRangePair] {
-
         var ruleRangePairs:[RuleRangePair] = []
 
         for rule in self.inlineRules {

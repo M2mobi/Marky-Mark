@@ -1,0 +1,16 @@
+PODS:
+  - MarkyMark (0.1.0)
+
+DEPENDENCIES:
+  - MarkyMark (from `../`)
+
+EXTERNAL SOURCES:
+  MarkyMark:
+    :path: ../
+
+SPEC CHECKSUMS:
+  MarkyMark: ea4dfd034bec28f94fdd8b43d1697f5f0832c3d4
+
+PODFILE CHECKSUM: 52f0765ecb95b524b549d307885cfdce94e9a258
+
+COCOAPODS: 1.0.0

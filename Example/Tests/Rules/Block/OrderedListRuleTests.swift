@@ -5,7 +5,7 @@
 
 import XCTest
 @testable import MarkyMark
-
+/*
 class OrderedListRuleTests: XCTestCase {
 
     var sut:OrderedListRule!
@@ -84,4 +84,4 @@ class OrderedListRuleTests: XCTestCase {
         XCTAssertEqual(level2, 3)
     }
 
-}
+}*/

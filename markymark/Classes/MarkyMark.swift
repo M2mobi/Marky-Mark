@@ -130,7 +130,6 @@ public class MarkyMark {
         var markDownItems:[MarkDownItem] = []
         
         while !markDownLines.isEmpty() {
-            
             let lines = markDownLines.lines
             let rule = getRuleForLines(lines)
 
@@ -138,14 +137,14 @@ public class MarkyMark {
 
             let markDownItem:MarkDownItem
 
-            if rule is ListRule {
-                markDownItem = getListMarkDownItemWithLines(lines)
+            if let rule = rule as? ListRule {
+                markDownItem = getListMarkDownItemWithLines(linesForRule, rule: rule)
             } else {
                 markDownItem = rule.createMarkDownItemWithLines(linesForRule)
-            }
 
-            if markDownItem.allowsChildMarkDownItems() {
-                markDownItem.markDownItems = inlineMarkDownItemFactory.getInlineMarkDownItemsForLines(markDownItem.content)
+                if markDownItem.allowsChildMarkDownItems() {
+                    markDownItem.markDownItems = inlineMarkDownItemFactory.getInlineMarkDownItemsForLines(markDownItem.content)
+                }
             }
 
             markDownItems.append(markDownItem)
@@ -163,13 +162,13 @@ public class MarkyMark {
      - returns: ListMarkDownItem
      */
 
-    func getListMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    func getListMarkDownItemWithLines(lines:[String], rule:ListRule) -> MarkDownItem {
 
-        let lines = getLinesThatMatchListRule(lines)
-        let rule = listRules.filter({ $0.recognizesLines(lines) }).first!
+        //let lines = //getLinesThatMatchListRule(lines)
+        //let rule = listRules.filter({ $0.recognizesLines(lines) }).first!
         let markDownItem = rule.createMarkDownItemWithLines(lines)
 
-        parseListItems(markDownItem, lines: lines)
+        parseListItems(markDownItem, lines: lines, rule: rule)
 
         return markDownItem
     }
@@ -182,7 +181,7 @@ public class MarkyMark {
      - returns: Filtered array of lines that are recognized by a ListRule
      */
 
-    func getLinesThatMatchListRule(lines:[String]) -> [String]  {
+    /*func getLinesThatMatchListRule(lines:[String]) -> [String]  {
 
         var linesThatMatchListRule:[String] = []
 
@@ -202,7 +201,7 @@ public class MarkyMark {
         }
 
         return linesThatMatchListRule
-    }
+    }*/
 
 
     /**
@@ -212,10 +211,10 @@ public class MarkyMark {
      - parameter lines:        Lines to parse
      */
 
-    func parseListItems(markDownItem:MarkDownItem, lines:[String]) {
+    func parseListItems(markDownItem:MarkDownItem, lines:[String], rule:ListRule) {
         guard let listMarkDownItem = markDownItem as? ListMarkDownItem else { return }
         
-        let listItems = listMarkdownItemFactory.getListItemForLines(markDownItem.lines, rules: listRules)
+        let listItems = listMarkdownItemFactory.getListItemForLines(markDownItem.lines, rules: [rule])
         listMarkDownItem.listItems = listItems
 
         for listItem in getFlattenedListItems(listMarkDownItem) {
@@ -254,8 +253,9 @@ public class MarkyMark {
     func getRuleForLines(lines:[String]) -> Rule {
 
         for rule in allRules() {
-            
+
             if(rule.recognizesLines(lines)) {
+
                 return rule
             }
         }
