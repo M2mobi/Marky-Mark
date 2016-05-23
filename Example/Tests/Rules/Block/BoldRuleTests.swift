@@ -12,7 +12,7 @@ class BoldRuleTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = BoldRule(character: "*")
+        sut = BoldRule()
     }
 
     func testRecognizesLines() {

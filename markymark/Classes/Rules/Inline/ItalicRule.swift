@@ -9,10 +9,10 @@ class ItalicRule: InlineRegexRule {
 
     let pattern: String
     
-    init(character:String = "*") {
+    init() {
         
-        /// Example: *text*
-        pattern = "(?<!\\\(character))(\\\(character){1})(?!\\\(character))(.+?)(?<!\\\(character))(\\\(character){1})(?!\\\(character))"
+        /// Example: *text* or _text_
+        pattern = "(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)(.+?)(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)"
     }
 
     //MARK: Rule

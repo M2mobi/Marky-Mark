@@ -23,10 +23,8 @@ public class ContentfulFlavor : Flavor {
     public var defaultRule:Rule = ParagraphRule()
 
     public var inlineRules:[InlineRule] = [
-        BoldRule(character:"*"),
-        ItalicRule(character:"*"),
-        BoldRule(character:"_"),
-        ItalicRule(character:"_"),
+        BoldRule(),
+        ItalicRule(),
         StrikeRule(),
         ImageRule(),
         LinkRule(),

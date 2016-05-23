@@ -9,9 +9,9 @@ class BoldRule : InlineRegexRule {
 
     var pattern:String
     
-    init(character:String) {
-        /// Example: **text**
-        pattern = "(\\\(character){2})(.+?)(\\\(character){2})(?!\\\(character))"
+    init() {
+        /// Example: **text** or __text__
+        pattern = "(\\*{2}|\\_{2})(.+?)(\\*{2}|\\_{2})(?!\\*|\\_)"
     }
     
     //MARK: Rule
@@ -19,5 +19,11 @@ class BoldRule : InlineRegexRule {
     func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 2)
         return BoldMarkDownItem(lines: lines, content: content ?? "")
-    }    
+    }
+
+    func getAllMatches(lines:[String]) -> [NSRange] {
+        guard let line = lines.first else { return [] }
+
+        return expression.rangesForString(line)
+    }
 }
