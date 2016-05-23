@@ -21,8 +21,7 @@ extension String {
 
     func subStringWithExpression(expression:NSRegularExpression, ofGroup group:Int) -> String {
         var subString = ""
-
-        let range = NSRange(location: 0, length: self.characters.count)
+        let range = NSRange(location: 0, length: self.length())
         let results = expression.matchesInString(self, options:[], range: range)
 
         if let result = results.first {
@@ -30,5 +29,14 @@ extension String {
         }
 
         return subString
+    }
+
+    /**
+     A faster way of counting Swift strings by using the Objective C implementation
+
+     - returns: Number of characters in the String
+     */
+    func length() -> Int {
+        return (self as NSString).length
     }
 }

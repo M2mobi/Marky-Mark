@@ -7,13 +7,8 @@ import UIKit
 
 class ItalicRule: InlineRegexRule {
 
-    let pattern: String
-    
-    init() {
-        
-        /// Example: *text* or _text_
-        pattern = "(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)(.+?)(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)"
-    }
+    /// Example: *text* or _text_
+    var expression = NSRegularExpression.expressionWithPattern("(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)(.+?)(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)")
 
     //MARK: Rule
 
@@ -22,8 +17,4 @@ class ItalicRule: InlineRegexRule {
         return ItalicMarkDownItem(lines: lines, content: content ?? "")
     }
 
-    func getAllMatches(lines:[String]) -> [NSRange] {
-        guard let line = lines.first else { return [] }
-        return expression.rangesForString(line)
-    }
 }

@@ -11,8 +11,7 @@ public class ContentfulFlavor : Flavor {
         HeaderRule(),
         ListRule(listTypes:[
             AlphabeticListType(),
-            OrderedListType(),
-            UnOrderedListType()
+            OrderedListType()
         ]),
         BlockQuoteRule(),
         HorizontalLineRule(),

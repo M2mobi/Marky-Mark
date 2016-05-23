@@ -20,11 +20,6 @@ class ViewController: UIViewController {
         if let filepath = NSBundle.mainBundle().pathForResource("markdown", ofType: "txt") {
             markdown = try! NSString(contentsOfFile: filepath, usedEncoding: nil) as String
         }
-        for _ in 0...10 {
-            measure {
-                let _ = markyMark.parseMarkDown(markdown)
-            }
-        }
 
         let markDownItems = markyMark.parseMarkDown(markdown)
 
@@ -36,24 +31,16 @@ class ViewController: UIViewController {
 
         let views = [
             "view" : view,
-            "markDownView" : markDownView,
-            ]
+            "markDownView" : markDownView
+        ]
 
         markDownView.translatesAutoresizingMaskIntoConstraints = false
 
         var constraints:[NSLayoutConstraint] = []
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[markDownView(==view)]|", options: [], metrics: [:], views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(30)-[markDownView]|", options: [], metrics: [:], views: views)
+        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[markDownView]|", options: [], metrics: [:], views: views)
         view.addConstraints(constraints)
-        
+
         super.viewDidLoad()
     }
-}
-
-func measure(completion: () -> ()) {
-    let startDate: NSDate = NSDate()
-    completion()
-    let endDate: NSDate = NSDate()
-    let timeInterval: Double = endDate.timeIntervalSinceDate(startDate)
-    print("seconds: \(timeInterval)")
 }

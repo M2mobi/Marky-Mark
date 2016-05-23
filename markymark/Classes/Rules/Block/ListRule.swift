@@ -14,9 +14,9 @@ class ListRule: Rule, HasLevel {
     let defaultListType = UnOrderedListType()
 
     init(listTypes:[ListType]){
-        self.listTypes = listTypes
+        self.listTypes = listTypes + [defaultListType]
         
-        var pattern:String = listTypes.map({
+        var pattern:String = self.listTypes.map({
             return $0.pattern
         }).joinWithSeparator("|")
 

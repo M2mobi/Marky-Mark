@@ -20,7 +20,6 @@ public class MarkyMark {
     var defaultInlineRule:InlineRule?
 
     var inlineMarkDownItemFactory:InlineMarkDownItemFactory {
-        //TODO: Don't hardcore this!
         return InlineMarkDownItemFactory(inlineRules: allInlineRules(), defaultRule: getDefaultInlineRule()!)
     }
 
@@ -164,45 +163,12 @@ public class MarkyMark {
 
     func getListMarkDownItemWithLines(lines:[String], rule:ListRule) -> MarkDownItem {
 
-        //let lines = //getLinesThatMatchListRule(lines)
-        //let rule = listRules.filter({ $0.recognizesLines(lines) }).first!
         let markDownItem = rule.createMarkDownItemWithLines(lines)
 
         parseListItems(markDownItem, lines: lines, rule: rule)
 
         return markDownItem
     }
-
-    /**
-     Returns an array of lines that belong to a List Rule
-     Breaks whenever it hits a line that's not a list item
-     - parameter lines: Lines to filter
-
-     - returns: Filtered array of lines that are recognized by a ListRule
-     */
-
-    /*func getLinesThatMatchListRule(lines:[String]) -> [String]  {
-
-        var linesThatMatchListRule:[String] = []
-
-        for line in lines {
-
-            var ruleRecognizedLine = false
-            for rule in listRules {
-                if rule.recognizesLines([line]) {
-                    linesThatMatchListRule.append(line)
-                    ruleRecognizedLine = true
-                }
-            }
-
-            if !ruleRecognizedLine {
-                break
-            }
-        }
-
-        return linesThatMatchListRule
-    }*/
-
 
     /**
      Populates given MarkDownItem with listItems if needed
@@ -214,7 +180,7 @@ public class MarkyMark {
     func parseListItems(markDownItem:MarkDownItem, lines:[String], rule:ListRule) {
         guard let listMarkDownItem = markDownItem as? ListMarkDownItem else { return }
         
-        let listItems = listMarkdownItemFactory.getListItemForLines(markDownItem.lines, rules: [rule])
+        let listItems = listMarkdownItemFactory.getListItemForLines(markDownItem.lines, rule: rule)
         listMarkDownItem.listItems = listItems
 
         for listItem in getFlattenedListItems(listMarkDownItem) {

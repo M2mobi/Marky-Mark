@@ -16,15 +16,13 @@ class ListMarkDownItemFactory {
 
      - returns: ListMarkDownItem containing listItems that may contain more ListMarkDownItem's
      */
-    func getListItemForLines(lines:[String], rules:[ListRule], level:Int = 0) -> [ListMarkDownItem]{
+    func getListItemForLines(lines:[String], rule:ListRule, level:Int = 0) -> [ListMarkDownItem]{
         var lines = lines
         var listMarkDownItems:[ListMarkDownItem] = []
 
         while(lines.count > 0) {
-            let rule = rules.first!
-            //guard let rule = rules.filter({ $0.recognizesLines(lines) }).first else { break; }
 
-            let numberOfLines = numberOfLinesOnLevel(level, rules:rules, lines:lines) //-> This doesn't seem right, needs to check for any list rule..
+            let numberOfLines = numberOfLinesOnLevel(level, rule:rule, lines:lines) //-> This doesn't seem right, needs to check for any list rule..
 
             let range = 0..<numberOfLines
             var linesForListItem = Array(lines[range])
@@ -35,7 +33,7 @@ class ListMarkDownItemFactory {
 
             if let listMarkDownItem = listMarkDownItem  as? ListMarkDownItem {
                 
-                listMarkDownItem.listItems = getListItemForLines(linesForListItem, rules: [rule], level: level + 1)
+                listMarkDownItem.listItems = getListItemForLines(linesForListItem, rule: rule, level: level + 1)
                 listMarkDownItems.append(listMarkDownItem)
             }
         }
@@ -62,12 +60,10 @@ class ListMarkDownItemFactory {
      - returns: Number of lines on the given leven
      */
 
-    func numberOfLinesOnLevel(level:Int, rules:[ListRule], lines:[String]) -> Int {
+    func numberOfLinesOnLevel(level:Int, rule:ListRule, lines:[String]) -> Int {
         var i = 0
 
         for line in lines {
-            let rule = rules.first!
-            //guard let rule = rules.filter({ $0.recognizesLines([line]) }).first else { break; }
 
             if rule.getLevel(line) == level && i != 0 {
                 break
