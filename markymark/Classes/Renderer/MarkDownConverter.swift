@@ -7,6 +7,9 @@ import Foundation
 
 public class MarkDownConverter<T> {
 
+    /// Callback method that get's called every time a MarkDownItem is converted to an element
+    public var didConvertElement:((markDownItem:MarkDownItem, element:T)->())?
+
     let configuration:MarkDownConverterConfiguration<T>
 
     public init(configuration: MarkDownConverterConfiguration<T>) {
@@ -48,9 +51,10 @@ public class MarkDownConverter<T> {
             styling.parent = applicableStyling
 
             if let layoutBlockBuilder = layoutBlockBuilder where markDownItem.dynamicType == layoutBlockBuilder.relatedMarkDownItemType() {
-                let layoutItem = layoutBlockBuilder.build(markDownItem, asPartOfConverter: self, styling: styling)
+                let element = layoutBlockBuilder.build(markDownItem, asPartOfConverter: self, styling: styling)
+                didConvertElement?(markDownItem: markDownItem, element: element)
 
-                elements.append(layoutItem)
+                elements.append(element)
             } else {
                 print("Can't find display item for \(String(markDownItem.self))")
             }
