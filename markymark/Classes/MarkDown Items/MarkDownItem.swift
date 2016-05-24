@@ -10,7 +10,7 @@ public class MarkDownItem {
     var lines:[String]
     var markDownItems:[MarkDownItem]?
 
-    var content:String
+    public var content:String
 
     public required init(lines:[String], content:String) {
         self.content = content

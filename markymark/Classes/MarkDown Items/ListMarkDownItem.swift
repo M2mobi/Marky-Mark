@@ -10,7 +10,7 @@ public class ListMarkDownItem : MarkDownItem, HasListItems, HasIndex {
 
     let index:Int?
 
-    required init(lines: [String], content: String, index:Int? = nil) {
+    required public init(lines: [String], content: String, index:Int? = nil) {
         self.index = index;
         super.init(lines: lines, content: content)
     }

@@ -20,7 +20,7 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
         self.level = level
     }
 
-    let fontsForLevels = [
+    public var fontsForLevels = [
         UIFont.systemFontOfSize(24),
         UIFont.systemFontOfSize(18),
         UIFont.boldSystemFontOfSize(16),
@@ -34,7 +34,7 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
         return fontsForLevels.elementForLevel(level)
     }
 
-    let textColorsForLevels:[UIColor] = [
+    public var textColorsForLevels:[UIColor] = [
         .orangeColor(),
         .blackColor(),
         .grayColor()
