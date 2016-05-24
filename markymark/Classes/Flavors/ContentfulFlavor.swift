@@ -9,11 +9,10 @@ public class ContentfulFlavor : Flavor {
     
     public var rules:[Rule] = [
         HeaderRule(),
-        UnorderedListRule(character:"*"),
-        UnorderedListRule(character:"+"),
-        UnorderedListRule(character:"-"),
-        OrderedListRule(),
-        AlphabeticallyOrderedListRule(),
+        ListRule(listTypes:[
+            AlphabeticListType(),
+            OrderedListType()
+        ]),
         BlockQuoteRule(),
         HorizontalLineRule(),
         CodeBlockRule(),
@@ -23,10 +22,8 @@ public class ContentfulFlavor : Flavor {
     public var defaultRule:Rule = ParagraphRule()
 
     public var inlineRules:[InlineRule] = [
-        BoldRule(character:"*"),
-        ItalicRule(character:"*"),
-        BoldRule(character:"_"),
-        ItalicRule(character:"_"),
+        BoldRule(),
+        ItalicRule(),
         StrikeRule(),
         ImageRule(),
         LinkRule(),

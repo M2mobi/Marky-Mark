@@ -5,4 +5,9 @@
 
 import Foundation
 
-class InlineTextMarkDownItem : MarkDownItem { }
+class InlineTextMarkDownItem : MarkDownItem {
+
+    override func allowsChildMarkDownItems() -> Bool {
+        return false
+    }
+}

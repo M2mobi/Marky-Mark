@@ -5,9 +5,4 @@
 
 import Foundation
 
-class UnorderedListMarkDownItem : ListMarkDownItem {
-    
-    required init(lines: [String], content: String) {
-        super.init(lines: lines, content: content)
-    }
-}
+class UnorderedListMarkDownItem : ListMarkDownItem { }

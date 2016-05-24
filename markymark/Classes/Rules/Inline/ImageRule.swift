@@ -7,8 +7,8 @@ import Foundation
 
 class ImageRule : InlineRegexRule {
 
-    /// Example: ![Alt text](image.png)    
-    var pattern = "(!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)"
+    /// Example: ![Alt text](image.png)
+    var expression = NSRegularExpression.expressionWithPattern("(!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)")
 
     func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
 
