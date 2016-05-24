@@ -5,19 +5,9 @@
 
 import Foundation
 
-public class OrderedListMarkDownItem : ListMarkDownItem, HasIndex {
+public class OrderedListMarkDownItem : ListMarkDownItem {
 
-    var index:Int
-    var indexCharacter:String {
-        return "\(index)."
-    }
-
-    init(lines: [String], content: String, index:Int) {
-        self.index = index
-        super.init(lines: lines, content: content)
-    }
-    
-    required public init(lines: [String], content: String) {
-        fatalError("init(lines:content:) has not been implemented")
+    override var indexCharacter:String? {
+        return "\(index ?? 0)."
     }
 }

@@ -6,9 +6,9 @@
 import Foundation
 
 class StrikeRule : InlineRegexRule {
-    
+
     /// Example: ~~text~~
-    var pattern = "\\~{2}(.+?)\\~{2}"
+    var expression = NSRegularExpression.expressionWithPattern("\\~{2}(.+?)\\~{2}")
 
     //MARK: Rule
 

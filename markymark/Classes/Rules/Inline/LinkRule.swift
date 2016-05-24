@@ -6,10 +6,10 @@
 import Foundation
 
 class LinkRule : InlineRegexRule {
-    
+
     /// Example: [Google](http://www.google.com)
-    var pattern:String = "(?<!!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)"
-    
+    var expression = NSRegularExpression.expressionWithPattern("(?<!!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)")
+
     //MARK: Rule
 
     func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
@@ -19,5 +19,4 @@ class LinkRule : InlineRegexRule {
 
         return LinkMarkDownItem(lines: lines, content: content ?? "", url: url ?? "")
     }
-    
 }

@@ -14,31 +14,31 @@
 2. Number 2
 3. Number 3
 5. Number 4
-  1. Nested 1
-  2. Nested 2
+1. Nested 1
+2. Nested 2
 6. Number 5
 ---
 ## Unordered list
 - Item 1
 - Item 2
 - Item 3
-  - Nested item 1
-  - ~~Nested item 2~~
-    - Subnested it'em 1
-    - Subnested it'em 2
-      - Subsubnest'ed item 1
-      - Subsubnest'ed item 2 [Velit](https://m2mobi.com)
-      - Subsubnes'ted item 3 *(with single **space**)*
+- Nested item 1
+- ~~Nested item 2~~
+- Subnested it'em 1
+- Subnested it'em 2
+- Subsubnest'ed item 1
+- Subsubnest'ed item 2 [Velit](https://m2mobi.com)
+- Subsubnes'ted item 3 *(with single **space**)*
 ---
 ## Combo
 1. Ordered 1
 2. Ordered 2
-  - Unordered 1
-  - Unordered 2
-  - Nested unorder'ed 1
-  - Nested unorder'ed 2
-    1. Subnested o'rdered 1
-    2. Subnested o'rdered 2
+- Unordered 1
+- Unordered 2
+- Nested unorder'ed 1
+- Nested unorder'ed 2
+1. Subnested o'rdered 1
+2. Subnested o'rdered 2
 
 # Images
 ---

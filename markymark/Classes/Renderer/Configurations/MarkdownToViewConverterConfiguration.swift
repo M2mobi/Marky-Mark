@@ -20,6 +20,7 @@ public class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguratio
         addLayoutBlockBuilder(ParagraphViewLayoutBlockBuilder(converter: converter))
         addLayoutBlockBuilder(ListLayoutBlockBuilder(converter:converter))
         addLayoutBlockBuilder(OrderedListLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(AlphabeticListLayoutBlockBuilder(converter:converter))
         addLayoutBlockBuilder(CodeViewLayoutBlockBuilder(converter:converter))
         addLayoutBlockBuilder(QuoteBlockLayoutBuilder(converter:converter))
         addLayoutBlockBuilder(HorizontalLineLayoutBlockBuilder())

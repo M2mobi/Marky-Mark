@@ -8,7 +8,7 @@ import Foundation
 class InlineCodeRule : InlineRegexRule {
 
     /// Example: `text`
-    var pattern = "\\`{1}(.+?)\\`{1}"
+    var expression = NSRegularExpression.expressionWithPattern("\\`{1}(.+?)\\`{1}")
 
     //MARK: Rule
 

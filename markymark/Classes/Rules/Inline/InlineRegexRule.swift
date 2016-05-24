@@ -6,15 +6,10 @@
 import Foundation
 
 protocol InlineRegexRule : InlineRule {
-    var pattern:String { get }
+    var expression:NSRegularExpression { get }
 }
 
 extension InlineRegexRule {
-
-    var expression:NSRegularExpression {
-        let options:NSRegularExpressionOptions  = [.CaseInsensitive, .AnchorsMatchLines]
-        return try! NSRegularExpression(pattern:pattern, options:options);
-    }
 
     func getAllMatches(lines:[String]) -> [NSRange] {
         guard let line = lines.first else { return [] }
@@ -25,7 +20,7 @@ extension InlineRegexRule {
 
     func recognizesLines(lines:[String]) -> Bool {
         guard let line = lines.first else { return false }
-        let range = NSRange(location: 0, length: line.characters.count)
+        let range = NSRange(location: 0, length: line.length())
         let results = expression.matchesInString(line, options:[], range: range)
         return results.count > 0
     }

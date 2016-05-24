@@ -74,8 +74,8 @@ class ListItemView : UIView {
         let bulletLabel = UILabel()
         bulletLabel.translatesAutoresizingMaskIntoConstraints = false
 
-        if let hasIndex = listMarkDownItem as? HasIndex {
-            bulletLabel.text = "\(hasIndex.indexCharacter)"
+        if let indexCharacter = listMarkDownItem.indexCharacter {
+            bulletLabel.text = "\(indexCharacter)"
         } else if styling?.bulletImage == nil {
             bulletLabel.text = "•"
         } else {

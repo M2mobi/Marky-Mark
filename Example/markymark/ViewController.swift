@@ -31,8 +31,8 @@ class ViewController: UIViewController {
 
         let views = [
             "view" : view,
-            "markDownView" : markDownView,
-            ]
+            "markDownView" : markDownView
+        ]
 
         markDownView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -40,7 +40,7 @@ class ViewController: UIViewController {
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[markDownView(==view)]|", options: [], metrics: [:], views: views)
         constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[markDownView]|", options: [], metrics: [:], views: views)
         view.addConstraints(constraints)
-        
+
         super.viewDidLoad()
     }
 }

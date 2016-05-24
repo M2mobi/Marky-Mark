@@ -5,6 +5,21 @@
 
 import Foundation
 
-public class ListMarkDownItem : MarkDownItem, HasListItems {
+public class ListMarkDownItem : MarkDownItem, HasListItems, HasIndex {
     var listItems:[ListMarkDownItem]?
+
+    let index:Int?
+
+    required init(lines: [String], content: String, index:Int? = nil) {
+        self.index = index;
+        super.init(lines: lines, content: content)
+    }
+
+    var indexCharacter:String? {
+        return index != nil ? "\(index)" : nil
+    }
+    
+    public required init(lines: [String], content: String) {
+        fatalError("init(lines:content:) has not been implemented")
+    }
 }
