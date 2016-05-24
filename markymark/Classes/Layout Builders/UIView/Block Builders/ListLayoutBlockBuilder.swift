@@ -16,9 +16,9 @@ class ListLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
 
     override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
-
         let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
-        return ContainerView(view: getListView(listMarkDownItem, styling: styling), spacing: spacing)
+
+        return getListView(listMarkDownItem, styling: styling, spacing:spacing)
     }
 
     //MARK: Private
@@ -33,7 +33,7 @@ class ListLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
      - returns: A view containing all list items of given markDownItem
      */
     
-    private func getListView(listMarkDownItem:ListMarkDownItem, styling:ItemStyling) -> UIView {
+    private func getListView(listMarkDownItem:ListMarkDownItem, styling:ItemStyling, spacing:UIEdgeInsets? = nil) -> UIView {
 
         let listView = UIView()
 
@@ -44,12 +44,12 @@ class ListLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
             let bulletStyling = styling as? BulletStylingRule
             let listStyling = styling as? ListItemStylingRule
 
-            let label = ListItemView(listMarkDownItem: listItem, styling: bulletStyling)
+            let label = ListItemView(listMarkDownItem: listItem, styling: bulletStyling, spacing: spacing)
             label.attributedText = attributedStringForMarkDownItem(listItem, styling: styling)
 
             viewAppender.appendView(label, verticalMargin: listStyling?.bottomListItemSpacing ?? 0, horizontalMargin: 0)
 
-            if listItem.listItems != nil {
+            if let nestedListItems = listItem.listItems where nestedListItems.count > 0 {
                 let listView = getListView(listItem, styling: styling)
                 viewAppender.appendView(listView, verticalMargin: 0, horizontalMargin: listStyling?.listIdentSpace ?? 10)
             }
