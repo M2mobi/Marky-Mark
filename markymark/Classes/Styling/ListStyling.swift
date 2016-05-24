@@ -27,4 +27,7 @@ public struct ListStyling: ItemStyling, BulletStylingRule, BaseFontStylingRule, 
     public var listIdentSpace:CGFloat = 15
     
     public var textColor: UIColor? = nil
+
+    public init(){}
+
 }

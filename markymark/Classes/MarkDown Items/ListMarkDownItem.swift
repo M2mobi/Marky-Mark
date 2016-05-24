@@ -5,6 +5,6 @@
 
 import Foundation
 
-class ListMarkDownItem : MarkDownItem, HasListItems {
+public class ListMarkDownItem : MarkDownItem, HasListItems {
     var listItems:[ListMarkDownItem]?
 }

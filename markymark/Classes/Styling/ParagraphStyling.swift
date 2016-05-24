@@ -23,4 +23,7 @@ public struct ParagraphStyling: ItemStyling, TextColorStylingRule, LineHeightSty
     
     public var isBold = false
     public var isItalic = false
+
+    public init(){}
+
 }

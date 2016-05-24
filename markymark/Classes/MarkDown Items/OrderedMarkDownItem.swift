@@ -5,7 +5,7 @@
 
 import Foundation
 
-class OrderedListMarkDownItem : ListMarkDownItem, HasIndex {
+public class OrderedListMarkDownItem : ListMarkDownItem, HasIndex {
 
     var index:Int
     var indexCharacter:String {
@@ -17,7 +17,7 @@ class OrderedListMarkDownItem : ListMarkDownItem, HasIndex {
         super.init(lines: lines, content: content)
     }
     
-    required init(lines: [String], content: String) {
+    required public init(lines: [String], content: String) {
         fatalError("init(lines:content:) has not been implemented")
     }
 }

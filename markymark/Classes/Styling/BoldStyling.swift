@@ -15,4 +15,7 @@ public struct BoldStyling: ItemStyling, BoldStylingRule {
     }
     
     public var isBold = true
+
+    public init(){}
+
 }

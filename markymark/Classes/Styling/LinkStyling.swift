@@ -20,4 +20,7 @@ public struct LinkStyling: ItemStyling, TextColorStylingRule, UnderlineStylingRu
     public var isBold = false
     public var isItalic = false
     public var isUnderlined = true
+
+    public init(){}
+
 }

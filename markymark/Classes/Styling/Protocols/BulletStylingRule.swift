@@ -18,9 +18,3 @@ public protocol BulletStylingRule : ItemStyling {
     var bulletViewSize : CGSize { get }
 
 }
-
-extension BulletStylingRule {
-    public var bulletViewSize : CGSize {
-        return CGSize(width: 10, height: 16)
-    }
-}
