@@ -23,10 +23,13 @@ class ListItemView : UIView {
 
     var styling:BulletStylingRule?
 
-    init(listMarkDownItem:ListMarkDownItem, styling: BulletStylingRule?){
+    let spacing:UIEdgeInsets?
+
+    init(listMarkDownItem:ListMarkDownItem, styling: BulletStylingRule?, spacing:UIEdgeInsets?){
 
         self.listMarkDownItem = listMarkDownItem
         self.styling = styling
+        self.spacing = spacing
         super.init(frame:CGRectZero)
 
         setUpLayout()
@@ -56,14 +59,18 @@ class ListItemView : UIView {
             let metrics:[String: AnyObject] = [
                 "margin" : 10,
                 "bulletWidth" : styling?.bulletViewSize.width ?? 10,
-                "bulletHeight" : styling?.bulletViewSize.height ?? 10
+                "bulletHeight" : styling?.bulletViewSize.height ?? 10,
+                "top" : spacing?.top ?? 0,
+                "left" : spacing?.left ?? 0,
+                "bottom" : spacing?.bottom ?? 0,
+                "right" : spacing?.right ?? 0
             ]
 
             var constraints:[NSLayoutConstraint] = []
 
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[bullet(bulletWidth)]-[label]-|", options: [], metrics: metrics, views: views)
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[bullet(bulletHeight)]", options: [], metrics: metrics, views: views)
-            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[label]|", options: [], metrics: metrics, views: views)
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(left)-[bullet(bulletWidth)]-[label]-(right)-|", options: [], metrics: metrics, views: views)
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(top)-[bullet(bulletHeight)]", options: [], metrics: metrics, views: views)
+            constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(top)-[label]-(bottom)-|", options: [], metrics: metrics, views: views)
 
             addConstraints(constraints)
         }
