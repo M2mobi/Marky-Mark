@@ -30,9 +30,9 @@ import XCTest
 
          //Assert
          XCTAssert(markdownItem is UnorderedListMarkDownItem)
-         }
+    }
 
-         func testCreatedMarkDownItemContainsCorrectText() {
+    func testCreatedMarkDownItemContainsCorrectText() {
          //Act
          let markdownItem = sut.createMarkDownItemWithLines(["- List item"])
 
