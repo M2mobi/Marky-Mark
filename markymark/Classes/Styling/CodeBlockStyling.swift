@@ -19,4 +19,7 @@ public class CodeBlockStyling : ItemStyling, BackgroundStylingRule, TextColorSty
     public var textColor: UIColor? = .grayColor()
 
     public var contentInsets = UIEdgeInsets(top: 10, left:  20, bottom: 10, right: 10)
+
+    public init(){}
+
 }

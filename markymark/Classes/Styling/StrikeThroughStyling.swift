@@ -16,4 +16,7 @@ public struct StrikeThroughStyling: StrikeThroughStylingRule, TextColorStylingRu
 
     public var isStrikeThrough: Bool = true
     public var textColor: UIColor? = UIColor.redColor()
+
+    public init(){}
+
 }

@@ -19,4 +19,7 @@ public struct HorizontalLineStyling: ItemStyling, LineWidthStylingRule, Backgrou
     public var lineWidth: CGFloat = 0.5
 
     public var contentInsets = UIEdgeInsets(top:   5, left:  0, bottom: 5, right: 0)
+
+    public init(){}
+
 }

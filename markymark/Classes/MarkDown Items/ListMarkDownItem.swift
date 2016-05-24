@@ -5,7 +5,7 @@
 
 import Foundation
 
-class ListMarkDownItem : MarkDownItem, HasListItems, HasIndex {
+public class ListMarkDownItem : MarkDownItem, HasListItems, HasIndex {
     var listItems:[ListMarkDownItem]?
 
     let index:Int?

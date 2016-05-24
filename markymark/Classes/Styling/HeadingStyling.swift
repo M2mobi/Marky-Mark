@@ -49,6 +49,9 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
     public var isBold = false
     public var isItalic = false
     public var isUnderlined : Bool = false
+
+    public init(){}
+
 }
 
 private extension Array {

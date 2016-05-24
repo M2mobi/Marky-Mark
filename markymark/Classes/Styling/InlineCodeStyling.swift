@@ -20,4 +20,7 @@ public struct InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingR
     public var backgroundColor: UIColor? = UIColor.lightGrayColor().colorWithAlphaComponent(0.25)
     public var isBold = false
     public var isItalic = true
+
+    public init(){}
+
 }

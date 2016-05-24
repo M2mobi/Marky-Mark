@@ -15,4 +15,6 @@ public struct ItalicStyling: ItemStyling, ItalicStylingRule {
     }
 
     public var isItalic: Bool = true
+
+    public init(){}
 }
