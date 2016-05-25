@@ -5,4 +5,4 @@
 
 import Foundation
 
-class StrikeMarkDownItem : MarkDownItem { }
+public class StrikeMarkDownItem : MarkDownItem { }

@@ -5,4 +5,4 @@
 
 import Foundation
 
-class QuoteMarkDownItem : MarkDownItem { }
+public class QuoteMarkDownItem : MarkDownItem { }

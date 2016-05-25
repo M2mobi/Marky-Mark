@@ -5,7 +5,7 @@
 
 import Foundation
 
-class LinkMarkDownItem : MarkDownItem {
+public class LinkMarkDownItem : MarkDownItem {
     
     let url:String
     
@@ -14,7 +14,7 @@ class LinkMarkDownItem : MarkDownItem {
         super.init(lines: lines, content: content)
     }
     
-    required init(lines: [String], content: String) {
+    required public init(lines: [String], content: String) {
         fatalError("init(lines:content:) has not been implemented")
     }
 }

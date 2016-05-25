@@ -5,7 +5,7 @@
 
 import UIKit
 
-public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingRule, ContentInsetStylingRule, BoldStylingRule, ItalicStylingRule, UnderlineStylingRule {
+public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingRule, ContentInsetStylingRule, BoldStylingRule, ItalicStylingRule, UnderlineStylingRule, TextAlignmentStylingRule {
 
     public var parent : ItemStyling? = nil
 
@@ -50,6 +50,8 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
     public var isItalic = false
     public var isUnderlined : Bool = false
 
+    public var textAlignment:TextAlignment = .Left
+
     public init(){}
 
 }
@@ -59,7 +61,7 @@ private extension Array {
     func elementForLevel(level:Int) -> Element {
 
         if level > self.count {
-            return self[self.count - 1]
+            return self.last!
         }
 
         return self[level - 1]

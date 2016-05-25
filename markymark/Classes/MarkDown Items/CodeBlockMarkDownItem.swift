@@ -5,7 +5,7 @@
 
 import Foundation
 
-class CodeBlockMarkDownItem : MarkDownItem {
+public class CodeBlockMarkDownItem : MarkDownItem {
 
     override func allowsChildMarkDownItems() -> Bool {
         return false

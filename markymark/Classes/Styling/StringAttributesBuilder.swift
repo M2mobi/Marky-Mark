@@ -39,7 +39,22 @@ struct StringAttributesBuilder {
         if let lineHeight = styling.neededLineHeight() {
             paragraphStyle.lineSpacing = lineHeight
         }
-                
+
+        if let textAlignment = styling.neededTextAlignment() {
+            let alignment:NSTextAlignment
+
+            switch textAlignment{
+                case .Left:
+                alignment = .Left
+                case .Right:
+                alignment = .Right
+                case .Center:
+                alignment = .Center
+            }
+
+            paragraphStyle.alignment = alignment
+        }
+
         attributes[NSParagraphStyleAttributeName] = paragraphStyle
 
         return attributes
