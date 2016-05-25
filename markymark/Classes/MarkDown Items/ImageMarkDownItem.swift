@@ -5,7 +5,7 @@
 
 import Foundation
 
-class ImageMarkDownItem : MarkDownItem {
+public class ImageMarkDownItem : MarkDownItem {
 
     let file:String
     let altText:String
@@ -16,7 +16,7 @@ class ImageMarkDownItem : MarkDownItem {
         super.init(lines: lines, content: altText)
     }
     
-    required init(lines: [String], content: String) {
+    required public init(lines: [String], content: String) {
         fatalError("init(lines:content:) has not been implemented")
     }
 }

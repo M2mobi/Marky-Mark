@@ -5,4 +5,4 @@
 
 import Foundation
 
-class ImageBlockMarkDownItem : ImageMarkDownItem { } 
+public class ImageBlockMarkDownItem : ImageMarkDownItem { }
