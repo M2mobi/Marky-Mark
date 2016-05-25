@@ -49,7 +49,7 @@ class ListLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
 
             viewAppender.appendView(label, verticalMargin: listStyling?.bottomListItemSpacing ?? 0, horizontalMargin: 0)
 
-            if listItem.listItems != nil {
+            if let nestedListItems = listItem.listItems where nestedListItems.count > 0 {
                 let listView = getListView(listItem, styling: styling)
                 viewAppender.appendView(listView, verticalMargin: 0, horizontalMargin: listStyling?.listIdentSpace ?? 10)
             }
