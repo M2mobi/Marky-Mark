@@ -5,12 +5,12 @@
 
 import Foundation
 
-protocol RegExRule : Rule {
+public protocol RegExRule : Rule {
     var expression:NSRegularExpression { get }
 }
 
 extension RegExRule {
-    func recognizesLines(lines:[String]) -> Bool {
+    public func recognizesLines(lines:[String]) -> Bool {
         return expression.hasMatchesInString(lines.first)
     }
 }

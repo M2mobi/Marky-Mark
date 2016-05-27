@@ -14,7 +14,7 @@ extension ItemStyling {
 
     func neededTextColor() -> UIColor? {
         for styling in stylingWithPrecedingStyling() {
-            if let styling = styling as? TextColorStylingRule {
+            if let styling = styling as? TextColorStylingRule where styling.textColor != nil {
                 return styling.textColor
             }
         }

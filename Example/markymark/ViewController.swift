@@ -26,8 +26,9 @@ class ViewController: UIViewController {
         var styling = DefaultStyling()
         styling.linkStyling.textColor = .redColor()
 
+        let configuration = MarkdownToViewConverterConfiguration(styling : styling)
         let converter = MarkDownConverter(configuration: MarkdownToViewConverterConfiguration(styling : styling))
-        
+
         let markDownView = converter.convert(markDownItems)
         view.addSubview(markDownView)
 

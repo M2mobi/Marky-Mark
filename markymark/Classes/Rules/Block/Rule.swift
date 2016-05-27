@@ -43,7 +43,7 @@ extension Rule {
         Set default number of lines consumed to 1
      */
 
-    func linesConsumed() -> Int {
+    public func linesConsumed() -> Int {
         return 1
     }
 }
