@@ -7,6 +7,8 @@ import UIKit
 
 public struct DefaultStyling: Styling {
 
+    private var extraStyling: [ItemStyling] = []
+
     public var paragraphStyling = ParagraphStyling()
     public var italicStyling = ItalicStyling()
     public var boldStyling = BoldStyling()
@@ -19,6 +21,14 @@ public struct DefaultStyling: Styling {
     public var codeBlockStyling = CodeBlockStyling()
     public let inlineCodeBlockStyling = InlineCodeStyling()
     public let quoteStyling = QuoteStyling()
+
+    public mutating func addStyling(styling:ItemStyling) {
+        extraStyling.append(styling)
+    }
+
+    public var itemStylingRules: [ItemStyling] {
+        return collectStylingRules() + extraStyling
+    }
 
     public init(){}
 }
