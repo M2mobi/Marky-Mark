@@ -17,33 +17,22 @@ class AlphabeticListTypeTests: XCTestCase {
 
     func testPattern() {
         // Arrange
-        let AlphabeticListPattern = "[a-zA-Z]\\."
+        let alphabeticListPattern = "[a-zA-Z]\\."
 
         // Assert
-        XCTAssertEqual(sut.pattern, AlphabeticListPattern)
+        XCTAssertEqual(sut.pattern, alphabeticListPattern)
     }
 
     func testGetIndex() {
-        //Arrange
-        let expected = sut.getIndex("b.")
-        let expected1 = sut.getIndex("g.")
-        let expected2 = sut.getIndex("l")
-        let expected3 = sut.getIndex("m.")
-        let expected4 = sut.getIndex("a.")
-
-        let expectedFailure = sut.getIndex("- ")
-        let expectedFailure1 = sut.getIndex("1.")
-
-        //Act
 
         //Assert
-        XCTAssertEqual(expected, 1)
-        XCTAssertEqual(expected1, 6)
-        XCTAssertEqual(expected2, 11)
-        XCTAssertEqual(expected3, 12)
-        XCTAssertEqual(expected4, 0)
+        XCTAssertEqual(sut.getIndex("b."), 1)
+        XCTAssertEqual(sut.getIndex("g."), 6)
+        XCTAssertEqual(sut.getIndex("l"), 11)
+        XCTAssertEqual(sut.getIndex("m."), 12)
+        XCTAssertEqual(sut.getIndex("a."), 0)
 
-        XCTAssertNil(expectedFailure)
-        XCTAssertNil(expectedFailure1)
+        XCTAssertNil(sut.getIndex("- "))
+        XCTAssertNil(sut.getIndex("1."))
     }
 }
