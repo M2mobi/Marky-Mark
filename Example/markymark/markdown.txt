@@ -1,67 +1,104 @@
-# Headers
----
-# Header 1
-## Header 2
-### Header 3
-#### Header 4
-##### Header 5
-###### Header 6
+# Inleiding
 
-# Lists
----
-## Ordered list
-1. Number 1
-2. Number 2
-3. Number 3
-5. Number 4
-1. Nested 1
-2. Nested 2
-6. Number 5
----
-## Unordered list
-- Item 1
-- Item 2
-- Item 3
-- Nested item 1
-- ~~Nested item 2~~
-- Subnested it'em 1
-- Subnested it'em 2
-- Subsubnest'ed item 1
-- Subsubnest'ed item 2 [Velit](https://m2mobi.com)
-- Subsubnes'ted item 3 *(with single **space**)*
----
-## Combo
-1. Ordered 1
-2. Ordered 2
-- Unordered 1
-- Unordered 2
-- Nested unorder'ed 1
-- Nested unorder'ed 2
-1. Subnested o'rdered 1
-2. Subnested o'rdered 2
+__Pijn__ is datgene wat een persoon die het ervaart zegt dat het is en is aanwezig wanneer hij/zij zegt dat het aanwezig is. Een pijnlijke prikkel wordt in eerste instantie waargenomen en vervolgens beleefd. Pijnbeleving is subjectief en wordt beïnvloed door factoren die niet in direct verband staan met de ziekte. De pijnbeleving leidt uiteindelijk tot __pijngedrag__, d.i. datgene wat de hulpverlener hoort en ziet. Ook primair somatische pijn wordt in hoge mate beïnvloed door psychosociale en/of levensbeschouwelijke factoren. Voor dit allesomvattende concept van pijn wordt ook de term __‘total pain'__ gebruikt. 
 
-# Images
----
-![My Apple](http://images.apple.com/apple-events/static/apple-events/october-2013/video/poster_large.jpg)
+__Nociceptieve pijn__ wordt veroorzaakt door weefselbeschadiging. Deze pijn is meestal goed behandelbaar met paracetamol, NSAID's of opioïden. 
 
-# Paragraphs
-Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet vulputate*** diam. Duis sodales ~~sapien~~ quis ***elementum* posuere**. Duis quam lectus, posueresed  [~~pellentesqueaauctor~~](https://m2mobi.com) eu [Velit](https://m2mobi.com).
----
-## Quotes
-> MarkDown is awesome
-> Seriously..
+__Neuropathische pijn__ is het gevolg van beschadiging van het perifere of centrale zenuwstelsel. De pijn wordt vaak als brandend, schietend en/of stekend ervaren en gaat nogal eens gepaard met sensibiliteitsstoornissen. Bij neuropathische pijn zijn vaak andere medicamenten geïndiceerd, zoals antidepressiva en anti-epileptica. Onder __doorbraakpijn__ wordt plotseling optredende tijdelijke, vaak hevige pijn c.q. toename van pijn verstaan die optreedt bij bestaande chronische pijnklachten. De medicatie die wordt gebruikt voor de behandeling van doorbraakpijn wordt ook wel __doorbraak- of rescuemedicatie__ genoemd. 
 
-## Links
-[This is a test link](https://m2mobi.com)
-Inline links are also possible, click [here](https://m2mobi.com)
-# Code
----
+Er wordt onderscheid gemaakt tussen drie types doorbraakpijn: 
+- __spontane doorbraakpijn__: doorbraakpijn die optreedt zonder aanwijsbare aanleiding
+- __incidente pijn__: doorbraakpijn die uitsluitend of hoofdzakelijk optreedt bij bepaalde bewegingen of houdingen
+- __end of dose pain__: doorbraakpijn die optreedt kort voor de volgende gift van het analgeticum
 
-```
-@Override
-On *multiple* lines
-```
+# Gevolgen 
+Pijn en de behandeling ervan kunnen grote gevolgen hebben voor het functioneren op alle gebieden: lichamelijk, emotioneel, cognitief, sociaal en existentieel.
 
-``` @Override ```
+# Oorzaken 
+De oorzaken van pijn worden per aandoening hieronder beschreven: 
+__Kanker:__
+- directe (door)groei van de tumor c.q. metastasen. Pijn ten gevolge van tumorgroei is meestal het gevolg van:
+  - botmetastasen (lokale botdestructie, fractuur, uitbreiding naar weke delen, compressie van ruggenmerg of wortels)
+  - infiltratie van weke delen
+  - infiltratie van ingewanden (bijv. darm of lever)
+  - compressie of infiltratie van zenuwen of zenuwplexus
+- diagnostische procedures
+- behandeling, zoals chirurgie, radiotherapie of chemotherapie
+- bijkomende factoren (bijv. obstipatie, decubitus, spierspasmen, infectie) of niet aan de maligniteit gerelateerde comorbiditeit
 
-Or maybe in line `@Override`
+__AIDS:__ 
+- neuropathie als gevolg van de ziekte en/of behandeling met retrovirale middelen of door spierpijn of infecties
+
+__Levensbedreigende neurologische aandoeningen__ (bijv. ALS of MS):
+- neuropathische pijn als gevolg van beschadiging van het centrale of perifere zenuwstelsel, vaak in combinatie met nociceptieve pijn, bijv. door spierkrampen of decubitus
+
+__Hartfalen:__ 
+- vaak pijnklachten van het houdings- en bewegingsapparaat
+
+__COPD:__
+- vaak pijnklachten op de borst als gevolg van pneumonie met pleuraprikkeling, longembolie of ribfracturen
+
+# Diagnostiek 
+- analyse van iedere pijnklacht afzonderlijk
+- anamnese met aandacht voor:
+  - aard en oorzaak van de pijn
+  - factoren die de pijn veroorzaken of beïnvloeden (lichamelijk, cognitief, emotioneel, sociaal, levensbeschouwelijk c.q. spiritueel en cultureel) 
+  - gevolgen van de pijn voor het functioneren 
+  - betekenis die aan de pijn wordt toegekend 
+  - effect van eerdere behandelingen en de bijwerkingen daarvan 
+  - verwachtingen, weerstanden en angst t.a.v. de behandeling 
+  - de rol van de naasten
+- bij moeilijk behandelbare pijn: gestandaardiseerde multidimensionele pijnanamnese 
+- systematische registratie van de intensiteit van de pijn met behulp van pijnscore, evt. Utrecht Symptoom Dagboek 
+- lichamelijk onderzoek (inclusief neurologisch onderzoek)
+- op indicatie: aanvullend onderzoek ter vaststelling van de oorzaak van de pijn (bijv. echografie, CT-scan, MRI, botscan, elektromyografie) 
+
+# Beleid 
+- schenk bij de behandeling aandacht aan de lichamelijke, cognitieve, emotionele, gedragsmatige, sociale, levensbeschouwelijke en culturele dimensies van pijn (zie ook Adjuvante medicamenteuze therapie)
+- bevorder de therapietrouw door:
+  - optimale voorlichting over de pijn, de behandeling ervan (inclusief zelfmedicatie) en mogelijke bijwerkingen van de behandeling
+  - bespreken van verwachtingen en weerstanden; benoem dat verslaving niet optreedt
+- zorg voor duidelijkheid over wie de hoofdbehandelaar is ten aanzien van de pijnbestrijding en voor adequate rapportage, coördinatie en communicatie tussen alle betrokken hulpverleners
+
+*Behandeling van de oorzaak *
+- hormonale therapie of chemotherapie bij daarvoor gevoelige tumoren
+- radiotherapie bij gelokaliseerde pijnklachten als gevolg van de primaire tumor of metastasen
+- nucleaire therapie bij diffuse pijnklachten ten gevolge van osteoblastische botmetastasen
+- vertebroplastiek bij ingezakte wervel ten gevolge van botmetastase of bothaard ten gevolge van de ziekte van Kahler chirurgie, bijv. bij pathologische fracturen van wervels of lange pijpbeenderen, ileus of lokale pijnklachten ten gevolge van tumorgroei
+- bisfosfonaten (APD i.v., zoledroninezuur i.v. of clodroninezuur p.o.) bij pijn ten gevolge van de ziekte van Kahler of botmetastasen van mammacarcinoom of prostaatcarcinoom
+- behandeling van lichamelijke klachten die pijn uitlokken of verergeren
+
+*Niet-medicamenteus*
+niet-medicamenteuze interventies worden vooral toegepast bij oppervlakkige pijnklachten, uitgaande van het houdings- en bewegingsapparaat (vaak in combinatie met medicamenteuze therapie): 
+- toepassing van warmte of koude
+- massage
+- oefentherapie
+- TENS (transcutane elektrische zenuwstimulatie)
+- ontspanningstechnieken
+- afleiding
+- cognitieve gedragstherapie
+
+*Medicamenteus*
+- voorkeur voor orale of transdermale toedieningsweg
+- gebruik van een vast schema, waarbij de tijdsintervallen bepaald worden door de werkingsduur van de medicamenten; deze worden op vaste tijden opgenomen, ongeacht de pijn van het moment
+
+__Nociceptieve pijn__, stapsgewijze benadering (gemodificeerde WHO-ladder):
+
+- __stap 1:__ paracetamol 4 dd 500-1000 mg p.o. of 3-4 dd 1000 mg supp.± NSAID (niet bij nierfunctiestoornissen): diclofenac tot 4 dd 50 mg p.o. of rectaal, naproxen tot 2 dd 500 mg p.o. of rectaal, of ibuprofen tot 4 dd 600 mg p.o. of 4 dd 500 mg rectaal. NSAID's combineren met omeprazol of pantoprazol bij leeftijd >70 jaar, voorgeschiedenis met een ulcus of complicaties daarvan, comorbiditeit (hartfalen of diabetes mellitus) of gelijktijdig gebruik van acetylsalicylzuur, clopidogrel, anticoagulantia, corticosteroïden of selectieve serotonineheropnameremmers (SSRI's). 
+
+- __stap 2:__ morfine slow release (startdosis: 2 dd 20 mg, bij patiënten >70 jaar 2 dd 10 mg) of fentanyl transdermaal 12 μg/uur:
+  - eventueel in combinatie met paracetamol en/of NSAID's 
+  - altijd in combinatie met een snelwerkend opioïd voor doorbraakpijn (zie verder) 
+  - altijd een laxans voorschrijven (macrogol/elektrolyten 1-2 sachets dd of magnesium(hydr)oxide 3 dd 500(724)-1000(1448) mg, bij onvoldoende effect combineren met sennosiden A+B 1 dd 10-20 cc of bisacodyl 5-10 mg a.n. of 10-20 mg supp. ‘s morgens) 
+  - bij misselijkheid/braken: metoclopramide 3-4 dd 10-20 mg p.o. 20-40 mg supp. 
+  - bij aanhoudende sufheid: methylfenidaat 2 dd 5-10 mg (niet ‘s avonds geven)
+  - autorijden toegestaan bij >14 dagen stabiele dosis. Het effect kan na 24 uur beoordeeld worden. Ophogen in stappen van 50-100%. Er is geen maximale dosis. Indien snel effect gewenst is: titreren met morfine s.c. of i.v. en daarna evt. omzetten naar oraal morfine of transdermaal fentanyl
+
+- __stap 3:__ opioïdrotatie (zie omrekentabel opioïden) bij onvoldoende effect van het opioïd ondanks aanpassing van de dosis, toedieningsfrequentie en toedieningsweg en/of bij onaanvaardbare bijwerkingen: 
+  - morfine vervangen door fentanylpleister of vice versa
+  - oxycodon slow release 2 dd
+  - hydromorfon slow release 2 dd
+  - buprenorfinepleister (bij voorkeur voor transdermale toediening)
+  - methadon (alleen door of in overleg met artsen, die ervaring hebben met dit middel) 
+- gebruik van combinatiepreparaten wordt afgeraden
+- bij nierfunctiestoornissen: geen NSAID's, bij klaring <50 ml/min fentanyl, hydromorfon of methadon voorschrijven
