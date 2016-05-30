@@ -37,7 +37,7 @@ class ListView : UIView {
                 let listStyling = styling as? ListItemStylingRule
                 x = listStyling?.listIdentSpace ?? 10
             }
-            subview.frame = CGRect(x: x, y: y, width: width - x, height:0)
+            
             subview.frame = CGRect(x: x, y: y, width: width - x, height: subview.intrinsicContentSize().height)
 
             previousView = subview
@@ -54,7 +54,7 @@ class ListView : UIView {
             height = height + subview.intrinsicContentSize().height
         }
 
-        return CGSize(width:500, height: height)
+        return CGSize(width:frame.size.width, height: height)
     }
 
 }
