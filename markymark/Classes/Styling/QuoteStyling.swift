@@ -14,7 +14,7 @@ public class QuoteStyling : ItemStyling, ContentInsetStylingRule, TextColorStyli
         return markDownItem is QuoteMarkDownItem
     }
 
-    public var baseFont: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
     public var textColor: UIColor? = UIColor.grayColor ()
     public var isItalic: Bool = true
 

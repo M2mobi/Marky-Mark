@@ -7,7 +7,7 @@ import Foundation
 
 import UIKit
 
-public struct InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingRule, ItalicStylingRule, BackgroundStylingRule {
+public struct InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingRule, ItalicStylingRule, BackgroundStylingRule, BaseFontStylingRule {
 
     public var parent : ItemStyling? = nil
 
@@ -17,6 +17,7 @@ public struct InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingR
     }
 
     public var textColor: UIColor? = .blackColor()
+    public var baseFont : UIFont? = nil
     public var backgroundColor: UIColor? = UIColor.lightGrayColor().colorWithAlphaComponent(0.25)
     public var isBold = false
     public var isItalic = true

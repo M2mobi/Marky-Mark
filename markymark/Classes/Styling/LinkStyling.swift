@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public struct LinkStyling: ItemStyling, TextColorStylingRule, UnderlineStylingRule, BoldStylingRule, ItalicStylingRule {
+public struct LinkStyling: ItemStyling, TextColorStylingRule, UnderlineStylingRule, BoldStylingRule, ItalicStylingRule, BaseFontStylingRule {
     
     public var parent : ItemStyling? = nil
     
@@ -16,7 +16,8 @@ public struct LinkStyling: ItemStyling, TextColorStylingRule, UnderlineStylingRu
     }
 
     public var textColor: UIColor? = UIColor.brownColor()
-    
+    public var baseFont : UIFont? = nil
+
     public var isBold = false
     public var isItalic = false
     public var isUnderlined = true

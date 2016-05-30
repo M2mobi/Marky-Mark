@@ -27,7 +27,7 @@ public struct DefaultStyling: Styling {
     }
 
     public var itemStylingRules: [ItemStyling] {
-        return collectStylingRules() + extraStyling
+        return extraStyling + collectStylingRules()
     }
 
     public init(){}

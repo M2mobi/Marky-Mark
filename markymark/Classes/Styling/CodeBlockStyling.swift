@@ -15,7 +15,7 @@ public class CodeBlockStyling : ItemStyling, BackgroundStylingRule, TextColorSty
     }
 
     public var backgroundColor: UIColor? = UIColor.lightGrayColor().colorWithAlphaComponent(0.25)
-    public var baseFont: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
     public var textColor: UIColor? = .grayColor()
 
     public var contentInsets = UIEdgeInsets(top: 10, left:  20, bottom: 10, right: 10)

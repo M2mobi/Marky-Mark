@@ -14,7 +14,7 @@ public struct ParagraphStyling: ItemStyling, TextColorStylingRule, LineHeightSty
         return markDownItem is ParagraphMarkDownItem
     }
 
-    public var baseFont: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
     public var textColor: UIColor? = UIColor.blackColor()
 
     public var contentInsets:UIEdgeInsets = UIEdgeInsets(top:0, left: 0, bottom: 10, right: 10)

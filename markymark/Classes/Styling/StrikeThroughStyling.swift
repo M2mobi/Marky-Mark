@@ -5,7 +5,7 @@
 
 import UIKit
 
-public struct StrikeThroughStyling: StrikeThroughStylingRule, TextColorStylingRule {
+public struct StrikeThroughStyling: StrikeThroughStylingRule, TextColorStylingRule, BaseFontStylingRule {
 
     public var parent : ItemStyling? = nil
 
@@ -15,7 +15,9 @@ public struct StrikeThroughStyling: StrikeThroughStylingRule, TextColorStylingRu
     }
 
     public var isStrikeThrough: Bool = true
-    public var textColor: UIColor? = UIColor.redColor()
+    public var baseFont : UIFont? = nil
+
+    public var textColor: UIColor? = nil
 
     public init(){}
 

@@ -19,7 +19,7 @@ public struct ListStyling: ItemStyling, BulletStylingRule, BaseFontStylingRule, 
     public var bulletColor:UIColor? = UIColor.grayColor()
     public var bulletImage: UIImage? = nil
 
-    public var baseFont: UIFont = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
 
     public var contentInsets = UIEdgeInsets(top: 0, left:  0, bottom: 10, right: 10)
 
