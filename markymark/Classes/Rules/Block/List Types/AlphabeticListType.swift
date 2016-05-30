@@ -5,7 +5,7 @@
 
 import Foundation
 
-class AlphabeticListType:ListType {
+public class AlphabeticListType:ListType {
 
     var pattern:String {
         return "[a-zA-Z]\\."
@@ -15,7 +15,7 @@ class AlphabeticListType:ListType {
         return AlphabeticallyOrderedMarkDownItem.self
     }
 
-    func getIndex(stringIndex:String) -> Int? {
+    public func getIndex(stringIndex:String) -> Int? {
         let alphabeticIndexCharacters = "abcdefghijklmnopqrstuvwxyz"
 
         var stringIndex = stringIndex

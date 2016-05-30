@@ -25,6 +25,7 @@ class RemoteImageView : UIImageView {
         
         if let image = UIImage(named: file) {
             self.image = image
+            self.addAspectConstraint()
         } else if let url = NSURL(string: file) {
             loadImageFromURL(url)
         } else {

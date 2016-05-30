@@ -5,15 +5,15 @@
 
 import Foundation
 
-class ImageBlockRule : RegExRule {
+public class ImageBlockRule : RegExRule {
 
     /// Example: ![Alt text](image.png)
 
-    var expression = NSRegularExpression.expressionWithPattern("^(!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)$")
+    public var expression = NSRegularExpression.expressionWithPattern("^(!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)$")
 
     //MARK: Rule
 
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
 
         let file:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 3)
         let altText:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 2)

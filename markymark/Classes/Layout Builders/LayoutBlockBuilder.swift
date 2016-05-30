@@ -5,7 +5,7 @@
 
 import Foundation
 
-class LayoutBlockBuilder<T> {
+public class LayoutBlockBuilder<T> {
 
     /**
      - Builds a displayable object of type T. For example UIView or String

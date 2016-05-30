@@ -100,7 +100,7 @@ class ListItemView : UIView {
     
     private func getImageBulletView() -> UIView? {
 
-        if let styling = styling, image = styling.bulletImage where !(listMarkDownItem is HasIndex) {
+        if let styling = styling, image = styling.bulletImage {
             let bulletImageView = UIImageView(image: image)
             bulletImageView.contentMode = .Top
             return bulletImageView

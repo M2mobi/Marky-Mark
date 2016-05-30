@@ -5,14 +5,14 @@
 
 import Foundation
 
-class InlineCodeRule : InlineRegexRule {
+public class InlineCodeRule : InlineRegexRule {
 
     /// Example: `text`
-    var expression = NSRegularExpression.expressionWithPattern("\\`{1}(.+?)\\`{1}")
+    public var expression = NSRegularExpression.expressionWithPattern("\\`{1}(.+?)\\`{1}")
 
     //MARK: Rule
 
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 1)
         return InlineCodeMarkDownItem(lines: lines, content: content ?? "")
     }
