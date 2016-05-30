@@ -1,5 +1,5 @@
 Pod::Spec.new do |s|
-  s.name             = "MarkyMark"
+  s.name             = "markymark"
   s.version          = "0.1.0"
   s.summary          = "Markdown parser for iOS"
   s.description      = <<-DESC

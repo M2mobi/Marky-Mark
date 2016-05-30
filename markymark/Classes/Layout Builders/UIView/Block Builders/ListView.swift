@@ -27,13 +27,13 @@ class ListView : UIView {
             
             var y:CGFloat = 0
             var x:CGFloat = 0
-            var width:CGFloat = frame.size.width
+            let width:CGFloat = frame.size.width
 
             if let previousView = previousView {
                 y = previousView.frame.origin.y + previousView.intrinsicContentSize().height
             }
 
-            if let subview = subview as? ListView {
+            if subview is ListView {
                 let listStyling = styling as? ListItemStylingRule
                 x = listStyling?.listIdentSpace ?? 10
             }

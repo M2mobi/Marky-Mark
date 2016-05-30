@@ -16,7 +16,7 @@ public class ListRule: Rule, HasLevel {
     init(listTypes:[ListType]){
         self.listTypes = listTypes + [defaultListType]
         
-        var pattern:String = self.listTypes.map({
+        let pattern:String = self.listTypes.map({
             return $0.pattern
         }).joinWithSeparator("|")
 
