@@ -17,8 +17,10 @@ class ListLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
     override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
 
+        let listView = getListView(listMarkDownItem, styling: styling)
+
         let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
-        return ContainerView(view: getListView(listMarkDownItem, styling: styling), spacing: spacing)
+        return ContainerView(view: listView, spacing: spacing)
     }
 
     //MARK: Private
@@ -35,28 +37,29 @@ class ListLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
     
     private func getListView(listMarkDownItem:ListMarkDownItem, styling:ItemStyling) -> UIView {
 
-        let listView = UIView()
-
-        let viewAppender = AutoLayoutViewAppender(container: listView)
+        let listView = ListView(styling:styling)
 
         for listItem in listMarkDownItem.listItems ?? [] {
 
             let bulletStyling = styling as? BulletStylingRule
             let listStyling = styling as? ListItemStylingRule
 
-            let label = ListItemView(listMarkDownItem: listItem, styling: bulletStyling)
-            label.attributedText = attributedStringForMarkDownItem(listItem, styling: styling)
+            let attributedString  = attributedStringForMarkDownItem(listItem, styling: styling)
+            let listItemView = ListItemView(listMarkDownItem: listItem, styling: bulletStyling, attributedText : attributedString)
 
-            viewAppender.appendView(label, verticalMargin: listStyling?.bottomListItemSpacing ?? 0, horizontalMargin: 0)
+            listItemView.bottomSpace = (listStyling?.bottomListItemSpacing ?? 0)
+
+            listView.addSubview(listItemView)
 
             if let nestedListItems = listItem.listItems where nestedListItems.count > 0 {
-                let listView = getListView(listItem, styling: styling)
-                viewAppender.appendView(listView, verticalMargin: 0, horizontalMargin: listStyling?.listIdentSpace ?? 10)
-            }
-        }
+                let nestedListView = getListView(listItem, styling: styling)
+                listView.addSubview(nestedListView)
 
-        viewAppender.finishAppendingWithPadding(0)
+            }
+
+        }
 
         return listView
     }
+    
 }

@@ -16,11 +16,10 @@ public protocol BulletStylingRule : ItemStyling {
     var bulletImage : UIImage? { get }
     /// Size of the view used for the bullet
     var bulletViewSize : CGSize { get }
-
 }
 
 extension BulletStylingRule {
     public var bulletViewSize : CGSize {
-        return CGSize(width: 10, height: 16)
+        return CGSize(width: 16, height: 16)
     }
 }
