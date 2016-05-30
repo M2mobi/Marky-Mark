@@ -30,7 +30,7 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
 
     ]
 
-    public var baseFont: UIFont {
+    public var baseFont: UIFont? {
         return fontsForLevels.elementForLevel(level)
     }
 

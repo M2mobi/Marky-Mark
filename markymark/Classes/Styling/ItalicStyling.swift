@@ -5,7 +5,7 @@
 
 import UIKit
 
-public struct ItalicStyling: ItemStyling, ItalicStylingRule {
+public struct ItalicStyling: ItemStyling, ItalicStylingRule, BaseFontStylingRule {
 
     public var parent : ItemStyling? = nil
 
@@ -15,6 +15,7 @@ public struct ItalicStyling: ItemStyling, ItalicStylingRule {
     }
 
     public var isItalic: Bool = true
+    public var baseFont : UIFont? = nil
 
     public init(){}
 }

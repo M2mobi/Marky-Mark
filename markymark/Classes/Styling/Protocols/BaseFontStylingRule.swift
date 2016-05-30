@@ -7,14 +7,14 @@ import UIKit
 
 public protocol BaseFontStylingRule : ItemStyling {
 
-    var baseFont : UIFont { get }
+    var baseFont : UIFont? { get }
 }
 
 extension ItemStyling {
 
     func neededBaseFont() -> UIFont? {
         for styling in stylingWithPrecedingStyling() {
-            if let styling = styling as? BaseFontStylingRule {
+            if let styling = styling as? BaseFontStylingRule where styling.baseFont != nil {
                 return styling.baseFont
             }
         }
