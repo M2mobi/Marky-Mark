@@ -16,11 +16,4 @@ Marky Mark is a parser written in Swift that converts markdown into native views
 
 s.source_files = 'markymark/Classes/**/*{.swift}'
 
-  # s.resource_bundles = {
-  #   'markymark' => ['markymark/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
 end
