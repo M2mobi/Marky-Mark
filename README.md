@@ -2,6 +2,10 @@
 
 Marky Mark is a parser written in Swift that converts markdown into native views. The way it looks it highly customizable and the supported markdown syntax is easy to extend.
 
+[![Screenshot](https://i.imgsafe.org/b2a1373357.png)](https://i.imgsafe.org/b2a75a3cfa.png)
+[![Screenshot](https://i.imgsafe.org/b2a14ba35a.png)](https://i.imgsafe.org/b2a7711e10.png)
+[![Screenshot](https://i.imgsafe.org/b2a14392fa.png)](https://i.imgsafe.org/b2a762331c.png)
+
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
@@ -36,7 +40,7 @@ let markDownView = converter.convert(markDownItems)
 ```
 
 
-## Supported tags in Contentful Flavor
+## Supported tags in the Contentful Flavor
 ```
 Headings
 # H1
@@ -141,6 +145,14 @@ If needed you can also add a custom styling class to the default styling
 styling.addStyling(MyCustomStyling())
 ```
 
+### Converter hook
+The converter has a callback method which is called every time a `MarkDownItem` is converted to layout. 
+
+```
+converter.didConvertElement = {
+    markDownItem, view in
+}
+```
 
 ## Author
 
