@@ -100,7 +100,7 @@ class ListItemView : UIView {
 
         if let styling = styling, image = styling.bulletImage {
             let bulletImageView = UIImageView(image: image)
-            bulletImageView.contentMode = .Top
+            bulletImageView.contentMode = .Center
             return bulletImageView
         }
 
