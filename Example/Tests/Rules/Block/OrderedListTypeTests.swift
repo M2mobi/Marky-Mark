@@ -34,8 +34,6 @@ class OrderedListTypeTests: XCTestCase {
         let expectedFailure = sut.getIndex("- ")
         let expectedFailure1 = sut.getIndex("a.")
 
-        //Act
-
         //Assert
         XCTAssertEqual(expected,2)
         XCTAssertEqual(expected1,6)

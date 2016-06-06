@@ -18,7 +18,6 @@ class HorizontalLineRuleTests: XCTestCase {
     func testcreateMarkDownItemWithLinesCreatesCorrectItem() {
         // Arrange
         let markdownItem = sut.createMarkDownItemWithLines(["---"])
-        // Act
 
         // Assert
         XCTAssert(markdownItem is HorizontalLineMarkDownItem)
@@ -27,7 +26,6 @@ class HorizontalLineRuleTests: XCTestCase {
     func testcreateMarkDownItemWithLinesContainsCorrectText() {
         // Arrange
         let markdownItem = sut.createMarkDownItemWithLines(["---"])
-        // Act
 
         // Assert
         XCTAssertEqual((markdownItem as! HorizontalLineMarkDownItem).lines,["---"])
@@ -37,6 +35,4 @@ class HorizontalLineRuleTests: XCTestCase {
         XCTAssert(sut.recognizesLines(["---"]))
         XCTAssertFalse(sut.recognizesLines(["--"]))
     }
-
-
 }

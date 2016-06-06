@@ -18,7 +18,6 @@ class BlockQuoteRuleTests: XCTestCase {
     func testcreateMarkDownItemWithLinesCreatesCorrectItem() {
         // Arrange
         let markdownItem = sut.createMarkDownItemWithLines(["> Quote"])
-        // Act
 
         // Assert
         XCTAssert(markdownItem is QuoteMarkDownItem)
@@ -32,7 +31,6 @@ class BlockQuoteRuleTests: XCTestCase {
         // Assert
         XCTAssertEqual((markdownItem as! QuoteMarkDownItem).content,"Quote")
         XCTAssertEqual((markdownItem2 as! QuoteMarkDownItem).content,"Text")
-
     }
 
     func testRecognizesLines() {

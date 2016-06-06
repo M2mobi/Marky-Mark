@@ -51,11 +51,13 @@ class ListRuleTests: XCTestCase {
         //Arrange
         let fakeLines = ["^-^ List item", "- Another list item"]
         let fakeLines2 = ["- List item", "^-^ Another list item", "- Yes another list item"]
+
         //Act
         sut.recognizesLines(fakeLines)
         let actualLinesConsumed = sut.linesConsumed()
         sut.recognizesLines(fakeLines2)
         let actualLinesConsumed2 = sut.linesConsumed()
+
         //Assert
         XCTAssertEqual(actualLinesConsumed, fakeLines.count)
         XCTAssertEqual(actualLinesConsumed2, fakeLines2.count)
@@ -65,9 +67,11 @@ class ListRuleTests: XCTestCase {
         //Arrange
         let fakeLine = "  - List item"
         let fakeLine2 = "    ^-^ List item"
+
         //Act
         let level = sut.getLevel(fakeLine)
         let level2 = sut.getLevel(fakeLine2)
+
         //Assert
         XCTAssertEqual(level, 1)
         XCTAssertEqual(level2, 2)

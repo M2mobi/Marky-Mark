@@ -31,7 +31,6 @@ class ParagraphRuleTests : XCTestCase {
 
     func testCreatedMarkDownItemContainsCorrectText() {
         //Arrange
-        //Act
         let markDownItem = sut.createMarkDownItemWithLines(["Text"])
 
         //Assert

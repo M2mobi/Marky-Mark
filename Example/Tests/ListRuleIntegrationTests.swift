@@ -70,6 +70,7 @@ class ListRuleIntegrationTests: XCTestCase {
         let fakeLines = ["- Proin consequat", "- Curabitur id orci"]
         let fakeLines2 = ["- Maecenas at luctus", "1. euismod magna", "a. non felis"]
         let fakeLines3 = ["- Aliquam eleifend", "- pharetra","  1. diam", "  2. Morbi","    a. metus", "    b. sollicitudin", "    c. dictum", "      - malesuada", "- tempor"]
+
         // Act
         sut.recognizesLines(fakeLines)
         let actualLinesConsumed = sut.linesConsumed()
@@ -77,6 +78,7 @@ class ListRuleIntegrationTests: XCTestCase {
         let actualLinesConsumed2 = sut.linesConsumed()
         sut.recognizesLines(fakeLines3)
         let actualLinesConsumedLong = sut.linesConsumed()
+
         // Assert
         XCTAssertEqual(actualLinesConsumed, fakeLines.count)
         XCTAssertEqual(actualLinesConsumed2, fakeLines2.count)
@@ -88,10 +90,12 @@ class ListRuleIntegrationTests: XCTestCase {
         let fakeLine = "  - Quad"
         let fakeLine2 = "    1. Bellum"
         let fakeLine3 = "a. Non Liset"
+
         //Act
         let level = sut.getLevel(fakeLine)
         let level2 = sut.getLevel(fakeLine2)
         let level3 = sut.getLevel(fakeLine3)
+
         //Assert
         XCTAssertEqual(level, 1)
         XCTAssertEqual(level2, 2)

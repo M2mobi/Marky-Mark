@@ -32,8 +32,6 @@ class UnOrderedListTypeTests: XCTestCase {
         let expectedFailure = sut.getIndex("1.")
         let expectedFailure1 = sut.getIndex("a.")
 
-        //Act
-
         //Assert
         XCTAssertEqual(expected,nil)
         XCTAssertEqual(expected1,nil)

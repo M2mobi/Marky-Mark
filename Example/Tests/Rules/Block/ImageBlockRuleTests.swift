@@ -18,7 +18,6 @@ class ImageBlockRuleTests: XCTestCase {
     func testcreateMarkDownItemWithLinesCreatesCorrectItem() {
         // Arrange
 		let markdownItem = sut.createMarkDownItemWithLines(["![Alt text](image.png)"])
-		// Act
 
 		// Assert
 		XCTAssert(markdownItem is ImageBlockMarkDownItem)
@@ -27,7 +26,6 @@ class ImageBlockRuleTests: XCTestCase {
     func testcreateMarkDownItemWithLinesContainsCorrectText() {
         // Arrange
         let markdownItem = sut.createMarkDownItemWithLines(["![Alt text](image.png)"])
-        // Act
 
         // Assert
         XCTAssertEqual((markdownItem as! ImageBlockMarkDownItem).altText,"Alt text")
