@@ -1,16 +1,16 @@
 PODS:
-  - MarkyMark (0.1.0)
+  - markymark (0.1.2)
 
 DEPENDENCIES:
-  - MarkyMark (from `../`)
+  - markymark (from `../`)
 
 EXTERNAL SOURCES:
-  MarkyMark:
+  markymark:
     :path: ../
 
 SPEC CHECKSUMS:
-  MarkyMark: ea4dfd034bec28f94fdd8b43d1697f5f0832c3d4
+  markymark: 066a888d220c13ac428ea4ade530643478fb211c
 
-PODFILE CHECKSUM: 52f0765ecb95b524b549d307885cfdce94e9a258
+PODFILE CHECKSUM: 481cd97f67bbaaac4fbd503a35c4acb0fe69c1cc
 
 COCOAPODS: 1.0.0

@@ -2,12 +2,12 @@ use_frameworks!
 
 target 'markymark_Example' do
 
-    pod 'MarkyMark', :path => '../'
+    pod 'markymark', :path => '../'
 
 end
 
 target 'markymark_Tests' do
     inherit! :search_paths
 
-    pod 'MarkyMark', :path => '../'
+    pod 'markymark', :path => '../'
 end
