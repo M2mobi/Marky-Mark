@@ -1,6 +1,6 @@
 //
 //  Created by Maren Osnabrug on 27-05-16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
+//  Copyright © 2016 M2Mobi. All rights reserved.
 //
 
 import XCTest
@@ -12,7 +12,7 @@ class ListRuleIntegrationTests: XCTestCase {
 
     override func setUp() {
         super.setUp()
-        sut = ListRule(listTypes: [AlphabeticListType(), OrderedListType(), UnOrderedListType()])
+        sut = ListRule(listTypes: [AlphabeticListType(), OrderedListType()])
     }
 
     func testRecognizesLines() {
@@ -28,21 +28,21 @@ class ListRuleIntegrationTests: XCTestCase {
             + "- Hello"
 
         //Assert
-        XCTAssert(sut.recognizesLines(["- List item"]))
-        XCTAssert(sut.recognizesLines(["1. List item"]))
-        XCTAssert(sut.recognizesLines(["a. List item"]))
-        XCTAssert(sut.recognizesLines(["- List item", "1. List item", "a. List item"]))
+        XCTAssert(sut.recognizesLines(["- Donec"]))
+        XCTAssert(sut.recognizesLines(["1. Fusce ullamcorper"]))
+        XCTAssert(sut.recognizesLines(["a. Cras vitae"]))
+        XCTAssert(sut.recognizesLines(["- Etiam", "1. Nulla", "a. Quisque"]))
         XCTAssert(sut.recognizesLines([markDownString]))
     }
 
     func testCreateMarkDownItemWithLinesCreatesCorrectItem() {
         //Act
-        let markdownItem = sut.createMarkDownItemWithLines(["- List item"])
-        let markdownItem2 = sut.createMarkDownItemWithLines(["4. List item"])
-        let markdownItem3 = sut.createMarkDownItemWithLines(["g. List item"])
-        let combinedMarkDownItems = sut.createMarkDownItemWithLines(["- List item","- List item","5. Numbered item"])
-        let combinedMarkDownItems2 = sut.createMarkDownItemWithLines(["A. Ordered item","4. Ordered item","- List item"])
-        let combinedMarkDownItems3 = sut.createMarkDownItemWithLines(["9. Numbered item","- List item","C. Ordered item"])
+        let markdownItem = sut.createMarkDownItemWithLines(["- Curabitur"])
+        let markdownItem2 = sut.createMarkDownItemWithLines(["4. Lorem"])
+        let markdownItem3 = sut.createMarkDownItemWithLines(["g. Ipsum"])
+        let combinedMarkDownItems = sut.createMarkDownItemWithLines(["- Consectetur","- Adipiscing","5. Elit"])
+        let combinedMarkDownItems2 = sut.createMarkDownItemWithLines(["A. Praesent","4. Aenean","- In Augue"])
+        let combinedMarkDownItems3 = sut.createMarkDownItemWithLines(["9. Suspendisse","- Duis","C. Aliquam"])
 
         //Assert
         XCTAssert(markdownItem is ListMarkDownItem)
@@ -55,14 +55,14 @@ class ListRuleIntegrationTests: XCTestCase {
 
     func testCreateMarkDownItemWithLinesContainsCorrectText() {
         //Act
-        let markdownItem = sut.createMarkDownItemWithLines(["- List item"])
-        let markdownItem2 = sut.createMarkDownItemWithLines(["8. List item"])
-        let markdownItem3 = sut.createMarkDownItemWithLines(["B. List item"])
+        let markdownItem = sut.createMarkDownItemWithLines(["- Vestibulum"])
+        let markdownItem2 = sut.createMarkDownItemWithLines(["8. Vivamus"])
+        let markdownItem3 = sut.createMarkDownItemWithLines(["B. Integer"])
 
         //Assert
-        XCTAssertEqual((markdownItem as! ListMarkDownItem).content, "List item")
-        XCTAssertEqual((markdownItem2 as! OrderedListMarkDownItem).content, "List item")
-        XCTAssertEqual((markdownItem3 as! AlphabeticallyOrderedMarkDownItem).content, "List item")
+        XCTAssertEqual((markdownItem as! ListMarkDownItem).content, "Vestibulum")
+        XCTAssertEqual((markdownItem2 as! OrderedListMarkDownItem).content, "Vivamus")
+        XCTAssertEqual((markdownItem3 as! AlphabeticallyOrderedMarkDownItem).content, "Integer")
     }
 
     func testLinesConsumed() {
