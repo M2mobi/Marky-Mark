@@ -21,7 +21,7 @@ public class AlphabeticListType:ListType {
         var stringIndex = stringIndex
         stringIndex = stringIndex.stringByReplacingOccurrencesOfString(".", withString: "")
 
-        if let index = alphabeticIndexCharacters.rangeOfString(stringIndex)?.startIndex {
+        if let index = alphabeticIndexCharacters.rangeOfString(stringIndex.lowercaseString)?.startIndex {
             return alphabeticIndexCharacters.startIndex.distanceTo(index)
         }
 

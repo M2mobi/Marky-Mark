@@ -25,6 +25,7 @@
 		629C424C1CEB4B3000DA57D8 /* MarkDownLinesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C42341CEB47F900DA57D8 /* MarkDownLinesTests.swift */; };
 		629C424D1CEB4B3000DA57D8 /* MarkyMarkTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 629C42351CEB47F900DA57D8 /* MarkyMarkTests.swift */; };
 		629C42511CEB58D000DA57D8 /* markdown.txt in Resources */ = {isa = PBXBuildFile; fileRef = 629C42501CEB58D000DA57D8 /* markdown.txt */; };
+		9A06FCF11CF72B4D0040251D /* AlphabeticListTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A06FCF01CF72B4D0040251D /* AlphabeticListTypeTests.swift */; };
 		9A8BE0AA1CEE0416004593A0 /* BoldRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE0A31CEE0416004593A0 /* BoldRuleTests.swift */; };
 		9A8BE0AB1CEE0416004593A0 /* ImageRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE0A41CEE0416004593A0 /* ImageRuleTests.swift */; };
 		9A8BE0AC1CEE0416004593A0 /* InlineCodeRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE0A51CEE0416004593A0 /* InlineCodeRuleTests.swift */; };
@@ -36,6 +37,9 @@
 		9A8BE0B61CEE044E004593A0 /* CodeBlockRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE0B31CEE044E004593A0 /* CodeBlockRuleTests.swift */; };
 		9A8BE0BA1CEE0459004593A0 /* HorizontalLineRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE0B71CEE0458004593A0 /* HorizontalLineRuleTests.swift */; };
 		9A8BE0BB1CEE0459004593A0 /* ImageBlockRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE0B81CEE0458004593A0 /* ImageBlockRuleTests.swift */; };
+		9A957FAF1CF730FB00465146 /* OrderedListTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A957FAE1CF730FB00465146 /* OrderedListTypeTests.swift */; };
+		9AD91A7A1CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD91A791CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift */; };
+		9AD91A7E1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD91A7D1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift */; };
 		9F346D66B4B31DFCC02A1889 /* Pods_markymark_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C9BF4F2708091B2D40877E /* Pods_markymark_Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -76,6 +80,7 @@
 		629C42501CEB58D000DA57D8 /* markdown.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = markdown.txt; sourceTree = "<group>"; };
 		6E8357CFD26059D0E00EA777 /* Pods_markymark_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_markymark_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9704F30C7296E4A0EA9A0087 /* Pods-markymark_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-markymark_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example.release.xcconfig"; sourceTree = "<group>"; };
+		9A06FCF01CF72B4D0040251D /* AlphabeticListTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabeticListTypeTests.swift; sourceTree = "<group>"; };
 		9A8BE0A31CEE0416004593A0 /* BoldRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoldRuleTests.swift; path = Block/BoldRuleTests.swift; sourceTree = "<group>"; };
 		9A8BE0A41CEE0416004593A0 /* ImageRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageRuleTests.swift; path = Block/ImageRuleTests.swift; sourceTree = "<group>"; };
 		9A8BE0A51CEE0416004593A0 /* InlineCodeRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InlineCodeRuleTests.swift; path = Block/InlineCodeRuleTests.swift; sourceTree = "<group>"; };
@@ -87,7 +92,10 @@
 		9A8BE0B31CEE044E004593A0 /* CodeBlockRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockRuleTests.swift; sourceTree = "<group>"; };
 		9A8BE0B71CEE0458004593A0 /* HorizontalLineRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLineRuleTests.swift; sourceTree = "<group>"; };
 		9A8BE0B81CEE0458004593A0 /* ImageBlockRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageBlockRuleTests.swift; sourceTree = "<group>"; };
+		9A957FAE1CF730FB00465146 /* OrderedListTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrderedListTypeTests.swift; sourceTree = "<group>"; };
 		9ACED21B5B719CEBD45DC4FF /* Pods-markymark_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-markymark_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		9AD91A791CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UnOrderedListTypeTests.swift; sourceTree = "<group>"; };
+		9AD91A7D1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRuleIntegrationTests.swift; sourceTree = "<group>"; };
 		D63514EC31AEF8C31E855D7D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F8C9BF4F2708091B2D40877E /* Pods_markymark_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_markymark_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F999758130B6D43C3A4FA9BF /* Pods-markymark_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-markymark_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -161,6 +169,7 @@
 			isa = PBXGroup;
 			children = (
 				629C42241CEB47F900DA57D8 /* MarkyMarkContentfulIntegrationTests.swift */,
+				9AD91A7D1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift */,
 				629C42251CEB47F900DA57D8 /* Rules */,
 				629C42291CEB47F900DA57D8 /* Converter */,
 				629C422D1CEB47F900DA57D8 /* Layout Builders */,
@@ -202,6 +211,7 @@
 		629C42261CEB47F900DA57D8 /* Block */ = {
 			isa = PBXGroup;
 			children = (
+				9A06FCF01CF72B4D0040251D /* AlphabeticListTypeTests.swift */,
 				629C42271CEB47F900DA57D8 /* HeaderRuleTests.swift */,
 				9A8BE0B71CEE0458004593A0 /* HorizontalLineRuleTests.swift */,
 				9A8BE0B81CEE0458004593A0 /* ImageBlockRuleTests.swift */,
@@ -209,6 +219,8 @@
 				9A8BE0B31CEE044E004593A0 /* CodeBlockRuleTests.swift */,
 				629C42281CEB47F900DA57D8 /* ParagraphRuleTests.swift */,
 				07EC79F41CF3A19D004239CB /* ListRuleTests.swift */,
+				9A957FAE1CF730FB00465146 /* OrderedListTypeTests.swift */,
+				9AD91A791CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift */,
 			);
 			path = Block;
 			sourceTree = "<group>";
@@ -497,10 +509,13 @@
 				9A8BE0AE1CEE0416004593A0 /* ItalicRuleTests.swift in Sources */,
 				9A8BE0AD1CEE0416004593A0 /* InlineTextRuleTests.swift in Sources */,
 				07EC79F51CF3A19D004239CB /* ListRuleTests.swift in Sources */,
+				9A06FCF11CF72B4D0040251D /* AlphabeticListTypeTests.swift in Sources */,
 				9A8BE0AB1CEE0416004593A0 /* ImageRuleTests.swift in Sources */,
 				9A8BE0B61CEE044E004593A0 /* CodeBlockRuleTests.swift in Sources */,
 				9A8BE0AC1CEE0416004593A0 /* InlineCodeRuleTests.swift in Sources */,
+				9AD91A7E1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift in Sources */,
 				629C424B1CEB4B3000DA57D8 /* ParagraphMarkDownItemTests.swift in Sources */,
+				9A957FAF1CF730FB00465146 /* OrderedListTypeTests.swift in Sources */,
 				629C424D1CEB4B3000DA57D8 /* MarkyMarkTests.swift in Sources */,
 				629C42441CEB4B3000DA57D8 /* ParagraphRuleTests.swift in Sources */,
 				629C424C1CEB4B3000DA57D8 /* MarkDownLinesTests.swift in Sources */,
@@ -512,6 +527,7 @@
 				9A8BE0AA1CEE0416004593A0 /* BoldRuleTests.swift in Sources */,
 				9A8BE0BB1CEE0459004593A0 /* ImageBlockRuleTests.swift in Sources */,
 				9A8BE0B01CEE0416004593A0 /* StrikeRuleTests.swift in Sources */,
+				9AD91A7A1CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift in Sources */,
 				629C42461CEB4B3000DA57D8 /* MarkDownConverterTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -615,6 +631,7 @@
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = s;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
