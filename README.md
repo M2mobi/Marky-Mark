@@ -24,7 +24,7 @@ To integrate MarkyMark into your Xcode project using CocoaPods, specify it in yo
 pod "markymark"
 ```
 
-## Useage
+## Usage
 
 ```
 let markyMark = MarkyMark(build: {
