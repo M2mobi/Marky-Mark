@@ -4,7 +4,7 @@
 //
 
 import XCTest
-@testable import MarkyMark
+@testable import markymark
 
 class MarkyMarkContentfulIntegrationTests: XCTestCase {
 

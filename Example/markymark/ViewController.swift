@@ -4,7 +4,7 @@
 //
 
 import UIKit
-import MarkyMark
+import markymark
 
 class ViewController: UIViewController {
 
