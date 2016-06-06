@@ -22,8 +22,13 @@ extension Styling {
         return EmptyItemStyling()
     }
 
-    /// Collects all ItemStyling properties of the instance by using reflection
     public var itemStylingRules: [ItemStyling] {
+        return collectStylingRules()
+    }
+
+    /// Collects all ItemStyling properties of the instance by using reflection
+
+    public func collectStylingRules() -> [ItemStyling] {
         return Mirror(reflecting: self).children.flatMap { $0.value as? ItemStyling }
     }
 }

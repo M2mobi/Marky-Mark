@@ -5,15 +5,15 @@
 
 import Foundation
 
-class ParagraphRule : Rule {
+public class ParagraphRule : Rule {
 
     //MARK: Rule
 
-    func recognizesLines(lines:[String]) -> Bool {
+    public func recognizesLines(lines:[String]) -> Bool {
         return true
     }
 
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    public  func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
         return ParagraphMarkDownItem(lines:lines, content: lines.first ?? "")
     }
 }

@@ -26,7 +26,7 @@ public class MarkDownConverterConfiguration<T> {
         return markDownItemToLayoutBuilderMap[String(markDownItemType)]
     }
 
-    func addLayoutBlockBuilder(layoutBlockBuilder: LayoutBlockBuilder<T>) {
+    public func addLayoutBlockBuilder(layoutBlockBuilder: LayoutBlockBuilder<T>) {
         markDownItemToLayoutBuilderMap[String(layoutBlockBuilder.relatedMarkDownItemType())] = layoutBlockBuilder
     }
 }

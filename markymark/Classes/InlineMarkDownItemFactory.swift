@@ -26,7 +26,7 @@ class InlineMarkDownItemFactory {
      */
 
     func getInlineMarkDownItemsForLines(content:String, ruleRangePairs:[RuleRangePair]? = nil) -> [MarkDownItem]? {
-        var ruleRangePairs = ruleRangePairs ?? getRuleRangePairsForLines(content)
+        let ruleRangePairs = ruleRangePairs ?? getRuleRangePairsForLines(content)
 
         if !containsInlineFormattingRules(ruleRangePairs) {
             return [defaultRule.createMarkDownItemWithLines([content])]

@@ -5,7 +5,7 @@
 
 import Foundation
 
-class ListRule: Rule, HasLevel {
+public class ListRule: Rule, HasLevel {
     
     var numberOfListItems = 0;
 
@@ -16,7 +16,7 @@ class ListRule: Rule, HasLevel {
     init(listTypes:[ListType]){
         self.listTypes = listTypes + [defaultListType]
         
-        var pattern:String = self.listTypes.map({
+        let pattern:String = self.listTypes.map({
             return $0.pattern
         }).joinWithSeparator("|")
 
@@ -25,7 +25,7 @@ class ListRule: Rule, HasLevel {
 
     //MARK: Rule
     
-    func recognizesLines(lines:[String]) -> Bool {
+    public func recognizesLines(lines:[String]) -> Bool {
         numberOfListItems = 0
 
         while(lines.count > numberOfListItems) {
@@ -42,7 +42,7 @@ class ListRule: Rule, HasLevel {
         return numberOfListItems > 0
     }
 
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 3) ?? ""
         let stringIndex = lines.first?.subStringWithExpression(expression, ofGroup: 2) ?? ""
 
@@ -56,7 +56,7 @@ class ListRule: Rule, HasLevel {
 
     }
 
-    func linesConsumed() -> Int {
+    public func linesConsumed() -> Int {
         return numberOfListItems
     }
 
