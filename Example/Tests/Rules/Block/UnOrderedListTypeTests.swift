@@ -1,6 +1,6 @@
 //
 //  Created by Maren Osnabrug on 26-05-16.
-//  Copyright © 2016 CocoaPods. All rights reserved.
+//  Copyright © 2016 M2mobi. All rights reserved.
 //
 
 import XCTest

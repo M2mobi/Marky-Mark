@@ -17,15 +17,15 @@ class ListRuleIntegrationTests: XCTestCase {
 
     func testRecognizesLines() {
         // Arrange
-        let markDownString = "- Hello"
-            + "- Hello"
-            + "  1. Hello"
-            + "  2. Hello"
-            + "    a. Hello"
-            + "    b. Hello"
-            + "    c. Hello"
-            + "      - Hello"
-            + "- Hello"
+        let markDownString = "- Veni"
+            + "- Vidi"
+            + "  1. Vici"
+            + "  2. Divide"
+            + "    a. et"
+            + "    b. Empera"
+            + "    c. Alea"
+            + "      - Jacta"
+            + "- Est"
 
         //Assert
         XCTAssert(sut.recognizesLines(["- Donec"]))
@@ -67,9 +67,9 @@ class ListRuleIntegrationTests: XCTestCase {
 
     func testLinesConsumed() {
         // Arrange
-        let fakeLines = ["- List item", "- Another list item"]
-        let fakeLines2 = ["- List item", "1. Another list item", "a. Yes another list item"]
-        let fakeLines3 = ["- Hello", "- Hello","  1. Hello", "  2. Hello","    a. Hello", "    b. Hello", "    c. Hello", "      - Hello", "- Hello"]
+        let fakeLines = ["- Proin consequat", "- Curabitur id orci"]
+        let fakeLines2 = ["- Maecenas at luctus", "1. euismod magna", "a. non felis"]
+        let fakeLines3 = ["- Aliquam eleifend", "- pharetra","  1. diam", "  2. Morbi","    a. metus", "    b. sollicitudin", "    c. dictum", "      - malesuada", "- tempor"]
         // Act
         sut.recognizesLines(fakeLines)
         let actualLinesConsumed = sut.linesConsumed()
@@ -85,9 +85,9 @@ class ListRuleIntegrationTests: XCTestCase {
 
     func testGetLevel() {
         //Arrange
-        let fakeLine = "  - List item"
-        let fakeLine2 = "    1. List item"
-        let fakeLine3 = "a. List item"
+        let fakeLine = "  - Quad"
+        let fakeLine2 = "    1. Bellum"
+        let fakeLine3 = "a. Non Liset"
         //Act
         let level = sut.getLevel(fakeLine)
         let level2 = sut.getLevel(fakeLine2)
