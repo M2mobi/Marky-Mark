@@ -8,6 +8,13 @@ import Foundation
 public class LayoutBlockBuilder<T> {
 
     /**
+     - Public init to be able to create custom layout block builders from outside MarkyMark
+     - returns: Instance of LayoutBlockBuilder
+     */
+
+    public init(){}
+
+    /**
      - Builds a displayable object of type T. For example UIView or String
      - Uses information from type the MarkDownItem
      - Must be overwritten by a subclass
@@ -17,8 +24,8 @@ public class LayoutBlockBuilder<T> {
      - returns: T
      */
 
-    func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<T>, styling : ItemStyling) -> T {
-         fatalError("\(String(self)): Implement build")
+    public func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<T>, styling : ItemStyling) -> T {
+        fatalError("\(String(self)): Implement build")
     }
 
     /**
@@ -26,8 +33,8 @@ public class LayoutBlockBuilder<T> {
 
      - returns: Any MarkDownItem Class
      */
-    
-    func relatedMarkDownItemType() -> MarkDownItem.Type {
+
+    public func relatedMarkDownItemType() -> MarkDownItem.Type {
         fatalError("\(String(self)): Implement relatedMarkDownItemType")
     }
 }
