@@ -14,13 +14,13 @@ public class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguratio
 
         super.init(elementComposer: elementComposer, styling : styling)
 
-        let converter = MarkDownConverter(configuration: MarkDownToAttributedStringConverterConfiguration(styling : styling))
+        let converter = MarkDownConverter(configuration: MarkDownToInlineAttributedStringConverterConfiguration(styling : styling))
 
         addLayoutBlockBuilder(HeaderViewLayoutBlockBuilder(converter: converter))
         addLayoutBlockBuilder(ParagraphViewLayoutBlockBuilder(converter: converter))
-        addLayoutBlockBuilder(ListLayoutBlockBuilder(converter:converter))
-        addLayoutBlockBuilder(OrderedListLayoutBlockBuilder(converter:converter))
-        addLayoutBlockBuilder(AlphabeticListLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(ListViewLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(OrderedListViewLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(AlphabeticListViewLayoutBlockBuilder(converter:converter))
         addLayoutBlockBuilder(CodeViewLayoutBlockBuilder(converter:converter))
         addLayoutBlockBuilder(QuoteBlockLayoutBuilder(converter:converter))
         addLayoutBlockBuilder(HorizontalLineLayoutBlockBuilder())

@@ -6,29 +6,38 @@
 import UIKit
 import markymark
 
+enum ConverterConfiguration {
+    case View
+    case AttributedString
+}
+
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
 
         self.view = UIScrollView()
+        
+        //Change this constant to try different configurations
+        let converterConfiguration = ConverterConfiguration.AttributedString
 
+        
+        //MarkyMark
         let markyMark = MarkyMark(build: {
             $0.setFlavor(ContentfulFlavor())
         })
 
-        var markdown:String = ""
-        if let filepath = NSBundle.mainBundle().pathForResource("markdown", ofType: "txt") {
-            markdown = try! NSString(contentsOfFile: filepath, usedEncoding: nil) as String
+        let markDownItems = markyMark.parseMarkDown(getMarkDownString())
+
+        let markDownView: UIView
+        switch converterConfiguration {
+            case .View:
+            markDownView = getViewWithViewConverter(markDownItems)
+            case .AttributedString:
+            markDownView = getViewWithAttributedStringConverter(markDownItems)
         }
-
-        let markDownItems = markyMark.parseMarkDown(markdown)
-
-        var styling = DefaultStyling()
-        styling.linkStyling.textColor = .redColor()
         
-        let converter = MarkDownConverter(configuration: MarkdownToViewConverterConfiguration(styling : styling))
-
-        let markDownView = converter.convert(markDownItems)
+        
+        // Layout
         view.addSubview(markDownView)
 
         let views = [
@@ -44,5 +53,42 @@ class ViewController: UIViewController {
         view.addConstraints(constraints)
 
         super.viewDidLoad()
+    }
+}
+
+private extension ViewController {
+    
+    func getViewWithViewConverter(markDownItems: [MarkDownItem]) -> UIView {
+        let styling = DefaultStyling()
+        
+        let configuration = MarkdownToViewConverterConfiguration(styling: styling)
+        let converter = MarkDownConverter(configuration: configuration)
+        
+        return converter.convert(markDownItems)
+    }
+    
+    func getViewWithAttributedStringConverter(markDownItems: [MarkDownItem]) -> UIView {
+        let styling = DefaultStyling()
+        let configuration = MarkDownToAttributedStringConverterConfiguration(styling: styling)
+        let converter = MarkDownConverter(configuration: configuration)
+        
+        let textView = UITextView()
+        textView.scrollEnabled = false
+        textView.editable = false
+        textView.dataDetectorTypes = .Link
+        textView.attributedText = converter.convert(markDownItems)
+        textView.tintColor = styling.linkStyling.textColor
+        textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0);
+        
+        return textView
+    }
+    
+    func getMarkDownString() -> String {
+        var markdownString:String = ""
+        if let filepath = NSBundle.mainBundle().pathForResource("markdown", ofType: "txt") {
+            markdownString = try! NSString(contentsOfFile: filepath, usedEncoding: nil) as String
+        }
+        
+        return markdownString
     }
 }

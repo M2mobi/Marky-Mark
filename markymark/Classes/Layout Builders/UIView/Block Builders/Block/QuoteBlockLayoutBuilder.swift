@@ -1,26 +1,22 @@
 //
-//  Created by Menno Lovink on 03/05/16.
+//  Created by Jim van Zummeren on 11/05/16.
 //  Copyright © 2016 M2mobi. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
-class HeaderViewLayoutBlockBuilder: AttributedStringViewLayoutBlockBuilder {
+class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
     //MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
-        return HeaderMarkDownItem.self
+        return QuoteMarkDownItem.self
     }
 
     override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
-        let headerMarkDownItem = markDownItem as! HeaderMarkDownItem
-        var headerStyling = styling as? HeadingStyling
-        headerStyling?.configureForLevel(headerMarkDownItem.level)
-        
         let label = AttributedInteractiveLabel()
-        label.numberOfLines = 0
-        label.setAttributedString(attributedStringForMarkDownItem(markDownItem, styling: headerStyling ?? styling))
+        label.setAttributedString(attributedStringForMarkDownItem(markDownItem, styling: styling))
 
         let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: label, spacing: spacing)

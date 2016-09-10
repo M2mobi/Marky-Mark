@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class ListLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
+class ListViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder {
 
     //MARK: LayoutBuilder
 

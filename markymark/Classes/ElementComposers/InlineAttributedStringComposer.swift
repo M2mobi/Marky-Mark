@@ -5,16 +5,15 @@
 
 import UIKit
 
-class AttributedStringComposer: ElementComposer<NSMutableAttributedString> {
-    
+class InlineAttributedStringComposer: ElementComposer<NSMutableAttributedString> {
+
     override func compose(elements: [NSMutableAttributedString]) -> NSMutableAttributedString {
-        
+
         let result = NSMutableAttributedString()
-        
+
         for element in elements {
-            
+
             result.appendAttributedString(element)
-            result.appendAttributedString(NSAttributedString(string: "\n"))
         }
         
         return result

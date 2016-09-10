@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class CodeViewLayoutBlockBuilder : AttributedStringViewLayoutBlockBuilder {
+class CodeViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder {
 
     //MARK: LayoutBuilder
 
