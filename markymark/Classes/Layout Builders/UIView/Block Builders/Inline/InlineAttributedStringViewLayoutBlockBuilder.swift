@@ -5,7 +5,7 @@
 
 import UIKit
 
-class AttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
+class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
 
     private let converter : MarkDownConverter<NSMutableAttributedString>
 

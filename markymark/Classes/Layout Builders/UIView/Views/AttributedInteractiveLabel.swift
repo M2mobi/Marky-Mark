@@ -10,11 +10,11 @@ import UIKit
  * Label that allows tapping on links defined in the provided NSattributedString
  */
 
-class AttributedInteractiveLabel: UILabel {
+public class AttributedInteractiveLabel: UILabel {
 
     var linksAttributes:[(NSRange, NSURL?)] = []
 
-    init(){
+    public init(){
         super.init(frame: CGRectZero)
         userInteractionEnabled = true;
         numberOfLines = 0
@@ -22,11 +22,11 @@ class AttributedInteractiveLabel: UILabel {
     }
 
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setAttributedString(attributedString:NSAttributedString?) {
+    public func setAttributedString(attributedString:NSAttributedString?) {
         guard let attributedString = attributedString else {
             self.attributedText = nil
             return

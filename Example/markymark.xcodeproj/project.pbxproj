@@ -300,12 +300,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACEF1AFB9204008FA782 /* Build configuration list for PBXNativeTarget "markymark_Example" */;
 			buildPhases = (
-				023E2C35E65FC2F3BF3DF5C1 /* 📦 Check Pods Manifest.lock */,
+				023E2C35E65FC2F3BF3DF5C1 /* [CP] Check Pods Manifest.lock */,
 				607FACCC1AFB9204008FA782 /* Sources */,
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
-				F220BF3FD9625FD67595F183 /* 📦 Embed Pods Frameworks */,
-				4536D5F2E1F7AC6E6B2E238E /* 📦 Copy Pods Resources */,
+				F220BF3FD9625FD67595F183 /* [CP] Embed Pods Frameworks */,
+				4536D5F2E1F7AC6E6B2E238E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -320,12 +320,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 607FACF21AFB9204008FA782 /* Build configuration list for PBXNativeTarget "markymark_Tests" */;
 			buildPhases = (
-				D70756FE8E6C87A920EAB880 /* 📦 Check Pods Manifest.lock */,
+				D70756FE8E6C87A920EAB880 /* [CP] Check Pods Manifest.lock */,
 				607FACE11AFB9204008FA782 /* Sources */,
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
-				029A2E5D6800056D702BE822 /* 📦 Embed Pods Frameworks */,
-				7789EB477652F3880BD14E09 /* 📦 Copy Pods Resources */,
+				029A2E5D6800056D702BE822 /* [CP] Embed Pods Frameworks */,
+				7789EB477652F3880BD14E09 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -349,6 +349,7 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = 3B6J93GERH;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
@@ -397,14 +398,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		023E2C35E65FC2F3BF3DF5C1 /* 📦 Check Pods Manifest.lock */ = {
+		023E2C35E65FC2F3BF3DF5C1 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -412,14 +413,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		029A2E5D6800056D702BE822 /* 📦 Embed Pods Frameworks */ = {
+		029A2E5D6800056D702BE822 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,14 +428,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		4536D5F2E1F7AC6E6B2E238E /* 📦 Copy Pods Resources */ = {
+		4536D5F2E1F7AC6E6B2E238E /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -442,14 +443,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		7789EB477652F3880BD14E09 /* 📦 Copy Pods Resources */ = {
+		7789EB477652F3880BD14E09 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Copy Pods Resources";
+			name = "[CP] Copy Pods Resources";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -457,14 +458,14 @@
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		D70756FE8E6C87A920EAB880 /* 📦 Check Pods Manifest.lock */ = {
+		D70756FE8E6C87A920EAB880 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Check Pods Manifest.lock";
+			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -472,14 +473,14 @@
 			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
 			showEnvVarsInLog = 0;
 		};
-		F220BF3FD9625FD67595F183 /* 📦 Embed Pods Frameworks */ = {
+		F220BF3FD9625FD67595F183 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputPaths = (
 			);
-			name = "📦 Embed Pods Frameworks";
+			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -650,11 +651,14 @@
 			baseConfigurationReference = 09F6D551E99F224FBB0ACEA1 /* Pods-markymark_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = markymark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -663,11 +667,14 @@
 			baseConfigurationReference = 9704F30C7296E4A0EA9A0087 /* Pods-markymark_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = markymark/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

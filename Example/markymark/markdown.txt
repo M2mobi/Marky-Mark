@@ -18,6 +18,13 @@
   2. Nested 2
 5. Number 5
 ---
+## Alphabetic list
+a. Number 1
+b. Number 2
+  1. Nested 1
+  2. Nested 2
+c. Number 3
+---
 ## Unordered list
 - Item 1
 - Item 2

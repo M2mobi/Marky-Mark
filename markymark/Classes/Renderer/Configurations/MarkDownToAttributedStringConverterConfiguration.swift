@@ -1,27 +1,33 @@
 //
 //  MarkDownToAttributedStringConverterConfiguration.swift
-//  MarkyMark
+//  Pods
 //
-//  Created by Menno Lovink on 03/05/16.
-//  Copyright © 2016 M2mobi. All rights reserved.
+//  Created by Jim van Zummeren on 11/06/16.
+//
 //
 
+import Foundation
 import UIKit
 
-class MarkDownToAttributedStringConverterConfiguration: MarkDownConverterConfiguration<NSMutableAttributedString> {
-
-    override init(elementComposer: ElementComposer<NSMutableAttributedString>, styling : Styling) {
+public class MarkDownToAttributedStringConverterConfiguration: MarkDownConverterConfiguration<NSMutableAttributedString> {
+    
+    public override init(elementComposer: ElementComposer<NSMutableAttributedString>, styling : Styling) {
+        
         super.init(elementComposer: elementComposer, styling : styling)
-        addLayoutBlockBuilder(InlineTextAttributedStringBlockBuilder())
-        addLayoutBlockBuilder(BoldAttributedStringBlockBuilder())
-        addLayoutBlockBuilder(StrikeThroughAttributedStringBlockBuilder())
-        addLayoutBlockBuilder(ItalicAttributedStringBlockBuilder())
+        
+        let converter = MarkDownConverter(configuration: MarkDownToInlineAttributedStringConverterConfiguration(styling : styling))
+        
+        addLayoutBlockBuilder(HeaderAttributedStringLayoutBlockBuilder(converter: converter))
+        addLayoutBlockBuilder(ParagraphAttributedStringLayoutBlockBuilder(converter: converter))
+        addLayoutBlockBuilder(ListAttributedStringLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(OrderedListAttributedStringLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(AlphabeticListAttributedStringLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(CodeAttributedStringLayoutBlockBuilder(converter:converter))
+        addLayoutBlockBuilder(QuoteAttributedStringLayoutBlockBuilder(converter:converter))
         addLayoutBlockBuilder(ImageAttributedStringBlockBuilder())
-        addLayoutBlockBuilder(LinkViewLayoutBlockBuilder())
-        addLayoutBlockBuilder(InlineCodeAttributedStringBlockBuilder())
     }
-
-    convenience init(styling : Styling){
-        self.init(elementComposer: AttributedStringComposer(), styling: styling)
+    
+    public convenience init(styling : Styling){
+        self.init(elementComposer: AttributedStringComposer(), styling : styling)
     }
 }
