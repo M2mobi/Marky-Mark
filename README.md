@@ -26,7 +26,7 @@ pod "markymark"
 
 ## Usage
 
-```
+```swift
 let markyMark = MarkyMark(build: {
   $0.setFlavor(ContentfulFlavor())
 })
@@ -77,7 +77,7 @@ Links
 
 Code 
 `code`
-```code```
+\```code```
 ```
 
 
@@ -85,33 +85,33 @@ Code
 
 Default Styling instance
 
-```
-  var styling = DefaultStyling()
+```swift
+var styling = DefaultStyling()
 ```
 
 Changing the color of links
 
-```
-  styling.linkStyling.textColor = .blueColor()
+```swift
+styling.linkStyling.textColor = .blueColor()
 ```
 
 Setting fonts for headers
 
-```
-  styling.headingStyling.fontsForLevels = [
-      UIFont.boldSystemFontOfSize(24), //H1
-      UIFont.systemFontOfSize(18),     //H2
-      UIFont.systemFontOfSize(16)      //H3
-  ]
+```swift
+styling.headingStyling.fontsForLevels = [
+    UIFont.boldSystemFontOfSize(24), //H1
+    UIFont.systemFontOfSize(18),     //H2
+    UIFont.systemFontOfSize(16)      //H3
+]
 ```
 Adding margins
 
-```
-  styling.paragraphStyling.contentInsets.bottom = 20
+```swift
+styling.paragraphStyling.contentInsets.bottom = 20
 ```
 
 ### Creating your own style
-```
+```swift
 struct MarkDownStyling: Styling {
   var headerStyling = HeaderStyling()
   var paragraphStyling = ParagraphStyling()
@@ -129,28 +129,28 @@ Adding a new rule requires three new classes of based on the following protocol:
 
 Add the rule to MarkyMark
 
-```
+```swift
 markyMark.addRule(MyCustomRule())
 ```
 
 Add the block builder to your layout converter
 
-```
+```swift
 converter.addLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
 ```
 
 If needed you can also add a custom styling class to the default styling
 
-```
+```swift
 styling.addStyling(MyCustomStyling())
 ```
 
 ### Converter hook
 The converter has a callback method which is called every time a `MarkDownItem` is converted to layout. 
 
-```
-converter.didConvertElement = {
-    markDownItem, view in
+```swift
+converter.didConvertElement = { markDownItem, view in
+  // Do something with markDownItem and / or view here
 }
 ```
 
