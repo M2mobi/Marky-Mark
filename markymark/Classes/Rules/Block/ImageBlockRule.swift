@@ -9,7 +9,7 @@ public class ImageBlockRule : RegExRule {
 
     /// Example: ![Alt text](image.png)
 
-    public var expression = NSRegularExpression.expressionWithPattern("^(!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)$")
+    public var expression = NSRegularExpression.expressionWithPattern("^(!\\p{Z}{0,1})\\[{0,1}(.+?)\\]\\({1}(.+?)\\)$")
 
     //MARK: Rule
 
