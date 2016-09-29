@@ -57,7 +57,7 @@ private extension UIFont {
     func makeBold() -> UIFont? {
 
         if let descriptor = fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold) {
-            UIFont.init(descriptor: descriptor, size: self.pointSize)
+            return UIFont(descriptor: descriptor, size: self.pointSize)
         }
 
         return nil
@@ -65,7 +65,7 @@ private extension UIFont {
 
     func makeItalic() -> UIFont? {
         if let descriptor = fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic) {
-            UIFont.init(descriptor: descriptor, size: self.pointSize)
+            return UIFont(descriptor: descriptor, size: self.pointSize)
         }
 
         return nil
@@ -73,7 +73,7 @@ private extension UIFont {
 
     func makeItalicBold() -> UIFont? {
         if let descriptor = fontDescriptor().fontDescriptorWithSymbolicTraits([.TraitItalic, .TraitBold]) {
-            UIFont.init(descriptor: descriptor, size: self.pointSize)
+            return UIFont(descriptor: descriptor, size: self.pointSize)
         }
 
         return nil
