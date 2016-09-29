@@ -10,26 +10,26 @@ import Foundation
 
 class InlineAttributedStringLayoutBlockBuilder : LayoutBlockBuilder<NSMutableAttributedString> {
     
-    private let converter : MarkDownConverter<NSMutableAttributedString>
+    fileprivate let converter : MarkDownConverter<NSMutableAttributedString>
     
     required init(converter : MarkDownConverter<NSMutableAttributedString>) {
         self.converter = converter
         super.init()
     }
     
-    func attributedStringForMarkDownItem(markdownItem : MarkDownItem, styling : ItemStyling) -> NSMutableAttributedString {
+    func attributedStringForMarkDownItem(_ markdownItem : MarkDownItem, styling : ItemStyling) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
         
         if let markDownItems = markdownItem.markDownItems {
             for subString in converter.convertToElements(markDownItems, applicableStyling: styling) {
-                string.appendAttributedString(subString)
+                string.append(subString)
             }
         }
         
         return string
     }
     
-    func attributedStringWithContentInset(attributedString:NSMutableAttributedString, contentInset: UIEdgeInsets) -> NSMutableAttributedString {
+    func attributedStringWithContentInset(_ attributedString:NSMutableAttributedString, contentInset: UIEdgeInsets) -> NSMutableAttributedString {
         
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = contentInset.bottom

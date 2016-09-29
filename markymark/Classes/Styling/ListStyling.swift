@@ -10,16 +10,16 @@ public struct ListStyling: ItemStyling, BulletStylingRule, BaseFontStylingRule, 
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is ListMarkDownItem
     }
 
-    public var bulletFont:UIFont? = UIFont.systemFontOfSize(14)
-    public var bulletColor:UIColor? = UIColor.grayColor()
+    public var bulletFont:UIFont? = .systemFont(ofSize: 14)
+    public var bulletColor:UIColor? = .gray
     public var bulletImage: UIImage? = nil
 
-    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
+    public var baseFont: UIFont? = UIFont.systemFont(ofSize: UIFont.systemFontSize)
 
     public var contentInsets = UIEdgeInsets(top: 0, left:  0, bottom: 10, right: 10)
 

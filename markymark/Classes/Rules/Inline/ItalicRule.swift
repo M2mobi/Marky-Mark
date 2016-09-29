@@ -5,14 +5,14 @@
 
 import UIKit
 
-public class ItalicRule: InlineRegexRule {
+open class ItalicRule: InlineRegexRule {
 
     /// Example: *text* or _text_
-    public var expression = NSRegularExpression.expressionWithPattern("(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)(.+?)(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)")
+    open var expression = NSRegularExpression.expressionWithPattern("(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)(.+?)(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)")
 
     //MARK: Rule
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 2)
         return ItalicMarkDownItem(lines: lines, content: content ?? "")
     }

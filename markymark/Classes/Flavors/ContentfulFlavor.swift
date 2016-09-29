@@ -5,9 +5,9 @@
 
 import Foundation
 
-public class ContentfulFlavor : Flavor {
+open class ContentfulFlavor : Flavor {
     
-    public var rules:[Rule] = [
+    open var rules:[Rule] = [
         HeaderRule(),
         ListRule(listTypes:[
             AlphabeticListType(),
@@ -19,9 +19,9 @@ public class ContentfulFlavor : Flavor {
         ImageBlockRule()
     ]
     
-    public var defaultRule:Rule = ParagraphRule()
+    open var defaultRule:Rule = ParagraphRule()
 
-    public var inlineRules:[InlineRule] = [
+    open var inlineRules:[InlineRule] = [
         BoldRule(),
         ItalicRule(),
         StrikeRule(),
@@ -30,7 +30,7 @@ public class ContentfulFlavor : Flavor {
         InlineCodeRule()
     ]
 
-    public var defaultInlineRule: InlineRule = InlineTextRule()
+    open var defaultInlineRule: InlineRule = InlineTextRule()
 
     public init() {
 

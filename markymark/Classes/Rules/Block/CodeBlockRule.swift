@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class CodeBlockRule : Rule  {
+open class CodeBlockRule : Rule  {
 
     var numberOfLines:Int = 0
 
@@ -15,7 +15,7 @@ public class CodeBlockRule : Rule  {
     var expressionEndFirstLine = NSRegularExpression.expressionWithPattern("(?<!^)(\\`{3})$")
     var expressionEnd = NSRegularExpression.expressionWithPattern("(\\`{3})$")
 
-    public func recognizesLines(lines:[String]) -> Bool {
+    open func recognizesLines(_ lines:[String]) -> Bool {
         if !expressionStart.hasMatchesInString(lines.first) {
             return false
         }
@@ -39,18 +39,18 @@ public class CodeBlockRule : Rule  {
         return false
     }
 
-    public func linesConsumed() -> Int {
+    open func linesConsumed() -> Int {
         return numberOfLines
     }
 
     //MARK: Rule
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
-        var content = lines.joinWithSeparator("\n")
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+        var content = lines.joined(separator: "\n")
 
-        content = content.stringByReplacingOccurrencesOfString("\n```", withString: "")
-        content = content.stringByReplacingOccurrencesOfString("```\n", withString: "")
-        content = content.stringByReplacingOccurrencesOfString("```", withString: "")
+        content = content.replacingOccurrences(of: "\n```", with: "")
+        content = content.replacingOccurrences(of: "```\n", with: "")
+        content = content.replacingOccurrences(of: "```", with: "")
 
         return CodeBlockMarkDownItem(lines: lines, content: content ?? "")
     }

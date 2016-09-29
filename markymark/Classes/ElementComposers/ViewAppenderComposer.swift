@@ -8,7 +8,7 @@ import UIKit
 
 class ViewAppenderComposer: ElementComposer<UIView> {
 
-    override func compose(elements: [UIView]) -> UIView {
+    override func compose(_ elements: [UIView]) -> UIView {
 
         let container = UIView()
         let viewAppender = AutoLayoutViewAppender(container:container)

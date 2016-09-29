@@ -18,7 +18,7 @@ class MarkyMarkTests: XCTestCase {
 
         sut = MarkyMark(build: {
             $0.setDefaultRule(MockNeverRecognizeRule())
-            $0.setDefaultInlineRule(MockNeverRecognizeInlineRule())
+            $0.setDefaultInlineRule(InlineTextRule())
         })
     }
     
@@ -32,7 +32,7 @@ class MarkyMarkTests: XCTestCase {
         sut.setDefaultRule(expectedDefaultRule)
 
         //Assert
-        XCTAssert((sut.getRuleForLines([]) as! AnyObject) === expectedDefaultRule)
+        XCTAssert((sut.getRuleForLines([]) as AnyObject) === expectedDefaultRule)
     }
 
     func testAddRuleEndsUpInAllRules() {
@@ -68,7 +68,7 @@ class MarkyMarkTests: XCTestCase {
         //Act
 
         //Assert
-        XCTAssert((sut.getRuleForLines(["Test"]) as! AnyObject) === rule)
+        XCTAssert((sut.getRuleForLines(["Test"]) as AnyObject) === rule)
     }
     
     func testParseMarkDownReturnsCorrectMarkDownItems() {
@@ -117,52 +117,51 @@ class MarkyMarkTests: XCTestCase {
 
 private class MockTestRule : Rule {
 
-    func recognizesLines(lines:[String]) -> Bool {
+    func recognizesLines(_ lines:[String]) -> Bool {
         guard let line = lines.first else { return false }
         return line == "Test"
     }
 
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         return MockMarkDownItem(lines:lines, content: lines.first ?? "")
     }
 }
 
 private class MockAlwaysRecognizeRule : Rule {
     
-    func recognizesLines(lines:[String]) -> Bool {
+    func recognizesLines(_ lines:[String]) -> Bool {
         return true
     }
     
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         return MockMarkDownItem(lines:lines, content: lines.first ?? "")
     }
 }
 
 private class MockNeverRecognizeRule : Rule {
     
-    func recognizesLines(lines:[String]) -> Bool {
+    func recognizesLines(_ lines:[String]) -> Bool {
         return false
     }
     
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         return MockWrongMarkDownItem(lines:lines, content: lines.first ?? "")
     }
 }
 
 private class MockNeverRecognizeInlineRule : InlineRule {
     
-    func recognizesLines(lines:[String]) -> Bool {
+    func recognizesLines(_ lines:[String]) -> Bool {
         return false
     }
     
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         return MockWrongMarkDownItem(lines:lines, content: lines.first ?? "")
     }
     
-    func getAllMatches(lines:[String]) -> [NSRange] {
+    func getAllMatches(_ lines:[String]) -> [NSRange] {
         return []
     }
-
 }
 
 private class MockMarkDownItem : MarkDownItem {

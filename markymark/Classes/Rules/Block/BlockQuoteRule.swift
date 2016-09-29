@@ -5,14 +5,14 @@
 
 import Foundation
 
-public class BlockQuoteRule : RegExRule {
+open class BlockQuoteRule : RegExRule {
 
     /// Example: > Quote
-    public var expression = NSRegularExpression.expressionWithPattern("(^>{1,}) (.*?)$")
+    open var expression = NSRegularExpression.expressionWithPattern("(^>{1,}) (.*?)$")
 
     //MARK: Rule
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 2)
         return QuoteMarkDownItem(lines: lines, content: content ?? "")
     }

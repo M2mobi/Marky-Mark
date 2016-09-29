@@ -43,7 +43,7 @@ class InlineTextRuleTests: XCTestCase {
 
     func testGetAllMatches() {
         //Arrange
-        let expectedMatchesRange = []
+        let expectedMatchesRange = [NSRange]()
         //Act
 
         //Assert

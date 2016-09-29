@@ -8,7 +8,7 @@ import UIKit
 public protocol ItemStyling {
 
     var parent : ItemStyling? { get set }
-    func isApplicableOn(markDownItem : MarkDownItem) -> Bool
+    func isApplicableOn(_ markDownItem : MarkDownItem) -> Bool
 }
 
 extension ItemStyling {
@@ -26,7 +26,7 @@ extension ItemStyling {
 
      - returns: A list of all ItemStyling found
      */
-    func anstors(current : ItemStyling? = nil,  soFar : [ItemStyling] = []) -> [ItemStyling] {
+    func anstors(_ current : ItemStyling? = nil,  soFar : [ItemStyling] = []) -> [ItemStyling] {
         let current = current ?? self
         var soFar = soFar
 

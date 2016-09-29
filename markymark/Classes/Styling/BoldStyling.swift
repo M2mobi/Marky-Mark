@@ -9,7 +9,7 @@ public struct BoldStyling: ItemStyling, BoldStylingRule, BaseFontStylingRule {
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is BoldMarkDownItem
     }

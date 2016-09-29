@@ -7,12 +7,12 @@ import UIKit
 
 public protocol Styling {
 
-    var itemStylingRules : [ItemStyling] { get }
+    var itemStylingRules: [ItemStyling] { get }
 }
 
 extension Styling {
 
-    func stylingForMarkownItem(item : MarkDownItem) -> ItemStyling {
+    func stylingForMarkownItem(_ item : MarkDownItem) -> ItemStyling {
         for styling in itemStylingRules {
             if styling.isApplicableOn(item) {
                 return styling
@@ -33,11 +33,11 @@ extension Styling {
     }
 }
 
-struct EmptyItemStyling : ItemStyling {
+struct EmptyItemStyling: ItemStyling {
 
     var parent: ItemStyling? = nil
 
-    func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
         return true
     }
 }

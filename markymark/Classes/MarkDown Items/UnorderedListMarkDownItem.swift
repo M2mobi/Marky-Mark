@@ -5,4 +5,4 @@
 
 import Foundation
 
-public class UnorderedListMarkDownItem : ListMarkDownItem { }
+open class UnorderedListMarkDownItem: ListMarkDownItem { }

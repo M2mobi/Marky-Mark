@@ -5,9 +5,9 @@
 
 import Foundation
 
-public class UnOrderedListType:ListType {
+open class UnOrderedListType: ListType {
 
-    var pattern:String {
+    var pattern: String {
         return "\\-|\\+|\\*"
     }
 
@@ -15,7 +15,7 @@ public class UnOrderedListType:ListType {
         return UnorderedListMarkDownItem.self
     }
 
-    public func getIndex(stringIndex:String) -> Int? {
+    open func getIndex(_ stringIndex: String) -> Int? {
         return nil
     }
 }

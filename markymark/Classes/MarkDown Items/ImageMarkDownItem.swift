@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class ImageMarkDownItem : MarkDownItem {
+open class ImageMarkDownItem : MarkDownItem {
 
     let file:String
     let altText:String

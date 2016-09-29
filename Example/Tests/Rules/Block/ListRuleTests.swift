@@ -53,9 +53,9 @@ class ListRuleTests: XCTestCase {
         let fakeLines2 = ["- List item", "^-^ Another list item", "- Yes another list item"]
 
         //Act
-        sut.recognizesLines(fakeLines)
+        _ = sut.recognizesLines(fakeLines)
         let actualLinesConsumed = sut.linesConsumed()
-        sut.recognizesLines(fakeLines2)
+        _ = sut.recognizesLines(fakeLines2)
         let actualLinesConsumed2 = sut.linesConsumed()
 
         //Assert
@@ -85,7 +85,7 @@ class FakeListType : ListType {
 
     var relatedListMarkDownType:ListMarkDownItem.Type { return FakeListMarkDownItem.self }
 
-    func getIndex(stringIndex:String) -> Int? {
+    func getIndex(_ stringIndex:String) -> Int? {
         return stringIndex == "^-^" ? 1 : nil
     }
 }

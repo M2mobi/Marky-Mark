@@ -15,5 +15,5 @@ public protocol InlineRule : Rule {
      - returns: Array of ranges where the matches were found
      */
     
-    func getAllMatches(lines:[String]) -> [NSRange]
+    func getAllMatches(_ lines:[String]) -> [NSRange]
 }

@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class ListRule: Rule, HasLevel {
+open class ListRule: Rule, HasLevel {
     
     var numberOfListItems = 0;
 
@@ -18,14 +18,14 @@ public class ListRule: Rule, HasLevel {
         
         let pattern:String = self.listTypes.map({
             return $0.pattern
-        }).joinWithSeparator("|")
+        }).joined(separator: "|")
 
         expression = NSRegularExpression.expressionWithPattern("^([  ]*)(\(pattern)) (.+?)$")
     }
 
     //MARK: Rule
     
-    public func recognizesLines(lines:[String]) -> Bool {
+    open func recognizesLines(_ lines:[String]) -> Bool {
         numberOfListItems = 0
 
         while(lines.count > numberOfListItems) {
@@ -42,7 +42,7 @@ public class ListRule: Rule, HasLevel {
         return numberOfListItems > 0
     }
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 3) ?? ""
         let stringIndex = lines.first?.subStringWithExpression(expression, ofGroup: 2) ?? ""
 
@@ -56,13 +56,13 @@ public class ListRule: Rule, HasLevel {
 
     }
 
-    public func linesConsumed() -> Int {
+    open func linesConsumed() -> Int {
         return numberOfListItems
     }
 
     //MARK: List Rule
 
-    func getLevel(line:String) -> Int {
+    func getLevel(_ line:String) -> Int {
         let numberOfSpaces = expression.rangeInString(line, forGroup: 1)?.length ?? 0
         return numberOfSpaces / 2
     }

@@ -30,7 +30,7 @@ class ListView : UIView {
             let width:CGFloat = frame.size.width
 
             if let previousView = previousView {
-                y = previousView.frame.origin.y + previousView.intrinsicContentSize().height
+                y = previousView.frame.origin.y + previousView.intrinsicContentSize.height
             }
 
             if subview is ListView {
@@ -38,7 +38,7 @@ class ListView : UIView {
                 x = listStyling?.listIdentSpace ?? 10
             }
             
-            subview.frame = CGRect(x: x, y: y, width: width - x, height: subview.intrinsicContentSize().height)
+            subview.frame = CGRect(x: x, y: y, width: width - x, height: subview.intrinsicContentSize.height)
 
             previousView = subview
         }
@@ -46,12 +46,12 @@ class ListView : UIView {
         invalidateIntrinsicContentSize()
     }
 
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
 
         var height:CGFloat = 0
 
         for subview in subviews {
-            height = height + subview.intrinsicContentSize().height
+            height = height + subview.intrinsicContentSize.height
         }
 
         return CGSize(width:frame.size.width, height: height)

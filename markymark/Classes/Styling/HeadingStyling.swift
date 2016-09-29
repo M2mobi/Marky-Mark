@@ -9,24 +9,24 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is HeaderMarkDownItem
     }
 
     var level:Int = 0
 
-    mutating func configureForLevel(level:Int) {
+    mutating func configureForLevel(_ level:Int) {
         self.level = level
     }
 
     public var fontsForLevels = [
-        UIFont.systemFontOfSize(24),
-        UIFont.systemFontOfSize(18),
-        UIFont.boldSystemFontOfSize(16),
-        UIFont.systemFontOfSize(15),
-        UIFont.systemFontOfSize(14),
-        UIFont.systemFontOfSize(13)
+        UIFont.systemFont(ofSize: 24),
+        UIFont.systemFont(ofSize: 18),
+        UIFont.boldSystemFont(ofSize: 16),
+        UIFont.systemFont(ofSize: 15),
+        UIFont.systemFont(ofSize: 14),
+        UIFont.systemFont(ofSize: 13)
 
     ]
 
@@ -35,9 +35,9 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
     }
 
     public var textColorsForLevels:[UIColor] = [
-        .orangeColor(),
-        .blackColor(),
-        .grayColor()
+        .orange,
+        .black,
+        .gray
     ]
 
     public var textColor: UIColor? {
@@ -50,7 +50,7 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
     public var isItalic = false
     public var isUnderlined : Bool = false
 
-    public var textAlignment:TextAlignment = .Left
+    public var textAlignment:TextAlignment = .left
 
     public init(){}
 
@@ -58,7 +58,7 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
 
 private extension Array {
 
-    func elementForLevel(level:Int) -> Element {
+    func elementForLevel(_ level:Int) -> Element {
 
         if level > self.count {
             return self.last!

@@ -7,29 +7,29 @@ import Foundation
 
 extension NSRegularExpression {
 
-    static func expressionWithPattern(pattern:String) -> NSRegularExpression {
-        let options:NSRegularExpressionOptions  = [.CaseInsensitive]
+    static func expressionWithPattern(_ pattern:String) -> NSRegularExpression {
+        let options:NSRegularExpression.Options  = [.caseInsensitive]
         return try! NSRegularExpression(pattern:pattern, options:options);
     }
 
-    func hasMatchesInString(string:String?) -> Bool {
+    func hasMatchesInString(_ string:String?) -> Bool {
         guard let string = string else { return false }
         let range = NSRange(location: 0, length: string.length())
-        let results = self.matchesInString(string, options:[], range: range)
+        let results = matches(in: string, options:[], range: range)
         return results.count > 0
     }
 
-    func rangeInString(string:String, forGroup group:Int) -> NSRange? {
+    func rangeInString(_ string:String, forGroup group:Int) -> NSRange? {
         let range = NSRange(location: 0, length: string.length())
 
-        let results = self.matchesInString(string, options:[], range: range)
+        let results = matches(in: string, options:[], range: range)
 
-        return results.first?.rangeAtIndex(group)
+        return results.first?.rangeAt(group)
     }
 
-    func rangesForString(string:String) -> [NSRange] {
+    func rangesForString(_ string:String) -> [NSRange] {
         let range = NSRange(location: 0, length:string.length())
-        let results = self.matchesInString(string, options:[], range: range)
+        let results = matches(in: string, options:[], range: range)
         return results.map { $0.range }
     }
 }

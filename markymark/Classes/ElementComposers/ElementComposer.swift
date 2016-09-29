@@ -5,7 +5,7 @@
 
 import UIKit
 
-public class ElementComposer<T> {
+open class ElementComposer<T> {
 
     /**
      Method that can merge elements of type T into one
@@ -14,7 +14,7 @@ public class ElementComposer<T> {
      
      - returns: merged elements
      */
-    func compose(elements : [T]) -> T {
-        fatalError("\(String(self)): Implement \(#function)")
+    func compose(_ elements : [T]) -> T {
+        fatalError("\(String(describing: self)): Implement \(#function)")
     }
 }

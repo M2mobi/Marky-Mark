@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class MarkDownConverterConfiguration<T> {
+open class MarkDownConverterConfiguration<T> {
 
     /// Dictionary that contains the connection between MarkDownItems and LayoutBlockBuilder's
     var markDownItemToLayoutBuilderMap: [String:LayoutBlockBuilder<T>] = [:]
@@ -22,11 +22,11 @@ public class MarkDownConverterConfiguration<T> {
         self.styling = styling
     }
 
-    func layoutBlockBuilderForMarkDownItemType(markDownItemType: MarkDownItem.Type) -> LayoutBlockBuilder<T>? {
-        return markDownItemToLayoutBuilderMap[String(markDownItemType)]
+    func layoutBlockBuilderForMarkDownItemType(_ markDownItemType: MarkDownItem.Type) -> LayoutBlockBuilder<T>? {
+        return markDownItemToLayoutBuilderMap[String(describing: markDownItemType)]
     }
 
-    public func addLayoutBlockBuilder(layoutBlockBuilder: LayoutBlockBuilder<T>) {
-        markDownItemToLayoutBuilderMap[String(layoutBlockBuilder.relatedMarkDownItemType())] = layoutBlockBuilder
+    open func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<T>) {
+        markDownItemToLayoutBuilderMap[String(describing: layoutBlockBuilder.relatedMarkDownItemType())] = layoutBlockBuilder
     }
 }

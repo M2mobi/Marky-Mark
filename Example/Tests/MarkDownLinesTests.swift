@@ -45,11 +45,11 @@ class MarkDownLinesTests: XCTestCase {
 
 private class MockRule : Rule {
 
-    func recognizesLines(lines:[String]) -> Bool {
+    func recognizesLines(_ lines:[String]) -> Bool {
         return true
     }
 
-    func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         return MockMarkDownItem(lines:lines, content: lines.first ?? "")
     }
 

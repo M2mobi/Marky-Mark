@@ -7,19 +7,19 @@ import UIKit
 
 class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
 
-    private let converter : MarkDownConverter<NSMutableAttributedString>
+    fileprivate let converter : MarkDownConverter<NSMutableAttributedString>
 
     required init(converter : MarkDownConverter<NSMutableAttributedString>) {
         self.converter = converter
         super.init()
     }
 
-    func attributedStringForMarkDownItem(markdownItem : MarkDownItem, styling : ItemStyling) -> NSMutableAttributedString {
+    func attributedStringForMarkDownItem(_ markdownItem : MarkDownItem, styling : ItemStyling) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
 
         if let markDownItems = markdownItem.markDownItems {
             for subString in converter.convertToElements(markDownItems, applicableStyling: styling) {
-                string.appendAttributedString(subString)
+                string.append(subString)
             }
         }
 

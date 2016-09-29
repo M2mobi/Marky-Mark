@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class MarkyMark {
+open class MarkyMark {
 
     /// Mark down flavor to use for parsing markdown
     var flavor:Flavor?
@@ -39,10 +39,10 @@ public class MarkyMark {
         build(self)
 
         if getDefaultRule() == nil {
-            fatalError("\(String(self)): defaultRule is not set")
+            fatalError("\(String(describing: self)): defaultRule is not set")
         }
         if getDefaultInlineRule() == nil {
-            fatalError("\(String(self)): defaultInlineRule is not set")
+            fatalError("\(String(describing: self)): defaultInlineRule is not set")
         }
     }
 
@@ -53,7 +53,7 @@ public class MarkyMark {
      - parameter rule: The fallback markdown rule
      */
 
-    public func setDefaultRule(rule:Rule) {
+    open func setDefaultRule(_ rule:Rule) {
         self.defaultRule = rule
     }
 
@@ -62,7 +62,7 @@ public class MarkyMark {
      Or by the default rule that has been set manually
     */
     
-    public func getDefaultRule() -> Rule? {
+    open func getDefaultRule() -> Rule? {
         if let defaultRule = defaultRule {
             return defaultRule
         } else {
@@ -77,7 +77,7 @@ public class MarkyMark {
      - parameter rule: The fallback markdown rule
      */
     
-    public func setDefaultInlineRule(rule:InlineRule) {
+    open func setDefaultInlineRule(_ rule:InlineRule) {
         self.defaultInlineRule = rule
     }
 
@@ -86,7 +86,7 @@ public class MarkyMark {
      Or by the default rule that has been set manually
      */
     
-    public func getDefaultInlineRule() -> InlineRule? {
+    open func getDefaultInlineRule() -> InlineRule? {
         if let defaultInlineRule = defaultInlineRule {
             return defaultInlineRule
         } else {
@@ -100,7 +100,7 @@ public class MarkyMark {
      - parameter rule: Rule that can recoginize markdown syntax
      */
     
-    public func addRule(rule:Rule) {
+    open func addRule(_ rule:Rule) {
         additionalRules.append(rule)
     }
 
@@ -111,7 +111,7 @@ public class MarkyMark {
      - parameter flavor: Mark Down Flavor to use for parsing Markdown
      */
 
-    public func setFlavor(flavor:Flavor) {
+    open func setFlavor(_ flavor:Flavor) {
         self.flavor = flavor
     }
 
@@ -123,7 +123,7 @@ public class MarkyMark {
      - returns: Array of MarkDownItem created by the given Rules
      */
 
-    public func parseMarkDown(markDown:String) -> [MarkDownItem] {
+    open func parseMarkDown(_ markDown:String) -> [MarkDownItem] {
 
         let markDownLines = MarkDownLines(markDown)
         var markDownItems:[MarkDownItem] = []
@@ -161,7 +161,7 @@ public class MarkyMark {
      - returns: ListMarkDownItem
      */
 
-    func getListMarkDownItemWithLines(lines:[String], rule:ListRule) -> MarkDownItem {
+    func getListMarkDownItemWithLines(_ lines:[String], rule:ListRule) -> MarkDownItem {
 
         let markDownItem = rule.createMarkDownItemWithLines(lines)
 
@@ -177,7 +177,7 @@ public class MarkyMark {
      - parameter lines:        Lines to parse
      */
 
-    func parseListItems(markDownItem:MarkDownItem, lines:[String], rule:ListRule) {
+    func parseListItems(_ markDownItem:MarkDownItem, lines:[String], rule:ListRule) {
         guard let listMarkDownItem = markDownItem as? ListMarkDownItem else { return }
         
         let listItems = listMarkdownItemFactory.getListItemForLines(markDownItem.lines, rule: rule)
@@ -216,7 +216,7 @@ public class MarkyMark {
      - returns: A rule that recognizes the markdown syntax of the first line(s)
      */
 
-    func getRuleForLines(lines:[String]) -> Rule {
+    func getRuleForLines(_ lines:[String]) -> Rule {
 
         for rule in allRules() {
 
@@ -237,7 +237,7 @@ public class MarkyMark {
 
      - returns: Flattend list of ListMarkDownItem's
      */
-    func getFlattenedListItems(listItem:ListMarkDownItem, flattenedListItems:[ListMarkDownItem] = []) -> [ListMarkDownItem] {
+    func getFlattenedListItems(_ listItem:ListMarkDownItem, flattenedListItems:[ListMarkDownItem] = []) -> [ListMarkDownItem] {
         var flattenedListItems = flattenedListItems
 
         for listItem in listItem.listItems ?? [] {

@@ -6,12 +6,12 @@
 import Foundation
 
 public enum TextAlignment {
-    case Left
-    case Right
-    case Center
+    case left
+    case right
+    case center
 }
 
-public protocol TextAlignmentStylingRule : ItemStyling {
+public protocol TextAlignmentStylingRule: ItemStyling {
     var textAlignment : TextAlignment { get }
 }
 

@@ -5,11 +5,11 @@
 
 import Foundation
 
-public class LinkMarkDownItem : MarkDownItem {
+open class LinkMarkDownItem: MarkDownItem {
     
-    let url:String
+    let url: String
     
-    init(lines: [String], content: String, url:String) {
+    init(lines: [String], content: String, url: String) {
         self.url = url
         super.init(lines: lines, content: content)
     }

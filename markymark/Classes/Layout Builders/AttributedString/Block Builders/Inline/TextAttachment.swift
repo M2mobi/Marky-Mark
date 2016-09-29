@@ -11,11 +11,11 @@ import UIKit
 
 class TextAttachment: NSTextAttachment {
     
-    override func attachmentBoundsForTextContainer(textContainer: NSTextContainer?, proposedLineFragment lineFrag: CGRect, glyphPosition position: CGPoint, characterIndex charIndex: Int) -> CGRect {
+    override func attachmentBounds(for textContainer: NSTextContainer?, proposedLineFragment lineFrag: CGRect, glyphPosition position: CGPoint, characterIndex charIndex: Int) -> CGRect {
         
         var imageSize = CGSize()
         
-        var originalImageSize = image?.size ?? CGSize()
+        let originalImageSize = image?.size ?? CGSize()
         let imageRatio = originalImageSize.height / originalImageSize.width
         
         imageSize.width = lineFrag.width

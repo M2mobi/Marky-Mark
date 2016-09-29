@@ -16,7 +16,7 @@ class ParagraphAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutB
         return ParagraphMarkDownItem.self
     }
 
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
         let paragraphStyling = styling as? ParagraphStyling
         let attributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
         

@@ -6,19 +6,19 @@
 import Foundation
 import UIKit
 
-public class QuoteStyling : ItemStyling, ContentInsetStylingRule, TextColorStylingRule, BaseFontStylingRule, ItalicStylingRule {
-    public var parent : ItemStyling? = nil
+open class QuoteStyling: ItemStyling, ContentInsetStylingRule, TextColorStylingRule, BaseFontStylingRule, ItalicStylingRule {
+    open var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    open func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is QuoteMarkDownItem
     }
 
-    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
-    public var textColor: UIColor? = UIColor.grayColor ()
-    public var isItalic: Bool = true
+    open var baseFont: UIFont? = .systemFont(ofSize: UIFont.systemFontSize)
+    open var textColor: UIColor? = .gray
+    open var isItalic: Bool = true
 
-    public var contentInsets = UIEdgeInsets(top: 0, left:  20, bottom: 0, right: 0)
+    open var contentInsets = UIEdgeInsets(top: 0, left:  20, bottom: 0, right: 0)
 
     public init(){}
 

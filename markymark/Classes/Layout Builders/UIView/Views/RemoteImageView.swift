@@ -10,7 +10,7 @@ import UIKit
  * Image view that can retrieve images from a remote http location
  */
 
-class RemoteImageView : UIImageView {
+class RemoteImageView: UIImageView {
     
     let file:String
     let altText:String
@@ -19,14 +19,14 @@ class RemoteImageView : UIImageView {
         self.file = file
         self.altText = altText
         
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect.zero)
         
-        contentMode = .ScaleAspectFit
+        contentMode = .scaleAspectFit
         
         if let image = UIImage(named: file) {
             self.image = image
             self.addAspectConstraint()
-        } else if let url = NSURL(string: file) {
+        } else if let url = URL(string: file) {
             loadImageFromURL(url)
         } else {
             print("Should display alt text instead: \(altText)")
@@ -35,14 +35,14 @@ class RemoteImageView : UIImageView {
 
     //MARK: Private
     
-    private func loadImageFromURL(url:NSURL) {
+    fileprivate func loadImageFromURL(_ url:URL) {
         
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) {
+        DispatchQueue.global(priority: DispatchQueue.GlobalQueuePriority.default).async {
 
-            let data = NSData(contentsOfURL: url)
+            let data = try? Data(contentsOf: url)
             
-            dispatch_async(dispatch_get_main_queue(), {
-                if let data = data, image = UIImage(data: data) {
+            DispatchQueue.main.async(execute: {
+                if let data = data, let image = UIImage(data: data) {
                     self.image = image
 
                     self.addAspectConstraint()
@@ -51,14 +51,14 @@ class RemoteImageView : UIImageView {
         }
     }
     
-    private func addAspectConstraint(){
+    fileprivate func addAspectConstraint(){
         if let image = image {
             let constraint = NSLayoutConstraint(
                 item: self,
-                attribute: .Height,
-                relatedBy: .Equal,
+                attribute: .height,
+                relatedBy: .equal,
                 toItem: self,
-                attribute: .Width,
+                attribute: .width,
                 multiplier: image.size.height / image.size.width,
                 constant: 0
             )

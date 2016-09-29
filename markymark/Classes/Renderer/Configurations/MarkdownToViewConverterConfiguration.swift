@@ -8,7 +8,7 @@
 
 import UIKit
 
-public class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<UIView> {
+open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<UIView> {
 
     public override init(elementComposer: ElementComposer<UIView>, styling : Styling) {
 

@@ -13,7 +13,7 @@ class InlineTextAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttrib
         return InlineTextMarkDownItem.self
     }
 
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
 
         return NSMutableAttributedString(string: markDownItem.content, attributes: StringAttributesBuilder().attributesForStyling(styling))
     }

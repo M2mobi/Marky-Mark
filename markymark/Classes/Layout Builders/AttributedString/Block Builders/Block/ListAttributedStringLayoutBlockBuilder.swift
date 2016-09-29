@@ -14,7 +14,7 @@ class ListAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBlockB
         return UnorderedListMarkDownItem.self
     }
     
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
         
         let listAttributedString = getListAttributedString(listMarkDownItem, styling: styling)
@@ -38,7 +38,7 @@ private extension ListAttributedStringLayoutBlockBuilder {
      - returns: A view containing all list items of given markDownItem
      */
     
-    func getListAttributedString(listMarkDownItem:ListMarkDownItem, styling:ItemStyling, level:CGFloat = 0) -> NSMutableAttributedString {
+    func getListAttributedString(_ listMarkDownItem:ListMarkDownItem, styling:ItemStyling, level:CGFloat = 0) -> NSMutableAttributedString {
         
         let listAttributedString = NSMutableAttributedString()
         
@@ -50,26 +50,26 @@ private extension ListAttributedStringLayoutBlockBuilder {
             let listStyling = styling as? ListItemStylingRule
             
             let listItemAttributedString = NSMutableAttributedString()
-            listItemAttributedString.appendAttributedString(getBulletCharacter(listItem, styling: bulletStyling))
+            listItemAttributedString.append(getBulletCharacter(listItem, styling: bulletStyling))
             listItemAttributedString.addAttributes(
                 getBulletIndentingAttributesForLevel(level, listStyling: listStyling),
                 range: listItemAttributedString.fullRange()
             )
             
             let attributedString = attributedStringForMarkDownItem(listItem, styling: styling)
-            listItemAttributedString.appendAttributedString(attributedString)
-            listItemAttributedString.appendAttributedString(NSAttributedString(string:"\n"))
-            listAttributedString.appendAttributedString(listItemAttributedString)
+            listItemAttributedString.append(attributedString)
+            listItemAttributedString.append(NSAttributedString(string:"\n"))
+            listAttributedString.append(listItemAttributedString)
 
-            if let nestedListItems = listItem.listItems where nestedListItems.count > 0 {
-                listAttributedString.appendAttributedString(getListAttributedString(listItem, styling: styling, level: level + 1))
+            if let nestedListItems = listItem.listItems, nestedListItems.count > 0 {
+                listAttributedString.append(getListAttributedString(listItem, styling: styling, level: level + 1))
             }
         }
         
         return listAttributedString
     }
     
-    func getBulletCharacter(listMarkDownItem:ListMarkDownItem, styling:BulletStylingRule?) -> NSAttributedString {
+    func getBulletCharacter(_ listMarkDownItem:ListMarkDownItem, styling:BulletStylingRule?) -> NSAttributedString {
         
         let string:String
         
@@ -82,7 +82,7 @@ private extension ListAttributedStringLayoutBlockBuilder {
         return NSMutableAttributedString(string:string, attributes: getBulletStylingAttributes(styling))
     }
     
-    func getBulletStylingAttributes(styling:BulletStylingRule?) -> [String : AnyObject] {
+    func getBulletStylingAttributes(_ styling:BulletStylingRule?) -> [String : AnyObject] {
         var attributes = [String : AnyObject]()
         
         if let font = styling?.bulletFont {
@@ -96,7 +96,7 @@ private extension ListAttributedStringLayoutBlockBuilder {
         return attributes
     }
     
-    func getBulletIndentingAttributesForLevel(level:CGFloat, listStyling: ListItemStylingRule?) -> [String : AnyObject] {
+    func getBulletIndentingAttributesForLevel(_ level:CGFloat, listStyling: ListItemStylingRule?) -> [String : AnyObject] {
         let listIndentSpace = (listStyling?.listIdentSpace ?? 0)
 
         let paragraphStyle = NSMutableParagraphStyle()

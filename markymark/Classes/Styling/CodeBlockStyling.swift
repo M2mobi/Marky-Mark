@@ -6,19 +6,19 @@
 import Foundation
 import UIKit
 
-public class CodeBlockStyling : ItemStyling, BackgroundStylingRule, TextColorStylingRule, ContentInsetStylingRule, BaseFontStylingRule {
-    public var parent : ItemStyling? = nil
+open class CodeBlockStyling : ItemStyling, BackgroundStylingRule, TextColorStylingRule, ContentInsetStylingRule, BaseFontStylingRule {
+    open var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    open func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is CodeBlockMarkDownItem
     }
 
-    public var backgroundColor: UIColor? = UIColor.lightGrayColor().colorWithAlphaComponent(0.25)
-    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
-    public var textColor: UIColor? = .grayColor()
+    open var backgroundColor: UIColor? = UIColor.lightGray.withAlphaComponent(0.25)
+    open var baseFont: UIFont? = .systemFont(ofSize: UIFont.systemFontSize)
+    open var textColor: UIColor? = .gray
 
-    public var contentInsets = UIEdgeInsets(top: 0, left:  20, bottom: 10, right: 10)
+    open var contentInsets = UIEdgeInsets(top: 0, left:  20, bottom: 10, right: 10)
 
     public init(){}
 

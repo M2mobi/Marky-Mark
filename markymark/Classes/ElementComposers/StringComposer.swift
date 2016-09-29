@@ -7,7 +7,7 @@ import UIKit
 
 class StringComposer: ElementComposer<String> {
 
-    override func compose(elements: [String]) -> String {
+    override func compose(_ elements: [String]) -> String {
 
         var result = ""
 

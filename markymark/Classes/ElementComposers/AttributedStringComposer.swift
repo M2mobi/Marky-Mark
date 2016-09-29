@@ -7,14 +7,14 @@ import UIKit
 
 class AttributedStringComposer: ElementComposer<NSMutableAttributedString> {
     
-    override func compose(elements: [NSMutableAttributedString]) -> NSMutableAttributedString {
+    override func compose(_ elements: [NSMutableAttributedString]) -> NSMutableAttributedString {
         
         let result = NSMutableAttributedString()
         
         for element in elements {
             
-            result.appendAttributedString(element)
-            result.appendAttributedString(NSAttributedString(string: "\n"))
+            result.append(element)
+            result.append(NSAttributedString(string: "\n"))
         }
         
         return result

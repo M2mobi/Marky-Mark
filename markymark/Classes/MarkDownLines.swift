@@ -11,7 +11,7 @@ class MarkDownLines {
     var lines:[String]
 
     init(_ markDown:String) {
-        self.lines = markDown.componentsSeparatedByString("\n")
+        self.lines = markDown.components(separatedBy: "\n")
     }
 
     /**
@@ -20,7 +20,7 @@ class MarkDownLines {
 
      - parameter rule: Rule that recognized the markdown lines
      */
-    func removeLinesForMarkDownItem(markDownItem:MarkDownItem) {
+    func removeLinesForMarkDownItem(_ markDownItem:MarkDownItem) {
         for _ in 0 ..< markDownItem.lines.count {
             lines.removeFirst()
         }

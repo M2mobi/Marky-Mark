@@ -5,7 +5,7 @@
 
 import UIKit
 
-public protocol TextColorStylingRule : ItemStyling {
+public protocol TextColorStylingRule: ItemStyling {
 
     var textColor : UIColor? { get }
 }
@@ -14,7 +14,7 @@ extension ItemStyling {
 
     func neededTextColor() -> UIColor? {
         for styling in stylingWithPrecedingStyling() {
-            if let styling = styling as? TextColorStylingRule where styling.textColor != nil {
+            if let styling = styling as? TextColorStylingRule, styling.textColor != nil {
                 return styling.textColor
             }
         }

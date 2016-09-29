@@ -11,14 +11,14 @@ public struct InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingR
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is InlineCodeMarkDownItem
     }
 
-    public var textColor: UIColor? = .blackColor()
+    public var textColor: UIColor? = .black
     public var baseFont : UIFont? = nil
-    public var backgroundColor: UIColor? = UIColor.lightGrayColor().colorWithAlphaComponent(0.25)
+    public var backgroundColor: UIColor? = UIColor.lightGray.withAlphaComponent(0.25)
     public var isBold = false
     public var isItalic = true
 

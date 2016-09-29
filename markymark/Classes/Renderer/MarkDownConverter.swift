@@ -5,10 +5,10 @@
 
 import Foundation
 
-public class MarkDownConverter<T> {
+open class MarkDownConverter<T> {
 
     /// Callback method that get's called every time a MarkDownItem is converted to an element
-    public var didConvertElement:((markDownItem:MarkDownItem, element:T)->())?
+    open var didConvertElement:((_ markDownItem:MarkDownItem, _ element:T)->())?
 
     let configuration:MarkDownConverterConfiguration<T>
 
@@ -25,7 +25,7 @@ public class MarkDownConverter<T> {
      
      - returns: type T containing all converted items composed together. Often a String or UIView
      */
-    public func convert(markDownItems:[MarkDownItem]) -> T {
+    open func convert(_ markDownItems:[MarkDownItem]) -> T {
 
         return configuration.elementComposer.compose(convertToElements(markDownItems))
     }
@@ -39,24 +39,24 @@ public class MarkDownConverter<T> {
      ´
      - returns: An array of displayable objects of type T
      */
-    func convertToElements(markDownItems:[MarkDownItem], applicableStyling: ItemStyling? = nil) -> [T] {
+    func convertToElements(_ markDownItems:[MarkDownItem], applicableStyling: ItemStyling? = nil) -> [T] {
 
         var elements:[T] = []
 
         for markDownItem in markDownItems {
 
-            let layoutBlockBuilder = self.configuration.layoutBlockBuilderForMarkDownItemType(markDownItem.dynamicType)
+            let layoutBlockBuilder = self.configuration.layoutBlockBuilderForMarkDownItemType(type(of: markDownItem))
 
             var styling = self.configuration.styling.stylingForMarkownItem(markDownItem)
             styling.parent = applicableStyling
 
-            if let layoutBlockBuilder = layoutBlockBuilder where markDownItem.dynamicType == layoutBlockBuilder.relatedMarkDownItemType() {
+            if let layoutBlockBuilder = layoutBlockBuilder , type(of: markDownItem) == layoutBlockBuilder.relatedMarkDownItemType() {
                 let element = layoutBlockBuilder.build(markDownItem, asPartOfConverter: self, styling: styling)
-                didConvertElement?(markDownItem: markDownItem, element: element)
+                didConvertElement?(markDownItem, element)
 
                 elements.append(element)
             } else {
-                print("Can't find display item for \(String(markDownItem.self))")
+                print("Can't find display item for \(String(describing: markDownItem.self))")
             }
         }
         

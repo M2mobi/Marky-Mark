@@ -5,15 +5,15 @@
 
 import Foundation
 
-public class HorizontalLineRule : RegExRule {
+open class HorizontalLineRule : RegExRule {
 
     /// Example: ---
 
-    public var expression = NSRegularExpression.expressionWithPattern("(^\\-{3,})$")
+    open var expression = NSRegularExpression.expressionWithPattern("(^\\-{3,})$")
 
     //MARK: Rule
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         return HorizontalLineMarkDownItem(lines: lines, content: "")
     }
 }
