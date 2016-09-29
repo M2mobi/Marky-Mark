@@ -23,25 +23,25 @@ extension ItemStyling {
 
     func neededFont() -> UIFont? {
 
-        if var font = neededBaseFont() {
+        if var font: UIFont? = neededBaseFont() {
 
             if shouldFontBeBold() {
 
-                font = font.makeBold()
+                font = font?.makeBold()
             }
 
             if shouldFontBeItalic() {
 
-                font = font.makeItalic()
+                font = font?.makeItalic()
             }
 
             if shouldFontBeBold() && shouldFontBeItalic() {
-                font = font.makeItalicBold()
+                font = font?.makeItalicBold()
             }
 
             if let textSize = neededTextSize() {
 
-                font = font.changeSize(textSize)
+                font = font?.changeSize(textSize)
             }
 
             return font
@@ -54,17 +54,29 @@ extension ItemStyling {
 
 private extension UIFont {
 
-    func makeBold() -> UIFont {
+    func makeBold() -> UIFont? {
 
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold), size: self.pointSize)
+        if let descriptor = fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold) {
+            UIFont.init(descriptor: descriptor, size: self.pointSize)
+        }
+
+        return nil
     }
 
-    func makeItalic() -> UIFont {
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic), size: self.pointSize)
+    func makeItalic() -> UIFont? {
+        if let descriptor = fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic) {
+            UIFont.init(descriptor: descriptor, size: self.pointSize)
+        }
+
+        return nil
     }
 
-    func makeItalicBold() -> UIFont {
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits([.TraitItalic, .TraitBold]), size: self.pointSize)
+    func makeItalicBold() -> UIFont? {
+        if let descriptor = fontDescriptor().fontDescriptorWithSymbolicTraits([.TraitItalic, .TraitBold]) {
+            UIFont.init(descriptor: descriptor, size: self.pointSize)
+        }
+
+        return nil
 
     }
 
