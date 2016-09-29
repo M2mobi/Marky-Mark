@@ -52,3 +52,4 @@ class BoldRuleTests: XCTestCase {
         XCTAssertEqual(sut.getAllMatches(["**Text** test **Text**"]), [expectedMatchesRange,expectedMatchesRange2])
     }
 }
+

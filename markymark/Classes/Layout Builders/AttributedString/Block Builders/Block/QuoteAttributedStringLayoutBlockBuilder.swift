@@ -16,7 +16,7 @@ class QuoteAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBlock
         return QuoteMarkDownItem.self
     }
     
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
         let paragraphStyling = styling as? QuoteStyling
         let attributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
         

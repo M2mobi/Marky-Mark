@@ -5,12 +5,12 @@
 
 import Foundation
 
-public class MarkDownItem {
+open class MarkDownItem {
 
     var lines:[String]
     var markDownItems:[MarkDownItem]?
 
-    public var content:String
+    open var content:String
 
     public required init(lines:[String], content:String) {
         self.content = content

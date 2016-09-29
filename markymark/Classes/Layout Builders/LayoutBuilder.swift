@@ -7,8 +7,8 @@ import Foundation
 
 class LayoutBuilder<T> {
 
-    func build(layoutBlocks:[MarkDownItem]) -> T {
-        fatalError("\(String(self)): Implement build")
+    func build(_ layoutBlocks:[MarkDownItem]) -> T {
+        fatalError("\(String(describing: self)): Implement build")
     }
 
 }

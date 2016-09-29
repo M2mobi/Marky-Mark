@@ -10,12 +10,12 @@ public struct HorizontalLineStyling: ItemStyling, LineWidthStylingRule, Backgrou
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is HorizontalLineMarkDownItem
     }
 
-    public var backgroundColor: UIColor? = UIColor.grayColor()
+    public var backgroundColor: UIColor? = UIColor.gray
     public var lineWidth: CGFloat = 0.5
 
     public var contentInsets = UIEdgeInsets(top:   5, left:  0, bottom: 5, right: 0)

@@ -10,12 +10,12 @@ public struct LinkStyling: ItemStyling, TextColorStylingRule, UnderlineStylingRu
     
     public var parent : ItemStyling? = nil
     
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
         
         return markDownItem is LinkMarkDownItem
     }
 
-    public var textColor: UIColor? = UIColor.brownColor()
+    public var textColor: UIColor? = .brown
     public var baseFont : UIFont? = nil
 
     public var isBold = false

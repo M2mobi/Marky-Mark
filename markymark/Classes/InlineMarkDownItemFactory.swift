@@ -25,7 +25,7 @@ class InlineMarkDownItemFactory {
      - returns: MarkDownItem that contains markDownItems
      */
 
-    func getInlineMarkDownItemsForLines(content:String, ruleRangePairs:[RuleRangePair]? = nil) -> [MarkDownItem]? {
+    func getInlineMarkDownItemsForLines(_ content:String, ruleRangePairs:[RuleRangePair]? = nil) -> [MarkDownItem]? {
         let ruleRangePairs = ruleRangePairs ?? getRuleRangePairsForLines(content)
 
         if !containsInlineFormattingRules(ruleRangePairs) {
@@ -55,7 +55,7 @@ class InlineMarkDownItemFactory {
 
     //MARK: Private
 
-    private func getMarkDownStringToMarkDownItem(markDownItem:MarkDownItem) -> [MarkDownItem]? {
+    fileprivate func getMarkDownStringToMarkDownItem(_ markDownItem:MarkDownItem) -> [MarkDownItem]? {
 
         let inlineRules = getRuleRangePairsForLines(markDownItem.content)
 
@@ -66,7 +66,7 @@ class InlineMarkDownItemFactory {
         return getInlineMarkDownItemsForLines(markDownItem.content, ruleRangePairs: inlineRules)
     }
 
-    private func getInlineTextItem(previousRange:NSRange, currentRange:NSRange, content:String) -> [MarkDownItem] {
+    fileprivate func getInlineTextItem(_ previousRange:NSRange, currentRange:NSRange, content:String) -> [MarkDownItem] {
 
         if currentRange.location != 0 {
             let start = previousRange.getLocationEnd()
@@ -82,7 +82,7 @@ class InlineMarkDownItemFactory {
         return []
     }
 
-    private func getRuleRangePairsForLines(content:String) -> [RuleRangePair] {
+    fileprivate func getRuleRangePairsForLines(_ content:String) -> [RuleRangePair] {
         var ruleRangePairs:[RuleRangePair] = []
 
         for rule in self.inlineRules {
@@ -93,7 +93,7 @@ class InlineMarkDownItemFactory {
             }
         }
 
-        ruleRangePairs = ruleRangePairs.sort {
+        ruleRangePairs = ruleRangePairs.sorted {
             $0.range.location < $1.range.location
         }
 
@@ -103,7 +103,7 @@ class InlineMarkDownItemFactory {
         return ruleRangePairs
     }
 
-    private func removedNestedRules(ruleRangePairs:[RuleRangePair]) -> [RuleRangePair] {
+    fileprivate func removedNestedRules(_ ruleRangePairs:[RuleRangePair]) -> [RuleRangePair] {
 
         var filteredRuleRangePairs:[RuleRangePair] = []
 
@@ -121,7 +121,7 @@ class InlineMarkDownItemFactory {
         return filteredRuleRangePairs
     }
 
-    private func addMissingRuleRangePairs(ruleRangePairs:[RuleRangePair], contentLength:Int) -> [RuleRangePair] {
+    fileprivate func addMissingRuleRangePairs(_ ruleRangePairs:[RuleRangePair], contentLength:Int) -> [RuleRangePair] {
 
         var result:[RuleRangePair] = []
         var previousRange:NSRange = NSRange(location: 0, length: 0)
@@ -147,7 +147,7 @@ class InlineMarkDownItemFactory {
         return result
     }
 
-    private func getDefaultRuleRangePairBetween(previousRange:NSRange, currentRange:NSRange) -> RuleRangePair? {
+    fileprivate func getDefaultRuleRangePairBetween(_ previousRange:NSRange, currentRange:NSRange) -> RuleRangePair? {
         if currentRange.location > previousRange.getLocationEnd() {
             let location = previousRange.getLocationEnd()
             let length = currentRange.location - location
@@ -157,13 +157,13 @@ class InlineMarkDownItemFactory {
         }
     }
 
-    private func containsInlineFormattingRules(ruleRangePairs:[RuleRangePair]) -> Bool {
-        return !(ruleRangePairs.count == 1 && ruleRangePairs.first?.rule.dynamicType == defaultRule.dynamicType)
+    fileprivate func containsInlineFormattingRules(_ ruleRangePairs:[RuleRangePair]) -> Bool {
+        return !(ruleRangePairs.count == 1 && type(of: ruleRangePairs.first?.rule) == type(of: defaultRule))
     }
 }
 
 private extension NSRange {
-    func isOverlappingWithRange(previousRange:NSRange?) -> Bool{
+    func isOverlappingWithRange(_ previousRange:NSRange?) -> Bool{
         guard let previousRange = previousRange else { return false }
 
         if self.location > previousRange.location {

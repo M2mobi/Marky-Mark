@@ -5,4 +5,4 @@
 
 import Foundation
 
-public class HorizontalLineMarkDownItem : MarkDownItem { }
+open class HorizontalLineMarkDownItem : MarkDownItem { }

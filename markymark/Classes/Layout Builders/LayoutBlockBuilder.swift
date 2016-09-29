@@ -5,7 +5,7 @@
 
 import Foundation
 
-public class LayoutBlockBuilder<T> {
+open class LayoutBlockBuilder<T> {
 
     /**
      - Public init to be able to create custom layout block builders from outside MarkyMark
@@ -24,8 +24,8 @@ public class LayoutBlockBuilder<T> {
      - returns: T
      */
 
-    public func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<T>, styling : ItemStyling) -> T {
-        fatalError("\(String(self)): Implement build")
+    open func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<T>, styling : ItemStyling) -> T {
+        fatalError("\(String(describing: self)): Implement build")
     }
 
     /**
@@ -34,7 +34,7 @@ public class LayoutBlockBuilder<T> {
      - returns: Any MarkDownItem Class
      */
 
-    public func relatedMarkDownItemType() -> MarkDownItem.Type {
-        fatalError("\(String(self)): Implement relatedMarkDownItemType")
+    open func relatedMarkDownItemType() -> MarkDownItem.Type {
+        fatalError("\(String(describing: self)): Implement relatedMarkDownItemType")
     }
 }

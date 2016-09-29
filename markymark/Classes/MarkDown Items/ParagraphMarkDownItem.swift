@@ -5,4 +5,4 @@
 
 import Foundation
 
-public class ParagraphMarkDownItem : MarkDownItem { }
+open class ParagraphMarkDownItem : MarkDownItem { }

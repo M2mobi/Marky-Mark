@@ -6,14 +6,14 @@
 import Foundation
 import UIKit
 
-public class HeaderRule : RegExRule, HasLevel {
+open class HeaderRule : RegExRule, HasLevel {
 
     /// Example: # Header 1
-    public var expression = NSRegularExpression.expressionWithPattern("^(#{1,6}) (.*?)$")
+    open var expression = NSRegularExpression.expressionWithPattern("^(#{1,6}) (.*?)$")
 
     //MARK: Rule
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         let line = lines.first ?? ""
         let content = line.subStringWithExpression(expression, ofGroup: 2)
         let level = getLevel(line)
@@ -23,7 +23,7 @@ public class HeaderRule : RegExRule, HasLevel {
 
     //MARK: Private
 
-    public func getLevel(string:String) -> Int {
+    open func getLevel(_ string:String) -> Int {
         let range = expression.rangeInString(string, forGroup: 1)
         return range?.length ?? 0
     }

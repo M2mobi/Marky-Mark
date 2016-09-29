@@ -10,7 +10,7 @@ public struct ImageStyling: ItemStyling, ContentInsetStylingRule {
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is ImageMarkDownItem
     }

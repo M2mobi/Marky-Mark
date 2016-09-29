@@ -5,16 +5,16 @@
 
 import Foundation
 
-public class InlineTextRule : InlineRule {
+open class InlineTextRule : InlineRule {
 
     //MARK: Rule
 
-    public func recognizesLines(lines:[String]) -> Bool {
+    open func recognizesLines(_ lines:[String]) -> Bool {
         /// Always return true since this is used as default rule
         return true
     }
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         let line = lines.first ?? ""
 
         return InlineTextMarkDownItem(lines: lines, content: line)
@@ -22,7 +22,7 @@ public class InlineTextRule : InlineRule {
 
     //MARK: InlineRule
 
-    public func getAllMatches(lines:[String]) -> [NSRange] {
+    open func getAllMatches(_ lines:[String]) -> [NSRange] {
         return []
     }
 

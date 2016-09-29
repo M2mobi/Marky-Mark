@@ -7,7 +7,7 @@ import UIKit
 
 struct StringAttributesBuilder {
 
-    func attributesForStyling(styling : ItemStyling) -> [String : AnyObject] {
+    func attributesForStyling(_ styling : ItemStyling) -> [String : AnyObject] {
 
         var attributes = [String : AnyObject]()
 
@@ -18,7 +18,7 @@ struct StringAttributesBuilder {
 
         if styling.shouldBeStrikeThrough() {
 
-            attributes[NSStrikethroughStyleAttributeName] = NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)
+            attributes[NSStrikethroughStyleAttributeName] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
         }
 
         if let textColor = styling.neededTextColor() {
@@ -27,7 +27,7 @@ struct StringAttributesBuilder {
         }
         
         if styling.shouldFontBeUnderlined() {
-            attributes[NSUnderlineStyleAttributeName] = NSNumber(integer: NSUnderlineStyle.StyleSingle.rawValue)
+            attributes[NSUnderlineStyleAttributeName] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
         }
         
         if let backgroundColor = styling.neededBackgroundColor() {
@@ -44,12 +44,12 @@ struct StringAttributesBuilder {
             let alignment:NSTextAlignment
 
             switch textAlignment{
-                case .Left:
-                alignment = .Left
-                case .Right:
-                alignment = .Right
-                case .Center:
-                alignment = .Center
+                case .left:
+                alignment = .left
+                case .right:
+                alignment = .right
+                case .center:
+                alignment = .center
             }
 
             paragraphStyle.alignment = alignment

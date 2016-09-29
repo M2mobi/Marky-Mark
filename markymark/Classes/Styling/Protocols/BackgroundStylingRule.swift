@@ -14,7 +14,7 @@ extension ItemStyling {
     
     func neededBackgroundColor() -> UIColor? {
         for styling in stylingWithPrecedingStyling() {
-            if let styling = styling as? BackgroundStylingRule where styling.backgroundColor != nil {
+            if let styling = styling as? BackgroundStylingRule, styling.backgroundColor != nil {
                 return styling.backgroundColor
             }
         }

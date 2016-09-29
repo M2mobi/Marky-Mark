@@ -14,7 +14,7 @@ class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
         return QuoteMarkDownItem.self
     }
 
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
         let label = AttributedInteractiveLabel()
         label.setAttributedString(attributedStringForMarkDownItem(markDownItem, styling: styling))
 

@@ -13,7 +13,7 @@ class HeaderViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder
         return HeaderMarkDownItem.self
     }
 
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
         let headerMarkDownItem = markDownItem as! HeaderMarkDownItem
         var headerStyling = styling as? HeadingStyling
         headerStyling?.configureForLevel(headerMarkDownItem.level)

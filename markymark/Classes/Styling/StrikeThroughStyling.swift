@@ -9,7 +9,7 @@ public struct StrikeThroughStyling: StrikeThroughStylingRule, TextColorStylingRu
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is StrikeMarkDownItem
     }

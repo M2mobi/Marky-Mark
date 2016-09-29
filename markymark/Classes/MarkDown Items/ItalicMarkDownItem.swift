@@ -5,4 +5,4 @@
 
 import UIKit
 
-public class ItalicMarkDownItem: MarkDownItem { }
+open class ItalicMarkDownItem: MarkDownItem { }

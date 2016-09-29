@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-class ListItemView : UIView {
+class ListItemView: UIView {
 
     var bottomSpace:CGFloat = 0
 
@@ -26,7 +26,7 @@ class ListItemView : UIView {
         self.listMarkDownItem = listMarkDownItem
         self.styling = styling
 
-        super.init(frame:CGRectZero)
+        super.init(frame: CGRect())
 
         label.setAttributedString(attributedText)
         label.numberOfLines = 0
@@ -59,7 +59,7 @@ class ListItemView : UIView {
      Set up layout for list item with either an image or text as bullet
      */
     
-    private func setUpLayout(){
+    fileprivate func setUpLayout(){
         bullet = getBulletView()
         if let bullet = bullet {
 
@@ -68,7 +68,7 @@ class ListItemView : UIView {
         }
     }
 
-    private func getBulletView() -> UIView {
+    fileprivate func getBulletView() -> UIView {
 
         let bulletLabel = UILabel()
 
@@ -96,18 +96,18 @@ class ListItemView : UIView {
         return UIView()
     }
     
-    private func getImageBulletView() -> UIView {
+    fileprivate func getImageBulletView() -> UIView {
 
-        if let styling = styling, image = styling.bulletImage {
+        if let styling = styling, let image = styling.bulletImage {
             let bulletImageView = UIImageView(image: image)
-            bulletImageView.contentMode = .Center
+            bulletImageView.contentMode = .center
             return bulletImageView
         }
 
         return UIView()
     }
 
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize : CGSize {
         return CGSize(width: 0, height: self.label.frame.size.height + bottomSpace)
     }
 

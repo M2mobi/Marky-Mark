@@ -72,11 +72,11 @@ class ListRuleIntegrationTests: XCTestCase {
         let fakeLines3 = ["- Aliquam eleifend", "- pharetra","  1. diam", "  2. Morbi","    a. metus", "    b. sollicitudin", "    c. dictum", "      - malesuada", "- tempor"]
 
         // Act
-        sut.recognizesLines(fakeLines)
+        _ = sut.recognizesLines(fakeLines)
         let actualLinesConsumed = sut.linesConsumed()
-        sut.recognizesLines(fakeLines2)
+        _ = sut.recognizesLines(fakeLines2)
         let actualLinesConsumed2 = sut.linesConsumed()
-        sut.recognizesLines(fakeLines3)
+        _ = sut.recognizesLines(fakeLines3)
         let actualLinesConsumedLong = sut.linesConsumed()
 
         // Assert

@@ -14,7 +14,7 @@ class CodeViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder 
         return CodeBlockMarkDownItem.self
     }
 
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
         let codeBlockMarkDownItem = markDownItem as! CodeBlockMarkDownItem
 
         let label = AttributedInteractiveLabel()

@@ -16,7 +16,7 @@ class ListMarkDownItemFactory {
 
      - returns: ListMarkDownItem containing listItems that may contain more ListMarkDownItem's
      */
-    func getListItemForLines(lines:[String], rule:ListRule, level:Int = 0) -> [ListMarkDownItem]{
+    func getListItemForLines(_ lines:[String], rule:ListRule, level:Int = 0) -> [ListMarkDownItem]{
         var lines = lines
         var listMarkDownItems:[ListMarkDownItem] = []
 
@@ -26,7 +26,7 @@ class ListMarkDownItemFactory {
 
             let range = 0..<numberOfLines
             var linesForListItem = Array(lines[range])
-            lines.removeRange(range)
+            lines.removeSubrange(range)
 
             let listMarkDownItem = rule.createMarkDownItemWithLines(linesForListItem)
             linesForListItem.removeFirst()
@@ -60,7 +60,7 @@ class ListMarkDownItemFactory {
      - returns: Number of lines on the given leven
      */
 
-    func numberOfLinesOnLevel(level:Int, rule:ListRule, lines:[String]) -> Int {
+    func numberOfLinesOnLevel(_ level:Int, rule:ListRule, lines:[String]) -> Int {
         var i = 0
 
         for line in lines {

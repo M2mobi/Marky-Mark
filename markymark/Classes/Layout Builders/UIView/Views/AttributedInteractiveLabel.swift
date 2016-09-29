@@ -10,13 +10,13 @@ import UIKit
  * Label that allows tapping on links defined in the provided NSattributedString
  */
 
-public class AttributedInteractiveLabel: UILabel {
+open class AttributedInteractiveLabel: UILabel {
 
-    var linksAttributes:[(NSRange, NSURL?)] = []
+    var linksAttributes: [(NSRange, URL?)] = []
 
     public init(){
-        super.init(frame: CGRectZero)
-        userInteractionEnabled = true;
+        super.init(frame: CGRect())
+        isUserInteractionEnabled = true;
         numberOfLines = 0
         addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(didTap(_:))));
     }
@@ -26,7 +26,7 @@ public class AttributedInteractiveLabel: UILabel {
         fatalError("init(coder:) has not been implemented")
     }
 
-    public func setAttributedString(attributedString:NSAttributedString?) {
+    open func setAttributedString(_ attributedString:NSAttributedString?) {
         guard let attributedString = attributedString else {
             self.attributedText = nil
             return
@@ -41,12 +41,12 @@ public class AttributedInteractiveLabel: UILabel {
         self.attributedText = mutableAttributedString
     }
 
-    func didTap(tapGesture:UITapGestureRecognizer) {
+    func didTap(_ tapGesture:UITapGestureRecognizer) {
         guard let view = tapGesture.view else { return }
 
-        let locationInView = tapGesture.locationInView(view)
+        let locationInView = tapGesture.location(in: view)
         if let url = getUrlAtLocationInView(locationInView) {
-            UIApplication.sharedApplication().openURL(url)
+            UIApplication.shared.openURL(url)
         }
 
     }
@@ -61,10 +61,10 @@ public class AttributedInteractiveLabel: UILabel {
      - returns: nil or the NSURL found at the given point
      */
 
-    private func getUrlAtLocationInView(locationInView:CGPoint) -> NSURL?{
+    fileprivate func getUrlAtLocationInView(_ locationInView: CGPoint) -> URL?{
         guard let attributedText = attributedText else { return nil }
 
-        var result:NSURL? = nil
+        var result: URL? = nil
 
         let indexOfCharacter = indexOfCharacterAtPoint(locationInView, attributedString: attributedText)
 
@@ -87,7 +87,7 @@ public class AttributedInteractiveLabel: UILabel {
      - returns: The index of the character that was found at the given point
      */
 
-    private func indexOfCharacterAtPoint(point:CGPoint, attributedString:NSAttributedString) -> Int {
+    fileprivate func indexOfCharacterAtPoint(_ point: CGPoint, attributedString: NSAttributedString) -> Int {
         let textContainer = getTextContainer()
         
         let layoutManager = NSLayoutManager()
@@ -96,7 +96,7 @@ public class AttributedInteractiveLabel: UILabel {
         let textStorage = NSTextStorage(attributedString: attributedString)
         textStorage.addLayoutManager(layoutManager)
         
-        return layoutManager.characterIndexForPoint(point, inTextContainer: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
+        return layoutManager.characterIndex(for: point, in: textContainer, fractionOfDistanceBetweenInsertionPoints: nil)
     }
 
     /**
@@ -106,7 +106,7 @@ public class AttributedInteractiveLabel: UILabel {
      - returns: NSTextContainer of the current view size
      */
 
-    private func getTextContainer() -> NSTextContainer {
+    fileprivate func getTextContainer() -> NSTextContainer {
         let textContainer = NSTextContainer(size: CGSize(width: frame.size.width , height: frame.size.height))
         textContainer.lineFragmentPadding = 0.0;
         textContainer.lineBreakMode = lineBreakMode;
@@ -124,17 +124,17 @@ private extension NSMutableAttributedString {
      - returns: Array of all removed attributes as Range & URL pairs
      */
 
-    func extractLinkAttributes() -> [(NSRange, NSURL?)] {
+    func extractLinkAttributes() -> [(NSRange, URL?)] {
 
-        var result:[(NSRange, NSURL?)] = []
+        var result: [(NSRange, URL?)] = []
 
         if let attributedStringToEnumerate = self.mutableCopy() as? NSMutableAttributedString {
 
-            attributedStringToEnumerate.enumerateAttribute(NSLinkAttributeName, inRange: attributedStringToEnumerate.fullRange(), options: []) {
+            attributedStringToEnumerate.enumerateAttribute(NSLinkAttributeName, in: attributedStringToEnumerate.fullRange(), options: []) {
                 (value, range, stop) in
 
                 self.removeAttribute(NSLinkAttributeName, range: range)
-                result.append((range, value as? NSURL))
+                result.append((range, value as? URL))
             }
         }
         

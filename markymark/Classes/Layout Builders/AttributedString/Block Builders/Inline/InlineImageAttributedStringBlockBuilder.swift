@@ -14,17 +14,17 @@ class InlineImageAttributedStringBlockBuilder : LayoutBlockBuilder<NSMutableAttr
         return ImageMarkDownItem.self
     }
 
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
         let imageMarkDownItem = markDownItem as! ImageMarkDownItem
 
         let attachment = TextAttachment()
         
         if let image = UIImage(named: imageMarkDownItem.file) {
             attachment.image = image
-        } else if let url = NSURL(string: imageMarkDownItem.file) {
+        } else if let url = URL(string: imageMarkDownItem.file) {
             //TODO: This makes remote inline images blocking..
-            let data = NSData(contentsOfURL: url)
-            if let data = data, image = UIImage(data: data) {
+            let data = try? Data(contentsOf: url)
+            if let data = data, let image = UIImage(data: data) {
                 attachment.image = image
             }
         }

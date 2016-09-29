@@ -14,7 +14,7 @@ class ListViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder 
         return UnorderedListMarkDownItem.self
     }
 
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
 
         let listView = getListView(listMarkDownItem, styling: styling)
@@ -35,7 +35,7 @@ class ListViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder 
      - returns: A view containing all list items of given markDownItem
      */
     
-    private func getListView(listMarkDownItem:ListMarkDownItem, styling:ItemStyling) -> UIView {
+    fileprivate func getListView(_ listMarkDownItem:ListMarkDownItem, styling:ItemStyling) -> UIView {
 
         let listView = ListView(styling:styling)
 
@@ -51,7 +51,7 @@ class ListViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder 
 
             listView.addSubview(listItemView)
 
-            if let nestedListItems = listItem.listItems where nestedListItems.count > 0 {
+            if let nestedListItems = listItem.listItems , nestedListItems.count > 0 {
                 let nestedListView = getListView(listItem, styling: styling)
                 listView.addSubview(nestedListView)
 

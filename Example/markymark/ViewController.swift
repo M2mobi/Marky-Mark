@@ -7,8 +7,8 @@ import UIKit
 import markymark
 
 enum ConverterConfiguration {
-    case View
-    case AttributedString
+    case view
+    case attributedString
 }
 
 class ViewController: UIViewController {
@@ -18,8 +18,7 @@ class ViewController: UIViewController {
         self.view = UIScrollView()
         
         //Change this constant to try different configurations
-        let converterConfiguration = ConverterConfiguration.AttributedString
-
+        let converterConfiguration = ConverterConfiguration.attributedString
         
         //MarkyMark
         let markyMark = MarkyMark(build: {
@@ -30,9 +29,9 @@ class ViewController: UIViewController {
 
         let markDownView: UIView
         switch converterConfiguration {
-            case .View:
+            case .view:
             markDownView = getViewWithViewConverter(markDownItems)
-            case .AttributedString:
+            case .attributedString:
             markDownView = getViewWithAttributedStringConverter(markDownItems)
         }
         
@@ -40,7 +39,7 @@ class ViewController: UIViewController {
         // Layout
         view.addSubview(markDownView)
 
-        let views = [
+        let views: [String: Any] = [
             "view" : view,
             "markDownView" : markDownView
         ]
@@ -48,8 +47,8 @@ class ViewController: UIViewController {
         markDownView.translatesAutoresizingMaskIntoConstraints = false
 
         var constraints:[NSLayoutConstraint] = []
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|[markDownView(==view)]|", options: [], metrics: [:], views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|[markDownView]|", options: [], metrics: [:], views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownView(==view)]|", options: [], metrics: [:], views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]|", options: [], metrics: [:], views: views)
         view.addConstraints(constraints)
 
         super.viewDidLoad()
@@ -58,7 +57,7 @@ class ViewController: UIViewController {
 
 private extension ViewController {
     
-    func getViewWithViewConverter(markDownItems: [MarkDownItem]) -> UIView {
+    func getViewWithViewConverter(_ markDownItems: [MarkDownItem]) -> UIView {
         let styling = DefaultStyling()
         
         let configuration = MarkdownToViewConverterConfiguration(styling: styling)
@@ -67,15 +66,15 @@ private extension ViewController {
         return converter.convert(markDownItems)
     }
     
-    func getViewWithAttributedStringConverter(markDownItems: [MarkDownItem]) -> UIView {
+    func getViewWithAttributedStringConverter(_ markDownItems: [MarkDownItem]) -> UIView {
         let styling = DefaultStyling()
         let configuration = MarkDownToAttributedStringConverterConfiguration(styling: styling)
         let converter = MarkDownConverter(configuration: configuration)
         
         let textView = UITextView()
-        textView.scrollEnabled = false
-        textView.editable = false
-        textView.dataDetectorTypes = .Link
+        textView.isScrollEnabled = false
+        textView.isEditable = false
+        textView.dataDetectorTypes = .link
         textView.attributedText = converter.convert(markDownItems)
         textView.tintColor = styling.linkStyling.textColor
         textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0);
@@ -85,7 +84,7 @@ private extension ViewController {
     
     func getMarkDownString() -> String {
         var markdownString:String = ""
-        if let filepath = NSBundle.mainBundle().pathForResource("markdown", ofType: "txt") {
+        if let filepath = Bundle.main.path(forResource: "markdown", ofType: "txt") {
             markdownString = try! NSString(contentsOfFile: filepath, usedEncoding: nil) as String
         }
         

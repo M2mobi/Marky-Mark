@@ -5,17 +5,17 @@
 
 import Foundation
 
-public class ListMarkDownItem : MarkDownItem, HasListItems, HasIndex {
+open class ListMarkDownItem: MarkDownItem, HasListItems, HasIndex {
     var listItems:[ListMarkDownItem]?
 
     let index:Int?
 
-    required public init(lines: [String], content: String, index:Int? = nil) {
+    required public init(lines: [String], content: String, index: Int? = nil) {
         self.index = index;
         super.init(lines: lines, content: content)
     }
 
-    var indexCharacter:String? {
+    var indexCharacter: String? {
         return index != nil ? "\(index)" : nil
     }
     

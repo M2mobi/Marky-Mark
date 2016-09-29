@@ -13,7 +13,7 @@ import UIKit
 class ContainerView : UIView {
 
     init(view:UIView, spacing:UIEdgeInsets? = nil) {
-        super.init(frame: CGRectZero)
+        super.init(frame: CGRect())
 
         view.translatesAutoresizingMaskIntoConstraints = false
         addSubview(view)
@@ -29,8 +29,8 @@ class ContainerView : UIView {
 
         var constraints:[NSLayoutConstraint] = []
 
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("H:|-(left)-[view]-(right)-|", options: [], metrics: metrics, views: views)
-        constraints += NSLayoutConstraint.constraintsWithVisualFormat("V:|-(top)-[view]-(bottom)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(left)-[view]-(right)-|", options: [], metrics: metrics, views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(top)-[view]-(bottom)-|", options: [], metrics: metrics, views: views)
 
         addConstraints(constraints)
     }

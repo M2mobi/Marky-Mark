@@ -14,12 +14,12 @@ class LinkViewLayoutBlockBuilder: ContainerAttributedStringBlockBuilder {
         return LinkMarkDownItem.self
     }
     
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling?) -> NSMutableAttributedString {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling?) -> NSMutableAttributedString {
         let linkMarkDownItem = markDownItem as! LinkMarkDownItem
         
         let attributedString = super.build(markDownItem, asPartOfConverter: converter, styling: styling)
         
-        let url = NSURL(string: linkMarkDownItem.url)
+        let url = URL(string: linkMarkDownItem.url)
         
         if let url = url {
             attributedString.addAttributes([NSLinkAttributeName : url ], range: attributedString.fullRange())

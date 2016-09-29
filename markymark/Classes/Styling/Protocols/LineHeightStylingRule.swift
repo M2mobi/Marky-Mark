@@ -17,7 +17,7 @@ extension ItemStyling {
     func neededLineHeight() -> CGFloat? {
         
         for styling in stylingWithPrecedingStyling() {
-            if let styling = styling as? LineHeightStylingRule where styling.lineHeight != nil {
+            if let styling = styling as? LineHeightStylingRule, styling.lineHeight != nil {
                 return styling.lineHeight
             }
         }

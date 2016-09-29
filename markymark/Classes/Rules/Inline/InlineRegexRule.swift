@@ -11,17 +11,17 @@ public protocol InlineRegexRule : InlineRule {
 
 extension InlineRegexRule {
 
-    public func getAllMatches(lines:[String]) -> [NSRange] {
+    public func getAllMatches(_ lines:[String]) -> [NSRange] {
         guard let line = lines.first else { return [] }
         return expression.rangesForString(line)
     }
     
     //MARK: Rule
 
-    public func recognizesLines(lines:[String]) -> Bool {
+    public func recognizesLines(_ lines:[String]) -> Bool {
         guard let line = lines.first else { return false }
         let range = NSRange(location: 0, length: line.length())
-        let results = expression.matchesInString(line, options:[], range: range)
+        let results = expression.matches(in: line, options:[], range: range)
         return results.count > 0
     }
 }

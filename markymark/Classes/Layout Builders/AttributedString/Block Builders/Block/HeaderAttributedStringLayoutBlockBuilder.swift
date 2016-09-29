@@ -16,7 +16,7 @@ class HeaderAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBloc
         return HeaderMarkDownItem.self
     }
     
-    override func build(markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
         let headerMarkDownItem = markDownItem as! HeaderMarkDownItem
         var headerStyling = styling as? HeadingStyling
         headerStyling?.configureForLevel(headerMarkDownItem.level)

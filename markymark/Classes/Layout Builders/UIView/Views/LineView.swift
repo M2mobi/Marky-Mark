@@ -6,11 +6,11 @@
 import Foundation
 import UIKit
 
-class LineView : UIView {
+class LineView: UIView {
 
-    var height:CGFloat = 0
+    var height: CGFloat = 0
 
-    override func intrinsicContentSize() -> CGSize {
+    override var intrinsicContentSize: CGSize {
         return CGSize(width: 0, height: height)
     }
 

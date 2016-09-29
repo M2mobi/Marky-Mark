@@ -14,7 +14,7 @@ extension ItemStyling {
 
     func neededBaseFont() -> UIFont? {
         for styling in stylingWithPrecedingStyling() {
-            if let styling = styling as? BaseFontStylingRule where styling.baseFont != nil {
+            if let styling = styling as? BaseFontStylingRule, styling.baseFont != nil {
                 return styling.baseFont
             }
         }
@@ -23,25 +23,25 @@ extension ItemStyling {
 
     func neededFont() -> UIFont? {
 
-        if var font = neededBaseFont() {
+        if var font: UIFont? = neededBaseFont() {
 
             if shouldFontBeBold() {
 
-                font = font.makeBold()
+                font = font?.makeBold()
             }
 
             if shouldFontBeItalic() {
 
-                font = font.makeItalic()
+                font = font?.makeItalic()
             }
 
             if shouldFontBeBold() && shouldFontBeItalic() {
-                font = font.makeItalicBold()
+                font = font?.makeItalicBold()
             }
 
             if let textSize = neededTextSize() {
 
-                font = font.changeSize(textSize)
+                font = font?.changeSize(textSize)
             }
 
             return font
@@ -54,22 +54,32 @@ extension ItemStyling {
 
 private extension UIFont {
 
-    func makeBold() -> UIFont {
+    func makeBold() -> UIFont? {
+        if let descriptor = fontDescriptor.withSymbolicTraits(.traitBold) {
+            return UIFont.init(descriptor: descriptor, size: self.pointSize)
+        }
 
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold), size: self.pointSize)
+        return nil
     }
 
-    func makeItalic() -> UIFont {
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic), size: self.pointSize)
+    func makeItalic() -> UIFont? {
+        if let descriptor = fontDescriptor.withSymbolicTraits(.traitItalic) {
+            return UIFont.init(descriptor: descriptor, size: self.pointSize)
+        }
+
+        return nil
     }
 
-    func makeItalicBold() -> UIFont {
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits([.TraitItalic, .TraitBold]), size: self.pointSize)
+    func makeItalicBold() -> UIFont? {
+        if let descriptor = fontDescriptor.withSymbolicTraits([.traitItalic, .traitBold]) {
+            return UIFont.init(descriptor: descriptor, size: self.pointSize)
+        }
 
+        return nil
     }
 
-    func changeSize(size : CGFloat) -> UIFont {
+    func changeSize(_ size : CGFloat) -> UIFont {
 
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSize(size), size: size)
+        return UIFont.init(descriptor: self.fontDescriptor.withSize(size), size: size)
     }
 }

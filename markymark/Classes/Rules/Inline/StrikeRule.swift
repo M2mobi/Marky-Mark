@@ -5,14 +5,14 @@
 
 import Foundation
 
-public class StrikeRule : InlineRegexRule {
+open class StrikeRule: InlineRegexRule {
 
     /// Example: ~~text~~
-    public var expression = NSRegularExpression.expressionWithPattern("\\~{2}(.+?)\\~{2}")
+    open var expression = NSRegularExpression.expressionWithPattern("\\~{2}(.+?)\\~{2}")
 
     //MARK: Rule
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 1)
         return StrikeMarkDownItem(lines: lines, content: content ?? "")
     }

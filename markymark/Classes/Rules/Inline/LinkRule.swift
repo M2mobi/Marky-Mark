@@ -5,14 +5,14 @@
 
 import Foundation
 
-public class LinkRule : InlineRegexRule {
+open class LinkRule: InlineRegexRule {
 
     /// Example: [Google](http://www.google.com)
-    public var expression = NSRegularExpression.expressionWithPattern("(?<!!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)")
+    open var expression = NSRegularExpression.expressionWithPattern("(?<!!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)")
 
     //MARK: Rule
 
-    public func createMarkDownItemWithLines(lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
         
         let url:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 2)
         let content:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 1)

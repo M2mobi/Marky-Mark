@@ -9,13 +9,13 @@ public struct ParagraphStyling: ItemStyling, TextColorStylingRule, LineHeightSty
 
     public var parent : ItemStyling? = nil
 
-    public func isApplicableOn(markDownItem: MarkDownItem) -> Bool {
+    public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
         return markDownItem is ParagraphMarkDownItem
     }
 
-    public var baseFont: UIFont? = UIFont.systemFontOfSize(UIFont.systemFontSize())
-    public var textColor: UIColor? = UIColor.blackColor()
+    public var baseFont: UIFont? = UIFont.systemFont(ofSize: UIFont.systemFontSize)
+    public var textColor: UIColor? = UIColor.black
 
     public var contentInsets:UIEdgeInsets = UIEdgeInsets(top:0, left: 0, bottom: 5, right: 0)
     
@@ -24,7 +24,7 @@ public struct ParagraphStyling: ItemStyling, TextColorStylingRule, LineHeightSty
     public var isBold = false
     public var isItalic = false
 
-    public var textAlignment:TextAlignment = .Left
+    public var textAlignment:TextAlignment = .left
 
     public init(){}
 }

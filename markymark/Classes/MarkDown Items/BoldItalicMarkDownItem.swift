@@ -5,4 +5,4 @@
 
 import Foundation
 
-public class BoldItalicMarkDownItem : MarkDownItem { }
+open class BoldItalicMarkDownItem : MarkDownItem { }

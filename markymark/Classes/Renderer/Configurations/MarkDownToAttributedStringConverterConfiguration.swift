@@ -9,7 +9,7 @@
 import Foundation
 import UIKit
 
-public class MarkDownToAttributedStringConverterConfiguration: MarkDownConverterConfiguration<NSMutableAttributedString> {
+open class MarkDownToAttributedStringConverterConfiguration: MarkDownConverterConfiguration<NSMutableAttributedString> {
     
     public override init(elementComposer: ElementComposer<NSMutableAttributedString>, styling : Styling) {
         

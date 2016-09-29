@@ -7,25 +7,25 @@ import Foundation
 
 extension String {
 
-    func subString(start:Int, _ end:Int) -> String {
-        let startIndex = self.startIndex.advancedBy(start)
-        let endIndex = self.startIndex.advancedBy(end)
-        return self.substringWithRange(startIndex..<endIndex)
+    func subString(_ start:Int, _ end:Int) -> String {
+        let startIndex = self.characters.index(self.startIndex, offsetBy: start)
+        let endIndex = self.characters.index(self.startIndex, offsetBy: end)
+        return self.substring(with: startIndex..<endIndex)
     }
 
-    func subString(range:NSRange) -> String {
-        let startIndex = self.startIndex.advancedBy(range.location)
-        let endIndex = self.startIndex.advancedBy(range.getLocationEnd())
-        return self.substringWithRange(startIndex..<endIndex)
+    func subString(_ range:NSRange) -> String {
+        let startIndex = self.characters.index(self.startIndex, offsetBy: range.location)
+        let endIndex = self.characters.index(self.startIndex, offsetBy: range.getLocationEnd())
+        return self.substring(with: startIndex..<endIndex)
     }
 
-    func subStringWithExpression(expression:NSRegularExpression, ofGroup group:Int) -> String {
+    func subStringWithExpression(_ expression:NSRegularExpression, ofGroup group:Int) -> String {
         var subString = ""
         let range = NSRange(location: 0, length: self.length())
-        let results = expression.matchesInString(self, options:[], range: range)
+        let results = expression.matches(in: self, options:[], range: range)
 
         if let result = results.first {
-            subString = self.subString(result.rangeAtIndex(group))
+            subString = self.subString(result.rangeAt(group))
         }
 
         return subString
