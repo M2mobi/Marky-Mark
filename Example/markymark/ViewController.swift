@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         self.view = UIScrollView()
         
         //Change this constant to try different configurations
-        let converterConfiguration = ConverterConfiguration.AttributedString
+        let converterConfiguration = ConverterConfiguration.View
 
         
         //MarkyMark

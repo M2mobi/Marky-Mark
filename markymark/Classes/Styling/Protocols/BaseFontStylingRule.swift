@@ -56,15 +56,15 @@ private extension UIFont {
 
     func makeBold() -> UIFont {
 
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold), size: self.pointSize)
+        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitBold)!, size: self.pointSize)
     }
 
     func makeItalic() -> UIFont {
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic), size: self.pointSize)
+        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits(.TraitItalic)!, size: self.pointSize)
     }
 
     func makeItalicBold() -> UIFont {
-        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits([.TraitItalic, .TraitBold]), size: self.pointSize)
+        return UIFont.init(descriptor: self.fontDescriptor().fontDescriptorWithSymbolicTraits([.TraitItalic, .TraitBold])!, size: self.pointSize)
 
     }
 
