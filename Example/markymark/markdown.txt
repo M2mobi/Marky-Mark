@@ -51,6 +51,8 @@ c. Number 3
 ---
 ![My Apple](http://images.apple.com/apple-events/static/apple-events/october-2013/video/poster_large.jpg)
 
+Inline image ![Apple logo](appleLogo) Apple logo ![Apple logo](appleLogoSmall)
+
 # Paragraphs
 Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet vulputate*** diam. Duis sodales ~~sapien~~ quis ***elementum* posuere**. Duis quam lectus, posueresed  [~~pellentesqueaauctor~~](https://m2mobi.com) eu [Velit](https://m2mobi.com).
 ---
