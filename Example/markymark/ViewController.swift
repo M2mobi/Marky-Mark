@@ -35,7 +35,6 @@ class ViewController: UIViewController {
             markDownView = getViewWithAttributedStringConverter(markDownItems)
         }
         
-        
         // Layout
         view.addSubview(markDownView)
 

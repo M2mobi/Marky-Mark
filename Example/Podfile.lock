@@ -6,11 +6,11 @@ DEPENDENCIES:
 
 EXTERNAL SOURCES:
   markymark:
-    :path: "../"
+    :path: ../
 
 SPEC CHECKSUMS:
   markymark: 5d40bacda3f5c401c9aa7f662ab8d764fa865792
 
 PODFILE CHECKSUM: 1823fb3e3e4adb2b8d02e7af879d75b146ddd807
 
-COCOAPODS: 1.0.1
+COCOAPODS: 1.2.0
