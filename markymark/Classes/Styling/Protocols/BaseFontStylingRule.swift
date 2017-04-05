@@ -22,33 +22,27 @@ extension ItemStyling {
     }
 
     func neededFont() -> UIFont? {
+        
+        var font: UIFont? = neededBaseFont()
 
-        if var font: UIFont? = neededBaseFont() {
-
-            if shouldFontBeBold() {
-
-                font = font?.makeBold()
-            }
-
-            if shouldFontBeItalic() {
-
-                font = font?.makeItalic()
-            }
-
-            if shouldFontBeBold() && shouldFontBeItalic() {
-                font = font?.makeItalicBold()
-            }
-
-            if let textSize = neededTextSize() {
-
-                font = font?.changeSize(textSize)
-            }
-
-            return font
-        } else {
-            
-            return nil
+        if shouldFontBeBold() {
+            font = font?.makeBold()
         }
+
+        if shouldFontBeItalic() {
+            font = font?.makeItalic()
+        }
+
+        if shouldFontBeBold() && shouldFontBeItalic() {
+            font = font?.makeItalicBold()
+        }
+
+        if let textSize = neededTextSize() {
+
+            font = font?.changeSize(textSize)
+        }
+
+        return font
     }
 }
 

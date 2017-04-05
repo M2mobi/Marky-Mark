@@ -18,7 +18,7 @@ class ViewController: UIViewController {
         self.view = UIScrollView()
         
         //Change this constant to try different configurations
-        let converterConfiguration = ConverterConfiguration.attributedString
+        let converterConfiguration = ConverterConfiguration.view
         
         //MarkyMark
         let markyMark = MarkyMark(build: {
