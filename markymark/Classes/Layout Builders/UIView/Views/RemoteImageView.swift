@@ -37,7 +37,7 @@ class RemoteImageView: UIImageView {
     
     fileprivate func loadImageFromURL(_ url:URL) {
 
-        DispatchQueue.global(qos: DispatchQoS.QoSClass.default).async {
+        DispatchQueue.global(qos: .default).async {
 
             let data = try? Data(contentsOf: url)
             
