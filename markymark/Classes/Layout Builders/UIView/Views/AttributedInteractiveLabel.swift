@@ -107,7 +107,11 @@ open class AttributedInteractiveLabel: UILabel {
      */
 
     fileprivate func getTextContainer() -> NSTextContainer {
-        let textContainer = NSTextContainer(size: CGSize(width: frame.size.width , height: frame.size.height))
+
+        /// Height should be any size that's at least bigger than the actual label size
+        let height = frame.size.height + 100
+
+        let textContainer = NSTextContainer(size: CGSize(width: frame.size.width , height: height))
         textContainer.lineFragmentPadding = 0.0;
         textContainer.lineBreakMode = lineBreakMode;
         textContainer.maximumNumberOfLines = numberOfLines;
