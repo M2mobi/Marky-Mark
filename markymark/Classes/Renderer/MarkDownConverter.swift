@@ -26,7 +26,6 @@ open class MarkDownConverter<T> {
      - returns: type T containing all converted items composed together. Often a String or UIView
      */
     open func convert(_ markDownItems:[MarkDownItem]) -> T {
-
         return configuration.elementComposer.compose(convertToElements(markDownItems))
     }
 
@@ -59,7 +58,6 @@ open class MarkDownConverter<T> {
                 print("Can't find display item for \(String(describing: markDownItem.self))")
             }
         }
-        
         return elements;
     }
 }
