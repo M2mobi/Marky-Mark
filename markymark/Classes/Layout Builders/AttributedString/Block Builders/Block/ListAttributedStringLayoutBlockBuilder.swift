@@ -41,9 +41,7 @@ private extension ListAttributedStringLayoutBlockBuilder {
     func getListAttributedString(_ listMarkDownItem:ListMarkDownItem, styling:ItemStyling, level:CGFloat = 0) -> NSMutableAttributedString {
         
         let listAttributedString = NSMutableAttributedString()
-        
-        let listView = ListView(styling:styling)
-        
+                
         for listItem in listMarkDownItem.listItems ?? [] {
             
             let bulletStyling = styling as? BulletStylingRule

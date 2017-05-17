@@ -18,7 +18,7 @@ open class HeaderRule : RegExRule, HasLevel {
         let content = line.subStringWithExpression(expression, ofGroup: 2)
         let level = getLevel(line)
 
-        return HeaderMarkDownItem(lines: lines, content: content ?? "", level: level)
+        return HeaderMarkDownItem(lines: lines, content: content, level: level)
     }
 
     //MARK: Private

@@ -16,7 +16,8 @@ open class ListMarkDownItem: MarkDownItem, HasListItems, HasIndex {
     }
 
     var indexCharacter: String? {
-        return index != nil ? "\(index)" : nil
+        guard let index = index else { return nil }
+        return "\(index)"
     }
     
     public required init(lines: [String], content: String) {

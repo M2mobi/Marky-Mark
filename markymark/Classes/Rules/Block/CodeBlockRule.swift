@@ -52,6 +52,6 @@ open class CodeBlockRule : Rule  {
         content = content.replacingOccurrences(of: "```\n", with: "")
         content = content.replacingOccurrences(of: "```", with: "")
 
-        return CodeBlockMarkDownItem(lines: lines, content: content ?? "")
+        return CodeBlockMarkDownItem(lines: lines, content: content)
     }
 }
