@@ -2,9 +2,9 @@
 
 Marky Mark is a parser written in Swift that converts markdown into native views. The way it looks it highly customizable and the supported markdown syntax is easy to extend.
 
-[![Screenshot](https://i.imgsafe.org/b2a1373357.png)](https://i.imgsafe.org/b2a75a3cfa.png)
-[![Screenshot](https://i.imgsafe.org/b2a14ba35a.png)](https://i.imgsafe.org/b2a7711e10.png)
-[![Screenshot](https://i.imgsafe.org/b2a14392fa.png)](https://i.imgsafe.org/b2a762331c.png)
+[![Screenshot](Readme_Assets/example1-thumb.png)](Readme_Assets/example1.png)
+[![Screenshot](Readme_Assets/example2-thumb.png)](Readme_Assets/example2.png)
+[![Screenshot](Readme_Assets/example3-thumb.png)](Readme_Assets/example3.png)
 
 ## Example
 
