@@ -30,7 +30,7 @@ open class MarkDownConverter<T> {
     }
 
     /**
-     Coverts the MarkDownItem's into displayable objects of type T
+     Converts the MarkDownItem's into displayable objects of type T
      - T can be String or UIView for example
      - It uses `map` to find a LayoutBuilder for the given MarkdownItem
 

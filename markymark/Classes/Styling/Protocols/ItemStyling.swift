@@ -14,7 +14,7 @@ public protocol ItemStyling {
 extension ItemStyling {
 
     /**
-    Provides all ansestors, youngest first
+    Provides all ancestors, youngest first
     */
     func stylingWithPrecedingStyling() -> [ItemStyling] {
 
@@ -22,7 +22,7 @@ extension ItemStyling {
     }
 
     /**
-     Recursive method that collects all styling be looping through the parent
+     Recursive method that collects all styling by looping through the parent
 
      - returns: A list of all ItemStyling found
      */
