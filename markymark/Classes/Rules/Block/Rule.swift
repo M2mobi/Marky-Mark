@@ -8,11 +8,11 @@ import Foundation
 public protocol Rule {
 
     /**
-     Checks if the top line(s) passed are comforming to the expected format for this rule
+     Checks if the top line(s) passed are conforming to the expected format for this rule
 
      - parameter lines: Array of Markdown Strings
 
-     - returns: Wether the lines comform to the expected format
+     - returns: Whether the lines conform to the expected format
      */
 
     func recognizesLines(_ lines:[String]) -> Bool

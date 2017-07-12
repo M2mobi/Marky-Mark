@@ -76,7 +76,7 @@ private extension ViewController {
         textView.dataDetectorTypes = .link
         textView.attributedText = converter.convert(markDownItems)
         textView.tintColor = styling.linkStyling.textColor
-        textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0);
+        textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         
         return textView
     }
@@ -84,7 +84,7 @@ private extension ViewController {
     func getMarkDownString() -> String {
         var markdownString:String = ""
         if let filepath = Bundle.main.path(forResource: "markdown", ofType: "txt") {
-            markdownString = try! NSString(contentsOfFile: filepath, usedEncoding: nil) as String
+            markdownString = try! String(contentsOfFile: filepath)
         }
         
         return markdownString
