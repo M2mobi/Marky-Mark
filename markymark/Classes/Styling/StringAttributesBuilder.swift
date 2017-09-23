@@ -7,31 +7,31 @@ import UIKit
 
 struct StringAttributesBuilder {
 
-    func attributesForStyling(_ styling : ItemStyling) -> [String : AnyObject] {
+    func attributesForStyling(_ styling : ItemStyling) -> [NSAttributedStringKey : Any] {
 
-        var attributes = [String : AnyObject]()
+        var attributes = [NSAttributedStringKey : Any]()
 
         if let font = styling.neededFont() {
 
-            attributes[NSFontAttributeName] = font
+            attributes[.font] = font
         }
 
         if styling.shouldBeStrikeThrough() {
 
-            attributes[NSStrikethroughStyleAttributeName] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
+            attributes[.strikethroughStyle] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
         }
 
         if let textColor = styling.neededTextColor() {
 
-            attributes[NSForegroundColorAttributeName] = textColor
+            attributes[.foregroundColor] = textColor
         }
         
         if styling.shouldFontBeUnderlined() {
-            attributes[NSUnderlineStyleAttributeName] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
+            attributes[.underlineStyle] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
         }
         
         if let backgroundColor = styling.neededBackgroundColor() {
-            attributes[NSBackgroundColorAttributeName] = backgroundColor
+            attributes[.backgroundColor] = backgroundColor
         }
         
         let paragraphStyle = NSMutableParagraphStyle()
@@ -55,7 +55,7 @@ struct StringAttributesBuilder {
             paragraphStyle.alignment = alignment
         }
 
-        attributes[NSParagraphStyleAttributeName] = paragraphStyle
+        attributes[.paragraphStyle] = paragraphStyle
 
         return attributes
     }

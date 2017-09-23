@@ -22,7 +22,7 @@ class LinkViewLayoutBlockBuilder: ContainerAttributedStringBlockBuilder {
         let url = URL(string: linkMarkDownItem.url)
         
         if let url = url {
-            attributedString.addAttributes([NSLinkAttributeName : url ], range: attributedString.fullRange())
+            attributedString.addAttributes([.link : url ], range: attributedString.fullRange())
         }
 
         return attributedString

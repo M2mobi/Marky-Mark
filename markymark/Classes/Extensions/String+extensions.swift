@@ -10,13 +10,13 @@ extension String {
     func subString(_ start:Int, _ end:Int) -> String {
         let startIndex = self.characters.index(self.startIndex, offsetBy: start)
         let endIndex = self.characters.index(self.startIndex, offsetBy: end)
-        return self.substring(with: startIndex..<endIndex)
+        return String(self[startIndex..<endIndex])
     }
 
     func subString(_ range:NSRange) -> String {
         let startIndex = self.characters.index(self.startIndex, offsetBy: range.location)
         let endIndex = self.characters.index(self.startIndex, offsetBy: range.getLocationEnd())
-        return self.substring(with: startIndex..<endIndex)
+        return String(self[startIndex..<endIndex])
     }
 
     func subStringWithExpression(_ expression:NSRegularExpression, ofGroup group:Int) -> String {
@@ -25,7 +25,7 @@ extension String {
         let results = expression.matches(in: self, options:[], range: range)
 
         if let result = results.first {
-            subString = self.subString(result.rangeAt(group))
+            subString = self.subString(result.range(at: group))
         }
 
         return subString
