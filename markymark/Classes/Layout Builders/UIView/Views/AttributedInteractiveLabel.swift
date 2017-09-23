@@ -41,7 +41,7 @@ open class AttributedInteractiveLabel: UILabel {
         self.attributedText = mutableAttributedString
     }
 
-    func didTap(_ tapGesture:UITapGestureRecognizer) {
+    @objc func didTap(_ tapGesture:UITapGestureRecognizer) {
         guard let view = tapGesture.view else { return }
 
         let locationInView = tapGesture.location(in: view)
@@ -134,10 +134,10 @@ private extension NSMutableAttributedString {
 
         if let attributedStringToEnumerate = self.mutableCopy() as? NSMutableAttributedString {
 
-            attributedStringToEnumerate.enumerateAttribute(NSLinkAttributeName, in: attributedStringToEnumerate.fullRange(), options: []) {
+            attributedStringToEnumerate.enumerateAttribute(.link, in: attributedStringToEnumerate.fullRange(), options: []) {
                 (value, range, stop) in
 
-                self.removeAttribute(NSLinkAttributeName, range: range)
+                self.removeAttribute(.link, range: range)
                 result.append((range, value as? URL))
             }
         }

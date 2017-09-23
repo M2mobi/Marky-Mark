@@ -158,7 +158,8 @@ class InlineMarkDownItemFactory {
     }
 
     fileprivate func containsInlineFormattingRules(_ ruleRangePairs:[RuleRangePair]) -> Bool {
-        return !(ruleRangePairs.count == 1 && type(of: ruleRangePairs.first?.rule) == type(of: defaultRule))
+        guard let rule = ruleRangePairs.first?.rule else { return false }
+        return !(ruleRangePairs.count == 1 && type(of: rule) == type(of: defaultRule))
     }
 }
 

@@ -24,7 +24,7 @@ extension NSRegularExpression {
 
         let results = matches(in: string, options:[], range: range)
 
-        return results.first?.rangeAt(group)
+        return results.first?.range(at: group)
     }
 
     func rangesForString(_ string:String) -> [NSRange] {

@@ -38,7 +38,7 @@ class InlineAttributedStringLayoutBlockBuilder : LayoutBlockBuilder<NSMutableAtt
         paragraphStyle.headIndent = contentInset.left
         
         attributedString.addAttributes([
-            NSParagraphStyleAttributeName : paragraphStyle
+            .paragraphStyle : paragraphStyle
         ], range: attributedString.fullRange())
         
         return attributedString
