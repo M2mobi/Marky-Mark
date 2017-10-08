@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import markymark
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,8 +19,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         guard let window = window else { return true }
 
+        let vc = ViewController()
         window.backgroundColor = .white
-        window.rootViewController = ViewController()
+        window.rootViewController = vc
         window.makeKeyAndVisible()
 
         return true
@@ -49,4 +51,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
 }
-
