@@ -14,9 +14,10 @@ extension String {
     }
 
     func subString(_ range:NSRange) -> String {
-        let startIndex = self.characters.index(self.startIndex, offsetBy: range.location)
-        let endIndex = self.characters.index(self.startIndex, offsetBy: range.getLocationEnd())
-        return String(self[startIndex..<endIndex])
+        guard let range = Range(range, in: self) else { return "" }
+        let startIndex = self.distance(from: self.startIndex, to: range.lowerBound)
+        let endIndex = self.distance(from: self.startIndex, to: range.upperBound)
+        return subString(startIndex, endIndex)
     }
 
     func subStringWithExpression(_ expression:NSRegularExpression, ofGroup group:Int) -> String {
