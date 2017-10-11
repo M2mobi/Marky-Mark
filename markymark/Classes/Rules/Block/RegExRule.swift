@@ -6,11 +6,11 @@
 import Foundation
 
 public protocol RegExRule: Rule {
-    var expression:NSRegularExpression { get }
+    var expression: NSRegularExpression { get }
 }
 
 extension RegExRule {
-    public func recognizesLines(_ lines:[String]) -> Bool {
+    public func recognizesLines(_ lines: [String]) -> Bool {
         return expression.hasMatchesInString(lines.first)
     }
 }

@@ -6,6 +6,8 @@
 import Foundation
 
 open class InlineCodeRule : InlineRegexRule {
+    
+    public init() {}
 
     /// Example: `text`
     open var expression = NSRegularExpression.expressionWithPattern("\\`{1}(.+?)\\`{1}")

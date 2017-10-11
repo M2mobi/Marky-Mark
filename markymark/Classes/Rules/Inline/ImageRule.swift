@@ -5,12 +5,14 @@
 
 import Foundation
 
-class ImageRule : InlineRegexRule {
+open class ImageRule : InlineRegexRule {
+    
+    public init() {}
 
     /// Example: ![Alt text](image.png)
-    var expression = NSRegularExpression.expressionWithPattern("(!\\p{Z}{0,1})\\[{0,1}(.+?)\\]\\({1}(.+?)\\)")
+    public var expression = NSRegularExpression.expressionWithPattern("(!\\p{Z}{0,1})\\[{0,1}(.+?)\\]\\({1}(.+?)\\)")
 
-    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+    public func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
 
         let file:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 3)
         let altText:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 2)

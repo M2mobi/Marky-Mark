@@ -6,6 +6,8 @@
 import Foundation
 
 open class LinkRule: InlineRegexRule {
+    
+    public init() {}
 
     /// Example: [Google](http://www.google.com)
     open var expression = NSRegularExpression.expressionWithPattern("(?<!!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)")

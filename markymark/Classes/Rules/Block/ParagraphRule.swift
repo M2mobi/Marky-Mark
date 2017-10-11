@@ -5,7 +5,9 @@
 
 import Foundation
 
-open class ParagraphRule : Rule {
+open class ParagraphRule: Rule {
+
+    public init() {}
 
     //MARK: Rule
 

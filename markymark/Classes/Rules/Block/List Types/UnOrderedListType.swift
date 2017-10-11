@@ -6,12 +6,14 @@
 import Foundation
 
 open class UnOrderedListType: ListType {
+    
+    public init() {}
 
-    var pattern: String {
+    public var pattern: String {
         return "\\-|\\+|\\*"
     }
 
-    var relatedListMarkDownType: ListMarkDownItem.Type {
+    public var relatedListMarkDownType: ListMarkDownItem.Type {
         return UnorderedListMarkDownItem.self
     }
 

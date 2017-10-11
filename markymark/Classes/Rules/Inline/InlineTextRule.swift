@@ -6,6 +6,8 @@
 import Foundation
 
 open class InlineTextRule : InlineRule {
+    
+    public init() {}
 
     //MARK: Rule
 
