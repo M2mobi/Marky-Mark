@@ -7,8 +7,8 @@ import Foundation
 
 open class ImageMarkDownItem : MarkDownItem {
 
-    let file:String
-    let altText:String
+    public let file:String
+    public let altText:String
     
     init(lines: [String], file: String, altText:String) {
         self.file = file
