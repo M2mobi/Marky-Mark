@@ -9,9 +9,9 @@
 import Foundation
 import UIKit
 
-class TextAttachment: NSTextAttachment {
+public class TextAttachment: NSTextAttachment {
 
-    override func attachmentBounds(for textContainer: NSTextContainer?, proposedLineFragment lineFrag: CGRect, glyphPosition position: CGPoint, characterIndex charIndex: Int) -> CGRect {
+    override public func attachmentBounds(for textContainer: NSTextContainer?, proposedLineFragment lineFrag: CGRect, glyphPosition position: CGPoint, characterIndex charIndex: Int) -> CGRect {
 
         var imageSize = CGSize()
 
