@@ -8,8 +8,8 @@ import Foundation
 extension String {
 
     func subString(_ start:Int, _ end:Int) -> String {
-        let startIndex = self.characters.index(self.startIndex, offsetBy: start)
-        let endIndex = self.characters.index(self.startIndex, offsetBy: end)
+        let startIndex = self.index(self.startIndex, offsetBy: start)
+        let endIndex = self.index(self.startIndex, offsetBy: end)
         return String(self[startIndex..<endIndex])
     }
 
