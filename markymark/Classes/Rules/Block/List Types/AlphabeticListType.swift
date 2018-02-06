@@ -22,7 +22,7 @@ open class AlphabeticListType: ListType {
         stringIndex = stringIndex.replacingOccurrences(of: ".", with: "")
 
         if let index = alphabeticIndexCharacters.range(of: stringIndex.lowercased())?.lowerBound {
-            return alphabeticIndexCharacters.characters.distance(from: alphabeticIndexCharacters.startIndex, to: index)
+            return alphabeticIndexCharacters.distance(from: alphabeticIndexCharacters.startIndex, to: index)
         }
 
         return nil
