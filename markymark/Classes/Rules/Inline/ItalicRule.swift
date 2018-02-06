@@ -6,6 +6,8 @@
 import UIKit
 
 open class ItalicRule: InlineRegexRule {
+    
+    public init() {}
 
     /// Example: *text* or _text_
     open var expression = NSRegularExpression.expressionWithPattern("(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)(.+?)(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)")

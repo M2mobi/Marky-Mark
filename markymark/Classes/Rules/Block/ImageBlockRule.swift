@@ -5,7 +5,9 @@
 
 import Foundation
 
-open class ImageBlockRule : RegExRule {
+open class ImageBlockRule: RegExRule {
+
+    public init() {}
 
     /// Example: ![Alt text](image.png)
 
@@ -13,7 +15,7 @@ open class ImageBlockRule : RegExRule {
 
     //MARK: Rule
 
-    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
 
         let file:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 3)
         let altText:String? =  lines.first?.subStringWithExpression(expression, ofGroup: 2)

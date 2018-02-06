@@ -6,12 +6,14 @@
 import Foundation
 
 open class AlphabeticListType: ListType {
+    
+    public init() {}
 
-    var pattern:String {
+    public var pattern:String {
         return "[a-zA-Z]\\."
     }
 
-    var relatedListMarkDownType: ListMarkDownItem.Type {
+    public var relatedListMarkDownType: ListMarkDownItem.Type {
         return AlphabeticallyOrderedMarkDownItem.self
     }
 

@@ -5,7 +5,9 @@
 
 import Foundation
 
-open class CodeBlockRule : Rule  {
+open class CodeBlockRule: Rule  {
+
+    public init() {}
 
     var numberOfLines:Int = 0
 

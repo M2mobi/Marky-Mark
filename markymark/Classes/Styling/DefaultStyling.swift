@@ -19,8 +19,8 @@ public struct DefaultStyling: Styling {
     public var linkStyling = LinkStyling()
     public var horizontalLineStyling = HorizontalLineStyling()
     public var codeBlockStyling = CodeBlockStyling()
-    public let inlineCodeBlockStyling = InlineCodeStyling()
-    public let quoteStyling = QuoteStyling()
+    public var inlineCodeBlockStyling = InlineCodeStyling()
+    public var quoteStyling = QuoteStyling()
 
     public mutating func addStyling(_ styling:ItemStyling) {
         extraStyling.append(styling)

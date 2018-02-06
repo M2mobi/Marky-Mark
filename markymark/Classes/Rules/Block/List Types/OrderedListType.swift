@@ -5,17 +5,19 @@
 
 import Foundation
 
-open class OrderedListType:ListType {
+open class OrderedListType: ListType {
 
-    var pattern:String {
+    public init() {}
+
+    public var pattern: String {
         return "\\d\\."
     }
 
-    var relatedListMarkDownType: ListMarkDownItem.Type {
+    public var relatedListMarkDownType: ListMarkDownItem.Type {
         return OrderedListMarkDownItem.self
     }
 
-    open func getIndex(_ stringIndex:String) -> Int? {
+    open func getIndex(_ stringIndex: String) -> Int? {
         var stringIndex = stringIndex
         stringIndex = stringIndex.replacingOccurrences(of: ".", with: "")
 

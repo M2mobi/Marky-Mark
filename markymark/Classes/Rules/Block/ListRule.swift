@@ -6,14 +6,14 @@
 import Foundation
 
 open class ListRule: Rule, HasLevel {
-    
+
     var numberOfListItems = 0;
 
     var expression:NSRegularExpression
     let listTypes:[ListType]
     let defaultListType = UnOrderedListType()
 
-    init(listTypes:[ListType]){
+    public init(listTypes:[ListType]){
         self.listTypes = listTypes + [defaultListType]
         
         let pattern:String = self.listTypes.map({

@@ -5,7 +5,9 @@
 
 import Foundation
 
-open class BlockQuoteRule : RegExRule {
+open class BlockQuoteRule: RegExRule {
+
+    public init() {}
 
     /// Example: > Quote
     open var expression = NSRegularExpression.expressionWithPattern("(^>{1,}) (.*?)$")

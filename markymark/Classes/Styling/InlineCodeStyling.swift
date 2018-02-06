@@ -7,7 +7,7 @@ import Foundation
 
 import UIKit
 
-public struct InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingRule, ItalicStylingRule, BackgroundStylingRule, BaseFontStylingRule {
+public class InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingRule, ItalicStylingRule, BackgroundStylingRule, BaseFontStylingRule {
 
     public var parent : ItemStyling? = nil
 

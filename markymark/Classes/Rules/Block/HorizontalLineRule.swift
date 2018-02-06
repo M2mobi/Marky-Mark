@@ -5,7 +5,9 @@
 
 import Foundation
 
-open class HorizontalLineRule : RegExRule {
+open class HorizontalLineRule: RegExRule {
+
+    public init() {}
 
     /// Example: ---
 
@@ -13,7 +15,7 @@ open class HorizontalLineRule : RegExRule {
 
     //MARK: Rule
 
-    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         return HorizontalLineMarkDownItem(lines: lines, content: "")
     }
 }
