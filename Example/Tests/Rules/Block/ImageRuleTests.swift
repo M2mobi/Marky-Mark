@@ -17,7 +17,13 @@ class ImageRuleTests: XCTestCase {
 
     func testRecognizesLines() {
         XCTAssertTrue(sut.recognizesLines(["![Alt text](image.png)"]))
+        XCTAssertTrue(sut.recognizesLines(["Lorem ipsum ![Alt text](image.png) (nothing)"]))
+    }
+
+    func testDoesNotRecognizesLines() {
         XCTAssertFalse((sut.recognizesLines(["[Alt text](image.png)"])))
+        XCTAssertFalse((sut.recognizesLines(["!aaa[Alt text](image.png)"])))
+        XCTAssertFalse((sut.recognizesLines(["![Alt text]gjhg(image.png)"])))
     }
 
     func testCreateMarkDownItemWithLinesCreatesCorrectItem() {
@@ -49,11 +55,10 @@ class ImageRuleTests: XCTestCase {
         //Act
 
         //Assert
-        XCTAssertEqual(sut.getAllMatches(["![Alt text](image.png)"]), [expectedMatchesRange])
+        XCTAssertEqual(sut.getAllMatches(["![Alt text](image.png) (nothing)"]), [expectedMatchesRange])
         XCTAssertEqual(sut.getAllMatches(["![Alt text]"]).count, 0)
         XCTAssertEqual(sut.getAllMatches(["[Alt text](image.png)"]).count, 0)
         XCTAssertEqual(sut.getAllMatches(["(image.png)"]).count, 0)
         XCTAssertEqual(sut.getAllMatches(["![Alt text](image.png) test ![Alt text](image.png)"]), [expectedMatchesRange,expectedMatchesRange2])
     }
-
 }
