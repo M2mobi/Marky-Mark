@@ -20,7 +20,7 @@ class ContainerView : UIView {
 
         let views = ["view" : view ]
 
-        let metrics = [
+        let metrics: [String: CGFloat] = [
             "top" : spacing?.top ?? 0,
             "left" : spacing?.left ?? 0,
             "bottom" : spacing?.bottom ?? 0,
