@@ -48,11 +48,11 @@ open class ListRule: Rule, HasLevel {
 
         for listType in listTypes {
             if let index = listType.getIndex(stringIndex) {
-                return listType.relatedListMarkDownType.init(lines: lines, content: content, index: index)
+                return listType.relatedListMarkDownType.init(lines: lines, content: content, level: getLevel(lines[0]), index: index)
             }
         }
 
-        return defaultListType.relatedListMarkDownType.init(lines: lines, content: content, index: nil)
+        return defaultListType.relatedListMarkDownType.init(lines: lines, content: content, level: getLevel(lines[0]), index: nil)
 
     }
 

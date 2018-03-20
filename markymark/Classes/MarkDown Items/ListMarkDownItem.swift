@@ -6,12 +6,14 @@
 import Foundation
 
 open class ListMarkDownItem: MarkDownItem, HasListItems, HasIndex {
-    var listItems:[ListMarkDownItem]?
+    var listItems: [ListMarkDownItem]?
 
-    let index:Int?
+    let level: Int
+    let index: Int?
 
-    required public init(lines: [String], content: String, index: Int? = nil) {
-        self.index = index;
+    required public init(lines: [String], content: String, level: Int, index: Int? = nil) {
+        self.level = level
+        self.index = index
         super.init(lines: lines, content: content)
     }
 

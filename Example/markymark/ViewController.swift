@@ -57,7 +57,12 @@ class ViewController: UIViewController {
 private extension ViewController {
     
     func getViewWithViewConverter(_ markDownItems: [MarkDownItem]) -> UIView {
-        let styling = DefaultStyling()
+        var styling = DefaultStyling()
+        styling.listStyling.bulletImages = [
+            UIImage(named: "appleLogoBlue"),
+            UIImage(named: "appleLogoRed"),
+            UIImage(named: "appleLogoGreen")
+        ]
         
         let configuration = MarkdownToViewConverterConfiguration(styling: styling)
         let converter = MarkDownConverter(configuration: configuration)

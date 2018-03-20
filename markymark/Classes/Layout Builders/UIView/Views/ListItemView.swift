@@ -69,12 +69,11 @@ class ListItemView: UIView {
     }
 
     fileprivate func getBulletView() -> UIView {
-
         let bulletLabel = UILabel()
 
         if let indexCharacter = listMarkDownItem.indexCharacter {
             bulletLabel.text = "\(indexCharacter)"
-        } else if styling?.bulletImage == nil {
+        } else if let styling = styling, (styling.bulletImages == nil || styling.bulletImages?.count == 0) {
             bulletLabel.text = "•"
         } else {
             return getImageBulletView()
@@ -97,14 +96,14 @@ class ListItemView: UIView {
     }
     
     fileprivate func getImageBulletView() -> UIView {
+        guard let styling = styling, let images = styling.bulletImages, images.count > 0 else { return UIView() }
 
-        if let styling = styling, let image = styling.bulletImage {
-            let bulletImageView = UIImageView(image: image)
-            bulletImageView.contentMode = .center
-            return bulletImageView
-        }
+        let imageIndex = listMarkDownItem.level%images.count
 
-        return UIView()
+        let bulletImageView = UIImageView(image: images[imageIndex])
+        bulletImageView.contentMode = .center
+        return bulletImageView
+
     }
 
     override var intrinsicContentSize : CGSize {

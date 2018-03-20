@@ -14,6 +14,8 @@ public protocol BulletStylingRule : ItemStyling {
     var bulletColor : UIColor? { get }
     /// Optional image as bullet instead of a font
     var bulletImage : UIImage? { get }
+    /// Array of bullet images, each item in the array is used for deeper level nesting
+    var bulletImages : [UIImage?]? { get }
     /// Size of the view used for the bullet
     var bulletViewSize : CGSize { get }
 }
@@ -21,5 +23,15 @@ public protocol BulletStylingRule : ItemStyling {
 extension BulletStylingRule {
     public var bulletViewSize : CGSize {
         return CGSize(width: 16, height: 16)
+    }
+
+    public var bulletImage : UIImage? { return nil }
+
+    public var bulletImages: [UIImage]? {
+        if let bulletImage = bulletImage {
+            return [bulletImage]
+        } else {
+            return []
+        }
     }
 }
