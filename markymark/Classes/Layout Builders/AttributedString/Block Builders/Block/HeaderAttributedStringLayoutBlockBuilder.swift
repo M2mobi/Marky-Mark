@@ -22,7 +22,7 @@ class HeaderAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBloc
         headerStyling?.configureForLevel(headerMarkDownItem.level)
         
         let attributedString = attributedStringForMarkDownItem(markDownItem, styling: headerStyling ?? styling)
-        
+
         return attributedStringWithContentInset(attributedString, contentInset: headerStyling?.contentInsets ?? UIEdgeInsets())
     }
 }

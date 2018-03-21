@@ -5,7 +5,7 @@
 
 import UIKit
 
-public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingRule, ContentInsetStylingRule, BoldStylingRule, ItalicStylingRule, UnderlineStylingRule, TextAlignmentStylingRule {
+public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingRule, ContentInsetStylingRule, BoldStylingRule, ItalicStylingRule, UnderlineStylingRule, TextAlignmentStylingRule {
 
     public var parent : ItemStyling? = nil
 
@@ -16,7 +16,7 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
 
     var level:Int = 0
 
-    mutating func configureForLevel(_ level:Int) {
+    func configureForLevel(_ level:Int) {
         self.level = level
     }
 
@@ -27,7 +27,6 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
         UIFont.systemFont(ofSize: 15),
         UIFont.systemFont(ofSize: 14),
         UIFont.systemFont(ofSize: 13)
-
     ]
 
     public var baseFont: UIFont? {
@@ -44,7 +43,13 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
         return textColorsForLevels.elementForLevel(level)
     }
 
-    public var contentInsets:UIEdgeInsets = UIEdgeInsets(top:5, left: 0, bottom: 5, right: 10)
+    public var contentInsetsForLevels: [UIEdgeInsets] = [
+        UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10)
+    ]
+
+    public var contentInsets: UIEdgeInsets {
+        return contentInsetsForLevels.elementForLevel(level)
+    }
     
     public var isBold = false
     public var isItalic = false
@@ -59,6 +64,9 @@ public struct HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStyling
 private extension Array {
 
     func elementForLevel(_ level:Int) -> Element {
+        if level <= 0 {
+            return self[0]
+        }
 
         if level > self.count {
             return self.last!
