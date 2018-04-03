@@ -21,9 +21,6 @@ public protocol BulletStylingRule : ItemStyling {
 }
 
 extension BulletStylingRule {
-    public var bulletViewSize : CGSize {
-        return CGSize(width: 16, height: 16)
-    }
 
     public var bulletImage : UIImage? { return nil }
 

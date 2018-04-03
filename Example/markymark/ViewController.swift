@@ -59,9 +59,10 @@ private extension ViewController {
     func getViewWithViewConverter(_ markDownItems: [MarkDownItem]) -> UIView {
         var styling = DefaultStyling()
         styling.listStyling.bulletImages = [
-            UIImage(named: "appleLogoBlue"),
-            UIImage(named: "appleLogoRed"),
-            UIImage(named: "appleLogoGreen")
+            UIImage(named: "circle"),
+            UIImage(named: "emptyCircle"),
+            UIImage(named: "line"),
+            UIImage(named: "square")
         ]
 
         styling.headingStyling.contentInsetsForLevels = [
