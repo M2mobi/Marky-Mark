@@ -19,6 +19,7 @@ public struct ListStyling: ItemStyling, BulletStylingRule, BaseFontStylingRule, 
     public var bulletColor:UIColor? = .gray
     public var bulletImage: UIImage? = nil
     public var bulletImages: [UIImage?]? = nil
+    public var bulletViewSize: CGSize = CGSize(width: 16, height: 16)
 
     public var baseFont: UIFont? = UIFont.systemFont(ofSize: UIFont.systemFontSize)
 
