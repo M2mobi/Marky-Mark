@@ -5,7 +5,7 @@
 
 import UIKit
 
-public struct DefaultStyling: Styling {
+open class DefaultStyling: Styling {
 
     fileprivate var extraStyling: [ItemStyling] = []
 
@@ -22,12 +22,30 @@ public struct DefaultStyling: Styling {
     public var inlineCodeBlockStyling = InlineCodeStyling()
     public var quoteStyling = QuoteStyling()
 
-    public mutating func addStyling(_ styling:ItemStyling) {
+    private var defaultStyling: [ItemStyling] {
+        return [
+            paragraphStyling,
+            italicStyling,
+            boldStyling,
+            headingStyling,
+            strikeThroughStyling,
+            listStyling,
+            imageStyling,
+            linkStyling,
+            horizontalLineStyling,
+            codeBlockStyling,
+            inlineCodeBlockStyling,
+            quoteStyling
+        ]
+    }
+
+    public func addStyling(_ styling:ItemStyling) {
         extraStyling.append(styling)
     }
 
+
     public var itemStylingRules: [ItemStyling] {
-        return extraStyling + collectStylingRules()
+        return extraStyling + defaultStyling
     }
 
     public init(){}
