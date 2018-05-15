@@ -70,6 +70,12 @@ private extension ViewController {
             UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10) // H2, ...
         ]
 
+        // Only uppercase H1 headers
+        styling.headingStyling.capitalizationForLevels = [
+            .uppercased, // H1
+            nil //H2, ...
+        ]
+
         let configuration = MarkdownToViewConverterConfiguration(styling: styling)
         let converter = MarkDownConverter(configuration: configuration)
         
