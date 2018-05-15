@@ -18,5 +18,4 @@ public struct BoldStyling: ItemStyling, BoldStylingRule, BaseFontStylingRule {
     public var baseFont : UIFont? = nil
 
     public init(){}
-
 }

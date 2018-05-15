@@ -5,12 +5,11 @@
 
 import UIKit
 
-public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingRule, ContentInsetStylingRule, BoldStylingRule, ItalicStylingRule, UnderlineStylingRule, TextAlignmentStylingRule {
+public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingRule, ContentInsetStylingRule, BoldStylingRule, ItalicStylingRule, UnderlineStylingRule, TextAlignmentStylingRule, CapitalizationStylingRule {
 
     public var parent : ItemStyling? = nil
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
-
         return markDownItem is HeaderMarkDownItem
     }
 
@@ -57,8 +56,13 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
 
     public var textAlignment:TextAlignment = .left
 
-    public init(){}
+    public var capitalizationForLevels: [Capitalization?] = []
 
+    public var capitalization: Capitalization? {
+        return capitalizationForLevels.elementForLevel(level)
+    }
+
+    public init(){}
 }
 
 private extension Array {
