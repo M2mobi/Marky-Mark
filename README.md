@@ -105,7 +105,7 @@ Markdown example: `Some text`
 styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
 styling.paragraphStyling.textColor = .black
 styling.paragraphStyling.contentInsets = UIEdgeInsets(top:0, left: 0, bottom: 5, right: 0)  
-styling.paragraphStyling.lineHeight: CGFloat? = 4
+styling.paragraphStyling.lineHeight = 4
 styling.paragraphStyling.isBold = false
 styling.paragraphStyling.isItalic = false
 styling.paragraphStyling.textAlignment = .left
@@ -162,8 +162,8 @@ Markdown Example:
 
 ```swift
 // By default a font will be used with the bullet character `•`. Use the follow properties to configure it's size and color:
-styling.listStyling.bulletFont: UIFont? = .systemFont(ofSize: 14)
-styling.listStyling.bulletColor: UIColor? = .black
+styling.listStyling.bulletFont = .systemFont(ofSize: 14)
+styling.listStyling.bulletColor = .black
     
 // Bullets can also be images for more complex styling. When setting images, bullet font and color won't be used anymore
 // Array of images used as bullet for each level of nested list items
@@ -175,18 +175,18 @@ styling.listStyling.bulletImages = [
 ]
     
 // Size of the images
-styling.listStyling.bulletViewSize: CGSize = CGSize(width: 16, height: 16)
+styling.listStyling.bulletViewSize = CGSize(width: 16, height: 16)
 
-styling.listStyling.baseFont: UIFont? = .systemFont(ofSize: 14)
+styling.listStyling.baseFont = .systemFont(ofSize: 14)
 styling.listStyling.contentInsets = UIEdgeInsets(top: 0, left:  0, bottom: 10, right: 10)
 
 //Amount of space underneath each list item
-styling.listStyling.bottomListItemSpacing: CGFloat = 5
+styling.listStyling.bottomListItemSpacing = 5
  
 // Number of pixels to indent for each nested list level
-styling.listStyling.listIdentSpace: CGFloat = 15
+styling.listStyling.listIdentSpace = 15
     
-styling.listStyling.textColor: UIColor? = .black
+styling.listStyling.textColor = .black
 ```
 
 Styling is also possible for:
@@ -271,8 +271,9 @@ styling.addStyling(MyCustomStyling())
 The converter has a callback method which is called every time a `MarkDownItem` is converted to layout. 
 
 ```swift
-converter.didConvertElement = { markDownItem, view in
-  // Do something with markDownItem and / or view here
+converter.didConvertElement = {
+    markDownItem, view in
+    // Do something with markDownItem and / or view here
 }
 ```
 
