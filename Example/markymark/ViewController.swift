@@ -28,7 +28,7 @@ class ViewController: UIViewController {
 
         var constraints: [NSLayoutConstraint] = []
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownView(==view)]|", options: [], metrics: [:], views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]|", options: [], metrics: [:], views: views)
+        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]", options: [], metrics: [:], views: views)
         view.addConstraints(constraints)
 
         super.viewDidLoad()
