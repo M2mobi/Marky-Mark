@@ -17,9 +17,9 @@ public struct ParagraphStyling: ItemStyling, TextColorStylingRule, LineHeightSty
     public var baseFont: UIFont? = UIFont.systemFont(ofSize: UIFont.systemFontSize)
     public var textColor: UIColor? = UIColor.black
 
-    public var contentInsets:UIEdgeInsets = UIEdgeInsets(top:0, left: 0, bottom: 5, right: 0)
+    public var contentInsets: UIEdgeInsets = UIEdgeInsets(top:0, left: 0, bottom: 5, right: 0)
     
-    public var lineHeight:CGFloat? = 4
+    public var lineHeight: CGFloat? = 4
     
     public var isBold = false
     public var isItalic = false

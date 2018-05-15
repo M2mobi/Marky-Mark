@@ -10,7 +10,6 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
     public var parent : ItemStyling? = nil
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
-
         return markDownItem is HeaderMarkDownItem
     }
 
@@ -34,9 +33,7 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
     }
 
     public var textColorsForLevels:[UIColor] = [
-        .orange,
-        .black,
-        .gray
+        .black
     ]
 
     public var textColor: UIColor? {

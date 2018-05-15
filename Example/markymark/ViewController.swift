@@ -6,36 +6,17 @@
 import UIKit
 import markymark
 
-enum ConverterConfiguration {
-    case view
-    case attributedString
-}
-
 class ViewController: UIViewController {
 
     override func viewDidLoad() {
 
         self.view = UIScrollView()
-        
-        //Change this constant to try different configurations
-        let converterConfiguration = ConverterConfiguration.view
-        
-        //MarkyMark
-        let markyMark = MarkyMark(build: {
-            $0.setFlavor(ContentfulFlavor())
-        })
 
-        let markDownItems = markyMark.parseMarkDown(getMarkDownString())
+        // Toggle this boolean to switch between using the default 'MarkDownView' or using a custom configuration
+        // See implementation below for examples of both the default view or a custom configured view for advanced usage
+        let useDefaultView = true
 
-        let markDownView: UIView
-        switch converterConfiguration {
-            case .view:
-            markDownView = getViewWithViewConverter(markDownItems)
-            case .attributedString:
-            markDownView = getViewWithAttributedStringConverter(markDownItems)
-        }
-        
-        // Layout
+        let markDownView = useDefaultView ? getDefaultView() : getViewWithCustomConverterAndCustomParsing()
         view.addSubview(markDownView)
 
         let views: [String: Any] = [
@@ -45,7 +26,7 @@ class ViewController: UIViewController {
 
         markDownView.translatesAutoresizingMaskIntoConstraints = false
 
-        var constraints:[NSLayoutConstraint] = []
+        var constraints: [NSLayoutConstraint] = []
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownView(==view)]|", options: [], metrics: [:], views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]|", options: [], metrics: [:], views: views)
         view.addConstraints(constraints)
@@ -55,9 +36,37 @@ class ViewController: UIViewController {
 }
 
 private extension ViewController {
+
+    func getDefaultView() -> UIView {
+        let markDownView = MarkDownTextView(markDownConfiguration: .view)
+        markDownView.styling.headingStyling.textColorsForLevels = [.orange, .black]
+        markDownView.styling.linkStyling.textColor = .blue
+        markDownView.styling.listStyling.bulletImages = [
+            UIImage(named: "circle"),
+            UIImage(named: "emptyCircle"),
+            UIImage(named: "line"),
+            UIImage(named: "square")
+        ]
+
+        markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
+
+        markDownView.set(markdownText: getMarkDownString())
+        return markDownView
+    }
     
-    func getViewWithViewConverter(_ markDownItems: [MarkDownItem]) -> UIView {
-        var styling = DefaultStyling()
+    func getViewWithCustomConverterAndCustomParsing() -> UIView {
+
+        // Parsing to MarkDownItem's
+        let markDownString = getMarkDownString()
+
+        let markyMark = MarkyMark(build: {
+            $0.setFlavor(ContentfulFlavor())
+        })
+
+        let markDownItems = markyMark.parseMarkDown(markDownString)
+
+        // Configure styling
+        let styling = DefaultStyling()
         styling.listStyling.bulletImages = [
             UIImage(named: "circle"),
             UIImage(named: "emptyCircle"),
@@ -70,28 +79,13 @@ private extension ViewController {
             UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10) // H2, ...
         ]
 
+        // Converting to views
         let configuration = MarkdownToViewConverterConfiguration(styling: styling)
         let converter = MarkDownConverter(configuration: configuration)
         
         return converter.convert(markDownItems)
     }
-    
-    func getViewWithAttributedStringConverter(_ markDownItems: [MarkDownItem]) -> UIView {
-        let styling = DefaultStyling()
-        let configuration = MarkDownToAttributedStringConverterConfiguration(styling: styling)
-        let converter = MarkDownConverter(configuration: configuration)
-        
-        let textView = UITextView()
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-        textView.dataDetectorTypes = .link
-        textView.attributedText = converter.convert(markDownItems)
-        textView.tintColor = styling.linkStyling.textColor
-        textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
-        
-        return textView
-    }
-    
+
     func getMarkDownString() -> String {
         var markdownString:String = ""
         if let filepath = Bundle.main.path(forResource: "markdown", ofType: "txt") {

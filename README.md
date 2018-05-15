@@ -24,23 +24,33 @@ To integrate MarkyMark into your Xcode project using CocoaPods, specify it in yo
 pod "markymark"
 ```
 
-## Usage
+## Simple usage
+
+### View with default styling
+```swift
+let markDownView = MarkDownTextView()
+markDownView.set(markdownText: "# Header\nParagraph")
+```
+
+### View with modified styling
+
+Markymark has many styling options, please check the examples in the styling section of this readme. Some simple example:
 
 ```swift
-let markyMark = MarkyMark(build: {
-  $0.setFlavor(ContentfulFlavor())
-})
-
-let markDownItems = markyMark.parseMarkDown("# Header\nParagraph")
-var styling = DefaultStyling()
-let configuration = MarkdownToViewConverterConfiguration(styling : styling)
-let converter = MarkDownConverter(configuration:configuration)
-
-let markDownView = converter.convert(markDownItems)
+let markDownView = MarkDownTextView()
+markDownView.styling.headingStyling.textColorsForLevels = [
+   .orange, //H1 (i.e. # Title)
+   .black,  //H2, ... (i.e. ## Subtitle, ### Sub subtitle)
+]
+markDownView.styling.linkStyling.textColor = .blue
+markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
+markDownView.set(markdownText: "# Header\nParagraph")
 ```
 
 
-## Supported tags in the Contentful Flavor
+## Supported tags in the Default Flavor
+Note: Different tags can be supported by either extending the ContentfulFlavor (default) or by implementing a class that comforms to `Flavor` and implement the required `Rule`'s
+
 ```
 Headings
 # H1
@@ -88,38 +98,154 @@ Default Styling instance
 ```swift
 var styling = DefaultStyling()
 ```
-
-Changing the color of links
+#### Paragraphs (regular text)
+Markdown example: `Some text`
 
 ```swift
-styling.linkStyling.textColor = .blueColor()
+    styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
+    styling.paragraphStyling.textColor = .black
+
+    styling.paragraphStyling.contentInsets = UIEdgeInsets(top:0, left: 0, bottom: 5, right: 0)
+    
+    styling.paragraphStyling.lineHeight: CGFloat? = 4
+    
+    styling.paragraphStyling.isBold = false
+    styling.paragraphStyling.isItalic = false
+
+    styling.paragraphStyling.textAlignment = .left
 ```
 
-Setting fonts for headers
+#### Headings
+
+Markdown example: `# Title` or `## Subtitle` etc.
 
 ```swift
 styling.headingStyling.fontsForLevels = [
     UIFont.boldSystemFontOfSize(24), //H1
     UIFont.systemFontOfSize(18),     //H2
-    UIFont.systemFontOfSize(16)      //H3
+    UIFont.systemFontOfSize(16)      //H3, ... (last item will be next levels as well)
 ]
+
+styling.headingStyling.colorsForLevels = [
+    .red, //H1
+    .black, //H2, ... (last item will be next levels as well)
+]
+
+// Margins
+styling.headingStyling.contentInsetsForLevels = [
+	UIEdgeInsets(top: 5, left: 0, bottom: 15, right: 10), // H1
+	UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10) //H2, ... (last item will be next levels as well)
+]
+	
+styling.headingStyling.isBold = false
+styling.headingStyling.isItalic = false
+styling.headingStyling.isUnderlined = false
+styling.headingStyling.textAlignment = .left
 ```
-Adding margins
+
+#### linkStyling
+Markdown Example `[Google](http://www.google.com)`
 
 ```swift
-styling.paragraphStyling.contentInsets.bottom = 20
+    styling.linkStyling.textColor = .black
+    styling.linkStyling.baseFont = nil // Default: nil. Setting baseFont to nil will inherit font from paragraphStyling
+
+    styling.linkStyling.isBold = false
+    styling.linkStyling.isItalic = false
+    styling.linkStyling.isUnderlined = true
 ```
 
-### Creating your own style
+#### List styling
+Markdown Example:
+
+```
+- List item 1
+- List item 2
+    - Nested List item
+```
+
 ```swift
-struct MarkDownStyling: Styling {
-  var headerStyling = HeaderStyling()
+    // By default a font will be used with the bullet character `•`. Use the follow properties to configure it's size and color:
+    styling.listStyling.bulletFont: UIFont? = .systemFont(ofSize: 14)
+    styling.listStyling.bulletColor: UIColor? = .black
+    
+    // Bullets can also be images for more complex styling. When setting images, bullet font and color won't be used anymore
+    // Array of images used as bullet for each level of nested list items
+    styling.listStyling.bulletImages = [
+        UIImage(named: "circle"),
+        UIImage(named: "emptyCircle"),
+        UIImage(named: "line"),
+        UIImage(named: "square")
+    ]
+    
+    // Size of the images
+    styling.listStyling.bulletViewSize: CGSize = CGSize(width: 16, height: 16)
+
+    styling.listStyling.baseFont: UIFont? = .systemFont(ofSize: 14)
+    styling.listStyling.contentInsets = UIEdgeInsets(top: 0, left:  0, bottom: 10, right: 10)
+
+    //Amount of space underneath each list item
+    styling.listStyling.bottomListItemSpacing: CGFloat = 5
+ 
+    // Number of pixels to indent for each nested list level
+    styling.listStyling.listIdentSpace: CGFloat = 15
+    
+    styling.listStyling.textColor: UIColor? = .black
+```
+
+Styling is also possible for:
+
+```
+styling.paragraphStyling
+styling.italicStyling
+styling.boldStyling
+styling.strikeThroughStyling
+styling.imageStyling
+styling.linkStyling
+styling.horizontalLineStyling
+styling.codeBlockStyling
+styling.inlineCodeBlockStyling
+styling.quoteStyling
+```
+_Please check the `DefaultStyling` class for more information_
+
+
+## Advanced usage
+Advanced usage is only needed for very specific cases. Making subsets of styling, making different styling combinations, supporting different Markdown rules (syntax) or modifying certain views after that have been generated.
+
+### Custom styling objects
+
+```swift
+struct CustomMarkyMarkStyling: Styling {
+  var headerStyling = CustomHeaderStyling()
   var paragraphStyling = ParagraphStyling()
   var linkStyling = ListStyling()
+  
+  var itemStylingRules: [ItemStyling] {
+      return [headerStyling, paragraphStyling, linkStyling]  
+  }
 }
 ```
 
-## Advanced usage
+You can implement `CustomHeaderStyling` by checking how other `Styling` objects have been implemented, like ``HeaderStyling`. 
+Make sure your `CustomHeaderStyling` comforms to all styling rules you'd like your custom styling to support. i.e. comform to `TextColorStylingRule` to support textStyle of your custom styling.
+
+Each styling rule can be applied to a markDownItem by comforming to `ItemStyling` and implement the required method like this:
+
+```
+public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
+    return markDownItem is HeaderMarkDownItem
+}
+
+```
+This will let the mechanism know it should apply your styling to a HeaderMarkDownItem
+
+You can inject your new styling object by passing it to the constructor of the `MarkdownTextView`
+
+```
+MarkDownTextView(styling: CustomMarkyMarkStyling())
+```
+
 ### Adding your own rules
 Adding a new rule requires three new classes of based on the following protocol:
 

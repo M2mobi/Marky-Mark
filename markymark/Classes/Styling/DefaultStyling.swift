@@ -43,7 +43,6 @@ open class DefaultStyling: Styling {
         extraStyling.append(styling)
     }
 
-
     public var itemStylingRules: [ItemStyling] {
         return extraStyling + defaultStyling
     }
