@@ -102,17 +102,13 @@ var styling = DefaultStyling()
 Markdown example: `Some text`
 
 ```swift
-    styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
-    styling.paragraphStyling.textColor = .black
-
-    styling.paragraphStyling.contentInsets = UIEdgeInsets(top:0, left: 0, bottom: 5, right: 0)
-    
-    styling.paragraphStyling.lineHeight: CGFloat? = 4
-    
-    styling.paragraphStyling.isBold = false
-    styling.paragraphStyling.isItalic = false
-
-    styling.paragraphStyling.textAlignment = .left
+styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
+styling.paragraphStyling.textColor = .black
+styling.paragraphStyling.contentInsets = UIEdgeInsets(top:0, left: 0, bottom: 5, right: 0)  
+styling.paragraphStyling.lineHeight: CGFloat? = 4
+styling.paragraphStyling.isBold = false
+styling.paragraphStyling.isItalic = false
+styling.paragraphStyling.textAlignment = .left
 ```
 
 #### Headings
@@ -147,12 +143,12 @@ styling.headingStyling.textAlignment = .left
 Markdown Example `[Google](http://www.google.com)`
 
 ```swift
-    styling.linkStyling.textColor = .black
-    styling.linkStyling.baseFont = nil // Default: nil. Setting baseFont to nil will inherit font from paragraphStyling
+styling.linkStyling.textColor = .black
+styling.linkStyling.baseFont = nil // Default: nil. Setting baseFont to nil will inherit font from paragraphStyling
 
-    styling.linkStyling.isBold = false
-    styling.linkStyling.isItalic = false
-    styling.linkStyling.isUnderlined = true
+styling.linkStyling.isBold = false
+styling.linkStyling.isItalic = false
+styling.linkStyling.isUnderlined = true
 ```
 
 #### List styling
@@ -165,32 +161,32 @@ Markdown Example:
 ```
 
 ```swift
-    // By default a font will be used with the bullet character `•`. Use the follow properties to configure it's size and color:
-    styling.listStyling.bulletFont: UIFont? = .systemFont(ofSize: 14)
-    styling.listStyling.bulletColor: UIColor? = .black
+// By default a font will be used with the bullet character `•`. Use the follow properties to configure it's size and color:
+styling.listStyling.bulletFont: UIFont? = .systemFont(ofSize: 14)
+styling.listStyling.bulletColor: UIColor? = .black
     
-    // Bullets can also be images for more complex styling. When setting images, bullet font and color won't be used anymore
-    // Array of images used as bullet for each level of nested list items
-    styling.listStyling.bulletImages = [
-        UIImage(named: "circle"),
-        UIImage(named: "emptyCircle"),
-        UIImage(named: "line"),
-        UIImage(named: "square")
-    ]
+// Bullets can also be images for more complex styling. When setting images, bullet font and color won't be used anymore
+// Array of images used as bullet for each level of nested list items
+styling.listStyling.bulletImages = [
+    UIImage(named: "circle"),
+    UIImage(named: "emptyCircle"),
+    UIImage(named: "line"),
+    UIImage(named: "square")
+]
     
-    // Size of the images
-    styling.listStyling.bulletViewSize: CGSize = CGSize(width: 16, height: 16)
+// Size of the images
+styling.listStyling.bulletViewSize: CGSize = CGSize(width: 16, height: 16)
 
-    styling.listStyling.baseFont: UIFont? = .systemFont(ofSize: 14)
-    styling.listStyling.contentInsets = UIEdgeInsets(top: 0, left:  0, bottom: 10, right: 10)
+styling.listStyling.baseFont: UIFont? = .systemFont(ofSize: 14)
+styling.listStyling.contentInsets = UIEdgeInsets(top: 0, left:  0, bottom: 10, right: 10)
 
-    //Amount of space underneath each list item
-    styling.listStyling.bottomListItemSpacing: CGFloat = 5
+//Amount of space underneath each list item
+styling.listStyling.bottomListItemSpacing: CGFloat = 5
  
-    // Number of pixels to indent for each nested list level
-    styling.listStyling.listIdentSpace: CGFloat = 15
+// Number of pixels to indent for each nested list level
+styling.listStyling.listIdentSpace: CGFloat = 15
     
-    styling.listStyling.textColor: UIColor? = .black
+styling.listStyling.textColor: UIColor? = .black
 ```
 
 Styling is also possible for:
