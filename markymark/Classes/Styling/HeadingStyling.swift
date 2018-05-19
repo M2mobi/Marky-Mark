@@ -47,7 +47,7 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
     ]
 
     public var contentInsets: UIEdgeInsets {
-        return contentInsetsForLevels.elementForLevel(level)
+        return contentInsetsForLevels.elementForLevel(level) ?? UIEdgeInsets()
     }
     
     public var isBold = false
@@ -59,7 +59,7 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
     public var capitalizationForLevels: [Capitalization?] = []
 
     public var capitalization: Capitalization? {
-        return capitalizationForLevels.elementForLevel(level)
+        return capitalizationForLevels.elementForLevel(level) ?? nil
     }
 
     public init(){}
@@ -67,13 +67,13 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
 
 private extension Array {
 
-    func elementForLevel(_ level:Int) -> Element {
+    func elementForLevel(_ level:Int) -> Element? {
         if level <= 0 {
             return self[0]
         }
 
-        if level > self.count {
-            return self.last!
+        if level > count {
+            return last
         }
 
         return self[level - 1]
