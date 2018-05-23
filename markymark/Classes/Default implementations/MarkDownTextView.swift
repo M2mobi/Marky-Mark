@@ -18,7 +18,7 @@ public class MarkDownTextView: UIView {
     public var styling: DefaultStyling
 
     @IBInspectable
-    public var text: String = "Hello from the other side" {
+    public var text: String? = nil {
         didSet {
             render(withMarkdownText: text)
         }
@@ -136,9 +136,8 @@ private struct MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
         let textView = UITextView()
         textView.isScrollEnabled = false
         textView.isEditable = false
-        textView.dataDetectorTypes = .link
+        textView.dataDetectorTypes = [.phoneNumber, .link]
         textView.attributedText = attributedString
-        textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
         textView.tintColor = owner.styling.linkStyling.textColor
         textView.translatesAutoresizingMaskIntoConstraints = false
 
