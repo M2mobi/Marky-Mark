@@ -1,3 +1,6 @@
+# Paragraphs
+Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet vulputate*** diam. Emoji 🤘. Duis sodales ~~sapien~~ quis ***elementum* posuere**. Duis quam lectus, posueresed  [~~pellentesqueaauctor~~](https://m2mobi.com) eu [Velit](https://m2mobi.com).
+
 # Headers
 ---
 # Header 1
@@ -56,8 +59,6 @@ c. Number 3
 
 Inline image ![Apple logo](appleLogo) Apple logo ![Apple logo](appleLogoSmall)
 
-# Paragraphs
-Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet vulputate*** diam. Emoji 🤘. Duis sodales ~~sapien~~ quis ***elementum* posuere**. Duis quam lectus, posueresed  [~~pellentesqueaauctor~~](https://m2mobi.com) eu [Velit](https://m2mobi.com).
 ---
 ## Quotes
 > MarkDown is awesome

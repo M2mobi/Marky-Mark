@@ -34,7 +34,7 @@ markDownView.set(markdownText: "# Header\nParagraph")
 
 ### View with modified styling
 
-Markymark has many styling options, please check the examples in the styling section of this readme. Some simple example:
+Markymark has many styling options, please check the examples in the styling section of this readme. A simple example:
 
 ```swift
 let markDownView = MarkDownTextView()

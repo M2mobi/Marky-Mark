@@ -12,9 +12,17 @@ public enum MarkDownConfiguration {
     case attributedString
 }
 
+@IBDesignable
 public class MarkDownTextView: UIView {
 
     public var styling: DefaultStyling
+
+    @IBInspectable
+    public var text: String = "Hello from the other side" {
+        didSet {
+            render(withMarkdownText: text)
+        }
+    }
 
     fileprivate var markDownView: UIView?
     fileprivate var markDownItems: [MarkDownItem] = []
@@ -39,11 +47,29 @@ public class MarkDownTextView: UIView {
         }
     }
 
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public override init(frame: CGRect) {
+        markyMark = MarkyMark(build: {
+            $0.setFlavor(ContentfulFlavor())
+        })
+
+        styling = DefaultStyling()
+        super.init(frame: frame)
+
+        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
     }
 
-    public func set(markdownText: String?) {
+    required public init?(coder aDecoder: NSCoder) {
+        markyMark = MarkyMark(build: {
+            $0.setFlavor(ContentfulFlavor())
+        })
+
+        styling = DefaultStyling()
+        super.init(coder: aDecoder)
+
+        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+    }
+
+    private func render(withMarkdownText markdownText: String?) {
         markDownView?.removeFromSuperview()
 
         guard let markdownText = markdownText else {

@@ -1,26 +1,132 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="vXZ-lx-hvc">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="Ps2-qg-buB">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Custom and advanced-->
+        <scene sceneID="Y3J-SN-BWs">
+            <objects>
+                <viewController id="uJz-O1-MGe" customClass="AdvancedMarkdownViewController" customModule="markymark_Example" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="FPt-A2-2wN"/>
+                        <viewControllerLayoutGuide type="bottom" id="1JS-Hf-aOG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="XSA-S2-jWa">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Custom and advanced" image="square" id="Plq-33-fdI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Plj-RO-MsQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1727" y="1102"/>
+        </scene>
+        <!--Custom-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="markymark_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="Custom" id="vXZ-lx-hvc" customClass="SimpleMarkDownViewController" customModule="markymark_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="Custom but easy" image="emptyCircle" id="uXZ-pZ-sfT"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
+            <point key="canvasLocation" x="-938" y="1103"/>
+        </scene>
+        <!--Storyboard-->
+        <scene sceneID="Mjq-iL-Tco">
+            <objects>
+                <viewController id="56J-Ir-c6U" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="puz-F7-wAZ"/>
+                        <viewControllerLayoutGuide type="bottom" id="iSz-gb-dQG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Bo3-YE-v5n">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2h4-cu-cUk" customClass="MarkDownTextView" customModule="markymark">
+                                <rect key="frame" x="20" y="20" width="335" height="629.5"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="text">
+                                        <mutableString key="value"># Paragraphs
+Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet vulputate*** diam. Emoji 🤘. Duis sodales ~~sapien~~ quis ***elementum* posuere**. Duis quam lectus, posueresed  [~~pellentesqueaauctor~~](https://m2mobi.com) eu [Velit](https://m2mobi.com).
+
+# Headers
+---
+# Header 1
+## Header 2
+### Header 3
+#### Header 4
+##### Header 5
+###### Header 6
+
+# Lists
+---
+## Ordered list
+1. Number 1
+2. Number 2
+3. Number 3
+4. Number 4
+  1. Nested 1
+  2. Nested 2
+5. Number 5</mutableString>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="2h4-cu-cUk" secondAttribute="trailing" constant="4" id="2bg-vF-lvn"/>
+                            <constraint firstItem="2h4-cu-cUk" firstAttribute="leading" secondItem="Bo3-YE-v5n" secondAttribute="leadingMargin" constant="4" id="GSk-6L-IES"/>
+                            <constraint firstItem="2h4-cu-cUk" firstAttribute="top" secondItem="puz-F7-wAZ" secondAttribute="bottom" id="aLb-CD-MZN"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Storyboard" image="circle" id="gwe-My-oDc"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ZRz-iV-qYx" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-169" y="1104"/>
+        </scene>
+        <!--Tab Bar Controller-->
+        <scene sceneID="OL0-xk-GJ8">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="Ps2-qg-buB" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ml8-QS-UNM">
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="56J-Ir-c6U" kind="relationship" relationship="viewControllers" id="wcx-LJ-WJb"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="pgZ-lX-2Qp"/>
+                        <segue destination="uJz-O1-MGe" kind="relationship" relationship="viewControllers" id="O43-d6-vwf"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="E6f-Tz-hPT" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-986.39999999999998" y="277.51124437781112"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="circle" width="6" height="6"/>
+        <image name="emptyCircle" width="8" height="8"/>
+        <image name="square" width="6" height="6"/>
+    </resources>
 </document>
