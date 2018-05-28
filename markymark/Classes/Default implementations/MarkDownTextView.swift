@@ -12,9 +12,17 @@ public enum MarkDownConfiguration {
     case attributedString
 }
 
+@IBDesignable
 public class MarkDownTextView: UIView {
 
     public var styling: DefaultStyling
+
+    @IBInspectable
+    public var text: String? = nil {
+        didSet {
+            render(withMarkdownText: text)
+        }
+    }
 
     fileprivate var markDownView: UIView?
     fileprivate var markDownItems: [MarkDownItem] = []
@@ -39,11 +47,29 @@ public class MarkDownTextView: UIView {
         }
     }
 
-    required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    public override init(frame: CGRect) {
+        markyMark = MarkyMark(build: {
+            $0.setFlavor(ContentfulFlavor())
+        })
+
+        styling = DefaultStyling()
+        super.init(frame: frame)
+
+        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
     }
 
-    public func set(markdownText: String?) {
+    required public init?(coder aDecoder: NSCoder) {
+        markyMark = MarkyMark(build: {
+            $0.setFlavor(ContentfulFlavor())
+        })
+
+        styling = DefaultStyling()
+        super.init(coder: aDecoder)
+
+        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+    }
+
+    private func render(withMarkdownText markdownText: String?) {
         markDownView?.removeFromSuperview()
 
         guard let markdownText = markdownText else {
@@ -110,9 +136,11 @@ private struct MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
         let textView = UITextView()
         textView.isScrollEnabled = false
         textView.isEditable = false
-        textView.dataDetectorTypes = .link
+
         textView.attributedText = attributedString
-        textView.contentInset = UIEdgeInsets(top: 0, left: -4, bottom: 0, right: 0)
+        textView.dataDetectorTypes = [.phoneNumber, .link]
+        textView.attributedText = attributedString
+
         textView.tintColor = owner.styling.linkStyling.textColor
         textView.translatesAutoresizingMaskIntoConstraints = false
 

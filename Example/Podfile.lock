@@ -1,5 +1,5 @@
 PODS:
-  - markymark (6.0.2)
+  - markymark (7.0)
 
 DEPENDENCIES:
   - markymark (from `../`)
@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  markymark: 9927979e46d329d39fc8ca83d6e6aff434e4960f
+  markymark: e4c535ff88b577d7cd0ffed5ecff606cc06c4f8a
 
 PODFILE CHECKSUM: 702819c9a9352a2969fd49865aabe1f21e7c3404
 
