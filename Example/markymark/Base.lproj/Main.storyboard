@@ -104,6 +104,41 @@ Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet 
             </objects>
             <point key="canvasLocation" x="-169" y="1104"/>
         </scene>
+        <!--Simpel label-->
+        <scene sceneID="mT8-hJ-tCA">
+            <objects>
+                <viewController id="2fV-Im-Laa" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Wwz-WY-81P"/>
+                        <viewControllerLayoutGuide type="bottom" id="jqr-d8-vhL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="zSW-oZ-SPX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeQ-5T-l2v" customClass="MarkdownAttributedLabel" customModule="markymark">
+                                <rect key="frame" x="16" y="47" width="343" height="132"/>
+                                <string key="text">Simple lightweight Markdown label that supports *italic*, **bold**, ~~strikethrough~~ and [Links](https://www.somelink.com).
+
+Can also be used to create labels with custom text styling such as line-height</string>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.57957031250000002" green="0.084950206406123385" blue="0.011430363866659939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="QeQ-5T-l2v" firstAttribute="trailing" secondItem="zSW-oZ-SPX" secondAttribute="trailingMargin" id="5yg-uW-Aos"/>
+                            <constraint firstItem="QeQ-5T-l2v" firstAttribute="leading" secondItem="zSW-oZ-SPX" secondAttribute="leadingMargin" id="Eak-gl-ORl"/>
+                            <constraint firstItem="QeQ-5T-l2v" firstAttribute="top" secondItem="Wwz-WY-81P" secondAttribute="bottom" constant="27" id="YYn-lU-DBH"/>
+                        </constraints>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Simpel label" image="emptyCircle" selectedImage="square" id="pjk-PS-TfI"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="9sT-gp-w04" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="568.79999999999995" y="1101.4992503748126"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="OL0-xk-GJ8">
             <objects>
@@ -118,6 +153,7 @@ Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet 
                         <segue destination="56J-Ir-c6U" kind="relationship" relationship="viewControllers" id="wcx-LJ-WJb"/>
                         <segue destination="vXZ-lx-hvc" kind="relationship" relationship="viewControllers" id="pgZ-lX-2Qp"/>
                         <segue destination="uJz-O1-MGe" kind="relationship" relationship="viewControllers" id="O43-d6-vwf"/>
+                        <segue destination="2fV-Im-Laa" kind="relationship" relationship="viewControllers" id="V5M-s7-bxg"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="E6f-Tz-hPT" userLabel="First Responder" sceneMemberID="firstResponder"/>

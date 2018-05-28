@@ -7,79 +7,72 @@
 
 import Foundation
 
-open class MarkdownAttributedLabel: UIView {
+@IBDesignable
+open class MarkdownAttributedLabel: AttributedInteractiveLabel {
 
     public let styling = AttributedLabelStyling()
 
-    private var markDownTextView: UIView?
-
-    public var font: UIFont? {
+    override open var font: UIFont? {
         didSet {
             styling.paragraphStyling.baseFont = font
-            reconfigure()
+            markDownAttributedString = attributedText
         }
     }
 
-    public var text: String? = nil {
+    override open var textColor: UIColor? {
         didSet {
-            reconfigure()
+            styling.paragraphStyling.textColor = textColor
+            markDownAttributedString = attributedText
+        }
+    }
+
+    override open var text: String? {
+        didSet {
+            if let attributedText = createMarkDownAttributedString(markDownText: text) {
+                markDownAttributedString = attributedText
+            }
         }
     }
 
     public init(font: UIFont? = nil) {
+        super.init()
         self.font = font
-        super.init(frame: CGRect())
         configureViews()
     }
 
+    override public init(frame: CGRect) {
+        super.init(frame: CGRect())
+    }
+
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+        super.init(coder: aDecoder)
+        configureViews()
+
+        styling.paragraphStyling.baseFont = font
+        styling.paragraphStyling.textColor = textColor
+
+        if let attributedText = createMarkDownAttributedString(markDownText: text) {
+            markDownAttributedString = attributedText
+        }
     }
 }
 
 private extension MarkdownAttributedLabel {
 
-    func reconfigure() {
-        markDownTextView?.removeFromSuperview()
-        markDownTextView = createMarkDownView()
-        configureViews()
-    }
-
-    func createMarkDownView() -> UIView? {
-        guard let markDownString = text else { return nil }
+    func createMarkDownAttributedString(markDownText: String?) -> NSAttributedString? {
+        guard let markDownText = markDownText else { return nil }
 
         let markyMark = MarkyMark(build: {
             $0.setFlavor(AttributedLabelFlavor())
         })
 
         // Parsing to MarkDownItem's
-        let markDownItems = markyMark.parseMarkDown(markDownString)
+        let markDownItems = markyMark.parseMarkDown(markDownText)
 
         // Converting to views
-        let configuration = MarkdownToViewConverterConfiguration(styling: styling)
+        let configuration = MarkDownToAttributedStringConverterConfiguration(styling: styling)
         let converter = MarkDownConverter(configuration: configuration)
 
         return converter.convert(markDownItems)
-    }
-}
-
-extension MarkdownAttributedLabel: CanConfigureViews {
-
-    public func configureViewHierarchy() {
-        guard let markDownTextView = markDownTextView else { return }
-        addSubview(markDownTextView)
-    }
-
-    public func configureViewLayout() {
-        guard let markDownTextView = markDownTextView else { return }
-
-        let views: [String: Any] = [
-            "markDownTextView" : markDownTextView
-        ]
-
-        var constraints:[NSLayoutConstraint] = []
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownTextView]|", options: [], metrics: [:], views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownTextView]|", options: [], metrics: [:], views: views)
-        addConstraints(constraints)
     }
 }
