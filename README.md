@@ -29,7 +29,7 @@ pod "markymark"
 ### View with default styling
 ```swift
 let markDownView = MarkDownTextView()
-markDownView.set(markdownText: "# Header\nParagraph")
+markDownView.text = "# Header\nParagraph"
 ```
 
 ### View with modified styling
@@ -44,7 +44,7 @@ markDownView.styling.headingStyling.textColorsForLevels = [
 ]
 markDownView.styling.linkStyling.textColor = .blue
 markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
-markDownView.set(markdownText: "# Header\nParagraph")
+markDownView.text = "# Header\nParagraph"
 ```
 
 
