@@ -33,9 +33,7 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
     }
 
     public var textColorsForLevels:[UIColor] = [
-        .orange,
-        .black,
-        .gray
+        .black
     ]
 
     public var textColor: UIColor? {
