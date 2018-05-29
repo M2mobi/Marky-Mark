@@ -14,7 +14,7 @@ open class AttributedInteractiveLabel: UILabel {
 
     var linksAttributes: [(NSRange, URL?)] = []
 
-    var markDownAttributedString: NSAttributedString? = nil {
+    public var markDownAttributedString: NSAttributedString? = nil {
         didSet {
             guard let markDownAttributedString = markDownAttributedString else {
                 self.attributedText = nil

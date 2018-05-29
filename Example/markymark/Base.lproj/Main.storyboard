@@ -122,7 +122,7 @@ Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet 
 
 Can also be used to create labels with custom text styling such as line-height</string>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.57957031250000002" green="0.084950206406123385" blue="0.011430363866659939" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="textColor" red="0.35041015625000005" green="0.049144853084737733" blue="0.0035187966729322158" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
