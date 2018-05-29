@@ -136,8 +136,11 @@ private struct MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
         let textView = UITextView()
         textView.isScrollEnabled = false
         textView.isEditable = false
+
+        textView.attributedText = attributedString
         textView.dataDetectorTypes = [.phoneNumber, .link]
         textView.attributedText = attributedString
+
         textView.tintColor = owner.styling.linkStyling.textColor
         textView.translatesAutoresizingMaskIntoConstraints = false
 

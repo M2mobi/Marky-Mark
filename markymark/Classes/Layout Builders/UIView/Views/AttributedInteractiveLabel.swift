@@ -14,31 +14,36 @@ open class AttributedInteractiveLabel: UILabel {
 
     var linksAttributes: [(NSRange, URL?)] = []
 
+    public var markDownAttributedString: NSAttributedString? = nil {
+        didSet {
+            guard let markDownAttributedString = markDownAttributedString else {
+                self.attributedText = nil
+                return
+            }
+
+            let mutableAttributedString = NSMutableAttributedString(attributedString: markDownAttributedString)
+
+            /// Extract link attributes from the attributed string and store them
+            /// Needed because UILabel automatically makes all link attributes blue
+            linksAttributes = mutableAttributedString.extractLinkAttributes()
+
+            self.attributedText = mutableAttributedString
+        }
+    }
+
     public init(){
         super.init(frame: CGRect())
-        isUserInteractionEnabled = true;
-        numberOfLines = 0
-        addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(didTap(_:))));
+        configureViews()
     }
 
+    override public init(frame: CGRect) {
+        super.init(frame: CGRect())
+        configureViews()
+    }
 
     required public init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-
-    open func setAttributedString(_ attributedString:NSAttributedString?) {
-        guard let attributedString = attributedString else {
-            self.attributedText = nil
-            return
-        }
-
-        let mutableAttributedString = NSMutableAttributedString(attributedString: attributedString)
-
-        /// Extract link attributes from the attributed string and store them
-        /// Needed because UILabel automatically makes all link attributes blue
-        linksAttributes = mutableAttributedString.extractLinkAttributes()
-
-        self.attributedText = mutableAttributedString
+        super.init(coder: aDecoder)
+        configureViews()
     }
 
     @objc func didTap(_ tapGesture:UITapGestureRecognizer) {
@@ -117,6 +122,15 @@ open class AttributedInteractiveLabel: UILabel {
         textContainer.maximumNumberOfLines = numberOfLines;
 
         return textContainer
+    }
+}
+
+extension AttributedInteractiveLabel: CanConfigureViews {
+
+    public func configureViewProperties() {
+        isUserInteractionEnabled = true;
+        numberOfLines = 0
+        addGestureRecognizer(UITapGestureRecognizer(target:self, action:#selector(didTap(_:))));
     }
 }
 

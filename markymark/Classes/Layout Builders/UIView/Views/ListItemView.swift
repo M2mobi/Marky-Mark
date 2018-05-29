@@ -28,7 +28,7 @@ class ListItemView: UIView {
 
         super.init(frame: CGRect())
 
-        label.setAttributedString(attributedText)
+        label.markDownAttributedString = attributedText
         label.numberOfLines = 0
 
         setUpLayout()

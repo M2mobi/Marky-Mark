@@ -42,6 +42,7 @@ markDownView.styling.headingStyling.textColorsForLevels = [
    .orange, //H1 (i.e. # Title)
    .black,  //H2, ... (i.e. ## Subtitle, ### Sub subtitle)
 ]
+
 markDownView.styling.linkStyling.textColor = .blue
 markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
 markDownView.text = "# Header\nParagraph"

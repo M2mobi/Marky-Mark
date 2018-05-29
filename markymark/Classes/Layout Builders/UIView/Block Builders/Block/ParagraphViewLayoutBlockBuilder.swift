@@ -15,7 +15,7 @@ class ParagraphViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuil
 
     override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
         let label = AttributedInteractiveLabel()
-        label.setAttributedString(attributedStringForMarkDownItem(markDownItem, styling: styling))
+        label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
 
         let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: label, spacing: spacing)
