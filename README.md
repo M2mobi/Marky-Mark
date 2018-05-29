@@ -29,20 +29,12 @@ pod "markymark"
 ### View with default styling
 ```swift
 let markDownView = MarkDownTextView()
-<<<<<<< HEAD
-markDownView.set(markdownText: "# Header\nParagraph")
-=======
 markDownView.text = "# Header\nParagraph"
->>>>>>> master
 ```
 
 ### View with modified styling
 
-<<<<<<< HEAD
-Markymark has many styling options, please check the examples in the styling section of this readme. Some simple example:
-=======
 Markymark has many styling options, please check the examples in the styling section of this readme. A simple example:
->>>>>>> master
 
 ```swift
 let markDownView = MarkDownTextView()
@@ -50,13 +42,10 @@ markDownView.styling.headingStyling.textColorsForLevels = [
    .orange, //H1 (i.e. # Title)
    .black,  //H2, ... (i.e. ## Subtitle, ### Sub subtitle)
 ]
+
 markDownView.styling.linkStyling.textColor = .blue
 markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
-<<<<<<< HEAD
-markDownView.set(markdownText: "# Header\nParagraph")
-=======
 markDownView.text = "# Header\nParagraph"
->>>>>>> master
 ```
 
 
