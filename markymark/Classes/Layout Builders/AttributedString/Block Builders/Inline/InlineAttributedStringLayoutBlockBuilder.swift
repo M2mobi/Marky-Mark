@@ -30,17 +30,27 @@ class InlineAttributedStringLayoutBlockBuilder : LayoutBlockBuilder<NSMutableAtt
     }
     
     func attributedStringWithContentInset(_ attributedString:NSMutableAttributedString, contentInset: UIEdgeInsets) -> NSMutableAttributedString {
-        
-        let paragraphStyle = NSMutableParagraphStyle()
+
+        var paragraphStyles: [NSMutableParagraphStyle] = []
+
+        attributedString.enumerateAttribute(.paragraphStyle, in: attributedString.fullRange(), options: []) {
+            value, range, stop in
+            if let paragraphStyle = value as? NSMutableParagraphStyle {
+                paragraphStyles.append(paragraphStyle)
+            }
+        }
+
+        let paragraphStyle = paragraphStyles.first ?? NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = contentInset.bottom
         paragraphStyle.paragraphSpacingBefore = contentInset.top
         paragraphStyle.firstLineHeadIndent = contentInset.left
         paragraphStyle.headIndent = contentInset.left
-        
+
         attributedString.addAttributes([
             .paragraphStyle : paragraphStyle
         ], range: attributedString.fullRange())
-        
+
         return attributedString
     }
+
 }

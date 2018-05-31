@@ -116,8 +116,8 @@ Lorem ipsum *dolor* sit amet, __consectetur__ adipiscing elit. Proin ***aliquet 
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeQ-5T-l2v" customClass="MarkdownAttributedLabel" customModule="markymark">
-                                <rect key="frame" x="16" y="47" width="343" height="132"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QeQ-5T-l2v" customClass="MarkdownAttributedLabel" customModule="markymark">
+                                <rect key="frame" x="16" y="47" width="343" height="152"/>
                                 <string key="text">Simple lightweight Markdown label that supports *italic*, **bold**, ~~strikethrough~~ and [Links](https://www.somelink.com).
 
 Can also be used to create labels with custom text styling such as line-height</string>
