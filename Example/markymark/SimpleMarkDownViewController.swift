@@ -37,7 +37,7 @@ class SimpleMarkDownViewController: UIViewController {
 private extension SimpleMarkDownViewController {
 
     func getMarkDownView() -> UIView {
-        let markDownView = MarkDownTextView(markDownConfiguration: .attributedString)
+        let markDownView = MarkDownTextView(markDownConfiguration: .view)
 
         //Styling. See README for more styling options
         markDownView.styling.headingStyling.textColorsForLevels = [.orange, .black]
