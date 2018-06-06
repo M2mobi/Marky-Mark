@@ -7,7 +7,7 @@
 
 import Foundation
 
-public protocol CanConfigureViews {
+protocol CanConfigureViews {
 
     func configureViews()
     func configureViewProperties()
@@ -16,7 +16,7 @@ public protocol CanConfigureViews {
     func configureViewLayout()
 }
 
-public extension CanConfigureViews {
+extension CanConfigureViews {
 
     func configureViews() {
         configureViewProperties()

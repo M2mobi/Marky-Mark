@@ -37,7 +37,7 @@ open class MarkdownAttributedLabel: AttributedInteractiveLabel {
     public init(font: UIFont? = nil) {
         super.init()
         self.font = font
-        configureViews()
+        configureViewProperties()
     }
 
     override public init(frame: CGRect) {
@@ -46,7 +46,7 @@ open class MarkdownAttributedLabel: AttributedInteractiveLabel {
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        configureViews()
+        configureViewProperties()
 
         styling.paragraphStyling.baseFont = font
         styling.paragraphStyling.textColor = textColor
