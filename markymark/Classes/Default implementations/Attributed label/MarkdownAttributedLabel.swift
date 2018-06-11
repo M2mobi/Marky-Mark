@@ -34,6 +34,13 @@ open class MarkdownAttributedLabel: AttributedInteractiveLabel {
         }
     }
 
+    override open var textAlignment: NSTextAlignment {
+        didSet {
+            styling.paragraphStyling.textAlignment = markyMarkTextAlignment(ofTextAlignment: textAlignment)
+            markDownAttributedString = attributedText
+        }
+    }
+
     public init(font: UIFont? = nil) {
         super.init()
         self.font = font
@@ -50,6 +57,7 @@ open class MarkdownAttributedLabel: AttributedInteractiveLabel {
 
         styling.paragraphStyling.baseFont = font
         styling.paragraphStyling.textColor = textColor
+        styling.paragraphStyling.textAlignment = markyMarkTextAlignment(ofTextAlignment: textAlignment)
 
         if let attributedText = createMarkDownAttributedString(markDownText: text) {
             markDownAttributedString = attributedText
@@ -74,5 +82,22 @@ private extension MarkdownAttributedLabel {
         let converter = MarkDownConverter(configuration: configuration)
 
         return converter.convert(markDownItems)
+    }
+
+    func markyMarkTextAlignment(ofTextAlignment textAlignment: NSTextAlignment) -> TextAlignment {
+        let markyMarkTextAlignment: TextAlignment
+
+        switch textAlignment {
+        case .left:
+            markyMarkTextAlignment = .left
+        case .right:
+            markyMarkTextAlignment = .right
+        case .center:
+            markyMarkTextAlignment = .center
+        default:
+            markyMarkTextAlignment = .left
+        }
+
+        return markyMarkTextAlignment
     }
 }
