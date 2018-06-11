@@ -33,17 +33,17 @@ open class AttributedInteractiveLabel: UILabel {
 
     public init(){
         super.init(frame: CGRect())
-        configureViews()
+        configureViewProperties()
     }
 
     override public init(frame: CGRect) {
         super.init(frame: CGRect())
-        configureViews()
+        configureViewProperties()
     }
 
     required public init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        configureViews()
+        configureViewProperties()
     }
 
     @objc func didTap(_ tapGesture:UITapGestureRecognizer) {
@@ -125,7 +125,7 @@ open class AttributedInteractiveLabel: UILabel {
     }
 }
 
-extension AttributedInteractiveLabel: CanConfigureViews {
+extension AttributedInteractiveLabel {
 
     public func configureViewProperties() {
         isUserInteractionEnabled = true;
