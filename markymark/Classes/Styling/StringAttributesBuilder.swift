@@ -57,6 +57,10 @@ struct StringAttributesBuilder {
 
         attributes[.paragraphStyle] = paragraphStyle
 
+        if let letterSpacing = styling.neededLetterSpacing() {
+            attributes[.kern] = letterSpacing
+        }
+
         return attributes
     }
 }
