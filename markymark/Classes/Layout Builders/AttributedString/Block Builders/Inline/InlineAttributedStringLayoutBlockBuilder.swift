@@ -30,17 +30,8 @@ class InlineAttributedStringLayoutBlockBuilder : LayoutBlockBuilder<NSMutableAtt
     }
     
     func attributedStringWithContentInset(_ attributedString:NSMutableAttributedString, contentInset: UIEdgeInsets) -> NSMutableAttributedString {
-
-        var paragraphStyles: [NSMutableParagraphStyle] = []
-
-        attributedString.enumerateAttribute(.paragraphStyle, in: attributedString.fullRange(), options: []) {
-            value, range, stop in
-            if let paragraphStyle = value as? NSMutableParagraphStyle {
-                paragraphStyles.append(paragraphStyle)
-            }
-        }
-
-        let paragraphStyle = paragraphStyles.first ?? NSMutableParagraphStyle()
+        // Get existing paragraph style to append style to or create new style
+        let paragraphStyle = getParagraphStyleAttribute(of: attributedString, exactlyAt: attributedString.fullRange()) ?? NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = contentInset.bottom
         paragraphStyle.paragraphSpacingBefore = contentInset.top
         paragraphStyle.firstLineHeadIndent = contentInset.left
@@ -53,4 +44,16 @@ class InlineAttributedStringLayoutBlockBuilder : LayoutBlockBuilder<NSMutableAtt
         return attributedString
     }
 
+    private func getParagraphStyleAttribute(of attributedString: NSAttributedString, exactlyAt range: NSRange) ->  NSMutableParagraphStyle? {
+        var paragraphStyles: [NSMutableParagraphStyle] = []
+
+        attributedString.enumerateAttribute(.paragraphStyle, in: attributedString.fullRange(), options: []) {
+            value, rangeOfValue, stop in
+            if let paragraphStyle = value as? NSMutableParagraphStyle, rangeOfValue == range {
+                paragraphStyles.append(paragraphStyle)
+            }
+        }
+
+        return paragraphStyles.first
+    }
 }
