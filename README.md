@@ -130,8 +130,8 @@ styling.headingStyling.colorsForLevels = [
 
 // Margins
 styling.headingStyling.contentInsetsForLevels = [
-	UIEdgeInsets(top: 5, left: 0, bottom: 15, right: 10), // H1
-	UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10) //H2, ... (last item will be next levels as well)
+    UIEdgeInsets(top: 5, left: 0, bottom: 15, right: 10), // H1
+    UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10) //H2, ... (last item will be next levels as well)
 ]
 	
 styling.headingStyling.isBold = false
