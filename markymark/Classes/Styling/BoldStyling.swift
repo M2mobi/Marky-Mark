@@ -7,8 +7,6 @@ import UIKit
 
 public struct BoldStyling: ItemStyling, BoldStylingRule, BaseFontStylingRule, TextColorStylingRule {
 
-    public var textColor: UIColor? = nil
-
     public var parent : ItemStyling? = nil
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
@@ -18,6 +16,7 @@ public struct BoldStyling: ItemStyling, BoldStylingRule, BaseFontStylingRule, Te
     
     public var isBold = true
     public var baseFont : UIFont? = nil
+    public var textColor: UIColor? = nil
 
     public init(){}
 }
