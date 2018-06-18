@@ -5,7 +5,9 @@
 
 import UIKit
 
-public struct BoldStyling: ItemStyling, BoldStylingRule, BaseFontStylingRule {
+public struct BoldStyling: ItemStyling, BoldStylingRule, BaseFontStylingRule, TextColorStylingRule {
+
+    public var textColor: UIColor? = nil
 
     public var parent : ItemStyling? = nil
 
