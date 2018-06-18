@@ -9,7 +9,7 @@ open class LinkMarkDownItem: MarkDownItem {
     
     let url: String
     
-    init(lines: [String], content: String, url: String) {
+    public init(lines: [String], content: String, url: String) {
         self.url = url
         super.init(lines: lines, content: content)
     }

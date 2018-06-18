@@ -20,7 +20,7 @@ extension String {
         return subString(startIndex, endIndex)
     }
 
-    func subStringWithExpression(_ expression:NSRegularExpression, ofGroup group:Int) -> String {
+    public func subStringWithExpression(_ expression:NSRegularExpression, ofGroup group:Int) -> String {
         var subString = ""
         let range = NSRange(location: 0, length: self.length())
         let results = expression.matches(in: self, options:[], range: range)
