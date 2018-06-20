@@ -44,8 +44,9 @@ open class MarkdownAttributedLabel: AttributedInteractiveLabel {
     open var lineHeight: CGFloat? {
         didSet {
             styling.paragraphStyling.lineHeight = lineHeight
-            styling.paragraphStyling.textAlignment = markyMarkTextAlignment(ofTextAlignment: textAlignment)
-            markDownAttributedString = attributedText
+            if let attributedText = createMarkDownAttributedString(markDownText: text) {
+                markDownAttributedString = attributedText
+            }
         }
     }
 
