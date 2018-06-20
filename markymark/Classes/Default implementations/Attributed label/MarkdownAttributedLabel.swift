@@ -41,6 +41,14 @@ open class MarkdownAttributedLabel: AttributedInteractiveLabel {
         }
     }
 
+    open var lineHeight: CGFloat? {
+        didSet {
+            styling.paragraphStyling.lineHeight = lineHeight
+            styling.paragraphStyling.textAlignment = markyMarkTextAlignment(ofTextAlignment: textAlignment)
+            markDownAttributedString = attributedText
+        }
+    }
+
     public init(font: UIFont? = nil) {
         super.init()
         self.font = font
