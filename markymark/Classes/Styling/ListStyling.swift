@@ -6,7 +6,7 @@
 import Foundation
 import UIKit
 
-public struct ListStyling: ItemStyling, BulletStylingRule, BaseFontStylingRule, ContentInsetStylingRule, ListItemStylingRule, TextColorStylingRule {
+public struct ListStyling: ItemStyling, BulletStylingRule, BaseFontStylingRule, ContentInsetStylingRule, ListItemStylingRule, TextColorStylingRule, LineHeightStylingRule {
 
     public var parent : ItemStyling? = nil
 
@@ -27,7 +27,8 @@ public struct ListStyling: ItemStyling, BulletStylingRule, BaseFontStylingRule, 
 
     public var bottomListItemSpacing: CGFloat = 5
     public var listIdentSpace: CGFloat = 15
-    
+    public var lineHeight: CGFloat? = nil
+
     public var textColor: UIColor? = nil
 
     public init(){}
