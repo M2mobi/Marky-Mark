@@ -3,7 +3,6 @@ os: osx
 language: swift
 xcode_project: MarkyMark.xcodeproj
 xcode_scheme: markymark_Tests
-osx_image: xcode9.2
 podfile: Example/Podfile
 before_install:
 - gem install cocoapods # Since Travis is not always on latest version
@@ -11,3 +10,5 @@ before_install:
 script:
 - set -o pipefail && xcodebuild test -workspace Example/markymark.xcworkspace -scheme markymark-Example -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty
 # - pod lib lint
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
