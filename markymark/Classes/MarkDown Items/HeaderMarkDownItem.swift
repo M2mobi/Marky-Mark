@@ -7,7 +7,7 @@ import Foundation
 
 open class HeaderMarkDownItem : MarkDownItem {
 
-    open let level:Int
+    public let level:Int
 
     init(lines: [String], content: String, level:Int) {
         self.level = level

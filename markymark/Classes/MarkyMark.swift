@@ -24,7 +24,7 @@ open class MarkyMark {
     }
 
     var listRules:[ListRule] {
-        return allRules().flatMap { $0 as? ListRule }
+        return allRules().compactMap { $0 as? ListRule }
     }
     var listMarkdownItemFactory:ListMarkDownItemFactory = ListMarkDownItemFactory()
 
