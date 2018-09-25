@@ -7,9 +7,9 @@ import UIKit
 
 struct StringAttributesBuilder {
 
-    func attributesForStyling(_ styling : ItemStyling) -> [NSAttributedStringKey : Any] {
+    func attributesForStyling(_ styling : ItemStyling) -> [NSAttributedString.Key : Any] {
 
-        var attributes = [NSAttributedStringKey : Any]()
+        var attributes = [NSAttributedString.Key : Any]()
 
         if let font = styling.neededFont() {
 
