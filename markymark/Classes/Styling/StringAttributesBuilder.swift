@@ -18,7 +18,7 @@ struct StringAttributesBuilder {
 
         if styling.shouldBeStrikeThrough() {
 
-            attributes[.strikethroughStyle] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
+            attributes[.strikethroughStyle] = NSNumber(value: NSUnderlineStyle.single.rawValue as Int)
         }
 
         if let textColor = styling.neededTextColor() {
@@ -27,7 +27,7 @@ struct StringAttributesBuilder {
         }
         
         if styling.shouldFontBeUnderlined() {
-            attributes[.underlineStyle] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
+            attributes[.underlineStyle] = NSNumber(value: NSUnderlineStyle.single.rawValue as Int)
         }
         
         if let backgroundColor = styling.neededBackgroundColor() {
