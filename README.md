@@ -25,14 +25,18 @@ pod "markymark"
 ```
 
 ## Simple usage
+<details>
+  <summary>View with default styling</summary>
 
-### View with default styling
 ```swift
 let markDownView = MarkDownTextView()
 markDownView.text = "# Header\nParagraph"
 ```
 
-### View with modified styling
+</details>
+
+<details>
+  <summary>View with modified styling</summary>
 
 Markymark has many styling options, please check the examples in the styling section of this readme. A simple example:
 
@@ -48,9 +52,13 @@ markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
 markDownView.text = "# Header\nParagraph"
 ```
 
+</details>
 
 ## Supported tags in the Default Flavor
 Note: Different tags can be supported by either extending the ContentfulFlavor (default) or by implementing a class that comforms to `Flavor` and implement the required `Rule`'s
+
+<details>
+  <summary>Tags</summary>
 
 ```
 Headings
@@ -91,15 +99,22 @@ Code
 \```code```
 ```
 
+</details>
 
 ### Customizing default style
 
-Default Styling instance
+
+<details>
+  <summary>Default Styling instance</summary>
 
 ```swift
 var styling = DefaultStyling()
 ```
-#### Paragraphs (regular text)
+</details>
+
+<details>
+  <summary>Paragraphs (regular text)</summary>
+
 Markdown example: `Some text`
 
 ```swift
@@ -111,8 +126,10 @@ styling.paragraphStyling.isBold = false
 styling.paragraphStyling.isItalic = false
 styling.paragraphStyling.textAlignment = .left
 ```
+</details>
 
-#### Headings
+<details>
+  <summary>Headings</summary>
 
 Markdown example: `# Title` or `## Subtitle` etc.
 
@@ -139,8 +156,11 @@ styling.headingStyling.isItalic = false
 styling.headingStyling.isUnderlined = false
 styling.headingStyling.textAlignment = .left
 ```
+</details>
 
-#### linkStyling
+<details>
+  <summary>Link Styling</summary>
+
 Markdown Example `[Google](http://www.google.com)`
 
 ```swift
@@ -151,8 +171,12 @@ styling.linkStyling.isBold = false
 styling.linkStyling.isItalic = false
 styling.linkStyling.isUnderlined = true
 ```
+</details>
 
-#### List styling
+
+<details>
+  <summary>List Styling</summary>
+
 Markdown Example:
 
 ```
@@ -160,7 +184,6 @@ Markdown Example:
 - List item 2
     - Nested List item
 ```
-
 ```swift
 // By default a font will be used with the bullet character `•`. Use the follow properties to configure it's size and color:
 styling.listStyling.bulletFont = .systemFont(ofSize: 14)
@@ -189,6 +212,8 @@ styling.listStyling.listIdentSpace = 15
     
 styling.listStyling.textColor = .black
 ```
+</details>
+
 
 Styling is also possible for:
 
@@ -204,13 +229,14 @@ styling.codeBlockStyling
 styling.inlineCodeBlockStyling
 styling.quoteStyling
 ```
-_Please check the `DefaultStyling` class for more information_
-
+_Please check the [DefaultStyling][1] class for more information_
+[1]: https://github.com/M2Mobi/Marky-Mark/blob/master/markymark/Classes/Styling/DefaultStyling.swift "DefaultStyling Class"
 
 ## Advanced usage
 Advanced usage is only needed for very specific cases. Making subsets of styling, making different styling combinations, supporting different Markdown rules (syntax) or modifying certain views after that have been generated.
 
-### Custom styling objects
+<details>
+  <summary>Custom styling objects</summary>
 
 ```swift
 struct CustomMarkyMarkStyling: Styling {
@@ -243,7 +269,11 @@ You can inject your new styling object by passing it to the constructor of the `
 MarkDownTextView(styling: CustomMarkyMarkStyling())
 ```
 
-### Adding your own rules
+</details>
+
+<details>
+  <summary>Adding your own rules</summary>
+
 Adding a new rule requires three new classes of based on the following protocol:
 
 * `Rule` that can recoginizes the desired markdown syntax
@@ -268,7 +298,10 @@ If needed you can also add a custom styling class to the default styling
 styling.addStyling(MyCustomStyling())
 ```
 
-### Converter hook
+</details>
+<details>
+  <summary>Converter hook</summary>
+
 The converter has a callback method which is called every time a `MarkDownItem` is converted to layout. 
 
 ```swift
@@ -277,6 +310,9 @@ converter.didConvertElement = {
     // Do something with markDownItem and / or view here
 }
 ```
+
+</details>
+
 
 ## Author
 
