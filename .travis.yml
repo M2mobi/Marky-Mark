@@ -3,7 +3,7 @@ os: osx
 language: swift
 xcode_project: MarkyMark.xcodeproj
 xcode_scheme: markymark_Tests
-osx_image: xcode9.2
+osx_image: xcode10
 podfile: Example/Podfile
 before_install:
 - gem install cocoapods # Since Travis is not always on latest version

@@ -7,9 +7,9 @@ import UIKit
 
 struct StringAttributesBuilder {
 
-    func attributesForStyling(_ styling : ItemStyling) -> [NSAttributedStringKey : Any] {
+    func attributesForStyling(_ styling : ItemStyling) -> [NSAttributedString.Key : Any] {
 
-        var attributes = [NSAttributedStringKey : Any]()
+        var attributes = [NSAttributedString.Key : Any]()
 
         if let font = styling.neededFont() {
 
@@ -18,7 +18,7 @@ struct StringAttributesBuilder {
 
         if styling.shouldBeStrikeThrough() {
 
-            attributes[.strikethroughStyle] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
+            attributes[.strikethroughStyle] = NSNumber(value: NSUnderlineStyle.single.rawValue as Int)
         }
 
         if let textColor = styling.neededTextColor() {
@@ -27,7 +27,7 @@ struct StringAttributesBuilder {
         }
         
         if styling.shouldFontBeUnderlined() {
-            attributes[.underlineStyle] = NSNumber(value: NSUnderlineStyle.styleSingle.rawValue as Int)
+            attributes[.underlineStyle] = NSNumber(value: NSUnderlineStyle.single.rawValue as Int)
         }
         
         if let backgroundColor = styling.neededBackgroundColor() {

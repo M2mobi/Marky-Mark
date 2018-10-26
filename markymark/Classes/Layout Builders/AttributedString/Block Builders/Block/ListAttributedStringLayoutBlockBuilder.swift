@@ -80,8 +80,8 @@ private extension ListAttributedStringLayoutBlockBuilder {
         return NSMutableAttributedString(string:string, attributes: getBulletStylingAttributes(styling))
     }
     
-    func getBulletStylingAttributes(_ styling:BulletStylingRule?) -> [NSAttributedStringKey : Any] {
-        var attributes = [NSAttributedStringKey : Any]()
+    func getBulletStylingAttributes(_ styling:BulletStylingRule?) -> [NSAttributedString.Key : Any] {
+        var attributes = [NSAttributedString.Key : Any]()
         
         if let font = styling?.bulletFont {
             attributes[.font] = font
@@ -94,7 +94,7 @@ private extension ListAttributedStringLayoutBlockBuilder {
         return attributes
     }
     
-    func getBulletIndentingAttributesForLevel(_ level:CGFloat, listStyling: ListItemStylingRule?) -> [NSAttributedStringKey : Any] {
+    func getBulletIndentingAttributesForLevel(_ level:CGFloat, listStyling: ListItemStylingRule?) -> [NSAttributedString.Key : Any] {
         let listIndentSpace = (listStyling?.listIdentSpace ?? 0)
 
         let paragraphStyle = NSMutableParagraphStyle()
