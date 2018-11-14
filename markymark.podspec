@@ -13,6 +13,6 @@ Marky Mark is a parser written in Swift that converts markdown into native views
 
   s.ios.deployment_target = '8.0'
 
-s.source_files = 'markymark/Classes/**/*{.swift}'
+  s.source_files = 'markymark/Classes/**/*.{swift,h,m}'
 
 end

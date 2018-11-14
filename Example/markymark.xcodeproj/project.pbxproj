@@ -308,7 +308,6 @@
 				607FACCD1AFB9204008FA782 /* Frameworks */,
 				607FACCE1AFB9204008FA782 /* Resources */,
 				F220BF3FD9625FD67595F183 /* [CP] Embed Pods Frameworks */,
-				4536D5F2E1F7AC6E6B2E238E /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -328,7 +327,6 @@
 				607FACE21AFB9204008FA782 /* Frameworks */,
 				607FACE31AFB9204008FA782 /* Resources */,
 				029A2E5D6800056D702BE822 /* [CP] Embed Pods Frameworks */,
-				7789EB477652F3880BD14E09 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -439,36 +437,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		4536D5F2E1F7AC6E6B2E238E /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7789EB477652F3880BD14E09 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		D70756FE8E6C87A920EAB880 /* [CP] Check Pods Manifest.lock */ = {
