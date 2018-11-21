@@ -23,6 +23,13 @@ public class MarkDownTextView: UIView {
             render(withMarkdownText: text)
         }
     }
+    
+    public var urlOpener: URLOpener? {
+        didSet {
+            (viewConfiguration as? MarkDownAsViewViewConfiguration)?.urlOpener = urlOpener
+            render(withMarkdownText: text)
+        }
+    }
 
     fileprivate var markDownView: UIView?
     fileprivate var markDownItems: [MarkDownItem] = []
@@ -82,7 +89,8 @@ public class MarkDownTextView: UIView {
     }
 }
 
-private struct MarkDownAsViewViewConfiguration: CanConfigureViews {
+private class MarkDownAsViewViewConfiguration: CanConfigureViews {
+    var urlOpener: URLOpener?
 
     private weak var owner: MarkDownTextView?
 
@@ -92,7 +100,7 @@ private struct MarkDownAsViewViewConfiguration: CanConfigureViews {
 
     func configureViewProperties() {
         guard let owner = owner else { return }
-        let configuration = MarkdownToViewConverterConfiguration(styling: owner.styling)
+        let configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, urlOpener: urlOpener)
         let converter = MarkDownConverter(configuration: configuration)
 
         owner.markDownView = converter.convert(owner.markDownItems)

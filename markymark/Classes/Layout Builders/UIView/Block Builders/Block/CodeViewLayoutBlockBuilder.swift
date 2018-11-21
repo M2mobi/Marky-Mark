@@ -23,6 +23,10 @@ class CodeViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder 
         label.font = (styling as? BaseFontStylingRule)?.baseFont
         label.textColor = (styling as? TextColorStylingRule)?.textColor
         
+        if let urlOpener = urlOpener {
+            label.urlOpener = urlOpener
+        }
+        
         let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
 
         let containerView = ContainerView(view: label, spacing: spacing)

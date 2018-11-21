@@ -21,5 +21,7 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         A paragraph with a **link** to [Google](https://www.google.com)
         
         """
+        
+        markDownTextView?.urlOpener = ExtensionContextURLOpener(extensionContext: self.extensionContext)
     }
 }

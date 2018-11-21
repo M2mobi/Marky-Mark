@@ -21,8 +21,12 @@ class ListItemView: UIView {
 
     var styling:BulletStylingRule?
 
-    init(listMarkDownItem:ListMarkDownItem, styling: BulletStylingRule?, attributedText: NSAttributedString){
-
+    init(
+        listMarkDownItem: ListMarkDownItem,
+        styling: BulletStylingRule?,
+        attributedText: NSAttributedString,
+        urlOpener: URLOpener? = nil
+    ) {
         self.listMarkDownItem = listMarkDownItem
         self.styling = styling
 
@@ -30,6 +34,10 @@ class ListItemView: UIView {
 
         label.markDownAttributedString = attributedText
         label.numberOfLines = 0
+        
+        if let urlOpener = urlOpener {
+            label.urlOpener = urlOpener
+        }
 
         setUpLayout()
     }
