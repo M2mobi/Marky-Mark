@@ -8,3 +8,8 @@ target 'markymark_Tests' do
     inherit! :search_paths
     pod 'markymark', :path => '../'
 end
+
+target 'TodayExtension' do
+    inherit! :search_paths
+    pod 'markymark', :path => '../'
+end
