@@ -39,8 +39,8 @@ Markymark has many styling options, please check the examples in the styling sec
 ```swift
 let markDownView = MarkDownTextView()
 markDownView.styling.headingStyling.textColorsForLevels = [
-.orange, //H1 (i.e. # Title)
-.black,  //H2, ... (i.e. ## Subtitle, ### Sub subtitle)
+	.orange, //H1 (i.e. # Title)
+	.black,  //H2, ... (i.e. ## Subtitle, ### Sub subtitle)
 ]
 
 markDownView.styling.linkStyling.textColor = .blue
@@ -63,11 +63,11 @@ Headings
 
 Lists
 - item
-- item
+	- item
 * item
-* item
+	* item
 + item
-+ item
+	+ item
 a. item
 b. item
 1. item
@@ -118,20 +118,20 @@ Markdown example: `# Title` or `## Subtitle` etc.
 
 ```swift
 styling.headingStyling.fontsForLevels = [
-UIFont.boldSystemFontOfSize(24), //H1
-UIFont.systemFontOfSize(18),     //H2
-UIFont.systemFontOfSize(16)      //H3, ... (last item will be next levels as well)
+	UIFont.boldSystemFontOfSize(24), //H1
+	UIFont.systemFontOfSize(18),     //H2
+	UIFont.systemFontOfSize(16)      //H3, ... (last item will be next levels as well)
 ]
 
 styling.headingStyling.colorsForLevels = [
-.red, //H1
-.black, //H2, ... (last item will be next levels as well)
+	.red, //H1
+	.black, //H2, ... (last item will be next levels as well)
 ]
 
 // Margins
 styling.headingStyling.contentInsetsForLevels = [
-UIEdgeInsets(top: 5, left: 0, bottom: 15, right: 10), // H1
-UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10) //H2, ... (last item will be next levels as well)
+	UIEdgeInsets(top: 5, left: 0, bottom: 15, right: 10), // H1
+	UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 10) //H2, ... (last item will be next levels as well)
 ]
 
 styling.headingStyling.isBold = false
@@ -169,10 +169,10 @@ styling.listStyling.bulletColor = .black
 // Bullets can also be images for more complex styling. When setting images, bullet font and color won't be used anymore
 // Array of images used as bullet for each level of nested list items
 styling.listStyling.bulletImages = [
-UIImage(named: "circle"),
-UIImage(named: "emptyCircle"),
-UIImage(named: "line"),
-UIImage(named: "square")
+	UIImage(named: "circle"),
+	UIImage(named: "emptyCircle"),
+	UIImage(named: "line"),
+	UIImage(named: "square")
 ]
 
 // Size of the images
@@ -214,13 +214,13 @@ Advanced usage is only needed for very specific cases. Making subsets of styling
 
 ```swift
 struct CustomMarkyMarkStyling: Styling {
-var headerStyling = CustomHeaderStyling()
-var paragraphStyling = ParagraphStyling()
-var linkStyling = ListStyling()
+	var headerStyling = CustomHeaderStyling()
+	var paragraphStyling = ParagraphStyling()
+	var linkStyling = ListStyling()
 
-var itemStylingRules: [ItemStyling] {
-return [headerStyling, paragraphStyling, linkStyling]  
-}
+	var itemStylingRules: [ItemStyling] {
+		return [headerStyling, paragraphStyling, linkStyling]  
+	}
 }
 ```
 
@@ -231,7 +231,7 @@ Each styling rule can be applied to a markDownItem by comforming to `ItemStyling
 
 ```
 public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
-return markDownItem is HeaderMarkDownItem
+	return markDownItem is HeaderMarkDownItem
 }
 
 ```
@@ -273,8 +273,8 @@ The converter has a callback method which is called every time a `MarkDownItem` 
 
 ```swift
 converter.didConvertElement = {
-markDownItem, view in
-// Do something with markDownItem and / or view here
+	markDownItem, view in
+	// Do something with markDownItem and / or view here
 }
 ```
 
