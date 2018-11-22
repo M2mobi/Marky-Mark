@@ -18,6 +18,10 @@ class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
         let label = AttributedInteractiveLabel()
         label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
 
+        if let urlOpener = urlOpener {
+            label.urlOpener = urlOpener
+        }
+
         let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: label, spacing: spacing)
     }

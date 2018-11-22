@@ -21,6 +21,10 @@ class HeaderViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder
         let label = AttributedInteractiveLabel()
         label.numberOfLines = 0
         label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: headerStyling ?? styling)
+        
+        if let urlOpener = urlOpener {
+            label.urlOpener = urlOpener
+        }
 
         let spacing: UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: label, spacing: spacing)

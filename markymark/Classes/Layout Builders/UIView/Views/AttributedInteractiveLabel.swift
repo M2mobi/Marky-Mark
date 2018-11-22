@@ -30,6 +30,8 @@ open class AttributedInteractiveLabel: UILabel {
             self.attributedText = mutableAttributedString
         }
     }
+    
+    public var urlOpener: URLOpener = DefaultURLOpener()
 
     public init(){
         super.init(frame: CGRect())
@@ -51,7 +53,7 @@ open class AttributedInteractiveLabel: UILabel {
 
         let locationInView = tapGesture.location(in: view)
         if let url = getUrlAtLocationInView(locationInView) {
-            UIApplication.shared.openURL(url)
+            urlOpener.open(url: url)
         }
 
     }
