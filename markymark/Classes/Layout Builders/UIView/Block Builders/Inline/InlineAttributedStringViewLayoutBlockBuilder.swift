@@ -7,7 +7,7 @@ import UIKit
 
 class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
 
-    let urlOpener: URLOpener?
+    private let urlOpener: URLOpener?
 
     private let converter : MarkDownConverter<NSMutableAttributedString>
 
