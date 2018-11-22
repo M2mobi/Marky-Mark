@@ -1,5 +1,7 @@
 use_frameworks!
 
+source 'https://github.com/CocoaPods/Specs.git'
+
 target 'markymark_Example' do
     pod 'markymark', :path => '../'
     pod 'SwiftLint'

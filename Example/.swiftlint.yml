@@ -1,0 +1,38 @@
+disabled_rules:
+  - todo # we simply want these
+  - line_length 
+  - closure_parameter_position # disabled because we use this differently as part of our Swift guidelines (we dedicate a seperate line to arguments)
+  - void_return # we use () -> () instead of () -> Void
+  - mark # this rule was too stringent
+  - cyclomatic_complexity # this rule did not check rightly for complexity of functions, e.g. switch statements already led to too much complexity
+  - identifier_name # Temporary disabled to allow project to be run with capitals code
+  - type_name # Temporary disabled to allow project to be run with capitals code
+  - nesting
+  - redundant_string_enum_value
+  - force_try
+  - force_cast
+opt_in_rules:
+  - closure_spacing # single whitespace before and after closure accolade {}
+  - weak_delegate # checks if delegate is weakly declared if it's a class protocol
+  - redundant_nil_coalescing # checks if nil coalescing is done after a non-optional
+  - operator_usage_whitespace # single whitespace before and after operator such as - + /
+  - closure_end_indentation # validates closure closing braces in the right way
+  - fatal_error_message # Checks that fatalError calls have a message 
+file_length:
+  - 400 # if your file is this long, you are likely able to split it up into seperate functionality
+type_body_length:
+  - 300 # warning
+  - 650 # error
+type_name:
+  min_length: 3 
+  max_length: 44
+variable_name:
+  min_length: 3 
+  max_length: 41
+  excluded:
+    - id # to prevent variable from being named `id`, maybe something extra here?
+    - 
+excluded:
+  - Pods
+  - fastlane
+  - Modules
