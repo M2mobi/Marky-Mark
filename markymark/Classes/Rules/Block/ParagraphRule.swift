@@ -9,13 +9,13 @@ open class ParagraphRule: Rule {
 
     public init() {}
 
-    //MARK: Rule
+    // MARK: Rule
 
-    open func recognizesLines(_ lines:[String]) -> Bool {
+    open func recognizesLines(_ lines: [String]) -> Bool {
         return true
     }
 
-    open  func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
-        return ParagraphMarkDownItem(lines:lines, content: lines.first ?? "")
+    open  func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
+        return ParagraphMarkDownItem(lines: lines, content: lines.first ?? "")
     }
 }

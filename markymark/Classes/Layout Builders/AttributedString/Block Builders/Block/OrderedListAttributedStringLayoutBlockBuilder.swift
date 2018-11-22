@@ -8,9 +8,9 @@
 
 import Foundation
 
-class OrderedListAttributedStringLayoutBlockBuilder : ListAttributedStringLayoutBlockBuilder {
-    
-    //MARK: LayoutBuilder
+class OrderedListAttributedStringLayoutBlockBuilder: ListAttributedStringLayoutBlockBuilder {
+
+    // MARK: LayoutBuilder
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return OrderedListMarkDownItem.self
     }

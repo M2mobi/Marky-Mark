@@ -6,7 +6,7 @@
 import Foundation
 
 open class UnOrderedListType: ListType {
-    
+
     public init() {}
 
     public var pattern: String {

@@ -2,6 +2,7 @@ use_frameworks!
 
 target 'markymark_Example' do
     pod 'markymark', :path => '../'
+    pod 'SwiftLint'
 end
 
 target 'markymark_Tests' do

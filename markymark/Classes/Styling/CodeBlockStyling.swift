@@ -6,8 +6,8 @@
 import Foundation
 import UIKit
 
-open class CodeBlockStyling : ItemStyling, BackgroundStylingRule, TextColorStylingRule, ContentInsetStylingRule, BaseFontStylingRule {
-    open var parent : ItemStyling? = nil
+open class CodeBlockStyling: ItemStyling, BackgroundStylingRule, TextColorStylingRule, ContentInsetStylingRule, BaseFontStylingRule {
+    open var parent: ItemStyling?
 
     open func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
@@ -18,8 +18,8 @@ open class CodeBlockStyling : ItemStyling, BackgroundStylingRule, TextColorStyli
     open var baseFont: UIFont? = .systemFont(ofSize: UIFont.systemFontSize)
     open var textColor: UIColor? = .gray
 
-    open var contentInsets = UIEdgeInsets(top: 0, left:  20, bottom: 10, right: 10)
+    open var contentInsets = UIEdgeInsets(top: 0, left: 20, bottom: 10, right: 10)
 
-    public init(){}
+    public init() {}
 
 }

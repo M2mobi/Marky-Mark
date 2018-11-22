@@ -11,6 +11,6 @@ import UIKit
 internal extension NSAttributedString {
 
     func fullRange() -> NSRange {
-        return NSMakeRange(0, self.length)
+        return NSRange(location: 0, length: self.length)
     }
 }

@@ -9,7 +9,7 @@ class ContainerAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttribu
 
     // MARK: LayoutBlockBuilder
 
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling?) -> NSMutableAttributedString {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling?) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
 
         if let markDownItems = markDownItem.markDownItems {

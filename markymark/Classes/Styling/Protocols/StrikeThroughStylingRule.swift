@@ -5,13 +5,13 @@
 
 import Foundation
 
-public protocol StrikeThroughStylingRule : ItemStyling {
+public protocol StrikeThroughStylingRule: ItemStyling {
 
-    var isStrikeThrough : Bool { get }
+    var isStrikeThrough: Bool { get }
 }
 
 extension StrikeThroughStylingRule {
-    var isStrikeThrough:Bool {
+    var isStrikeThrough: Bool {
         return true
     }
 }

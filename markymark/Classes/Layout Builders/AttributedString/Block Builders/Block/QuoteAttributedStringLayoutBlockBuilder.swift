@@ -9,17 +9,17 @@
 import Foundation
 
 class QuoteAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBlockBuilder {
-    
-    //MARK: LayoutBuilder
-    
+
+    // MARK: LayoutBuilder
+
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return QuoteMarkDownItem.self
     }
-    
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
         let paragraphStyling = styling as? QuoteStyling
         let attributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
-        
+
         return attributedStringWithContentInset(attributedString, contentInset: paragraphStyling?.contentInsets ?? UIEdgeInsets())
     }
 }

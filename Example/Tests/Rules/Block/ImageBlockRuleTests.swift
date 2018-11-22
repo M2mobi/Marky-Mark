@@ -8,7 +8,7 @@ import XCTest
 
 class ImageBlockRuleTests: XCTestCase {
 
-    var sut:ImageBlockRule!
+    var sut: ImageBlockRule!
 
     override func setUp() {
         super.setUp()
@@ -28,8 +28,8 @@ class ImageBlockRuleTests: XCTestCase {
         let markdownItem = sut.createMarkDownItemWithLines(["![Alt text](image.png)"])
 
         // Assert
-        XCTAssertEqual((markdownItem as! ImageBlockMarkDownItem).altText,"Alt text")
-        XCTAssertEqual((markdownItem as! ImageBlockMarkDownItem).file,"image.png")
+        XCTAssertEqual((markdownItem as! ImageBlockMarkDownItem).altText, "Alt text")
+        XCTAssertEqual((markdownItem as! ImageBlockMarkDownItem).file, "image.png")
     }
 
     func testRecognizesLines() {

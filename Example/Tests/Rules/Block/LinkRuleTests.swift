@@ -8,7 +8,7 @@ import XCTest
 
 class LinkRuleTests: XCTestCase {
 
-    var sut:LinkRule!
+    var sut: LinkRule!
 
     override func setUp() {
         super.setUp()
@@ -37,10 +37,10 @@ class LinkRuleTests: XCTestCase {
         //Act
 
         //Assert
-        XCTAssertEqual((markDownItem as! LinkMarkDownItem).content,"Google")
-        XCTAssertEqual((markDownItem as! LinkMarkDownItem).url,"http://www.google.com")
-        XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).content,"Youtube")
-        XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).url,"http://www.youtube.com")
+        XCTAssertEqual((markDownItem as! LinkMarkDownItem).content, "Google")
+        XCTAssertEqual((markDownItem as! LinkMarkDownItem).url, "http://www.google.com")
+        XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).content, "Youtube")
+        XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).url, "http://www.youtube.com")
 
     }
 
@@ -55,7 +55,7 @@ class LinkRuleTests: XCTestCase {
         XCTAssertEqual(sut.getAllMatches(["(https://www.google.com)"]).count, 0)
         XCTAssertEqual(sut.getAllMatches(["[Google]"]).count, 0)
         XCTAssertEqual(sut.getAllMatches(["![Google](https://www.google.com)"]).count, 0)
-        XCTAssertEqual(sut.getAllMatches(["[Google](https://www.google.com) test [Google](https://www.google.com)"]), [expectedMatchesRange,expectedMatchesRange2])
+        XCTAssertEqual(sut.getAllMatches(["[Google](https://www.google.com) test [Google](https://www.google.com)"]), [expectedMatchesRange, expectedMatchesRange2])
     }
 
 }

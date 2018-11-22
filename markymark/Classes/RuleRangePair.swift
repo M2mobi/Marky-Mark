@@ -6,6 +6,6 @@
 import Foundation
 
 struct RuleRangePair {
-    let rule:Rule
-    let range:NSRange
+    let rule: Rule
+    let range: NSRange
 }

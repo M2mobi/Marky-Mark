@@ -22,7 +22,7 @@ class AdvancedMarkdownViewController: UIViewController {
         let views: [String: Any] = [
             "view": view,
             "scrollView": scrollView,
-            "markDownView": markDownView,
+            "markDownView": markDownView
             ]
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -98,7 +98,7 @@ private extension AdvancedMarkdownViewController {
     }
 
     func getMarkDownString() -> String {
-        var markdownString:String = ""
+        var markdownString: String = ""
         if let filepath = Bundle.main.path(forResource: "markdown", ofType: "txt") {
             markdownString = try! String(contentsOfFile: filepath)
         }

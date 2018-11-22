@@ -8,14 +8,14 @@ import XCTest
 
 class MarkDownItemTests: XCTestCase {
 
-    private var sut:MarkDownItem!
+    private var sut: MarkDownItem!
 
     override func setUp() {
         super.setUp()
         sut = MarkDownItem(lines: ["Line 1", "Line 2"], content: "")
     }
 
-    func testMarkDownItemHasCorrectLines(){
+    func testMarkDownItemHasCorrectLines() {
         XCTAssertEqual(sut.lines, ["Line 1", "Line 2"])
     }
 }

@@ -8,14 +8,13 @@ import Foundation
 open class MarkDownConverter<T> {
 
     /// Callback method that get's called every time a MarkDownItem is converted to an element
-    open var didConvertElement:((_ markDownItem:MarkDownItem, _ element:T)->())?
+    open var didConvertElement:((_ markDownItem: MarkDownItem, _ element: T) -> Void)?
 
-    let configuration:MarkDownConverterConfiguration<T>
+    let configuration: MarkDownConverterConfiguration<T>
 
     public init(configuration: MarkDownConverterConfiguration<T>) {
         self.configuration = configuration
     }
-
 
     /**
      Converts given MarkDownItems to type T
@@ -25,7 +24,7 @@ open class MarkDownConverter<T> {
      
      - returns: type T containing all converted items composed together. Often a String or UIView
      */
-    open func convert(_ markDownItems:[MarkDownItem]) -> T {
+    open func convert(_ markDownItems: [MarkDownItem]) -> T {
         return configuration.elementComposer.compose(convertToElements(markDownItems))
     }
 
@@ -38,9 +37,9 @@ open class MarkDownConverter<T> {
      ´
      - returns: An array of displayable objects of type T
      */
-    func convertToElements(_ markDownItems:[MarkDownItem], applicableStyling: ItemStyling? = nil) -> [T] {
+    func convertToElements(_ markDownItems: [MarkDownItem], applicableStyling: ItemStyling? = nil) -> [T] {
 
-        var elements:[T] = []
+        var elements: [T] = []
 
         for markDownItem in markDownItems {
 
@@ -49,7 +48,7 @@ open class MarkDownConverter<T> {
             var styling = self.configuration.styling.stylingForMarkownItem(markDownItem)
             styling.parent = applicableStyling
 
-            if let layoutBlockBuilder = layoutBlockBuilder , type(of: markDownItem) == layoutBlockBuilder.relatedMarkDownItemType() {
+            if let layoutBlockBuilder = layoutBlockBuilder, type(of: markDownItem) == layoutBlockBuilder.relatedMarkDownItemType() {
                 let element = layoutBlockBuilder.build(markDownItem, asPartOfConverter: self, styling: styling)
                 didConvertElement?(markDownItem, element)
 
@@ -58,6 +57,6 @@ open class MarkDownConverter<T> {
                 print("Can't find display item for \(String(describing: markDownItem.self))")
             }
         }
-        return elements;
+        return elements
     }
 }

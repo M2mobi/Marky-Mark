@@ -6,5 +6,5 @@
 import Foundation
 
 protocol HasLevel {
-    func getLevel(_ line:String) -> Int
+    func getLevel(_ line: String) -> Int
 }

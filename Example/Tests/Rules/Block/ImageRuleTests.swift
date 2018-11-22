@@ -8,7 +8,7 @@ import XCTest
 
 class ImageRuleTests: XCTestCase {
 
-    var sut:ImageRule!
+    var sut: ImageRule!
 
     override func setUp() {
         super.setUp()
@@ -42,10 +42,10 @@ class ImageRuleTests: XCTestCase {
         //Act
 
         //Assert
-        XCTAssertEqual((markDownItem as! ImageMarkDownItem).altText,"Alt text")
-        XCTAssertEqual((markDownItem as! ImageMarkDownItem).file,"image.png")
-        XCTAssertEqual((markDownItem2 as! ImageMarkDownItem).altText,"Description")
-        XCTAssertEqual((markDownItem2 as! ImageMarkDownItem).file,"picture.jpeg")
+        XCTAssertEqual((markDownItem as! ImageMarkDownItem).altText, "Alt text")
+        XCTAssertEqual((markDownItem as! ImageMarkDownItem).file, "image.png")
+        XCTAssertEqual((markDownItem2 as! ImageMarkDownItem).altText, "Description")
+        XCTAssertEqual((markDownItem2 as! ImageMarkDownItem).file, "picture.jpeg")
     }
 
     func testGetAllMatches() {
@@ -59,6 +59,6 @@ class ImageRuleTests: XCTestCase {
         XCTAssertEqual(sut.getAllMatches(["![Alt text]"]).count, 0)
         XCTAssertEqual(sut.getAllMatches(["[Alt text](image.png)"]).count, 0)
         XCTAssertEqual(sut.getAllMatches(["(image.png)"]).count, 0)
-        XCTAssertEqual(sut.getAllMatches(["![Alt text](image.png) test ![Alt text](image.png)"]), [expectedMatchesRange,expectedMatchesRange2])
+        XCTAssertEqual(sut.getAllMatches(["![Alt text](image.png) test ![Alt text](image.png)"]), [expectedMatchesRange, expectedMatchesRange2])
     }
 }

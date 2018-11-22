@@ -8,14 +8,14 @@ import XCTest
 
 class HeaderRuleTests: XCTestCase {
 
-    var sut:HeaderRule!
-    
+    var sut: HeaderRule!
+
     override func setUp() {
         super.setUp()
         sut = HeaderRule()
     }
-    
-    func testHeaderRuleRecognizesHeaderMarkDown(){
+
+    func testHeaderRuleRecognizesHeaderMarkDown() {
         XCTAssert(sut.recognizesLines(["# Text"]))
         XCTAssert(sut.recognizesLines(["## Text"]))
         XCTAssert(sut.recognizesLines(["### Text"]))
@@ -23,26 +23,26 @@ class HeaderRuleTests: XCTestCase {
         XCTAssert(sut.recognizesLines(["##### Text"]))
         XCTAssert(sut.recognizesLines(["###### Text"]))
     }
-    
+
     func testHeaderRuleDoesNotRecognizeOtherMarkDown() {
         XCTAssertFalse(sut.recognizesLines(["#Text"]))
         XCTAssertFalse(sut.recognizesLines(["Text"]))
         XCTAssertFalse(sut.recognizesLines(["A# Text"]))
         XCTAssertFalse(sut.recognizesLines(["####### Text"]))
     }
-    
+
     func testCreateMarkDownItemCreatesCorrectItem() {
         //Act
         let markDownItem = sut.createMarkDownItemWithLines(["# Text"])
-        
+
         //Assert
         XCTAssert(markDownItem is HeaderMarkDownItem)
     }
-    
+
     func testCreatedMarkDownItemContainsCorrectText() {
         //Act
         let markDownItem = sut.createMarkDownItemWithLines(["# Text"])
-        
+
         //Assert
         XCTAssertEqual((markDownItem as! HeaderMarkDownItem).content, "Text")
     }

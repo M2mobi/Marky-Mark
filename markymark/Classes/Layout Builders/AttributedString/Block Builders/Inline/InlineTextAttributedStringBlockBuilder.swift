@@ -7,13 +7,13 @@ import UIKit
 
 class InlineTextAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString> {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return InlineTextMarkDownItem.self
     }
 
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
 
         let content: String = applyCapitalization(content: markDownItem.content, capitalization: styling.neededCapitalization())
         return NSMutableAttributedString(string: content, attributes: StringAttributesBuilder().attributesForStyling(styling))
@@ -22,7 +22,7 @@ class InlineTextAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttrib
 
 private extension InlineTextAttributedStringBlockBuilder {
     func applyCapitalization(content: String, capitalization: Capitalization?) -> String {
-        if let capitalization =  capitalization {
+        if let capitalization = capitalization {
             switch capitalization {
             case .uppercased:
                 return content.uppercased()

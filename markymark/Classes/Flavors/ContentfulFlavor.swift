@@ -5,11 +5,11 @@
 
 import Foundation
 
-open class ContentfulFlavor : Flavor {
-    
-    open var rules:[Rule] = [
+open class ContentfulFlavor: Flavor {
+
+    open var rules: [Rule] = [
         HeaderRule(),
-        ListRule(listTypes:[
+        ListRule(listTypes: [
             AlphabeticListType(),
             OrderedListType()
         ]),
@@ -18,10 +18,10 @@ open class ContentfulFlavor : Flavor {
         CodeBlockRule(),
         ImageBlockRule()
     ]
-    
-    open var defaultRule:Rule = ParagraphRule()
 
-    open var inlineRules:[InlineRule] = [
+    open var defaultRule: Rule = ParagraphRule()
+
+    open var inlineRules: [InlineRule] = [
         BoldRule(),
         ItalicRule(),
         StrikeRule(),

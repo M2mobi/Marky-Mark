@@ -12,24 +12,23 @@ class AutoLayoutViewAppender {
     var views: [UIView] = []
     var constraints: [NSLayoutConstraint] = []
 
-
     init(container: UIView) {
         self.container = container
         self.container.translatesAutoresizingMaskIntoConstraints = false
     }
 
-    func appendView(_ view:UIView, verticalMargin:CGFloat, horizontalMargin:CGFloat) {
+    func appendView(_ view: UIView, verticalMargin: CGFloat, horizontalMargin: CGFloat) {
         container.addSubview(view)
 
         view.translatesAutoresizingMaskIntoConstraints = false
 
         let metrics = [
-                "verticalMargin" : verticalMargin,
-                "horizontalMargin" : horizontalMargin,
+                "verticalMargin": verticalMargin,
+                "horizontalMargin": horizontalMargin
         ]
 
-        var views = [ "view" : view ]
-        var constraints:[NSLayoutConstraint] = []
+        var views = [ "view": view ]
+        var constraints: [NSLayoutConstraint] = []
 
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(horizontalMargin)-[view]|", options: [], metrics: metrics, views: views)
 
@@ -47,13 +46,13 @@ class AutoLayoutViewAppender {
         self.previousView = view
     }
 
-    func finishAppendingWithPadding(_ verticalMargin:CGFloat) {
+    func finishAppendingWithPadding(_ verticalMargin: CGFloat) {
         guard let previousView = previousView else { return }
 
-        let views = [ "view" : previousView ]
+        let views = [ "view": previousView ]
 
         let metrics = [
-           "verticalMargin" : verticalMargin
+           "verticalMargin": verticalMargin
         ]
 
         let constraints = NSLayoutConstraint.constraints(withVisualFormat: "V:[view]-(verticalMargin)-|", options: [], metrics: metrics, views: views)
@@ -67,4 +66,4 @@ class AutoLayoutViewAppender {
         self.container.removeConstraints(self.constraints)
         self.constraints = []
     }
-};
+}

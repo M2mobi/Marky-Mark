@@ -8,19 +8,19 @@ import XCTest
 
 class OrderedListTypeTests: XCTestCase {
 
-    var sut:OrderedListType!
+    var sut: OrderedListType!
 
     override func setUp() {
         super.setUp()
         sut = OrderedListType()
     }
-    
+
     func testPattern() {
         // Arrange
-        let OrderedListPattern = "\\d\\."
+        let orderedListPattern = "\\d\\."
 
         // Assert
-        XCTAssertEqual(sut.pattern, OrderedListPattern)
+        XCTAssertEqual(sut.pattern, orderedListPattern)
     }
 
     func testGetIndex() {
@@ -35,11 +35,11 @@ class OrderedListTypeTests: XCTestCase {
         let expectedFailure1 = sut.getIndex("a.")
 
         //Assert
-        XCTAssertEqual(expected,2)
-        XCTAssertEqual(expected1,6)
-        XCTAssertEqual(expected2,9)
-        XCTAssertEqual(expected3,4)
-        XCTAssertEqual(expected4,12)
+        XCTAssertEqual(expected, 2)
+        XCTAssertEqual(expected1, 6)
+        XCTAssertEqual(expected2, 9)
+        XCTAssertEqual(expected3, 4)
+        XCTAssertEqual(expected4, 12)
 
         XCTAssertNil(expectedFailure)
         XCTAssertNil(expectedFailure1)

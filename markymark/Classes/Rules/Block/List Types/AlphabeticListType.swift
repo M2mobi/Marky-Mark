@@ -6,10 +6,10 @@
 import Foundation
 
 open class AlphabeticListType: ListType {
-    
+
     public init() {}
 
-    public var pattern:String {
+    public var pattern: String {
         return "[a-zA-Z]\\."
     }
 

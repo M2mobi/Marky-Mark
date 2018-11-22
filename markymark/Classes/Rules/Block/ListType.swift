@@ -22,5 +22,5 @@ public protocol ListType {
      - returns: index of the list item as Int
      */
     func getIndex(_ stringIndex: String) -> Int?
-    
+
 }

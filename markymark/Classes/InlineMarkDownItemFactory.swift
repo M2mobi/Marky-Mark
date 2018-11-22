@@ -7,11 +7,11 @@ import Foundation
 
 class InlineMarkDownItemFactory {
 
-    let inlineRules:[InlineRule]
+    let inlineRules: [InlineRule]
 
-    let defaultRule:InlineRule
+    let defaultRule: InlineRule
 
-    init(inlineRules:[InlineRule], defaultRule:InlineRule) {
+    init(inlineRules: [InlineRule], defaultRule: InlineRule) {
         self.inlineRules = inlineRules
         self.defaultRule = defaultRule
     }
@@ -25,14 +25,14 @@ class InlineMarkDownItemFactory {
      - returns: MarkDownItem that contains markDownItems
      */
 
-    func getInlineMarkDownItemsForLines(_ content:String, ruleRangePairs:[RuleRangePair]? = nil) -> [MarkDownItem]? {
+    func getInlineMarkDownItemsForLines(_ content: String, ruleRangePairs: [RuleRangePair]? = nil) -> [MarkDownItem]? {
         let ruleRangePairs = ruleRangePairs ?? getRuleRangePairsForLines(content)
 
         if !containsInlineFormattingRules(ruleRangePairs) {
             return [defaultRule.createMarkDownItemWithLines([content])]
         }
 
-        var markDownItems:[MarkDownItem] = []
+        var markDownItems: [MarkDownItem] = []
 
         for ruleRangePair in ruleRangePairs {
             let range = ruleRangePair.range
@@ -50,12 +50,12 @@ class InlineMarkDownItemFactory {
             markDownItems.append(markDownItem)
         }
 
-        return markDownItems.count > 0 ? markDownItems : nil;
+        return markDownItems.count > 0 ? markDownItems : nil
     }
 
-    //MARK: Private
+    // MARK: Private
 
-    fileprivate func getMarkDownStringToMarkDownItem(_ markDownItem:MarkDownItem) -> [MarkDownItem]? {
+    private func getMarkDownStringToMarkDownItem(_ markDownItem: MarkDownItem) -> [MarkDownItem]? {
 
         let inlineRules = getRuleRangePairsForLines(markDownItem.content)
 
@@ -66,30 +66,30 @@ class InlineMarkDownItemFactory {
         return getInlineMarkDownItemsForLines(markDownItem.content, ruleRangePairs: inlineRules)
     }
 
-    fileprivate func getInlineTextItem(_ previousRange:NSRange, currentRange:NSRange, content:String) -> [MarkDownItem] {
+    private func getInlineTextItem(_ previousRange: NSRange, currentRange: NSRange, content: String) -> [MarkDownItem] {
 
         if currentRange.location != 0 {
             let start = previousRange.getLocationEnd()
             let end = currentRange.location
             let string = content.subString(start, end)
-            
-            let markDownItem:MarkDownItem = defaultRule.createMarkDownItemWithLines([string])
+
+            let markDownItem: MarkDownItem = defaultRule.createMarkDownItemWithLines([string])
             markDownItem.markDownItems = getMarkDownStringToMarkDownItem(markDownItem)
-            
+
             return [markDownItem]
         }
 
         return []
     }
 
-    fileprivate func getRuleRangePairsForLines(_ content:String) -> [RuleRangePair] {
-        var ruleRangePairs:[RuleRangePair] = []
+    private func getRuleRangePairsForLines(_ content: String) -> [RuleRangePair] {
+        var ruleRangePairs: [RuleRangePair] = []
 
         for rule in self.inlineRules {
 
             let matches = rule.getAllMatches([content])
             for range in matches {
-                ruleRangePairs.append(RuleRangePair(rule:rule, range:range))
+                ruleRangePairs.append(RuleRangePair(rule: rule, range: range))
             }
         }
 
@@ -98,16 +98,16 @@ class InlineMarkDownItemFactory {
         }
 
         ruleRangePairs = removedNestedRules(ruleRangePairs)
-        ruleRangePairs = addMissingRuleRangePairs(ruleRangePairs, contentLength:content.length())
+        ruleRangePairs = addMissingRuleRangePairs(ruleRangePairs, contentLength: content.length())
 
         return ruleRangePairs
     }
 
-    fileprivate func removedNestedRules(_ ruleRangePairs:[RuleRangePair]) -> [RuleRangePair] {
+    private func removedNestedRules(_ ruleRangePairs: [RuleRangePair]) -> [RuleRangePair] {
 
-        var filteredRuleRangePairs:[RuleRangePair] = []
+        var filteredRuleRangePairs: [RuleRangePair] = []
 
-        var previousRange:NSRange?
+        var previousRange: NSRange?
 
         for ruleRangePair in ruleRangePairs {
 
@@ -121,10 +121,10 @@ class InlineMarkDownItemFactory {
         return filteredRuleRangePairs
     }
 
-    fileprivate func addMissingRuleRangePairs(_ ruleRangePairs:[RuleRangePair], contentLength:Int) -> [RuleRangePair] {
+    private func addMissingRuleRangePairs(_ ruleRangePairs: [RuleRangePair], contentLength: Int) -> [RuleRangePair] {
 
-        var result:[RuleRangePair] = []
-        var previousRange:NSRange = NSRange(location: 0, length: 0)
+        var result: [RuleRangePair] = []
+        var previousRange: NSRange = NSRange(location: 0, length: 0)
 
         for ruleRangePair in ruleRangePairs {
             let range = ruleRangePair.range
@@ -147,29 +147,29 @@ class InlineMarkDownItemFactory {
         return result
     }
 
-    fileprivate func getDefaultRuleRangePairBetween(_ previousRange:NSRange, currentRange:NSRange) -> RuleRangePair? {
+    private func getDefaultRuleRangePairBetween(_ previousRange: NSRange, currentRange: NSRange) -> RuleRangePair? {
         if currentRange.location > previousRange.getLocationEnd() {
             let location = previousRange.getLocationEnd()
             let length = currentRange.location - location
-            return RuleRangePair(rule: defaultRule, range: NSRange(location:location, length: length))
+            return RuleRangePair(rule: defaultRule, range: NSRange(location: location, length: length))
         } else {
             return nil
         }
     }
 
-    fileprivate func containsInlineFormattingRules(_ ruleRangePairs:[RuleRangePair]) -> Bool {
+    private func containsInlineFormattingRules(_ ruleRangePairs: [RuleRangePair]) -> Bool {
         guard let rule = ruleRangePairs.first?.rule else { return false }
         return !(ruleRangePairs.count == 1 && type(of: rule) == type(of: defaultRule))
     }
 }
 
 private extension NSRange {
-    func isOverlappingWithRange(_ previousRange:NSRange?) -> Bool{
+    func isOverlappingWithRange(_ previousRange: NSRange?) -> Bool {
         guard let previousRange = previousRange else { return false }
 
         if self.location > previousRange.location {
             return self.location < previousRange.getLocationEnd()
-        }else {
+        } else {
             return previousRange.location < self.getLocationEnd()
         }
     }

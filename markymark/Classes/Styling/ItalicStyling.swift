@@ -7,7 +7,7 @@ import UIKit
 
 public struct ItalicStyling: ItemStyling, ItalicStylingRule, BaseFontStylingRule {
 
-    public var parent : ItemStyling? = nil
+    public var parent: ItemStyling?
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
@@ -15,7 +15,7 @@ public struct ItalicStyling: ItemStyling, ItalicStylingRule, BaseFontStylingRule
     }
 
     public var isItalic: Bool = true
-    public var baseFont : UIFont? = nil
+    public var baseFont: UIFont?
 
-    public init(){}
+    public init() {}
 }

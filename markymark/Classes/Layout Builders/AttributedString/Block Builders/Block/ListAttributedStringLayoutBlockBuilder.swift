@@ -7,26 +7,25 @@ import Foundation
 import UIKit
 
 class ListAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBlockBuilder {
-    
-    //MARK: LayoutBuilder
-    
+
+    // MARK: LayoutBuilder
+
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return UnorderedListMarkDownItem.self
     }
-    
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
-        
+
         let listAttributedString = getListAttributedString(listMarkDownItem, styling: styling)
-        
+
         return listAttributedString
     }
-    
-    //MARK: Private
+
+    // MARK: Private
 }
 
 private extension ListAttributedStringLayoutBlockBuilder {
-    
 
     /**
      Loops recursively through all listItems to create
@@ -37,71 +36,71 @@ private extension ListAttributedStringLayoutBlockBuilder {
      
      - returns: A view containing all list items of given markDownItem
      */
-    
-    func getListAttributedString(_ listMarkDownItem:ListMarkDownItem, styling:ItemStyling, level:CGFloat = 0) -> NSMutableAttributedString {
-        
+
+    func getListAttributedString(_ listMarkDownItem: ListMarkDownItem, styling: ItemStyling, level: CGFloat = 0) -> NSMutableAttributedString {
+
         let listAttributedString = NSMutableAttributedString()
-                
+
         for listItem in listMarkDownItem.listItems ?? [] {
-            
+
             let bulletStyling = styling as? BulletStylingRule
             let listStyling = styling as? ListItemStylingRule
-            
+
             let listItemAttributedString = NSMutableAttributedString()
             listItemAttributedString.append(getBulletCharacter(listItem, styling: bulletStyling))
             listItemAttributedString.addAttributes(
                 getBulletIndentingAttributesForLevel(level, listStyling: listStyling),
                 range: listItemAttributedString.fullRange()
             )
-            
+
             let attributedString = attributedStringForMarkDownItem(listItem, styling: styling)
             listItemAttributedString.append(attributedString)
-            listItemAttributedString.append(NSAttributedString(string:"\n"))
+            listItemAttributedString.append(NSAttributedString(string: "\n"))
             listAttributedString.append(listItemAttributedString)
 
             if let nestedListItems = listItem.listItems, nestedListItems.count > 0 {
                 listAttributedString.append(getListAttributedString(listItem, styling: styling, level: level + 1))
             }
         }
-        
+
         return listAttributedString
     }
-    
-    func getBulletCharacter(_ listMarkDownItem:ListMarkDownItem, styling:BulletStylingRule?) -> NSAttributedString {
-        
-        let string:String
-        
+
+    func getBulletCharacter(_ listMarkDownItem: ListMarkDownItem, styling: BulletStylingRule?) -> NSAttributedString {
+
+        let string: String
+
         if let indexCharacter = listMarkDownItem.indexCharacter {
             string = indexCharacter + " "
         } else {
             string = "• "
         }
-        
-        return NSMutableAttributedString(string:string, attributes: getBulletStylingAttributes(styling))
+
+        return NSMutableAttributedString(string: string, attributes: getBulletStylingAttributes(styling))
     }
-    
-    func getBulletStylingAttributes(_ styling:BulletStylingRule?) -> [NSAttributedString.Key : Any] {
-        var attributes = [NSAttributedString.Key : Any]()
-        
+
+    func getBulletStylingAttributes(_ styling: BulletStylingRule?) -> [NSAttributedString.Key: Any] {
+        var attributes = [NSAttributedString.Key: Any]()
+
         if let font = styling?.bulletFont {
             attributes[.font] = font
         }
-        
+
         if let textColor = styling?.bulletColor {
             attributes[.foregroundColor] = textColor
         }
-        
+
         return attributes
     }
-    
-    func getBulletIndentingAttributesForLevel(_ level:CGFloat, listStyling: ListItemStylingRule?) -> [NSAttributedString.Key : Any] {
+
+    func getBulletIndentingAttributesForLevel(_ level: CGFloat, listStyling: ListItemStylingRule?) -> [NSAttributedString.Key: Any] {
         let listIndentSpace = (listStyling?.listIdentSpace ?? 0)
 
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.paragraphSpacing = (listStyling?.bottomListItemSpacing ?? 0)
         paragraphStyle.firstLineHeadIndent = listIndentSpace * level
         paragraphStyle.headIndent = listIndentSpace + listIndentSpace * level
-        
-        return [.paragraphStyle : paragraphStyle]
+
+        return [.paragraphStyle: paragraphStyle]
     }
 }

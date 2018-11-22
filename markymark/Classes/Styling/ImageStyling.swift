@@ -8,7 +8,7 @@ import UIKit
 
 public struct ImageStyling: ItemStyling, ContentInsetStylingRule {
 
-    public var parent : ItemStyling? = nil
+    public var parent: ItemStyling?
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
@@ -17,6 +17,6 @@ public struct ImageStyling: ItemStyling, ContentInsetStylingRule {
 
     public var contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: 10, right: 0)
 
-    public init(){}
+    public init() {}
 
 }

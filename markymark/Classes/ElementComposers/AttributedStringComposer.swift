@@ -6,7 +6,7 @@
 import UIKit
 
 class AttributedStringComposer: ElementComposer<NSMutableAttributedString> {
-    
+
     override func compose(_ elements: [NSMutableAttributedString]) -> NSMutableAttributedString {
 
         let result = NSMutableAttributedString()
@@ -17,7 +17,7 @@ class AttributedStringComposer: ElementComposer<NSMutableAttributedString> {
                 result.append(NSAttributedString(string: "\n"))
             }
         }
-        
+
         return result
     }
 }

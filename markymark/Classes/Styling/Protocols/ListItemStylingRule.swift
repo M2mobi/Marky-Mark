@@ -6,11 +6,11 @@
 import Foundation
 import UIKit
 
-public protocol ListItemStylingRule : ItemStyling {
+public protocol ListItemStylingRule: ItemStyling {
 
     /// Margin between list items
-    var bottomListItemSpacing:CGFloat { get }
+    var bottomListItemSpacing: CGFloat { get }
     /// Amount of left margin for each level of a nested list
-    var listIdentSpace:CGFloat { get }
+    var listIdentSpace: CGFloat { get }
 
 }

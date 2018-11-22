@@ -407,6 +407,7 @@
 				F95E6FF421A5E9FC006CA76E /* Sources */,
 				F95E6FF521A5E9FC006CA76E /* Frameworks */,
 				F95E6FF621A5E9FC006CA76E /* Resources */,
+				F9BF708B21A74E2A000CEE49 /* SwiftLint */,
 			);
 			buildRules = (
 			);
@@ -590,6 +591,24 @@
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
+		};
+		F9BF708B21A74E2A000CEE49 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 

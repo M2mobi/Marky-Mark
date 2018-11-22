@@ -8,7 +8,7 @@ import XCTest
 
 class MarkyMarkContentfulIntegrationTests: XCTestCase {
 
-    var sut:MarkyMark!
+    var sut: MarkyMark!
 
     override func setUp() {
         super.setUp()
@@ -110,7 +110,7 @@ class MarkyMarkContentfulIntegrationTests: XCTestCase {
 
     }
 
-    func testCodeBlockDoesNotContainChildMarkDownItems(){
+    func testCodeBlockDoesNotContainChildMarkDownItems() {
         //Arrange
         let markDownString = "```[Link](http://www.google.com)**bold** and *italic* ***Bold italic*** ***~~bold italic strikethrough~~***```"
 
@@ -121,7 +121,7 @@ class MarkyMarkContentfulIntegrationTests: XCTestCase {
         XCTAssert(markDownItems[0].markDownItems == nil)
     }
 
-    func testInlineCodeBlockDoesNotContainChildMarkDownItems(){
+    func testInlineCodeBlockDoesNotContainChildMarkDownItems() {
         //Arrange
         let markDownString = "Testing `Code block *italic*`"
 
@@ -134,7 +134,7 @@ class MarkyMarkContentfulIntegrationTests: XCTestCase {
         XCTAssert(markDownItems[0].markDownItems![1].markDownItems![0] is InlineTextMarkDownItem)
     }
 
-    func testHeadersAndHorizontalRuleCombinationWorks(){
+    func testHeadersAndHorizontalRuleCombinationWorks() {
         let markDownString = "# Header\n"
             + "---\n"
             + "# Second header\n"
@@ -150,8 +150,7 @@ class MarkyMarkContentfulIntegrationTests: XCTestCase {
         XCTAssert(markDownItems[2] is HeaderMarkDownItem)
     }
 
-
-    func testLinkAndImageCombinationWork(){
+    func testLinkAndImageCombinationWork() {
         //Arrange
         let markDownString = "[Link](http://www.google.com)"
             + "![Image](image.png)"
@@ -184,7 +183,7 @@ class MarkyMarkContentfulIntegrationTests: XCTestCase {
 
         // This is an example of a performance test case.
         self.measure {
-            let _ = self.sut.parseMarkDown(markDownString)
+            _ = self.sut.parseMarkDown(markDownString)
         }
     }
 

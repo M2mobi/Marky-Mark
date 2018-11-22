@@ -8,9 +8,9 @@
 
 import Foundation
 
-class AlphabeticListAttributedStringLayoutBlockBuilder : ListAttributedStringLayoutBlockBuilder {
-    
-    //MARK: LayoutBuilder
+class AlphabeticListAttributedStringLayoutBlockBuilder: ListAttributedStringLayoutBlockBuilder {
+
+    // MARK: LayoutBuilder
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return AlphabeticallyOrderedMarkDownItem.self
     }

@@ -1,15 +1,15 @@
-        //
+//
 //  Created by Jim van Zummeren on 04/05/16.
 //  Copyright © 2016 M2mobi. All rights reserved.
 //
 
 import Foundation
 
-open class CodeBlockRule: Rule  {
+open class CodeBlockRule: Rule {
 
     public init() {}
 
-    var numberOfLines:Int = 0
+    var numberOfLines: Int = 0
 
     /// Example: ```Code block```
 
@@ -17,7 +17,7 @@ open class CodeBlockRule: Rule  {
     var expressionEndFirstLine = NSRegularExpression.expressionWithPattern("(?<!^)(\\`{3})$")
     var expressionEnd = NSRegularExpression.expressionWithPattern("(\\`{3})$")
 
-    open func recognizesLines(_ lines:[String]) -> Bool {
+    open func recognizesLines(_ lines: [String]) -> Bool {
         if !expressionStart.hasMatchesInString(lines.first) {
             return false
         }
@@ -32,7 +32,7 @@ open class CodeBlockRule: Rule  {
                     return true
                 }
             } else {
-                if expressionEnd.hasMatchesInString(line){
+                if expressionEnd.hasMatchesInString(line) {
                     return true
                 }
             }
@@ -45,9 +45,9 @@ open class CodeBlockRule: Rule  {
         return numberOfLines
     }
 
-    //MARK: Rule
+    // MARK: Rule
 
-    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         var content = lines.joined(separator: "\n")
 
         content = content.replacingOccurrences(of: "\n```", with: "")

@@ -8,8 +8,8 @@
 
 import Foundation
 
-class ImageAttributedStringBlockBuilder : InlineImageAttributedStringBlockBuilder {
-    
+class ImageAttributedStringBlockBuilder: InlineImageAttributedStringBlockBuilder {
+
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return ImageBlockMarkDownItem.self
     }

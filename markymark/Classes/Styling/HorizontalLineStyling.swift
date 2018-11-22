@@ -8,7 +8,7 @@ import UIKit
 
 public struct HorizontalLineStyling: ItemStyling, LineWidthStylingRule, BackgroundStylingRule, ContentInsetStylingRule {
 
-    public var parent : ItemStyling? = nil
+    public var parent: ItemStyling?
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
@@ -18,8 +18,8 @@ public struct HorizontalLineStyling: ItemStyling, LineWidthStylingRule, Backgrou
     public var backgroundColor: UIColor? = UIColor.gray
     public var lineWidth: CGFloat = 0.5
 
-    public var contentInsets = UIEdgeInsets(top:   5, left:  0, bottom: 5, right: 0)
+    public var contentInsets = UIEdgeInsets(top: 5, left: 0, bottom: 5, right: 0)
 
-    public init(){}
+    public init() {}
 
 }

@@ -8,13 +8,13 @@ import UIKit
 
 class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return QuoteMarkDownItem.self
     }
 
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let label = AttributedInteractiveLabel()
         label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
 
@@ -22,7 +22,7 @@ class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
             label.urlOpener = urlOpener
         }
 
-        let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
+        let spacing: UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: label, spacing: spacing)
     }
 }

@@ -5,9 +5,9 @@
 
 import Foundation
 
-public protocol ItalicStylingRule : ItemStyling {
-    
-    var isItalic : Bool { get }
+public protocol ItalicStylingRule: ItemStyling {
+
+    var isItalic: Bool { get }
 }
 
 extension ItemStyling {

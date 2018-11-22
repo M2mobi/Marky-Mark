@@ -12,7 +12,7 @@ public protocol Styling {
 
 extension Styling {
 
-    func stylingForMarkownItem(_ item : MarkDownItem) -> ItemStyling {
+    func stylingForMarkownItem(_ item: MarkDownItem) -> ItemStyling {
         for styling in itemStylingRules {
             if styling.isApplicableOn(item) {
                 return styling
@@ -25,7 +25,7 @@ extension Styling {
 
 struct EmptyItemStyling: ItemStyling {
 
-    var parent: ItemStyling? = nil
+    var parent: ItemStyling?
 
     func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
         return true

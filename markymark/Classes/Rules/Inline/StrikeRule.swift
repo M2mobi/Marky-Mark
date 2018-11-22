@@ -6,15 +6,15 @@
 import Foundation
 
 open class StrikeRule: InlineRegexRule {
-    
+
     public init() {}
 
     /// Example: ~~text~~
     open var expression = NSRegularExpression.expressionWithPattern("\\~{2}(.+?)\\~{2}")
 
-    //MARK: Rule
+    // MARK: Rule
 
-    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 1)
         return StrikeMarkDownItem(lines: lines, content: content ?? "")
     }

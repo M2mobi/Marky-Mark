@@ -7,9 +7,9 @@ import UIKit
 
 struct StringAttributesBuilder {
 
-    func attributesForStyling(_ styling : ItemStyling) -> [NSAttributedString.Key : Any] {
+    func attributesForStyling(_ styling: ItemStyling) -> [NSAttributedString.Key: Any] {
 
-        var attributes = [NSAttributedString.Key : Any]()
+        var attributes = [NSAttributedString.Key: Any]()
 
         if let font = styling.neededFont() {
 
@@ -25,15 +25,15 @@ struct StringAttributesBuilder {
 
             attributes[.foregroundColor] = textColor
         }
-        
+
         if styling.shouldFontBeUnderlined() {
             attributes[.underlineStyle] = NSNumber(value: NSUnderlineStyle.single.rawValue as Int)
         }
-        
+
         if let backgroundColor = styling.neededBackgroundColor() {
             attributes[.backgroundColor] = backgroundColor
         }
-        
+
         let paragraphStyle = NSMutableParagraphStyle()
 
         if let lineHeight = styling.neededLineHeight() {
@@ -41,9 +41,9 @@ struct StringAttributesBuilder {
         }
 
         if let textAlignment = styling.neededTextAlignment() {
-            let alignment:NSTextAlignment
+            let alignment: NSTextAlignment
 
-            switch textAlignment{
+            switch textAlignment {
                 case .left:
                 alignment = .left
                 case .right:

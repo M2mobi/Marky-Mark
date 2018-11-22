@@ -5,9 +5,9 @@
 
 import Foundation
 
-class OrderedListViewLayoutBlockBuilder : ListViewLayoutBlockBuilder {
+class OrderedListViewLayoutBlockBuilder: ListViewLayoutBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return OrderedListMarkDownItem.self
     }

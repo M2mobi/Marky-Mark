@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol LetterSpacingStylingRule: ItemStyling {
-    var letterSpacing : CGFloat? { get }
+    var letterSpacing: CGFloat? { get }
 }
 
 extension ItemStyling {

@@ -18,7 +18,7 @@ public class TextAttachment: NSTextAttachment {
         let originalImageSize = image?.size ?? CGSize()
         let imageRatio = originalImageSize.height / originalImageSize.width
 
-        let desiredWidth = originalImageSize.height/imageRatio
+        let desiredWidth = originalImageSize.height / imageRatio
         if desiredWidth > lineFrag.width {
             imageSize.width = lineFrag.width
             imageSize.height = imageSize.width * imageRatio

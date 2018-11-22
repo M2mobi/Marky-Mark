@@ -8,15 +8,15 @@ import Foundation
 open class MarkDownConverterConfiguration<T> {
 
     /// Dictionary that contains the connection between MarkDownItems and LayoutBlockBuilder's
-    var markDownItemToLayoutBuilderMap: [String:LayoutBlockBuilder<T>] = [:]
-    
-    /// Any kind of element composer that can combine converted MarkDownItem's
-    let elementComposer : ElementComposer<T>
-    
-    /// Styling to use
-    let styling : Styling
+    var markDownItemToLayoutBuilderMap: [String: LayoutBlockBuilder<T>] = [:]
 
-    public init(elementComposer : ElementComposer<T>, styling : Styling) {
+    /// Any kind of element composer that can combine converted MarkDownItem's
+    let elementComposer: ElementComposer<T>
+
+    /// Styling to use
+    let styling: Styling
+
+    public init(elementComposer: ElementComposer<T>, styling: Styling) {
 
         self.elementComposer = elementComposer
         self.styling = styling

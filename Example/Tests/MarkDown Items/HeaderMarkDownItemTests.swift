@@ -9,18 +9,18 @@ import XCTest
 
 class HeaderMarkDownItemTests: XCTestCase {
 
-    private var sut:HeaderMarkDownItem!
+    private var sut: HeaderMarkDownItem!
 
     override func setUp() {
         super.setUp()
         sut = HeaderMarkDownItem(lines: ["Line one"], content: "Line one", level: 1)
     }
 
-    func testMarkDownItemHasCorrectText(){
+    func testMarkDownItemHasCorrectText() {
         XCTAssertEqual(sut.content, "Line one")
     }
 
-    func testMarkDownItemHasCorrectLines(){
+    func testMarkDownItemHasCorrectLines() {
         XCTAssertEqual(sut.lines, ["Line one"])
     }
 }

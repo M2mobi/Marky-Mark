@@ -5,8 +5,8 @@
 
 import Foundation
 
-public protocol BoldStylingRule : ItemStyling {
-    var isBold : Bool { get }
+public protocol BoldStylingRule: ItemStyling {
+    var isBold: Bool { get }
 }
 
 extension ItemStyling {

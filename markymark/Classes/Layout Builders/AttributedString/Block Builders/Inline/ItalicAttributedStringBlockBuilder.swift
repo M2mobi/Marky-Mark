@@ -6,8 +6,8 @@
 import UIKit
 
 class ItalicAttributedStringBlockBuilder: ContainerAttributedStringBlockBuilder {
-    
-    //MARK: LayoutBuilder
+
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return ItalicMarkDownItem.self

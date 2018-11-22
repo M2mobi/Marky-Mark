@@ -12,7 +12,7 @@ public enum TextAlignment {
 }
 
 public protocol TextAlignmentStylingRule: ItemStyling {
-    var textAlignment : TextAlignment { get }
+    var textAlignment: TextAlignment { get }
 }
 
 extension ItemStyling {

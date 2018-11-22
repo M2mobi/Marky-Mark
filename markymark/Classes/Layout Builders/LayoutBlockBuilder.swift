@@ -12,7 +12,7 @@ open class LayoutBlockBuilder<T> {
      - returns: Instance of LayoutBlockBuilder
      */
 
-    public init(){}
+    public init() {}
 
     /**
      - Builds a displayable object of type T. For example UIView or String
@@ -24,7 +24,7 @@ open class LayoutBlockBuilder<T> {
      - returns: T
      */
 
-    open func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<T>, styling : ItemStyling) -> T {
+    open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<T>, styling: ItemStyling) -> T {
         fatalError("\(String(describing: self)): Implement build")
     }
 

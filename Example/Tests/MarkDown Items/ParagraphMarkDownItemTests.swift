@@ -8,18 +8,18 @@ import XCTest
 
 class ParagraphMarkDownItemTests: XCTestCase {
 
-    private var sut:ParagraphMarkDownItem!
+    private var sut: ParagraphMarkDownItem!
 
     override func setUp() {
         super.setUp()
         sut = ParagraphMarkDownItem(lines: ["Line one"], content: "Line one")
     }
 
-    func testMarkDownItemHasCorrectText(){
+    func testMarkDownItemHasCorrectText() {
         XCTAssertEqual(sut.content, "Line one")
     }
 
-    func testMarkDownItemHasCorrectLines(){
+    func testMarkDownItemHasCorrectLines() {
         XCTAssertEqual(sut.lines, ["Line one"])
     }
 }

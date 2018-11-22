@@ -11,7 +11,7 @@ extension NSRange {
         return self.location + self.length
     }
 
-    func isDirectlyConnectTo(_ range:NSRange) -> Bool {
+    func isDirectlyConnectTo(_ range: NSRange) -> Bool {
         return (self.getLocationEnd() + 1) == range.location
     }
 }

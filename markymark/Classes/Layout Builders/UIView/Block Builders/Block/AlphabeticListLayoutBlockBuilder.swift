@@ -5,9 +5,9 @@
 
 import Foundation
 
-class AlphabeticListViewLayoutBlockBuilder : ListViewLayoutBlockBuilder {
+class AlphabeticListViewLayoutBlockBuilder: ListViewLayoutBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return AlphabeticallyOrderedMarkDownItem.self
     }

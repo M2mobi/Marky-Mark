@@ -7,8 +7,8 @@ import Foundation
 
 protocol HasIndex {
     /// Index as number
-    var index:Int? { get }
+    var index: Int? { get }
 
     /// Index as String. For example: 1. 2. 3. or A. B. C.
-    var indexCharacter:String? { get }
+    var indexCharacter: String? { get }
 }
