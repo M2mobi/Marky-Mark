@@ -25,3 +25,4 @@ class TodayViewController: UIViewController, NCWidgetProviding {
         markDownTextView?.urlOpener = ExtensionContextURLOpener(extensionContext: self.extensionContext)
     }
 }
+

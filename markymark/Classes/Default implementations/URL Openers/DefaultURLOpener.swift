@@ -15,7 +15,7 @@ public class DefaultURLOpener: URLOpener {
             assertionFailure("[Extensions cannot access Application]")
             return nil
         }
-        
+
         let shared = UIApplication.perform(sharedSelector)
         return shared?.takeUnretainedValue() as? UIApplication
     }
