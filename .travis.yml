@@ -11,3 +11,5 @@ before_install:
 script:
 - set -o pipefail && xcodebuild test -workspace Example/markymark.xcworkspace -scheme markymark-Example -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty
 # - pod lib lint
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
