@@ -15,7 +15,7 @@ public enum MarkDownConfiguration {
 @IBDesignable
 public class MarkDownTextView: UIView {
 
-    public var styling: DefaultStyling
+    public private(set) var styling: DefaultStyling
 
     @IBInspectable
     public var text: String? = nil {
