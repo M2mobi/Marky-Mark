@@ -8,7 +8,7 @@ import Foundation
 extension NSRegularExpression {
 
     public static func expressionWithPattern(_ pattern: String) -> NSRegularExpression {
-        let options: NSRegularExpression.Options  = [.caseInsensitive]
+        let options: NSRegularExpression.Options = [.caseInsensitive]
         return try! NSRegularExpression(pattern: pattern, options: options)
     }
 
