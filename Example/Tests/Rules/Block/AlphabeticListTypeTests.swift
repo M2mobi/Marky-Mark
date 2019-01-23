@@ -8,7 +8,7 @@ import XCTest
 
 class AlphabeticListTypeTests: XCTestCase {
 
-    var sut:AlphabeticListType!
+    var sut: AlphabeticListType!
 
     override func setUp() {
         super.setUp()

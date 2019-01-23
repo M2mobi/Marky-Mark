@@ -8,7 +8,7 @@ import UIKit
 
 class InlineCodeAttributedStringBlockBuilder: ContainerAttributedStringBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return InlineCodeMarkDownItem.self

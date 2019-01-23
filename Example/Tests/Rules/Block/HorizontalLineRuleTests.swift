@@ -8,7 +8,7 @@ import XCTest
 
 class HorizontalLineRuleTests: XCTestCase {
 
-    var sut:HorizontalLineRule!
+    var sut: HorizontalLineRule!
 
     override func setUp() {
         super.setUp()
@@ -28,7 +28,7 @@ class HorizontalLineRuleTests: XCTestCase {
         let markdownItem = sut.createMarkDownItemWithLines(["---"])
 
         // Assert
-        XCTAssertEqual((markdownItem as! HorizontalLineMarkDownItem).lines,["---"])
+        XCTAssertEqual((markdownItem as! HorizontalLineMarkDownItem).lines, ["---"])
     }
 
     func testRecognizesLines() {

@@ -8,10 +8,10 @@ import Foundation
 public protocol Flavor {
 
     /// List of Rules that this flavor has
-    var rules:[Rule] { get }
-    var defaultRule:Rule { get }
+    var rules: [Rule] { get }
+    var defaultRule: Rule { get }
 
     /// List of Inline rules that this flavor has
-    var inlineRules:[InlineRule] { get }
-    var defaultInlineRule:InlineRule { get }
+    var inlineRules: [InlineRule] { get }
+    var defaultInlineRule: InlineRule { get }
 }

@@ -6,8 +6,8 @@
 import Foundation
 import UIKit
 
-public protocol ContentInsetStylingRule : ItemStyling {
+public protocol ContentInsetStylingRule: ItemStyling {
 
     /// Margin from surrounding elements
-    var contentInsets : UIEdgeInsets { get }
+    var contentInsets: UIEdgeInsets { get }
 }

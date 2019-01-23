@@ -8,7 +8,7 @@ import XCTest
 
 class CodeBlockRuleTests: XCTestCase {
 
-    var sut:CodeBlockRule!
+    var sut: CodeBlockRule!
 
     override func setUp() {
         super.setUp()

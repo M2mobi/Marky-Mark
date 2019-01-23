@@ -21,7 +21,7 @@ open class ListMarkDownItem: MarkDownItem, HasListItems, HasIndex {
         guard let index = index else { return nil }
         return "\(index)"
     }
-    
+
     public required init(lines: [String], content: String) {
         fatalError("init(lines:content:) has not been implemented")
     }

@@ -8,7 +8,7 @@ import XCTest
 
 class ListRuleIntegrationTests: XCTestCase {
 
-    var sut:ListRule!
+    var sut: ListRule!
 
     override func setUp() {
         super.setUp()
@@ -40,9 +40,9 @@ class ListRuleIntegrationTests: XCTestCase {
         let markdownItem = sut.createMarkDownItemWithLines(["- Curabitur"])
         let markdownItem2 = sut.createMarkDownItemWithLines(["4. Lorem"])
         let markdownItem3 = sut.createMarkDownItemWithLines(["g. Ipsum"])
-        let combinedMarkDownItems = sut.createMarkDownItemWithLines(["- Consectetur","- Adipiscing","5. Elit"])
-        let combinedMarkDownItems2 = sut.createMarkDownItemWithLines(["A. Praesent","4. Aenean","- In Augue"])
-        let combinedMarkDownItems3 = sut.createMarkDownItemWithLines(["9. Suspendisse","- Duis","C. Aliquam"])
+        let combinedMarkDownItems = sut.createMarkDownItemWithLines(["- Consectetur", "- Adipiscing", "5. Elit"])
+        let combinedMarkDownItems2 = sut.createMarkDownItemWithLines(["A. Praesent", "4. Aenean", "- In Augue"])
+        let combinedMarkDownItems3 = sut.createMarkDownItemWithLines(["9. Suspendisse", "- Duis", "C. Aliquam"])
 
         //Assert
         XCTAssert(markdownItem is ListMarkDownItem)
@@ -69,7 +69,7 @@ class ListRuleIntegrationTests: XCTestCase {
         // Arrange
         let fakeLines = ["- Proin consequat", "- Curabitur id orci"]
         let fakeLines2 = ["- Maecenas at luctus", "1. euismod magna", "a. non felis"]
-        let fakeLines3 = ["- Aliquam eleifend", "- pharetra","  1. diam", "  2. Morbi","    a. metus", "    b. sollicitudin", "    c. dictum", "      - malesuada", "- tempor"]
+        let fakeLines3 = ["- Aliquam eleifend", "- pharetra", "  1. diam", "  2. Morbi", "    a. metus", "    b. sollicitudin", "    c. dictum", "      - malesuada", "- tempor"]
 
         // Act
         _ = sut.recognizesLines(fakeLines)

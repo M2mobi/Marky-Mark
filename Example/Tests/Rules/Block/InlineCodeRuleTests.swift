@@ -11,7 +11,7 @@ import XCTest
 
 class InlineCodeRuleTests: XCTestCase {
 
-    var sut:InlineCodeRule!
+    var sut: InlineCodeRule!
 
     override func setUp() {
         super.setUp()
@@ -39,8 +39,8 @@ class InlineCodeRuleTests: XCTestCase {
         //Act
 
         //Assert
-        XCTAssertEqual((markdownItem as! InlineCodeMarkDownItem).content,"Text")
-        XCTAssertEqual((markdownItem2 as! InlineCodeMarkDownItem).content,"Code")
+        XCTAssertEqual((markdownItem as! InlineCodeMarkDownItem).content, "Text")
+        XCTAssertEqual((markdownItem2 as! InlineCodeMarkDownItem).content, "Code")
     }
 
     func testGetAllMatches() {
@@ -52,6 +52,6 @@ class InlineCodeRuleTests: XCTestCase {
         //Assert
         XCTAssertEqual(sut.getAllMatches(["`Text`"]), [expectedMatchesRange])
         XCTAssertEqual(sut.getAllMatches(["`Text"]).count, 0)
-        XCTAssertEqual(sut.getAllMatches(["`Text` test `Text`"]), [expectedMatchesRange,expectedMatchesRange2])
+        XCTAssertEqual(sut.getAllMatches(["`Text` test `Text`"]), [expectedMatchesRange, expectedMatchesRange2])
     }
 }

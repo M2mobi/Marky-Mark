@@ -8,7 +8,7 @@ import XCTest
 
 class InlineTextRuleTests: XCTestCase {
 
-    var sut:InlineTextRule!
+    var sut: InlineTextRule!
 
     override func setUp() {
         super.setUp()

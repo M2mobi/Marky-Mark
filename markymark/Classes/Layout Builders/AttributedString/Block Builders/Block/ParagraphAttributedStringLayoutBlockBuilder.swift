@@ -10,16 +10,16 @@ import Foundation
 
 class ParagraphAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return ParagraphMarkDownItem.self
     }
 
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
         let paragraphStyling = styling as? ParagraphStyling
         let attributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
-        
+
         return attributedStringWithContentInset(attributedString, contentInset: paragraphStyling?.contentInsets ?? UIEdgeInsets())
     }
 }

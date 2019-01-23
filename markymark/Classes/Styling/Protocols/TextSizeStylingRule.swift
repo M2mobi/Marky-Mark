@@ -5,9 +5,9 @@
 
 import UIKit
 
-public protocol TextSizeStylingRule : ItemStyling {
+public protocol TextSizeStylingRule: ItemStyling {
 
-    var textSize : CGFloat { get }
+    var textSize: CGFloat { get }
 }
 
 extension ItemStyling {

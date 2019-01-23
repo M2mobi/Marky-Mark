@@ -11,18 +11,18 @@ import UIKit
  */
 
 class RemoteImageView: UIImageView {
-    
-    let file:String
-    let altText:String
-    
-    init(file:String, altText:String) {
+
+    let file: String
+    let altText: String
+
+    init(file: String, altText: String) {
         self.file = file
         self.altText = altText
-        
+
         super.init(frame: CGRect.zero)
-        
+
         contentMode = .scaleAspectFit
-        
+
         if let image = UIImage(named: file) {
             self.image = image
             self.addAspectConstraint()
@@ -33,25 +33,25 @@ class RemoteImageView: UIImageView {
         }
     }
 
-    //MARK: Private
-    
-    fileprivate func loadImageFromURL(_ url:URL) {
+    // MARK: Private
+
+    private func loadImageFromURL(_ url: URL) {
 
         DispatchQueue.global(qos: .default).async {
 
             let data = try? Data(contentsOf: url)
-            
+
             DispatchQueue.main.async(execute: {
                 if let data = data, let image = UIImage(data: data) {
                     self.image = image
 
                     self.addAspectConstraint()
                 }
-            });
+            })
         }
     }
-    
-    fileprivate func addAspectConstraint(){
+
+    private func addAspectConstraint() {
         if let image = image {
             let constraint = NSLayoutConstraint(
                 item: self,
@@ -62,13 +62,13 @@ class RemoteImageView: UIImageView {
                 multiplier: image.size.height / image.size.width,
                 constant: 0
             )
-            
+
             self.addConstraint(constraint)
         }
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
 }

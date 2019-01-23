@@ -7,7 +7,7 @@ import UIKit
 
 public struct StrikeThroughStyling: StrikeThroughStylingRule, TextColorStylingRule, BaseFontStylingRule {
 
-    public var parent : ItemStyling? = nil
+    public var parent: ItemStyling?
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
@@ -15,10 +15,10 @@ public struct StrikeThroughStyling: StrikeThroughStylingRule, TextColorStylingRu
     }
 
     public var isStrikeThrough: Bool = true
-    public var baseFont : UIFont? = nil
+    public var baseFont: UIFont?
 
-    public var textColor: UIColor? = nil
+    public var textColor: UIColor?
 
-    public init(){}
+    public init() {}
 
 }

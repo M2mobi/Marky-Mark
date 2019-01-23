@@ -8,11 +8,11 @@ import XCTest
 
 class ListRuleTests: XCTestCase {
 
-    var sut:ListRule!
+    var sut: ListRule!
 
     override func setUp() {
         super.setUp()
-        sut = ListRule(listTypes:[FakeListType()])
+        sut = ListRule(listTypes: [FakeListType()])
     }
 
     func testRecognizesLines() {
@@ -20,7 +20,6 @@ class ListRuleTests: XCTestCase {
         XCTAssertTrue(sut.recognizesLines(["  - List item"]))
         XCTAssertTrue(sut.recognizesLines(["- List item", "- Another list item"]))
         XCTAssertTrue(sut.recognizesLines(["^-^ List item"]))
-
 
         XCTAssertFalse(sut.recognizesLines(["A. List item"]))
         XCTAssertFalse(sut.recognizesLines(["1. Another list item"]))
@@ -79,17 +78,17 @@ class ListRuleTests: XCTestCase {
 
 }
 
-class FakeListType : ListType {
+class FakeListType: ListType {
 
-    var pattern:String { return "\\^\\-\\^" }
+    var pattern: String { return "\\^\\-\\^" }
 
-    var relatedListMarkDownType:ListMarkDownItem.Type { return FakeListMarkDownItem.self }
+    var relatedListMarkDownType: ListMarkDownItem.Type { return FakeListMarkDownItem.self }
 
-    func getIndex(_ stringIndex:String) -> Int? {
+    func getIndex(_ stringIndex: String) -> Int? {
         return stringIndex == "^-^" ? 1 : nil
     }
 }
 
-class FakeListMarkDownItem : ListMarkDownItem {
-    
+class FakeListMarkDownItem: ListMarkDownItem {
+
 }

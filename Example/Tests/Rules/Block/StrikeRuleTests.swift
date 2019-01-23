@@ -8,7 +8,7 @@ import XCTest
 
 class StrikeRuleTests: XCTestCase {
 
-    var sut:StrikeRule!
+    var sut: StrikeRule!
 
     override func setUp() {
         super.setUp()
@@ -34,10 +34,10 @@ class StrikeRuleTests: XCTestCase {
         let markDownItem = sut.createMarkDownItemWithLines(["~~Text~~"])
         let markDownItem2 = sut.createMarkDownItemWithLines(["~~Text with a strike~~"])
         //Act
-        
+
         //Assert
-        XCTAssertEqual((markDownItem as! StrikeMarkDownItem).content,"Text")
-        XCTAssertEqual((markDownItem2 as! StrikeMarkDownItem).content,"Text with a strike")
+        XCTAssertEqual((markDownItem as! StrikeMarkDownItem).content, "Text")
+        XCTAssertEqual((markDownItem2 as! StrikeMarkDownItem).content, "Text with a strike")
     }
 
     func testGetAllMatches() {
@@ -49,7 +49,7 @@ class StrikeRuleTests: XCTestCase {
         //Assert
         XCTAssertEqual(sut.getAllMatches(["~~Text~~"]), [expectedMatchesRange])
         XCTAssertEqual(sut.getAllMatches(["~Text~"]).count, 0)
-        XCTAssertEqual(sut.getAllMatches(["~~Text~~ test ~~Text~~"]), [expectedMatchesRange,expectedMatchesRange2])
+        XCTAssertEqual(sut.getAllMatches(["~~Text~~ test ~~Text~~"]), [expectedMatchesRange, expectedMatchesRange2])
     }
 
 }

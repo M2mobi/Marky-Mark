@@ -23,7 +23,7 @@ public class MarkDownTextView: UIView {
             render(withMarkdownText: text)
         }
     }
-    
+
     public var urlOpener: URLOpener? {
         didSet {
             (viewConfiguration as? MarkDownAsViewViewConfiguration)?.urlOpener = urlOpener
@@ -35,7 +35,7 @@ public class MarkDownTextView: UIView {
     fileprivate var markDownItems: [MarkDownItem] = []
     private let markyMark: MarkyMark
 
-    fileprivate var viewConfiguration: CanConfigureViews?
+    private var viewConfiguration: CanConfigureViews?
 
     public init(markDownConfiguration: MarkDownConfiguration = .view, flavor: Flavor = ContentfulFlavor(), styling: DefaultStyling = DefaultStyling()) {
 
@@ -116,10 +116,10 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews {
         guard let owner = owner, let markDownView = owner.markDownView else { return }
 
         let views: [String: Any] = [
-            "markDownView" : markDownView
+            "markDownView": markDownView
         ]
 
-        var constraints:[NSLayoutConstraint] = []
+        var constraints: [NSLayoutConstraint] = []
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownView]|", options: [], metrics: [:], views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]|", options: [], metrics: [:], views: views)
         owner.addConstraints(constraints)
@@ -164,10 +164,10 @@ private struct MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
         guard let owner = owner, let markDownView = owner.markDownView else { return }
 
         let views: [String: Any] = [
-            "markDownView" : markDownView
+            "markDownView": markDownView
         ]
 
-        var constraints:[NSLayoutConstraint] = []
+        var constraints: [NSLayoutConstraint] = []
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownView]|", options: [], metrics: [:], views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]|", options: [], metrics: [:], views: views)
         owner.addConstraints(constraints)

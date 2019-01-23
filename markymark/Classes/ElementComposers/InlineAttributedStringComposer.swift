@@ -15,7 +15,7 @@ class InlineAttributedStringComposer: ElementComposer<NSMutableAttributedString>
 
             result.append(element)
         }
-        
+
         return result
     }
 }

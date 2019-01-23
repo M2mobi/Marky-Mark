@@ -6,14 +6,14 @@
 import Foundation
 
 open class LinkMarkDownItem: MarkDownItem {
-    
+
     let url: String
-    
+
     public init(lines: [String], content: String, url: String) {
         self.url = url
         super.init(lines: lines, content: content)
     }
-    
+
     required public init(lines: [String], content: String) {
         fatalError("init(lines:content:) has not been implemented")
     }

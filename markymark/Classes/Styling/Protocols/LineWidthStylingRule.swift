@@ -6,6 +6,6 @@
 import Foundation
 import UIKit
 
-public protocol LineWidthStylingRule : ItemStyling {
-    var lineWidth : CGFloat { get }
+public protocol LineWidthStylingRule: ItemStyling {
+    var lineWidth: CGFloat { get }
 }

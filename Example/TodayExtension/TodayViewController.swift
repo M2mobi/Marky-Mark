@@ -11,18 +11,17 @@ import NotificationCenter
 import markymark
 
 class TodayViewController: UIViewController, NCWidgetProviding {
-    
+
     @IBOutlet var markDownTextView: MarkDownTextView?
-        
+
     override func viewDidLoad() {
         super.viewDidLoad()
         markDownTextView?.text = """
         # Some header
         A paragraph with a **link** to [Google](https://www.google.com)
-        
+
         """
-        
+
         markDownTextView?.urlOpener = ExtensionContextURLOpener(extensionContext: self.extensionContext)
     }
 }
-

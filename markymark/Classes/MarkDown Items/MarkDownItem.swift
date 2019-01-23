@@ -7,12 +7,12 @@ import Foundation
 
 open class MarkDownItem {
 
-    var lines:[String]
-    var markDownItems:[MarkDownItem]?
+    var lines: [String]
+    var markDownItems: [MarkDownItem]?
 
-    open var content:String
+    open var content: String
 
-    public required init(lines:[String], content:String) {
+    public required init(lines: [String], content: String) {
         self.content = content
         self.lines = lines
     }

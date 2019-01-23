@@ -8,18 +8,18 @@ import UIKit
 
 class ListItemView: UIView {
 
-    var bottomSpace:CGFloat = 0
+    var bottomSpace: CGFloat = 0
 
     /// List Mark down item to display
-    let listMarkDownItem:ListMarkDownItem
-    
+    let listMarkDownItem: ListMarkDownItem
+
     /// Label to display the content of the top level list item
-    var label:AttributedInteractiveLabel = AttributedInteractiveLabel()
+    var label: AttributedInteractiveLabel = AttributedInteractiveLabel()
 
     /// bullet view to display the bullet character •, 1. or a. for example(
-    var bullet:UIView?
+    var bullet: UIView?
 
-    var styling:BulletStylingRule?
+    var styling: BulletStylingRule?
 
     init(
         listMarkDownItem: ListMarkDownItem,
@@ -34,7 +34,7 @@ class ListItemView: UIView {
 
         label.markDownAttributedString = attributedText
         label.numberOfLines = 0
-        
+
         if let urlOpener = urlOpener {
             label.urlOpener = urlOpener
         }
@@ -56,18 +56,18 @@ class ListItemView: UIView {
 
         super.layoutSubviews()
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    //MARK: Private
-    
+
+    // MARK: Private
+
     /**
      Set up layout for list item with either an image or text as bullet
      */
-    
-    fileprivate func setUpLayout(){
+
+    private func setUpLayout() {
         bullet = getBulletView()
         if let bullet = bullet {
 
@@ -76,7 +76,7 @@ class ListItemView: UIView {
         }
     }
 
-    fileprivate func getBulletView() -> UIView {
+    private func getBulletView() -> UIView {
         let bulletLabel = UILabel()
 
         if let indexCharacter = listMarkDownItem.indexCharacter {
@@ -88,7 +88,7 @@ class ListItemView: UIView {
         }
 
         if let styling = styling {
-            
+
             if let font = styling.bulletFont {
                 bulletLabel.font = font
             }
@@ -99,14 +99,14 @@ class ListItemView: UIView {
 
             return bulletLabel
         }
-        
+
         return UIView()
     }
-    
-    fileprivate func getImageBulletView() -> UIView {
+
+    private func getImageBulletView() -> UIView {
         guard let styling = styling, let images = styling.bulletImages, images.count > 0 else { return UIView() }
 
-        let imageIndex = listMarkDownItem.level%images.count
+        let imageIndex = listMarkDownItem.level % images.count
 
         let bulletImageView = UIImageView(image: images[imageIndex])
         bulletImageView.contentMode = .center
@@ -114,7 +114,7 @@ class ListItemView: UIView {
 
     }
 
-    override var intrinsicContentSize : CGSize {
+    override var intrinsicContentSize: CGSize {
         return CGSize(width: 0, height: self.label.frame.size.height + bottomSpace)
     }
 

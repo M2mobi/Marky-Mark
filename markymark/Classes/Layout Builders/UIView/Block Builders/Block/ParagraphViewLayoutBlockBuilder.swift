@@ -7,13 +7,13 @@ import UIKit
 
 class ParagraphViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return ParagraphMarkDownItem.self
     }
 
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let label = AttributedInteractiveLabel()
         label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
 
@@ -21,7 +21,7 @@ class ParagraphViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuil
             label.urlOpener = urlOpener
         }
 
-        let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
+        let spacing: UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: label, spacing: spacing)
     }
 }

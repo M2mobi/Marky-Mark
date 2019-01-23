@@ -11,14 +11,14 @@ import XCTest
 
 class MarkDownLinesTests: XCTestCase {
 
-    var sut:MarkDownLines!
+    var sut: MarkDownLines!
 
     override func setUp() {
         super.setUp()
-        sut = MarkDownLines("Line one\nLine Two\nLineThree");
+        sut = MarkDownLines("Line one\nLine Two\nLineThree")
     }
 
-    func testNumberOfLinesReturnsCorrectAmount(){
+    func testNumberOfLinesReturnsCorrectAmount() {
         //Arrange
         let expectedNumberOfLines = 3
 
@@ -34,7 +34,7 @@ class MarkDownLinesTests: XCTestCase {
         XCTAssertEqual(sut.isEmpty(), true)
     }
 
-    func testIsEmptyReturnsFalseWhenNotEmpty(){
+    func testIsEmptyReturnsFalseWhenNotEmpty() {
         //Arrange
         sut.lines = ["Text"]
 
@@ -43,14 +43,14 @@ class MarkDownLinesTests: XCTestCase {
     }
 }
 
-private class MockRule : Rule {
+private class MockRule: Rule {
 
-    func recognizesLines(_ lines:[String]) -> Bool {
+    func recognizesLines(_ lines: [String]) -> Bool {
         return true
     }
 
-    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
-        return MockMarkDownItem(lines:lines, content: lines.first ?? "")
+    func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
+        return MockMarkDownItem(lines: lines, content: lines.first ?? "")
     }
 
     func linesConsumed() -> Int {
@@ -58,6 +58,6 @@ private class MockRule : Rule {
     }
 }
 
-private class MockMarkDownItem : MarkDownItem {
+private class MockMarkDownItem: MarkDownItem {
 
 }

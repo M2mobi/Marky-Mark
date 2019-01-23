@@ -13,7 +13,7 @@ open class HorizontalLineRule: RegExRule {
 
     open var expression = NSRegularExpression.expressionWithPattern("(^\\-{3,})$")
 
-    //MARK: Rule
+    // MARK: Rule
 
     open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         return HorizontalLineMarkDownItem(lines: lines, content: "")

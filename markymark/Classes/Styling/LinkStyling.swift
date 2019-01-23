@@ -7,21 +7,21 @@ import Foundation
 import UIKit
 
 public struct LinkStyling: ItemStyling, TextColorStylingRule, UnderlineStylingRule, BoldStylingRule, ItalicStylingRule, BaseFontStylingRule {
-    
-    public var parent : ItemStyling? = nil
-    
+
+    public var parent: ItemStyling?
+
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
-        
+
         return markDownItem is LinkMarkDownItem
     }
 
     public var textColor: UIColor? = .black
-    public var baseFont : UIFont? = nil
+    public var baseFont: UIFont?
 
     public var isBold = false
     public var isItalic = false
     public var isUnderlined = true
 
-    public init(){}
+    public init() {}
 
 }

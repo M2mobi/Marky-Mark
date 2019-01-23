@@ -6,15 +6,15 @@
 import UIKit
 
 open class ItalicRule: InlineRegexRule {
-    
+
     public init() {}
 
     /// Example: *text* or _text_
     open var expression = NSRegularExpression.expressionWithPattern("(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)(.+?)(?<!\\_|\\*)(\\_{1}|\\*{1})(?!\\_|\\*)")
 
-    //MARK: Rule
+    // MARK: Rule
 
-    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 2)
         return ItalicMarkDownItem(lines: lines, content: content ?? "")
     }

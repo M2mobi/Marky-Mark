@@ -8,7 +8,7 @@ import XCTest
 
 class BoldRuleTests: XCTestCase {
 
-    var sut:BoldRule!
+    var sut: BoldRule!
 
     override func setUp() {
         super.setUp()
@@ -36,8 +36,8 @@ class BoldRuleTests: XCTestCase {
         //Act
 
         //Assert
-        XCTAssertEqual((markdownItem as! BoldMarkDownItem).content,"Text")
-        XCTAssertEqual((markdownItem2 as! BoldMarkDownItem).content,"Text that is BOLD")
+        XCTAssertEqual((markdownItem as! BoldMarkDownItem).content, "Text")
+        XCTAssertEqual((markdownItem2 as! BoldMarkDownItem).content, "Text that is BOLD")
     }
 
     func testGetAllMatches() {
@@ -49,7 +49,6 @@ class BoldRuleTests: XCTestCase {
         //Assert
         XCTAssertEqual(sut.getAllMatches(["**Text**"]), [expectedMatchesRange])
         XCTAssertEqual(sut.getAllMatches(["*Text*"]).count, 0)
-        XCTAssertEqual(sut.getAllMatches(["**Text** test **Text**"]), [expectedMatchesRange,expectedMatchesRange2])
+        XCTAssertEqual(sut.getAllMatches(["**Text** test **Text**"]), [expectedMatchesRange, expectedMatchesRange2])
     }
 }
-

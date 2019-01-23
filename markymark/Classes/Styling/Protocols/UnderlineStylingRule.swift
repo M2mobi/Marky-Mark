@@ -5,19 +5,19 @@
 
 import Foundation
 
-public protocol UnderlineStylingRule : ItemStyling {
-    var isUnderlined : Bool { get }
+public protocol UnderlineStylingRule: ItemStyling {
+    var isUnderlined: Bool { get }
 }
 
 extension ItemStyling {
-    
+
     func shouldFontBeUnderlined() -> Bool {
         for styling in stylingWithPrecedingStyling() {
             if let styling = styling as? UnderlineStylingRule {
                 return styling.isUnderlined
             }
         }
-        
+
         return false
     }
 }

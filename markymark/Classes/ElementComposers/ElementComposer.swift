@@ -14,7 +14,7 @@ open class ElementComposer<T> {
      
      - returns: merged elements
      */
-    func compose(_ elements : [T]) -> T {
+    func compose(_ elements: [T]) -> T {
         fatalError("\(String(describing: self)): Implement \(#function)")
     }
 }

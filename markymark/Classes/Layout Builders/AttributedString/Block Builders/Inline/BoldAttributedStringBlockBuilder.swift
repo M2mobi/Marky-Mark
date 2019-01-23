@@ -7,7 +7,7 @@ import UIKit
 
 class BoldAttributedStringBlockBuilder: ContainerAttributedStringBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return BoldMarkDownItem.self

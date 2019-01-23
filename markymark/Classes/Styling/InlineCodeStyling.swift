@@ -9,7 +9,7 @@ import UIKit
 
 public class InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingRule, ItalicStylingRule, BackgroundStylingRule, BaseFontStylingRule {
 
-    public var parent : ItemStyling? = nil
+    public var parent: ItemStyling?
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
 
@@ -17,11 +17,11 @@ public class InlineCodeStyling: ItemStyling, BoldStylingRule, TextColorStylingRu
     }
 
     public var textColor: UIColor? = .black
-    public var baseFont : UIFont? = nil
+    public var baseFont: UIFont?
     public var backgroundColor: UIColor? = UIColor.lightGray.withAlphaComponent(0.25)
     public var isBold = false
     public var isItalic = true
 
-    public init(){}
+    public init() {}
 
 }

@@ -5,7 +5,7 @@
 
 import Foundation
 
-open class InlineCodeMarkDownItem : MarkDownItem {
+open class InlineCodeMarkDownItem: MarkDownItem {
 
     override func allowsChildMarkDownItems() -> Bool {
         return false

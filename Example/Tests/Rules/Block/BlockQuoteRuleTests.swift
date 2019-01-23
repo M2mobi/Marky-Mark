@@ -8,7 +8,7 @@ import XCTest
 
 class BlockQuoteRuleTests: XCTestCase {
 
-    var sut:BlockQuoteRule!
+    var sut: BlockQuoteRule!
 
     override func setUp() {
         super.setUp()
@@ -29,8 +29,8 @@ class BlockQuoteRuleTests: XCTestCase {
         let markdownItem2 = sut.createMarkDownItemWithLines(["> Text"])
 
         // Assert
-        XCTAssertEqual((markdownItem as! QuoteMarkDownItem).content,"Quote")
-        XCTAssertEqual((markdownItem2 as! QuoteMarkDownItem).content,"Text")
+        XCTAssertEqual((markdownItem as! QuoteMarkDownItem).content, "Quote")
+        XCTAssertEqual((markdownItem2 as! QuoteMarkDownItem).content, "Text")
     }
 
     func testRecognizesLines() {

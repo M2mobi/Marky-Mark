@@ -6,19 +6,19 @@
 import Foundation
 import UIKit
 
-class InlineImageAttributedStringBlockBuilder : LayoutBlockBuilder<NSMutableAttributedString> {
+class InlineImageAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString> {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return ImageMarkDownItem.self
     }
 
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<NSMutableAttributedString>, styling : ItemStyling) -> NSMutableAttributedString {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
         let imageMarkDownItem = markDownItem as! ImageMarkDownItem
 
         let attachment = TextAttachment()
-        
+
         if let image = UIImage(named: imageMarkDownItem.file) {
             attachment.image = image
         } else if let url = URL(string: imageMarkDownItem.file) {
@@ -28,11 +28,11 @@ class InlineImageAttributedStringBlockBuilder : LayoutBlockBuilder<NSMutableAttr
                 attachment.image = image
             }
         }
-        
+
         if attachment.image == nil {
             return NSMutableAttributedString()
         }
-        
+
         let mutableAttributedString = NSAttributedString(attachment: attachment)
 
         return mutableAttributedString as! NSMutableAttributedString

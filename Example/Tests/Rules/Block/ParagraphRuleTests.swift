@@ -6,16 +6,16 @@
 import XCTest
 @testable import markymark
 
-class ParagraphRuleTests : XCTestCase {
+class ParagraphRuleTests: XCTestCase {
 
-    var sut:ParagraphRule!
+    var sut: ParagraphRule!
 
     override func setUp() {
         super.setUp()
         sut = ParagraphRule()
     }
 
-    func testParagraphAlwaysRecognizesLines(){
+    func testParagraphAlwaysRecognizesLines() {
         XCTAssert(sut.recognizesLines(["Text"]))
         XCTAssert(sut.recognizesLines(["    Text"]))
         XCTAssert(sut.recognizesLines(["# Text"]))

@@ -5,15 +5,15 @@
 
 import UIKit
 
-class ListView : UIView {
+class ListView: UIView {
 
-    let styling:ItemStyling
+    let styling: ItemStyling
 
-    init(styling:ItemStyling) {
+    init(styling: ItemStyling) {
         self.styling = styling
-        super.init(frame:CGRect())
+        super.init(frame: CGRect())
     }
-    
+
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -21,13 +21,13 @@ class ListView : UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
 
-        var previousView:UIView? = nil
+        var previousView: UIView?
 
         for subview in subviews {
-            
-            var y:CGFloat = 0
-            var x:CGFloat = 0
-            let width:CGFloat = frame.size.width
+
+            var y: CGFloat = 0
+            var x: CGFloat = 0
+            let width: CGFloat = frame.size.width
 
             if let previousView = previousView {
                 y = previousView.frame.origin.y + previousView.intrinsicContentSize.height
@@ -37,24 +37,24 @@ class ListView : UIView {
                 let listStyling = styling as? ListItemStylingRule
                 x = listStyling?.listIdentSpace ?? 10
             }
-            
+
             subview.frame = CGRect(x: x, y: y, width: width - x, height: subview.intrinsicContentSize.height)
 
             previousView = subview
         }
-        
+
         invalidateIntrinsicContentSize()
     }
 
-    override var intrinsicContentSize : CGSize {
+    override var intrinsicContentSize: CGSize {
 
-        var height:CGFloat = 0
+        var height: CGFloat = 0
 
         for subview in subviews {
             height = height + subview.intrinsicContentSize.height
         }
 
-        return CGSize(width:frame.size.width, height: height)
+        return CGSize(width: frame.size.width, height: height)
     }
 
 }

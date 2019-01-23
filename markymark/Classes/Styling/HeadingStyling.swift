@@ -7,15 +7,15 @@ import UIKit
 
 public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingRule, ContentInsetStylingRule, BoldStylingRule, ItalicStylingRule, UnderlineStylingRule, TextAlignmentStylingRule, CapitalizationStylingRule {
 
-    public var parent : ItemStyling? = nil
+    public var parent: ItemStyling?
 
     public func isApplicableOn(_ markDownItem: MarkDownItem) -> Bool {
         return markDownItem is HeaderMarkDownItem
     }
 
-    var level:Int = 0
+    var level: Int = 0
 
-    func configureForLevel(_ level:Int) {
+    func configureForLevel(_ level: Int) {
         self.level = level
     }
 
@@ -32,7 +32,7 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
         return fontsForLevels.elementForLevel(level)
     }
 
-    public var textColorsForLevels:[UIColor] = [
+    public var textColorsForLevels: [UIColor] = [
         .black
     ]
 
@@ -47,12 +47,12 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
     public var contentInsets: UIEdgeInsets {
         return contentInsetsForLevels.elementForLevel(level) ?? UIEdgeInsets()
     }
-    
+
     public var isBold = false
     public var isItalic = false
-    public var isUnderlined : Bool = false
+    public var isUnderlined: Bool = false
 
-    public var textAlignment:TextAlignment = .left
+    public var textAlignment: TextAlignment = .left
 
     public var capitalizationForLevels: [Capitalization?] = []
 
@@ -60,12 +60,12 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
         return capitalizationForLevels.elementForLevel(level) ?? nil
     }
 
-    public init(){}
+    public init() {}
 }
 
 private extension Array {
 
-    func elementForLevel(_ level:Int) -> Element? {
+    func elementForLevel(_ level: Int) -> Element? {
         if level <= 0 {
             return self[0]
         }

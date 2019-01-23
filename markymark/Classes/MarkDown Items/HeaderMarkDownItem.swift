@@ -5,15 +5,15 @@
 
 import Foundation
 
-open class HeaderMarkDownItem : MarkDownItem {
+open class HeaderMarkDownItem: MarkDownItem {
 
-    public let level:Int
+    public let level: Int
 
-    init(lines: [String], content: String, level:Int) {
+    init(lines: [String], content: String, level: Int) {
         self.level = level
         super.init(lines: lines, content: content)
     }
-    
+
     required public init(lines: [String], content: String) {
         fatalError("init(lines:content:) has not been implemented")
     }

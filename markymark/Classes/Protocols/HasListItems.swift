@@ -7,5 +7,5 @@ import Foundation
 
 protocol HasListItems {
     /// Array of nested list items
-    var listItems:[ListMarkDownItem]? { get set }
+    var listItems: [ListMarkDownItem]? { get set }
 }

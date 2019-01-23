@@ -5,7 +5,7 @@
 
 import Foundation
 
-public protocol InlineRule : Rule {
+public protocol InlineRule: Rule {
 
     /**
      Finds all matches in the given String
@@ -14,6 +14,6 @@ public protocol InlineRule : Rule {
 
      - returns: Array of ranges where the matches were found
      */
-    
-    func getAllMatches(_ lines:[String]) -> [NSRange]
+
+    func getAllMatches(_ lines: [String]) -> [NSRange]
 }

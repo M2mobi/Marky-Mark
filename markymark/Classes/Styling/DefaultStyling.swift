@@ -7,7 +7,7 @@ import UIKit
 
 open class DefaultStyling: Styling {
 
-    fileprivate var extraStyling: [ItemStyling] = []
+    private var extraStyling: [ItemStyling] = []
 
     public var paragraphStyling = ParagraphStyling()
     public var italicStyling = ItalicStyling()
@@ -39,7 +39,7 @@ open class DefaultStyling: Styling {
         ]
     }
 
-    public func addStyling(_ styling:ItemStyling) {
+    public func addStyling(_ styling: ItemStyling) {
         extraStyling.append(styling)
     }
 
@@ -47,5 +47,5 @@ open class DefaultStyling: Styling {
         return extraStyling + defaultStyling
     }
 
-    public init(){}
+    public init() {}
 }

@@ -8,7 +8,7 @@ import XCTest
 
 class UnOrderedListTypeTests: XCTestCase {
 
-    var sut:UnOrderedListType!
+    var sut: UnOrderedListType!
 
     override func setUp() {
         super.setUp()
@@ -17,10 +17,10 @@ class UnOrderedListTypeTests: XCTestCase {
 
     func testPattern() {
         // Arrange
-        let UnOrderedListPattern = "\\-|\\+|\\*"
+        let unOrderedListPattern = "\\-|\\+|\\*"
 
         // Assert
-        XCTAssertEqual(sut.pattern, UnOrderedListPattern)
+        XCTAssertEqual(sut.pattern, unOrderedListPattern)
     }
 
     func testGetIndex() {
@@ -33,9 +33,9 @@ class UnOrderedListTypeTests: XCTestCase {
         let expectedFailure1 = sut.getIndex("a.")
 
         //Assert
-        XCTAssertEqual(expected,nil)
-        XCTAssertEqual(expected1,nil)
-        XCTAssertEqual(expected2,nil)
+        XCTAssertEqual(expected, nil)
+        XCTAssertEqual(expected1, nil)
+        XCTAssertEqual(expected2, nil)
 
         XCTAssertNil(expectedFailure)
         XCTAssertNil(expectedFailure1)

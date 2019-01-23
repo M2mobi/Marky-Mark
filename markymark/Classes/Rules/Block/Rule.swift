@@ -15,7 +15,7 @@ public protocol Rule {
      - returns: Whether the lines conform to the expected format
      */
 
-    func recognizesLines(_ lines:[String]) -> Bool
+    func recognizesLines(_ lines: [String]) -> Bool
 
     /**
      Converts recognized lines to a Markdown Item
@@ -25,7 +25,7 @@ public protocol Rule {
      - returns: Markdown item for given lines
      */
 
-    func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem
+    func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem
 
     /**
      The number of lines of Markdown this rule requires

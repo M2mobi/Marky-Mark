@@ -6,25 +6,25 @@
 import Foundation
 import UIKit
 
-class ListViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder {
+class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
-    //MARK: LayoutBuilder
+    // MARK: LayoutBuilder
 
     override func relatedMarkDownItemType() -> MarkDownItem.Type {
         return UnorderedListMarkDownItem.self
     }
 
-    override func build(_ markDownItem:MarkDownItem, asPartOfConverter converter : MarkDownConverter<UIView>, styling : ItemStyling) -> UIView {
+    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
 
         let listView = getListView(listMarkDownItem, styling: styling)
 
-        let spacing:UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
+        let spacing: UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: listView, spacing: spacing)
     }
 
-    //MARK: Private
-    
+    // MARK: Private
+
     /**
      Loops recursively through all listItems to create
      vertically appended list of ListItemView's
@@ -34,24 +34,24 @@ class ListViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder 
      
      - returns: A view containing all list items of given markDownItem
      */
-    
-    fileprivate func getListView(_ listMarkDownItem:ListMarkDownItem, styling:ItemStyling) -> UIView {
 
-        let listView = ListView(styling:styling)
+    private func getListView(_ listMarkDownItem: ListMarkDownItem, styling: ItemStyling) -> UIView {
+
+        let listView = ListView(styling: styling)
 
         for listItem in listMarkDownItem.listItems ?? [] {
 
             let bulletStyling = styling as? BulletStylingRule
             let listStyling = styling as? ListItemStylingRule
 
-            let attributedString  = attributedStringForMarkDownItem(listItem, styling: styling)
-            let listItemView = ListItemView(listMarkDownItem: listItem, styling: bulletStyling, attributedText : attributedString)
+            let attributedString = attributedStringForMarkDownItem(listItem, styling: styling)
+            let listItemView = ListItemView(listMarkDownItem: listItem, styling: bulletStyling, attributedText: attributedString)
 
             listItemView.bottomSpace = (listStyling?.bottomListItemSpacing ?? 0)
 
             listView.addSubview(listItemView)
 
-            if let nestedListItems = listItem.listItems , nestedListItems.count > 0 {
+            if let nestedListItems = listItem.listItems, nestedListItems.count > 0 {
                 let nestedListView = getListView(listItem, styling: styling)
                 listView.addSubview(nestedListView)
 
@@ -61,5 +61,5 @@ class ListViewLayoutBlockBuilder : InlineAttributedStringViewLayoutBlockBuilder 
 
         return listView
     }
-    
+
 }

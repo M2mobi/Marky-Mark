@@ -8,9 +8,9 @@ import Foundation
 class MarkDownLines {
 
     /// Array of Markdown lines
-    var lines:[String]
+    var lines: [String]
 
-    init(_ markDown:String) {
+    init(_ markDown: String) {
         self.lines = markDown.components(separatedBy: "\n")
     }
 
@@ -20,7 +20,7 @@ class MarkDownLines {
 
      - parameter rule: Rule that recognized the markdown lines
      */
-    func removeLinesForMarkDownItem(_ markDownItem:MarkDownItem) {
+    func removeLinesForMarkDownItem(_ markDownItem: MarkDownItem) {
         for _ in 0 ..< markDownItem.lines.count {
             lines.removeFirst()
         }

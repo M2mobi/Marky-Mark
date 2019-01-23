@@ -5,7 +5,7 @@
 
 import UIKit
 
-public protocol BaseFontStylingRule : ItemStyling {
+public protocol BaseFontStylingRule: ItemStyling {
 
     var baseFont: UIFont? { get }
 }
@@ -22,7 +22,7 @@ extension ItemStyling {
     }
 
     func neededFont() -> UIFont? {
-        
+
         var font: UIFont? = neededBaseFont()
 
         if shouldFontBeBold() && shouldFontBeItalic() {
@@ -67,7 +67,7 @@ private extension UIFont {
         return nil
     }
 
-    func changeSize(_ size : CGFloat) -> UIFont {
+    func changeSize(_ size: CGFloat) -> UIFont {
         return UIFont(descriptor: self.fontDescriptor.withSize(size), size: size)
     }
 }

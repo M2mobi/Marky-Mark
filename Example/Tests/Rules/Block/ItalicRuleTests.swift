@@ -8,7 +8,7 @@ import XCTest
 
 class ItalicRuleTests: XCTestCase {
 
-    var sut:ItalicRule!
+    var sut: ItalicRule!
 
     override func setUp() {
         super.setUp()
@@ -36,8 +36,8 @@ class ItalicRuleTests: XCTestCase {
         //Act
 
         //Assert
-        XCTAssertEqual((markdownItem as! ItalicMarkDownItem).content,"Text")
-        XCTAssertEqual((markdownItem2 as! ItalicMarkDownItem).content,"Text that is Italic")
+        XCTAssertEqual((markdownItem as! ItalicMarkDownItem).content, "Text")
+        XCTAssertEqual((markdownItem2 as! ItalicMarkDownItem).content, "Text that is Italic")
     }
 
     func testGetAllMatches() {
@@ -49,6 +49,6 @@ class ItalicRuleTests: XCTestCase {
         //Assert
         XCTAssertEqual(sut.getAllMatches(["*Text*"]), [expectedMatchesRange])
         XCTAssertEqual(sut.getAllMatches(["**Text**"]).count, 0)
-        XCTAssertEqual(sut.getAllMatches(["*Text* test *Text*"]), [expectedMatchesRange,expectedMatchesRange2])
+        XCTAssertEqual(sut.getAllMatches(["*Text* test *Text*"]), [expectedMatchesRange, expectedMatchesRange2])
     }
 }

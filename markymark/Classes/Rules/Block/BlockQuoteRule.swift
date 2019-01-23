@@ -12,9 +12,9 @@ open class BlockQuoteRule: RegExRule {
     /// Example: > Quote
     open var expression = NSRegularExpression.expressionWithPattern("(^>{1,}) (.*?)$")
 
-    //MARK: Rule
+    // MARK: Rule
 
-    open func createMarkDownItemWithLines(_ lines:[String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         let content = lines.first?.subStringWithExpression(expression, ofGroup: 2)
         return QuoteMarkDownItem(lines: lines, content: content ?? "")
     }

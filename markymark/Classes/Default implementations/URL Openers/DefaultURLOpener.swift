@@ -8,7 +8,7 @@
 import Foundation
 
 public class DefaultURLOpener: URLOpener {
-    
+
     private var sharedApplication: UIApplication? {
         let sharedSelector = NSSelectorFromString("sharedApplication")
         guard UIApplication.responds(to: sharedSelector) else {
@@ -19,7 +19,7 @@ public class DefaultURLOpener: URLOpener {
         let shared = UIApplication.perform(sharedSelector)
         return shared?.takeUnretainedValue() as? UIApplication
     }
-    
+
     public func open(url: URL) {
         _ = sharedApplication?.openURL(url)
     }

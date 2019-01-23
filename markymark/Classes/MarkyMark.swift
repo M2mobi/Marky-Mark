@@ -8,25 +8,25 @@ import Foundation
 open class MarkyMark {
 
     /// Mark down flavor to use for parsing markdown
-    var flavor:Flavor?
+    var flavor: Flavor?
 
     /// Array of rules to apply on top of the rules of the Flavor
-    var additionalRules:[Rule] = []
+    var additionalRules: [Rule] = []
 
     /// Default rule to use if no other rule can be applied
-    var defaultRule:Rule?
+    var defaultRule: Rule?
 
     /// Default inline rule to use if no other rule can be applied
-    var defaultInlineRule:InlineRule?
+    var defaultInlineRule: InlineRule?
 
-    var inlineMarkDownItemFactory:InlineMarkDownItemFactory {
+    var inlineMarkDownItemFactory: InlineMarkDownItemFactory {
         return InlineMarkDownItemFactory(inlineRules: allInlineRules(), defaultRule: getDefaultInlineRule()!)
     }
 
-    var listRules:[ListRule] {
+    var listRules: [ListRule] {
         return allRules().compactMap { $0 as? ListRule }
     }
-    var listMarkdownItemFactory:ListMarkDownItemFactory = ListMarkDownItemFactory()
+    var listMarkdownItemFactory: ListMarkDownItemFactory = ListMarkDownItemFactory()
 
     /**
      Initializer for building used for configuring MarkyMark
@@ -35,7 +35,7 @@ open class MarkyMark {
      - returns: MarkyMark
      */
 
-    public init(build:(MarkyMark) -> Void) {
+    public init(build: (MarkyMark) -> Void) {
         build(self)
 
         if getDefaultRule() == nil {
@@ -53,7 +53,7 @@ open class MarkyMark {
      - parameter rule: The fallback markdown rule
      */
 
-    open func setDefaultRule(_ rule:Rule) {
+    open func setDefaultRule(_ rule: Rule) {
         self.defaultRule = rule
     }
 
@@ -61,7 +61,7 @@ open class MarkyMark {
      Retrieves the default rule either by looking at the default rule in the flavor
      Or by the default rule that has been set manually
     */
-    
+
     open func getDefaultRule() -> Rule? {
         if let defaultRule = defaultRule {
             return defaultRule
@@ -76,8 +76,8 @@ open class MarkyMark {
      
      - parameter rule: The fallback markdown rule
      */
-    
-    open func setDefaultInlineRule(_ rule:InlineRule) {
+
+    open func setDefaultInlineRule(_ rule: InlineRule) {
         self.defaultInlineRule = rule
     }
 
@@ -85,7 +85,7 @@ open class MarkyMark {
      Retrieves the default inline rule either by looking at the default rule in the flavor
      Or by the default rule that has been set manually
      */
-    
+
     open func getDefaultInlineRule() -> InlineRule? {
         if let defaultInlineRule = defaultInlineRule {
             return defaultInlineRule
@@ -99,8 +99,8 @@ open class MarkyMark {
 
      - parameter rule: Rule that can recoginize markdown syntax
      */
-    
-    open func addRule(_ rule:Rule) {
+
+    open func addRule(_ rule: Rule) {
         additionalRules.append(rule)
     }
 
@@ -111,7 +111,7 @@ open class MarkyMark {
      - parameter flavor: Mark Down Flavor to use for parsing Markdown
      */
 
-    open func setFlavor(_ flavor:Flavor) {
+    open func setFlavor(_ flavor: Flavor) {
         self.flavor = flavor
     }
 
@@ -123,18 +123,18 @@ open class MarkyMark {
      - returns: Array of MarkDownItem created by the given Rules
      */
 
-    open func parseMarkDown(_ markDown:String) -> [MarkDownItem] {
+    open func parseMarkDown(_ markDown: String) -> [MarkDownItem] {
 
         let markDownLines = MarkDownLines(markDown)
-        var markDownItems:[MarkDownItem] = []
-        
+        var markDownItems: [MarkDownItem] = []
+
         while !markDownLines.isEmpty() {
             let lines = markDownLines.lines
             let rule = getRuleForLines(lines)
 
-            let linesForRule:[String] = Array(lines[0..<rule.linesConsumed()])
+            let linesForRule: [String] = Array(lines[0..<rule.linesConsumed()])
 
-            let markDownItem:MarkDownItem
+            let markDownItem: MarkDownItem
 
             if let rule = rule as? ListRule {
                 markDownItem = getListMarkDownItemWithLines(linesForRule, rule: rule)
@@ -161,7 +161,7 @@ open class MarkyMark {
      - returns: ListMarkDownItem
      */
 
-    func getListMarkDownItemWithLines(_ lines:[String], rule:ListRule) -> MarkDownItem {
+    func getListMarkDownItemWithLines(_ lines: [String], rule: ListRule) -> MarkDownItem {
 
         let markDownItem = rule.createMarkDownItemWithLines(lines)
 
@@ -177,9 +177,9 @@ open class MarkyMark {
      - parameter lines:        Lines to parse
      */
 
-    func parseListItems(_ markDownItem:MarkDownItem, lines:[String], rule:ListRule) {
+    func parseListItems(_ markDownItem: MarkDownItem, lines: [String], rule: ListRule) {
         guard let listMarkDownItem = markDownItem as? ListMarkDownItem else { return }
-        
+
         let listItems = listMarkdownItemFactory.getListItemForLines(markDownItem.lines, rule: rule)
         listMarkDownItem.listItems = listItems
 
@@ -216,7 +216,7 @@ open class MarkyMark {
      - returns: A rule that recognizes the markdown syntax of the first line(s)
      */
 
-    func getRuleForLines(_ lines:[String]) -> Rule {
+    func getRuleForLines(_ lines: [String]) -> Rule {
 
         for rule in allRules() {
 
@@ -237,7 +237,7 @@ open class MarkyMark {
 
      - returns: Flattend list of ListMarkDownItem's
      */
-    func getFlattenedListItems(_ listItem:ListMarkDownItem, flattenedListItems:[ListMarkDownItem] = []) -> [ListMarkDownItem] {
+    func getFlattenedListItems(_ listItem: ListMarkDownItem, flattenedListItems: [ListMarkDownItem] = []) -> [ListMarkDownItem] {
         var flattenedListItems = flattenedListItems
 
         for listItem in listItem.listItems ?? [] {

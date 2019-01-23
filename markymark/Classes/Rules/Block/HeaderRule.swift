@@ -7,13 +7,13 @@ import Foundation
 import UIKit
 
 open class HeaderRule: RegExRule, HasLevel {
-    
+
     public init() {}
 
     /// Example: # Header 1
     open var expression = NSRegularExpression.expressionWithPattern("^(#{1,6}) (.*?)$")
 
-    //MARK: Rule
+    // MARK: Rule
 
     open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         let line = lines.first ?? ""
@@ -23,7 +23,7 @@ open class HeaderRule: RegExRule, HasLevel {
         return HeaderMarkDownItem(lines: lines, content: content, level: level)
     }
 
-    //MARK: Private
+    // MARK: Private
 
     open func getLevel(_ string: String) -> Int {
         let range = expression.rangeInString(string, forGroup: 1)
