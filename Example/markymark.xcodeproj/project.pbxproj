@@ -43,6 +43,7 @@
 		9AD91A7A1CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD91A791CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift */; };
 		9AD91A7E1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD91A7D1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift */; };
 		9F346D66B4B31DFCC02A1889 /* Pods_markymark_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F8C9BF4F2708091B2D40877E /* Pods_markymark_Tests.framework */; };
+		F927877621F8BB9000039986 /* URLaddHTTPSIfSchemeIsMissingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F927877421F8BB5200039986 /* URLaddHTTPSIfSchemeIsMissingTests.swift */; };
 		F95E6FFA21A5E9FC006CA76E /* NotificationCenter.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F95E6FF921A5E9FC006CA76E /* NotificationCenter.framework */; };
 		F95E6FFD21A5E9FC006CA76E /* TodayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F95E6FFC21A5E9FC006CA76E /* TodayViewController.swift */; };
 		F95E700021A5E9FC006CA76E /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F95E6FFE21A5E9FC006CA76E /* MainInterface.storyboard */; };
@@ -129,6 +130,7 @@
 		A91946E3427CFFC9F3CCB54F /* Pods-TodayExtension.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayExtension.release.xcconfig"; path = "Pods/Target Support Files/Pods-TodayExtension/Pods-TodayExtension.release.xcconfig"; sourceTree = "<group>"; };
 		D63514EC31AEF8C31E855D7D /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		F8C9BF4F2708091B2D40877E /* Pods_markymark_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_markymark_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F927877421F8BB5200039986 /* URLaddHTTPSIfSchemeIsMissingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLaddHTTPSIfSchemeIsMissingTests.swift; sourceTree = "<group>"; };
 		F95E6FF821A5E9FC006CA76E /* TodayExtension.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = TodayExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		F95E6FF921A5E9FC006CA76E /* NotificationCenter.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = NotificationCenter.framework; path = System/Library/Frameworks/NotificationCenter.framework; sourceTree = SDKROOT; };
 		F95E6FFC21A5E9FC006CA76E /* TodayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodayViewController.swift; sourceTree = "<group>"; };
@@ -216,11 +218,11 @@
 		607FACE81AFB9204008FA782 /* Tests */ = {
 			isa = PBXGroup;
 			children = (
+				F927877321F8BB3D00039986 /* Helpers */,
 				629C42241CEB47F900DA57D8 /* MarkyMarkContentfulIntegrationTests.swift */,
 				9AD91A7D1CF851CF00BA3FD4 /* ListRuleIntegrationTests.swift */,
 				629C42251CEB47F900DA57D8 /* Rules */,
 				629C42291CEB47F900DA57D8 /* Converter */,
-				629C422D1CEB47F900DA57D8 /* Layout Builders */,
 				629C42301CEB47F900DA57D8 /* MarkDown Items */,
 				629C42341CEB47F900DA57D8 /* MarkDownLinesTests.swift */,
 				629C42351CEB47F900DA57D8 /* MarkyMarkTests.swift */,
@@ -290,13 +292,6 @@
 			path = Configuration;
 			sourceTree = "<group>";
 		};
-		629C422D1CEB47F900DA57D8 /* Layout Builders */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Layout Builders";
-			sourceTree = "<group>";
-		};
 		629C42301CEB47F900DA57D8 /* MarkDown Items */ = {
 			isa = PBXGroup;
 			children = (
@@ -332,6 +327,14 @@
 				9A8BE0A91CEE0416004593A0 /* StrikeRuleTests.swift */,
 			);
 			name = Inline;
+			sourceTree = "<group>";
+		};
+		F927877321F8BB3D00039986 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				F927877421F8BB5200039986 /* URLaddHTTPSIfSchemeIsMissingTests.swift */,
+			);
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		F95E6FFB21A5E9FC006CA76E /* TodayExtension */ = {
@@ -627,6 +630,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F927877621F8BB9000039986 /* URLaddHTTPSIfSchemeIsMissingTests.swift in Sources */,
 				629C424A1CEB4B3000DA57D8 /* MarkDownItemTests.swift in Sources */,
 				629C42431CEB4B3000DA57D8 /* HeaderRuleTests.swift in Sources */,
 				9A8BE0B51CEE044E004593A0 /* BlockQuoteRuleTests.swift in Sources */,
