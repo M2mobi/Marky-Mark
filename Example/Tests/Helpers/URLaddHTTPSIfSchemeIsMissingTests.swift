@@ -11,16 +11,16 @@ import XCTest
 
 class URLaddHTTPSIfSchemeIsMissingTests: XCTestCase {
 
-	func testSchemeWillNOTBeModifiedWhenPassingURLWithScheme() {
-		// Arrange
+    func testSchemeWillNOTBeModifiedWhenPassingURLWithScheme() {
+        // Arrange
         let url = URL(string: "http://www.google.com")!
 
-		// Act
+        // Act
         let modifiedURL = url.addHTTPSIfSchemeIsMissing()
 
-		// Assert
+        // Assert
         XCTAssertEqual(modifiedURL.absoluteString, "http://www.google.com")
-	}
+    }
 
     func testHTTPSSchemeWillBeAddedwhenPassingURLWithoutScheme() {
         // Arrange
