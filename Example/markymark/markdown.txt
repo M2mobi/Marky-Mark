@@ -55,7 +55,9 @@ c. Number 3
 
 # Images
 ---
-![My Apple](http://images.apple.com/apple-events/static/apple-events/october-2013/video/poster_large.jpg)
+![My Apple](https://photos5.appleinsider.com/gallery/24863-32977-180219-Logo-l.jpg)
+
+![My Apple](//photos5.appleinsider.com/gallery/24863-32977-180219-Logo-l.jpg)
 
 Inline image ![Apple logo](appleLogo) Apple logo ![Apple logo](appleLogoSmall)
 

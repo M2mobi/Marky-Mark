@@ -27,7 +27,7 @@ class RemoteImageView: UIImageView {
             self.image = image
             self.addAspectConstraint()
         } else if let url = URL(string: file) {
-            loadImageFromURL(url)
+            loadImageFromURL(url.addHTTPSIfSchemeIsMissing())
         } else {
             print("Should display alt text instead: \(altText)")
         }

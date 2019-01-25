@@ -23,7 +23,7 @@ class InlineImageAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttri
             attachment.image = image
         } else if let url = URL(string: imageMarkDownItem.file) {
             //TODO: This makes remote inline images blocking..
-            let data = try? Data(contentsOf: url)
+            let data = try? Data(contentsOf: url.addHTTPSIfSchemeIsMissing())
             if let data = data, let image = UIImage(data: data) {
                 attachment.image = image
             }
