@@ -12,7 +12,7 @@ import UIKit
 
 class ContainerView: UIView {
 
-    init(view: UIView, spacing: UIEdgeInsets? = nil) {
+    init(view: UIView, spacing: UIEdgeInsets? = nil, minHeight: CGFloat? = nil) {
         super.init(frame: CGRect())
 
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -31,7 +31,13 @@ class ContainerView: UIView {
 
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|-(left)-[view]-(right)-|", options: [], metrics: metrics, views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|-(top)-[view]-(bottom)-|", options: [], metrics: metrics, views: views)
-
+        if minHeight != nil {
+            let heightMetrics: [String: CGFloat] = [
+                "height": minHeight!
+                ]
+            constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:[view(>=height)]", options: [], metrics: heightMetrics, views: views)
+        }
+        
         addConstraints(constraints)
     }
 
