@@ -1,5 +1,5 @@
 # Marky Mark
-
+[![build status](https://api.travis-ci.org/M2Mobi/Marky-Mark.svg)](https://travis-ci.org/M2Mobi/Marky-Mark) [![codecov](https://codecov.io/gh/M2Mobi/Marky-Mark/branch/master/graph/badge.svg)](https://codecov.io/gh/M2Mobi/Marky-Mark)
 Marky Mark is a parser written in Swift that converts markdown into native views. The way it looks it highly customizable and the supported markdown syntax is easy to extend.
 
 [![Screenshot](Readme_Assets/example1-thumb.png)](Readme_Assets/example1.png)
