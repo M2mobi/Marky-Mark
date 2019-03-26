@@ -76,6 +76,10 @@ public class MarkDownTextView: UIView {
         viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
     }
 
+    public func add(rule: Rule) {
+        markyMark.addRule(rule)
+    }
+
     private func render(withMarkdownText markdownText: String?) {
         markDownView?.removeFromSuperview()
 
