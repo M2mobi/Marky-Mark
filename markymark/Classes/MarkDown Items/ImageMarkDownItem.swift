@@ -10,7 +10,7 @@ open class ImageMarkDownItem: MarkDownItem {
     public let file: String
     public let altText: String
 
-    init(lines: [String], file: String, altText: String) {
+    public init(lines: [String], file: String, altText: String) {
         self.file = file
         self.altText = altText
         super.init(lines: lines, content: altText)
