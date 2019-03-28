@@ -278,6 +278,15 @@ converter.didConvertElement = {
 }
 ```
 
+When using the MarkdownTextView
+
+```swift
+markDownTextView.onDidConvertMarkDownItemToView = {
+    markDownItem, view in
+
+}
+```
+
 ### Changing link behavior
 
 By default Markymark opens URL's using `UIApplication.shared.open(url:)`.  Markymark allows changing this behavior by passing a custom URLOpener, an object that comforms to the `URLOpener` protocol.

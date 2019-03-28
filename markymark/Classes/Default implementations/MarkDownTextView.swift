@@ -15,6 +15,8 @@ public enum MarkDownConfiguration {
 @IBDesignable
 public class MarkDownTextView: UIView {
 
+    public var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
+
     public private(set) var styling: DefaultStyling
 
     @IBInspectable
@@ -48,7 +50,13 @@ public class MarkDownTextView: UIView {
 
         switch markDownConfiguration {
         case .view:
-            viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+            let markDownToViewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+            markDownToViewConfiguration.onDidConvertMarkDownItemToView = {
+                [weak self] markDownItem, view in
+                self?.onDidConvertMarkDownItemToView?(markDownItem, view)
+            }
+
+            viewConfiguration = markDownToViewConfiguration
         case .attributedString:
             viewConfiguration = MarkDownAsAttributedStringViewConfiguration(owner: self)
         }
@@ -94,7 +102,9 @@ public class MarkDownTextView: UIView {
 }
 
 private class MarkDownAsViewViewConfiguration: CanConfigureViews {
+
     var urlOpener: URLOpener?
+    var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
 
     private weak var owner: MarkDownTextView?
 
@@ -106,6 +116,11 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews {
         guard let owner = owner else { return }
         let configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, urlOpener: urlOpener)
         let converter = MarkDownConverter(configuration: configuration)
+
+        converter.didConvertElement = {
+            [weak self] markDownItem, view in
+            self?.onDidConvertMarkDownItemToView?(markDownItem, view)
+        }
 
         owner.markDownView = converter.convert(owner.markDownItems)
         owner.markDownView?.isUserInteractionEnabled = true
