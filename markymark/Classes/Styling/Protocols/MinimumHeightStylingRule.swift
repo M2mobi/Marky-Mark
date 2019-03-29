@@ -7,5 +7,5 @@ import Foundation
 
 public protocol MinimumHeightStylingRule: ItemStyling {
     
-    var minHeight: CGFloat? { get }
+    var minimumHeight: CGFloat? { get }
 }

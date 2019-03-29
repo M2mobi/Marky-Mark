@@ -28,7 +28,7 @@ public struct ParagraphStyling: ItemStyling, TextColorStylingRule, LineHeightSty
 
     public var letterSpacing: CGFloat?
 
-    public var minHeight: CGFloat?
+    public var minimumHeight: CGFloat?
     
     public init() {}
 }
