@@ -22,7 +22,7 @@ class ParagraphViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuil
         }
 
         let spacing: UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
-        let minHeight: CGFloat? = (styling as? MinimumHeightStylingRule)?.minHeight
-        return ContainerView(view: label, spacing: spacing, minHeight:minHeight)
+        let minimumHeight: CGFloat? = (styling as? MinimumHeightStylingRule)?.minHeight
+        return ContainerView(view: label, spacing: spacing, minimumHeight: minimumHeight)
     }
 }
