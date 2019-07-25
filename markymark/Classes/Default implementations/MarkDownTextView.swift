@@ -13,7 +13,7 @@ public enum MarkDownConfiguration {
 }
 
 @IBDesignable
-public class MarkDownTextView: UIView {
+open class MarkDownTextView: UIView {
 
     public var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
 
