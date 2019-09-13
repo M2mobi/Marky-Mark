@@ -3,14 +3,15 @@ os: osx
 language: swift
 xcode_project: MarkyMark.xcodeproj
 xcode_scheme: markymark_Tests
-osx_image: xcode10
+osx_image: xcode11
 podfile: Example/Podfile
 before_install:
 - gem install cocoapods # Since Travis is not always on latest version
 - pod repo update
 - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -workspace Example/markymark.xcworkspace -scheme markymark-Example -destination 'platform=iOS Simulator,name=iPhone 8' | xcpretty
+- swift build -Xswiftc "-sdk" -Xswiftc $(xcrun --sdk iphonesimulator --show-sdk-path) -Xswiftc "-target" -Xswiftc "x86_64-apple-ios13.0-simulator"
+- set -o pipefail && xcodebuild test -workspace Example/markymark.xcworkspace -scheme markymark-Example -destination 'platform=iOS Simulator,name=iPhone 11' | xcpretty
 # - pod lib lint
 after_success:
   - bash <(curl -s https://codecov.io/bash)

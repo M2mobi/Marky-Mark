@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 
 class InlineAttributedStringLayoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString> {
 

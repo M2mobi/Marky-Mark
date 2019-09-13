@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public class DefaultURLOpener: URLOpener {
 
@@ -21,6 +22,10 @@ public class DefaultURLOpener: URLOpener {
     }
 
     public func open(url: URL) {
-        _ = sharedApplication?.openURL(url)
+        if #available(iOS 10, *) {
+          _ = sharedApplication?.open(url, options: [:], completionHandler: nil)
+        } else {
+          _ = sharedApplication?.openURL(url)
+        }
     }
 }
