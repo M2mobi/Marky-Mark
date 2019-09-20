@@ -524,7 +524,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/markymark-iOS8.3/markymark.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -533,7 +533,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-markymark_Tests/Pods-markymark_Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		02B3E7BD0E47B9FC7388EEBB /* [CP] Check Pods Manifest.lock */ = {
@@ -582,9 +582,8 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-markymark_Example/Pods-markymark_Example-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/markymark-iOS8.3/markymark.framework",
-				"${BUILT_PRODUCTS_DIR}/markymark-iOS12.1/markymark.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
@@ -592,7 +591,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-markymark_Example/Pods-markymark_Example-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F9BF708B21A74E2A000CEE49 /* SwiftLint */ = {
