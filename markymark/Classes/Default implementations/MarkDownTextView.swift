@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public enum MarkDownConfiguration {
     case view

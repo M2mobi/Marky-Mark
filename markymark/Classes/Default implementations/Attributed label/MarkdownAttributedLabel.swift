@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 @IBDesignable
 open class MarkdownAttributedLabel: AttributedInteractiveLabel {
