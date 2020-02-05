@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 
 public protocol LetterSpacingStylingRule: ItemStyling {
     var letterSpacing: CGFloat? { get }
