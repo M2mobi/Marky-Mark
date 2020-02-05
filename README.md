@@ -24,6 +24,12 @@ To integrate MarkyMark into your Xcode project using CocoaPods, specify it in yo
 pod "markymark"
 ```
 
+Alternatively, add MarkyMark to your project using Swift Package Manager using:
+
+```link
+https://github.com/M2Mobi/Marky-Mark
+```
+
 ## Simple usage
 
 ### View with default styling
