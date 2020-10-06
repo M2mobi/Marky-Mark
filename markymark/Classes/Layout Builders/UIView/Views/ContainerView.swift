@@ -10,9 +10,9 @@ import UIKit
  * Container view that allows adding margin to any given view
  */
 
-class ContainerView: UIView {
+open class ContainerView: UIView {
 
-    init(view: UIView, spacing: UIEdgeInsets? = nil, minimumHeight: CGFloat? = nil) {
+    public init(view: UIView, spacing: UIEdgeInsets? = nil, minimumHeight: CGFloat? = nil) {
         super.init(frame: CGRect())
 
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -41,7 +41,7 @@ class ContainerView: UIView {
         addConstraints(constraints)
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }

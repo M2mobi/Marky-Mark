@@ -18,7 +18,7 @@ open class MarkDownTextView: UIView {
 
     public var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
     public var onDidPreconfigureTextView:((_ textView: UITextView) -> Void)?
-    
+
     public private(set) var styling: DefaultStyling
 
     @IBInspectable
@@ -90,6 +90,14 @@ open class MarkDownTextView: UIView {
         markyMark.addRule(rule)
     }
 
+    public func addViewLayoutBlockBuilder(layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
+        (viewConfiguration as? MarkDownAsViewViewConfiguration)?.configuration.addLayoutBlockBuilder(layoutBlockBuilder)
+    }
+
+    public func addAttributedStringLayoutBlockBuilder(layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
+        (viewConfiguration as? MarkDownAsAttributedStringViewConfiguration)?.configuration.addLayoutBlockBuilder(layoutBlockBuilder)
+    }
+
     private func render(withMarkdownText markdownText: String?) {
         markDownView?.removeFromSuperview()
 
@@ -107,16 +115,17 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews {
 
     var urlOpener: URLOpener?
     var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
+    let configuration: MarkdownToViewConverterConfiguration
 
     private weak var owner: MarkDownTextView?
 
     init(owner: MarkDownTextView) {
         self.owner = owner
+        configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, urlOpener: urlOpener)
     }
 
     func configureViewProperties() {
         guard let owner = owner else { return }
-        let configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, urlOpener: urlOpener)
         let converter = MarkDownConverter(configuration: configuration)
 
         converter.didConvertElement = {
@@ -147,19 +156,20 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews {
     }
 }
 
-private struct MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
+private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
 
     private weak var owner: MarkDownTextView?
 
+    let configuration: MarkDownToAttributedStringConverterConfiguration
+
     init(owner: MarkDownTextView) {
         self.owner = owner
+        configuration = MarkDownToAttributedStringConverterConfiguration(styling: owner.styling)
     }
 
     func configureViewProperties() {
         guard let owner = owner  else { return }
-        let configuration = MarkDownToAttributedStringConverterConfiguration(styling: owner.styling)
         let converter = MarkDownConverter(configuration: configuration)
-
         let attributedString = converter.convert(owner.markDownItems)
 
         let textView = UITextView()
@@ -174,7 +184,7 @@ private struct MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
         textView.translatesAutoresizingMaskIntoConstraints = false
 
         owner.onDidPreconfigureTextView?(textView)
-        
+
         owner.markDownView = textView
     }
 

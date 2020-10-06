@@ -10,12 +10,12 @@ import UIKit
  * Image view that can retrieve images from a remote http location
  */
 
-class RemoteImageView: UIImageView {
+open class RemoteImageView: UIImageView {
 
-    let file: String
-    let altText: String
+    public let file: String
+    public let altText: String
 
-    init(file: String, altText: String) {
+    public init(file: String, altText: String) {
         self.file = file
         self.altText = altText
 
@@ -67,7 +67,7 @@ class RemoteImageView: UIImageView {
         }
     }
 
-    required init?(coder aDecoder: NSCoder) {
+    required public init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 

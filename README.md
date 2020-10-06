@@ -262,10 +262,26 @@ Add the rule to MarkyMark
 markyMark.addRule(MyCustomRule())
 ```
 
+Or when using the MarkdownTextView:
+
+```swift
+markdownTextView.add(rule: MyCustomRule())
+```
+
 Add the block builder to your layout converter
 
 ```swift
 converter.addLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
+```
+
+Or when using the MarkdownTextView use either of these options (depending on the configuration view or attrributedString):
+
+```swift
+markdownTextView.addViewLayoutBlockBuilder(layoutBlockBuilder: MyCustomLayoutBlockBuilder())
+```
+
+```swift
+markdownTextView.addAttributedStringLayoutBlockBuilder(layoutBlockBuilder: MyCustomLayoutBlockBuilder())
 ```
 
 If needed you can also add a custom styling class to the default styling
