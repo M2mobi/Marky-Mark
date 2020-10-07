@@ -274,7 +274,7 @@ Add the block builder to your layout converter
 converter.addLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
 ```
 
-Or when using the MarkdownTextView use either of these options (depending on the configuration view or attrributedString):
+Or when using the MarkdownTextView use either of these options (depending on the configuration view or attributedString):
 
 ```swift
 markdownTextView.addViewLayoutBlockBuilder(layoutBlockBuilder: MyCustomLayoutBlockBuilder())
