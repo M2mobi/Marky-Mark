@@ -90,11 +90,11 @@ open class MarkDownTextView: UIView {
         markyMark.addRule(rule)
     }
 
-    public func addViewLayoutBlockBuilder(layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
+    public func addViewLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
         (viewConfiguration as? MarkDownAsViewViewConfiguration)?.configuration.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 
-    public func addAttributedStringLayoutBlockBuilder(layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
+    public func addAttributedStringLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
         (viewConfiguration as? MarkDownAsAttributedStringViewConfiguration)?.configuration.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 

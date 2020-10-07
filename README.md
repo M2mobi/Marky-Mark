@@ -277,11 +277,11 @@ converter.addLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
 Or when using the MarkdownTextView use either of these options (depending on the configuration view or attributedString):
 
 ```swift
-markdownTextView.addViewLayoutBlockBuilder(layoutBlockBuilder: MyCustomLayoutBlockBuilder())
+markdownTextView.addViewLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
 ```
 
 ```swift
-markdownTextView.addAttributedStringLayoutBlockBuilder(layoutBlockBuilder: MyCustomLayoutBlockBuilder())
+markdownTextView.addAttributedStringLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
 ```
 
 If needed you can also add a custom styling class to the default styling
