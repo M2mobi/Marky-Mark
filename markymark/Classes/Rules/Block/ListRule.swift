@@ -20,7 +20,7 @@ open class ListRule: Rule, HasLevel {
             return $0.pattern
         }).joined(separator: "|")
 
-        expression = NSRegularExpression.expressionWithPattern("^([  ]*)(\(pattern)) (.+?)$")
+        expression = NSRegularExpression.expressionWithPattern("^([  ]*)(\(pattern)) {1,4}(.+)$")
     }
 
     // MARK: Rule
