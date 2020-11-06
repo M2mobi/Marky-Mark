@@ -17,14 +17,16 @@ class ListRuleTests: XCTestCase {
 
     func testRecognizesLines() {
         XCTAssertTrue(sut.recognizesLines(["- List item"]))
+        XCTAssertTrue(sut.recognizesLines(["-    List item"]))
         XCTAssertTrue(sut.recognizesLines(["  - List item"]))
+        XCTAssertTrue(sut.recognizesLines(["  -    List item"]))
         XCTAssertTrue(sut.recognizesLines(["- List item", "- Another list item"]))
         XCTAssertTrue(sut.recognizesLines(["^-^ List item"]))
 
         XCTAssertFalse(sut.recognizesLines(["A. List item"]))
         XCTAssertFalse(sut.recognizesLines(["1. Another list item"]))
     }
-
+   
     func testCreateMarkDownItemCreatesCorrectItem() {
         //Act
         let markdownItem = sut.createMarkDownItemWithLines(["- List item"])
@@ -44,6 +46,14 @@ class ListRuleTests: XCTestCase {
         XCTAssertEqual((markdownItem as! ListMarkDownItem).content, "List item")
         XCTAssertEqual((markdownItemFake as! FakeListMarkDownItem).content, "List item")
 
+    }
+
+    func testCreatedMarkDownItemWithMultipleWhitespacesContainsCorrectText() {
+        //Act
+        let markdownItem = sut.createMarkDownItemWithLines(["-    List item"])
+
+        //Assert
+        XCTAssertEqual((markdownItem as! ListMarkDownItem).content, "List item")
     }
 
     func testLinesConsumed() {
