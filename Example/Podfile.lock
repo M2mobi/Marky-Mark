@@ -1,5 +1,5 @@
 PODS:
-  - markymark (9.2.1)
+  - markymark (10.1.0)
   - SwiftLint (0.28.1)
 
 DEPENDENCIES:
@@ -15,9 +15,9 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  markymark: e7fa1cdb7ad51c21a46cda308ad8ef4511fa49f6
+  markymark: 3af4fd47f93b725680cf60753e37ee25939b2bad
   SwiftLint: 7f5f7de0da74a649b16616cb5246ae323489656e
 
 PODFILE CHECKSUM: e6179d5e64bda0057471cea1521ff93bf207a88b
 
-COCOAPODS: 1.9.3
+COCOAPODS: 1.10.0
