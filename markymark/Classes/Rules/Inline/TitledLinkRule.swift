@@ -3,6 +3,8 @@
 //  Copyright © 2021 M2mobi. All rights reserved.
 //
 
+import Foundation
+
 open class TitledLinkRule: InlineRegexRule {
 
     public init() {}
