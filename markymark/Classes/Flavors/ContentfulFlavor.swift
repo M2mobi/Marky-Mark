@@ -22,11 +22,11 @@ open class ContentfulFlavor: Flavor {
     open var defaultRule: Rule = ParagraphRule()
 
     open var inlineRules: [InlineRule] = [
+        LinkRule(),
         BoldRule(),
         ItalicRule(),
         StrikeRule(),
         ImageRule(),
-        LinkRule(),
         InlineCodeRule()
     ]
 

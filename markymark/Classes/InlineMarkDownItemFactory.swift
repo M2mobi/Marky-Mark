@@ -104,18 +104,15 @@ class InlineMarkDownItemFactory {
     }
 
     private func removedNestedRules(_ ruleRangePairs: [RuleRangePair]) -> [RuleRangePair] {
-
+        
         var filteredRuleRangePairs: [RuleRangePair] = []
-
         var previousRange: NSRange?
 
         for ruleRangePair in ruleRangePairs {
-
             if !ruleRangePair.range.isOverlappingWithRange(previousRange) || previousRange == nil {
                 filteredRuleRangePairs.append(ruleRangePair)
+                previousRange = ruleRangePair.range
             }
-
-            previousRange = ruleRangePair.range
         }
 
         return filteredRuleRangePairs

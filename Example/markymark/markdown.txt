@@ -68,7 +68,9 @@ Inline image ![Apple logo](appleLogo) Apple logo ![Apple logo](appleLogoSmall)
 
 ## Links
 [This is a test link](https://m2mobi.com)
-Inline links are also possible, click [here](https://m2mobi.com)
+Inline links are also possible, click [here](https://m2mobi.com).
+Do not worry about [possible markdown inside URLs](https://m2mobi.com?p_q=r_s&t_u), or [URLs with titles](https://m2mobi.com "Custom URL title").
+
 # Code
 ---
 

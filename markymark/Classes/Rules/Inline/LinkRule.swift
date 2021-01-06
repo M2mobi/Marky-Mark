@@ -9,16 +9,22 @@ open class LinkRule: InlineRegexRule {
 
     public init() {}
 
-    /// Example: [Google](http://www.google.com)
-    open var expression = NSRegularExpression.expressionWithPattern("(?<!!\\p{Z}{0,1})\\[{1}(.+?)\\]\\({1}(.+?)\\)")
+    /// Example: [Google](http://www.google.com "with custom title")
+    open var expression = NSRegularExpression.expressionWithPattern(
+        //             [  title  ] (    URL   "     optional title    "   )
+        #"(?<!!\p{Z}?)\[{1}(.+?)\]\({1}(.+?)( "[[:alnum:][:space:]^"]+")?\)"#
+    )
 
     // MARK: Rule
 
     open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
+        let url: String? = lines.first?.subStringWithExpression(expression, ofGroup: 2)
+        let content: String? = lines.first?.subStringWithExpression(expression, ofGroup: 1)
 
-        let url: String? =  lines.first?.subStringWithExpression(expression, ofGroup: 2)
-        let content: String? =  lines.first?.subStringWithExpression(expression, ofGroup: 1)
-
-        return LinkMarkDownItem(lines: lines, content: content ?? "", url: url ?? "")
+        return LinkMarkDownItem(
+            lines: lines,
+            content: content ?? "",
+            url: url ?? ""
+        )
     }
 }

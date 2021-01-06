@@ -112,13 +112,13 @@
 		9704F30C7296E4A0EA9A0087 /* Pods-markymark_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-markymark_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example.release.xcconfig"; sourceTree = "<group>"; };
 		99E80ED3FF06693617B60997 /* Pods-TodayExtension.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodayExtension.debug.xcconfig"; path = "Pods/Target Support Files/Pods-TodayExtension/Pods-TodayExtension.debug.xcconfig"; sourceTree = "<group>"; };
 		9A06FCF01CF72B4D0040251D /* AlphabeticListTypeTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AlphabeticListTypeTests.swift; sourceTree = "<group>"; };
-		9A8BE0A31CEE0416004593A0 /* BoldRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = BoldRuleTests.swift; path = Block/BoldRuleTests.swift; sourceTree = "<group>"; };
-		9A8BE0A41CEE0416004593A0 /* ImageRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ImageRuleTests.swift; path = Block/ImageRuleTests.swift; sourceTree = "<group>"; };
-		9A8BE0A51CEE0416004593A0 /* InlineCodeRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InlineCodeRuleTests.swift; path = Block/InlineCodeRuleTests.swift; sourceTree = "<group>"; };
-		9A8BE0A61CEE0416004593A0 /* InlineTextRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = InlineTextRuleTests.swift; path = Block/InlineTextRuleTests.swift; sourceTree = "<group>"; };
-		9A8BE0A71CEE0416004593A0 /* ItalicRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ItalicRuleTests.swift; path = Block/ItalicRuleTests.swift; sourceTree = "<group>"; };
-		9A8BE0A81CEE0416004593A0 /* LinkRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = LinkRuleTests.swift; path = Block/LinkRuleTests.swift; sourceTree = "<group>"; };
-		9A8BE0A91CEE0416004593A0 /* StrikeRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StrikeRuleTests.swift; path = Block/StrikeRuleTests.swift; sourceTree = "<group>"; };
+		9A8BE0A31CEE0416004593A0 /* BoldRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BoldRuleTests.swift; sourceTree = "<group>"; };
+		9A8BE0A41CEE0416004593A0 /* ImageRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageRuleTests.swift; sourceTree = "<group>"; };
+		9A8BE0A51CEE0416004593A0 /* InlineCodeRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineCodeRuleTests.swift; sourceTree = "<group>"; };
+		9A8BE0A61CEE0416004593A0 /* InlineTextRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InlineTextRuleTests.swift; sourceTree = "<group>"; };
+		9A8BE0A71CEE0416004593A0 /* ItalicRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ItalicRuleTests.swift; sourceTree = "<group>"; };
+		9A8BE0A81CEE0416004593A0 /* LinkRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LinkRuleTests.swift; sourceTree = "<group>"; };
+		9A8BE0A91CEE0416004593A0 /* StrikeRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StrikeRuleTests.swift; sourceTree = "<group>"; };
 		9A8BE0B21CEE044E004593A0 /* BlockQuoteRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockQuoteRuleTests.swift; sourceTree = "<group>"; };
 		9A8BE0B31CEE044E004593A0 /* CodeBlockRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CodeBlockRuleTests.swift; sourceTree = "<group>"; };
 		9A8BE0B71CEE0458004593A0 /* HorizontalLineRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HorizontalLineRuleTests.swift; sourceTree = "<group>"; };
@@ -168,6 +168,20 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0C813F5425A4993300F805D0 /* Inline */ = {
+			isa = PBXGroup;
+			children = (
+				9A8BE0A31CEE0416004593A0 /* BoldRuleTests.swift */,
+				9A8BE0A41CEE0416004593A0 /* ImageRuleTests.swift */,
+				9A8BE0A51CEE0416004593A0 /* InlineCodeRuleTests.swift */,
+				9A8BE0A61CEE0416004593A0 /* InlineTextRuleTests.swift */,
+				9A8BE0A71CEE0416004593A0 /* ItalicRuleTests.swift */,
+				9A8BE0A81CEE0416004593A0 /* LinkRuleTests.swift */,
+				9A8BE0A91CEE0416004593A0 /* StrikeRuleTests.swift */,
+			);
+			path = Inline;
+			sourceTree = "<group>";
+		};
 		607FACC71AFB9204008FA782 = {
 			isa = PBXGroup;
 			children = (
@@ -252,8 +266,8 @@
 		629C42251CEB47F900DA57D8 /* Rules */ = {
 			isa = PBXGroup;
 			children = (
-				9A8BE0A21CEE03EB004593A0 /* Inline */,
 				629C42261CEB47F900DA57D8 /* Block */,
+				0C813F5425A4993300F805D0 /* Inline */,
 			);
 			path = Rules;
 			sourceTree = "<group>";
@@ -313,20 +327,6 @@
 				A91946E3427CFFC9F3CCB54F /* Pods-TodayExtension.release.xcconfig */,
 			);
 			name = Pods;
-			sourceTree = "<group>";
-		};
-		9A8BE0A21CEE03EB004593A0 /* Inline */ = {
-			isa = PBXGroup;
-			children = (
-				9A8BE0A31CEE0416004593A0 /* BoldRuleTests.swift */,
-				9A8BE0A41CEE0416004593A0 /* ImageRuleTests.swift */,
-				9A8BE0A51CEE0416004593A0 /* InlineCodeRuleTests.swift */,
-				9A8BE0A61CEE0416004593A0 /* InlineTextRuleTests.swift */,
-				9A8BE0A71CEE0416004593A0 /* ItalicRuleTests.swift */,
-				9A8BE0A81CEE0416004593A0 /* LinkRuleTests.swift */,
-				9A8BE0A91CEE0416004593A0 /* StrikeRuleTests.swift */,
-			);
-			name = Inline;
 			sourceTree = "<group>";
 		};
 		F927877321F8BB3D00039986 /* Helpers */ = {
@@ -455,6 +455,7 @@
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
+				English,
 				en,
 				Base,
 			);
