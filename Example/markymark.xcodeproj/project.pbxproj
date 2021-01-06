@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		07614EA220B5565F00917A0C /* AdvancedMarkdownViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07614EA120B5565F00917A0C /* AdvancedMarkdownViewController.swift */; };
 		07EC79F51CF3A19D004239CB /* ListRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 07EC79F41CF3A19D004239CB /* ListRuleTests.swift */; };
-		0C813F5625A4996200F805D0 /* TitledLinkRuleTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0C813F5525A4996200F805D0 /* TitledLinkRuleTests.swift */; };
 		1E5D871F2AD8705B0A87B17C /* Pods_markymark_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6E8357CFD26059D0E00EA777 /* Pods_markymark_Example.framework */; };
 		37393F83B3CB200FC35A7F67 /* Pods_TodayExtension.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5770E41050B9B55F6767CB36 /* Pods_TodayExtension.framework */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
@@ -86,7 +85,6 @@
 		07614EA120B5565F00917A0C /* AdvancedMarkdownViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdvancedMarkdownViewController.swift; sourceTree = "<group>"; };
 		07EC79F41CF3A19D004239CB /* ListRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListRuleTests.swift; sourceTree = "<group>"; };
 		09F6D551E99F224FBB0ACEA1 /* Pods-markymark_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-markymark_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-markymark_Example/Pods-markymark_Example.debug.xcconfig"; sourceTree = "<group>"; };
-		0C813F5525A4996200F805D0 /* TitledLinkRuleTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitledLinkRuleTests.swift; sourceTree = "<group>"; };
 		518BCFAF9A99531082BDFBDE /* markymark.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = markymark.podspec; path = ../markymark.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		5770E41050B9B55F6767CB36 /* Pods_TodayExtension.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodayExtension.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5F43B9B7B5010DA326846718 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
@@ -180,7 +178,6 @@
 				9A8BE0A71CEE0416004593A0 /* ItalicRuleTests.swift */,
 				9A8BE0A81CEE0416004593A0 /* LinkRuleTests.swift */,
 				9A8BE0A91CEE0416004593A0 /* StrikeRuleTests.swift */,
-				0C813F5525A4996200F805D0 /* TitledLinkRuleTests.swift */,
 			);
 			path = Inline;
 			sourceTree = "<group>";
@@ -660,7 +657,6 @@
 				9A8BE0B01CEE0416004593A0 /* StrikeRuleTests.swift in Sources */,
 				9AD91A7A1CF7393A00BA3FD4 /* UnOrderedListTypeTests.swift in Sources */,
 				629C42461CEB4B3000DA57D8 /* MarkDownConverterTests.swift in Sources */,
-				0C813F5625A4996200F805D0 /* TitledLinkRuleTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
