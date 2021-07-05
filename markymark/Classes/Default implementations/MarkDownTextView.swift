@@ -91,11 +91,11 @@ open class MarkDownTextView: UIView {
     }
 
     public func addViewLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
-        (viewConfiguration as? MarkDownAsViewViewConfiguration)?.configuration.addLayoutBlockBuilder(layoutBlockBuilder)
+        (viewConfiguration as? MarkDownAsViewViewConfiguration)?.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 
     public func addAttributedStringLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
-        (viewConfiguration as? MarkDownAsAttributedStringViewConfiguration)?.configuration.addLayoutBlockBuilder(layoutBlockBuilder)
+        (viewConfiguration as? MarkDownAsAttributedStringViewConfiguration)?.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 
     private func render(withMarkdownText markdownText: String?) {
@@ -113,15 +113,25 @@ open class MarkDownTextView: UIView {
 
 private class MarkDownAsViewViewConfiguration: CanConfigureViews {
 
-    var urlOpener: URLOpener?
+    var urlOpener: URLOpener? {
+        didSet {
+            configuration.urlOpener = urlOpener
+        }
+    }
+
     var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
-    let configuration: MarkdownToViewConverterConfiguration
+
+    private let configuration: MarkdownToViewConverterConfiguration
 
     private weak var owner: MarkDownTextView?
 
     init(owner: MarkDownTextView) {
         self.owner = owner
         configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, urlOpener: urlOpener)
+    }
+
+    func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
+        configuration.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 
     func configureViewProperties() {
@@ -160,11 +170,15 @@ private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
 
     private weak var owner: MarkDownTextView?
 
-    let configuration: MarkDownToAttributedStringConverterConfiguration
+    private let configuration: MarkDownToAttributedStringConverterConfiguration
 
     init(owner: MarkDownTextView) {
         self.owner = owner
         configuration = MarkDownToAttributedStringConverterConfiguration(styling: owner.styling)
+    }
+
+    open func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
+        configuration.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 
     func configureViewProperties() {
