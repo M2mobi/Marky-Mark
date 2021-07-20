@@ -12,7 +12,7 @@ open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<
 
     public var urlOpener: URLOpener? {
         didSet {
-            markDownItemToLayoutBuilderMap.values.forEach(setUrlOpenerIfNeeded)
+            markDownItemToLayoutBuilderMap.values.forEach(setUrlOpenerIfPossible)
         }
     }
 
@@ -40,13 +40,13 @@ open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<
 
     override open func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
         super.addLayoutBlockBuilder(layoutBlockBuilder)
-        setUrlOpenerIfNeeded(layoutBlockBuilder)
+        setUrlOpenerIfPossible(layoutBlockBuilder)
     }
 }
 
 private extension MarkdownToViewConverterConfiguration {
 
-    func setUrlOpenerIfNeeded(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
+    func setUrlOpenerIfPossible(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
         (layoutBlockBuilder as? CanSetURLOpener)?.set(urlOpener: urlOpener)
     }
 }
