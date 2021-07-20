@@ -17,7 +17,8 @@ open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<
     }
 
     public init(elementComposer: ElementComposer<UIView>, styling: Styling, urlOpener: URLOpener? = nil) {
-
+        self.urlOpener = urlOpener
+        
         super.init(elementComposer: elementComposer, styling: styling)
 
         let converter = MarkDownConverter(configuration: MarkDownToInlineAttributedStringConverterConfiguration(styling: styling))
