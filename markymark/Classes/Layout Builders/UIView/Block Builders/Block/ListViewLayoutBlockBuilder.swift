@@ -45,7 +45,12 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
             let listStyling = styling as? ListItemStylingRule
 
             let attributedString = attributedStringForMarkDownItem(listItem, styling: styling)
-            let listItemView = ListItemView(listMarkDownItem: listItem, styling: bulletStyling, attributedText: attributedString)
+            let listItemView = ListItemView(
+                listMarkDownItem: listItem,
+                styling: bulletStyling,
+                attributedText: attributedString,
+                urlOpener: urlOpener
+            )
 
             listItemView.bottomSpace = (listStyling?.bottomListItemSpacing ?? 0)
 

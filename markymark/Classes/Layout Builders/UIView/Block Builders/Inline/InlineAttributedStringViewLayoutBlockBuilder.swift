@@ -7,13 +7,12 @@ import UIKit
 
 class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
 
-    internal let urlOpener: URLOpener?
+    private(set) var urlOpener: URLOpener?
 
     private let converter: MarkDownConverter<NSMutableAttributedString>
 
-    required init(converter: MarkDownConverter<NSMutableAttributedString>, urlOpener: URLOpener? = nil) {
+    required init(converter: MarkDownConverter<NSMutableAttributedString>) {
         self.converter = converter
-        self.urlOpener = urlOpener
         super.init()
     }
 
@@ -29,3 +28,11 @@ class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
         return string
     }
 }
+
+extension InlineAttributedStringViewLayoutBlockBuilder: CanSetURLOpener {
+
+    func set(urlOpener: URLOpener?) {
+        self.urlOpener = urlOpener
+    }
+}
+
