@@ -19,6 +19,7 @@ class LinkRuleTests: XCTestCase {
         XCTAssertTrue(sut.recognizesLines(["[Alt text](image.png)"]))
         XCTAssertFalse((sut.recognizesLines(["![Alt text](image.png)"])))
         XCTAssertTrue(sut.recognizesLines([#"[Alt text](image.png "some title")"#]))
+        XCTAssertTrue(sut.recognizesLines([#"[Alt text](https://www.website.com/ "some-test")"#]))
     }
 
     func test_DoesNotRecognizeLines_When_PrefixedWithExclamationMark() {
@@ -46,6 +47,18 @@ class LinkRuleTests: XCTestCase {
         // Act
         let markDownItem = sut.createMarkDownItemWithLines(["[Google](http://www.google.com)"])
         let markDownItem2 = sut.createMarkDownItemWithLines(["[Youtube](http://www.youtube.com)"])
+
+        // Assert
+        XCTAssertEqual((markDownItem as! LinkMarkDownItem).content, "Google")
+        XCTAssertEqual((markDownItem as! LinkMarkDownItem).url, "http://www.google.com")
+        XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).content, "Youtube")
+        XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).url, "http://www.youtube.com")
+    }
+
+    func testCreateMarkDownItemContainsCorrectLinkWhenUsingAriaLabel() {
+        // Act
+        let markDownItem = sut.createMarkDownItemWithLines([#"[Google](http://www.google.com "Google")"#])
+        let markDownItem2 = sut.createMarkDownItemWithLines([#"[Youtube](http://www.youtube.com "You-tube")"#])
 
         // Assert
         XCTAssertEqual((markDownItem as! LinkMarkDownItem).content, "Google")
