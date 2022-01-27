@@ -27,6 +27,7 @@ class ShortLinkRuleTests: XCTestCase {
 
     func test_WillNotRecognizesLines_When_CallingRecognizesLinesWithInvalidInput() {
         XCTAssertFalse(sut.recognizesLines(["<Google>"]))
+        XCTAssertFalse(sut.recognizesLines(["<>"]))
         XCTAssertFalse(sut.recognizesLines(["<$$>"]))
         XCTAssertFalse(sut.recognizesLines(["<hello>"]))
         XCTAssertFalse(sut.recognizesLines(["<hello .com>"]))
