@@ -15,19 +15,19 @@ open class ShortLinkRule: InlineRule {
         #"<(.+?)>"#
     )
         
-    public func getAllMatches(_ lines: [String]) -> [NSRange] {
+    open func getAllMatches(_ lines: [String]) -> [NSRange] {
         guard let line = lines.first else { return [] }
         return getResults(line).map { $0.range }
     }
 
     // MARK: Rule
 
-    public func recognizesLines(_ lines: [String]) -> Bool {
+    open func recognizesLines(_ lines: [String]) -> Bool {
         guard let line = lines.first else { return false }
         return getResults(line).count > 0
     }
 
-    public func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
         let url: String? = lines.first?.subStringWithExpression(expression, ofGroup: 1)
 
         return LinkMarkDownItem(
