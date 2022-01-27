@@ -12,7 +12,7 @@ open class LinkRule: InlineRegexRule {
     /// Example: [Google](http://www.google.com "with custom title")
     open var expression = NSRegularExpression.expressionWithPattern(
         //             [  title  ] (    URL   "     optional title    "   )
-        #"(?<!!\p{Z}?)\[{1}(.+?)\]\({1}(.+?)( "[[:alnum:][:space:]^"]+")?\)"#
+        #"(?<!!\p{Z}?)\[{1}(.+?)\]\({1}(.+?)( "[[:print:]^"]+")?\)"#
     )
 
     // MARK: Rule
