@@ -40,7 +40,7 @@ open class ShortLinkRule: InlineRule {
 
 private extension ShortLinkRule {
 
-    private func getResults(_ string: String) -> [NSTextCheckingResult] {
+    func getResults(_ string: String) -> [NSTextCheckingResult] {
         let range = NSRange(location: 0, length: string.length())
         let results = expression.matches(in: string, options: [], range: range)
         
@@ -50,8 +50,8 @@ private extension ShortLinkRule {
         
         return validResults
     }
-    
-    private func isValidURLString(_ string: String) -> Bool {
+
+     func isValidURLString(_ string: String) -> Bool {
         let detector = try! NSDataDetector(types: NSTextCheckingResult.CheckingType.link.rawValue)
         if let match = detector.firstMatch(in: string, options: [], range: NSRange(location: 0, length: string.utf16.count)) {
             // it is a link, if the match covers the whole string
