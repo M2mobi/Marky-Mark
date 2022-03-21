@@ -18,7 +18,6 @@ open class MarkDownTextView: UIView {
 
     public var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
     public var onDidConvertMarkDownItemToAttributedString:((_ markDownItem: MarkDownItem, _ view: NSMutableAttributedString) -> ())?
-
     public var onDidPreconfigureTextView:((_ textView: UITextView) -> Void)?
 
     public private(set) var styling: DefaultStyling {
@@ -104,7 +103,7 @@ open class MarkDownTextView: UIView {
 
     public func addViewLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
         guard let markDownView = markDownView as? MarkdownViewTextView else {
-            debugPrint("MarkyMark Warning: Using \(#function) on MarkDownTextView when initialized with MarkDownConfiguration.attributedString has no effect. Consider using addAttributedStringLayoutBlockBuilder instead.")
+            assertionFailure("MarkyMark Warning: Using \(#function) on MarkDownTextView when initialized with MarkDownConfiguration.attributedString has no effect. Consider using addAttributedStringLayoutBlockBuilder instead.")
             return
         }
 
@@ -113,9 +112,10 @@ open class MarkDownTextView: UIView {
 
     public func addAttributedStringLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
         guard let markDownView = markDownView as? MarkdownAttributedStringTextView else {
-            debugPrint("MarkyMark Warning: Using \(#function) on MarkDownTextView when initialized with MarkDownConfiguration.view has no effect. Consider using addViewLayoutBlockBuilder instead.")
+            assertionFailure("MarkyMark Warning: Using \(#function) on MarkDownTextView when initialized with MarkDownConfiguration.view has no effect. Consider using addViewLayoutBlockBuilder instead.")
             return
         }
+
         markDownView.addViewLayoutBlockBuilder(layoutBlockBuilder)
     }
 
