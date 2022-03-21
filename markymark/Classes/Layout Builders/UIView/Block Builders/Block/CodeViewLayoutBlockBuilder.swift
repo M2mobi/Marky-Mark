@@ -6,15 +6,15 @@
 import Foundation
 import UIKit
 
-class CodeViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
+open class CodeViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
     // MARK: LayoutBuilder
 
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return CodeBlockMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let codeBlockMarkDownItem = markDownItem as! CodeBlockMarkDownItem
 
         let label = AttributedInteractiveLabel()

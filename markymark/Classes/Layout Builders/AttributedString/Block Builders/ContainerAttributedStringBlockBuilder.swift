@@ -5,11 +5,11 @@
 
 import UIKit
 
-class ContainerAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString> {
+open class ContainerAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString> {
 
     // MARK: LayoutBlockBuilder
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling?) -> NSMutableAttributedString {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling?) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
 
         if let markDownItems = markDownItem.markDownItems {

@@ -12,7 +12,7 @@ open class ImageRule: InlineRegexRule {
     /// Example: ![Alt text](image.png)
     public var expression = NSRegularExpression.expressionWithPattern("!\\[([^]]*)\\]\\(([^]]+?)\\)")
 
-    public func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
+    open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
 
         let file: String? =  lines.first?.subStringWithExpression(expression, ofGroup: 2)
         let altText: String? =  lines.first?.subStringWithExpression(expression, ofGroup: 1)

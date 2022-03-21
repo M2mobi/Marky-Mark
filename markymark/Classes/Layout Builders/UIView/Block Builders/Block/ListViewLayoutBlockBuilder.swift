@@ -6,15 +6,15 @@
 import Foundation
 import UIKit
 
-class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
+open class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
     // MARK: LayoutBuilder
 
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return UnorderedListMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
 
         let listView = getListView(listMarkDownItem, styling: styling)

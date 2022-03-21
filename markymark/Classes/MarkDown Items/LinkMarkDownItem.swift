@@ -17,4 +17,8 @@ open class LinkMarkDownItem: MarkDownItem {
     required public init(lines: [String], content: String) {
         fatalError("init(lines:content:) has not been implemented")
     }
+
+    override open func allowsChildMarkDownItems() -> Bool {
+        false
+    }
 }

@@ -5,18 +5,18 @@
 
 import UIKit
 
-class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
+open class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView>, CanSetURLOpener {
 
     private(set) var urlOpener: URLOpener?
 
     private let converter: MarkDownConverter<NSMutableAttributedString>
 
-    required init(converter: MarkDownConverter<NSMutableAttributedString>) {
+    required public init(converter: MarkDownConverter<NSMutableAttributedString>) {
         self.converter = converter
         super.init()
     }
 
-    func attributedStringForMarkDownItem(_ markdownItem: MarkDownItem, styling: ItemStyling) -> NSMutableAttributedString {
+    open func attributedStringForMarkDownItem(_ markdownItem: MarkDownItem, styling: ItemStyling) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
 
         if let markDownItems = markdownItem.markDownItems {
@@ -27,11 +27,8 @@ class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
 
         return string
     }
-}
 
-extension InlineAttributedStringViewLayoutBlockBuilder: CanSetURLOpener {
-
-    func set(urlOpener: URLOpener?) {
+    open func set(urlOpener: URLOpener?) {
         self.urlOpener = urlOpener
     }
 }

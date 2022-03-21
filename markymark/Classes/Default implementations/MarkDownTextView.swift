@@ -17,199 +17,125 @@ public enum MarkDownConfiguration {
 open class MarkDownTextView: UIView {
 
     public var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
+    public var onDidConvertMarkDownItemToAttributedString:((_ markDownItem: MarkDownItem, _ view: NSMutableAttributedString) -> ())?
+
     public var onDidPreconfigureTextView:((_ textView: UITextView) -> Void)?
 
-    public private(set) var styling: DefaultStyling
+    public private(set) var styling: DefaultStyling {
+        get {
+            markDownView.styling
+        }
+        set {
+            markDownView.styling = newValue
+        }
+    }
 
     @IBInspectable
     public var text: String? = nil {
         didSet {
-            render(withMarkdownText: text)
+            markDownView.text = text
         }
     }
 
     public var urlOpener: URLOpener? {
         didSet {
-            (viewConfiguration as? MarkDownAsViewViewConfiguration)?.urlOpener = urlOpener
-            render(withMarkdownText: text)
-        }
-    }
-
-    fileprivate var markDownView: UIView?
-    fileprivate var markDownItems: [MarkDownItem] = []
-    private let markyMark: MarkyMark
-
-    private var viewConfiguration: CanConfigureViews?
-
-    public init(markDownConfiguration: MarkDownConfiguration = .view, flavor: Flavor = ContentfulFlavor(), styling: DefaultStyling = DefaultStyling()) {
-
-        markyMark = MarkyMark(build: {
-            $0.setFlavor(flavor)
-        })
-
-        self.styling = styling
-        super.init(frame: CGRect())
-
-        switch markDownConfiguration {
-        case .view:
-            let markDownToViewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
-            markDownToViewConfiguration.onDidConvertMarkDownItemToView = {
-                [weak self] markDownItem, view in
-                self?.onDidConvertMarkDownItemToView?(markDownItem, view)
+            guard let markDownView = markDownView as? MarkdownViewTextView else {
+                debugPrint("MarkyMark Warning: Using \(#function) on MarkDownTextView when initialized with MarkDownConfiguration.attributedString has no effect. Consider using MarkDownConfiguration.view instead.")
+                return
             }
 
-            viewConfiguration = markDownToViewConfiguration
-        case .attributedString:
-            viewConfiguration = MarkDownAsAttributedStringViewConfiguration(owner: self)
+            markDownView.urlOpener = urlOpener
         }
     }
 
-    public override init(frame: CGRect) {
-        markyMark = MarkyMark(build: {
-            $0.setFlavor(ContentfulFlavor())
-        })
+    private var markDownView: MarkDownView
 
-        styling = DefaultStyling()
-        super.init(frame: frame)
+    public init(markDownConfiguration: MarkDownConfiguration = .view, flavor: Flavor = ContentfulFlavor(), styling: DefaultStyling = DefaultStyling()) {
+        var markdownViewTextView: MarkdownViewTextView?
+        var markdownAttributedStringTextView: MarkdownAttributedStringTextView?
 
-        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
-    }
-
-    required public init?(coder aDecoder: NSCoder) {
-        markyMark = MarkyMark(build: {
-            $0.setFlavor(ContentfulFlavor())
-        })
-
-        styling = DefaultStyling()
-        super.init(coder: aDecoder)
-
-        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
-    }
-
-    public func add(rule: Rule) {
-        markyMark.addRule(rule)
-    }
-
-    public func addViewLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
-        (viewConfiguration as? MarkDownAsViewViewConfiguration)?.addLayoutBlockBuilder(layoutBlockBuilder)
-    }
-
-    public func addAttributedStringLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
-        (viewConfiguration as? MarkDownAsAttributedStringViewConfiguration)?.addLayoutBlockBuilder(layoutBlockBuilder)
-    }
-
-    private func render(withMarkdownText markdownText: String?) {
-        markDownView?.removeFromSuperview()
-
-        guard let markdownText = markdownText else {
-            markDownItems = []
-            return
+        if markDownConfiguration == .view {
+            markdownViewTextView = MarkdownViewTextView(flavor: flavor, styling: styling)
+            markDownView = markdownViewTextView!
+        } else {
+            markdownAttributedStringTextView = MarkdownAttributedStringTextView(flavor: flavor, styling: styling)
+            markDownView = markdownAttributedStringTextView!
         }
 
-        markDownItems = markyMark.parseMarkDown(markdownText)
-        viewConfiguration?.configureViews()
-    }
-}
+        super.init(frame: CGRect())
 
-private class MarkDownAsViewViewConfiguration: CanConfigureViews {
-
-    var urlOpener: URLOpener? {
-        didSet {
-            configuration.urlOpener = urlOpener
-        }
-    }
-
-    var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
-
-    private let configuration: MarkdownToViewConverterConfiguration
-
-    private weak var owner: MarkDownTextView?
-
-    init(owner: MarkDownTextView) {
-        self.owner = owner
-        configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, urlOpener: urlOpener)
-    }
-
-    func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
-        configuration.addLayoutBlockBuilder(layoutBlockBuilder)
-    }
-
-    func configureViewProperties() {
-        guard let owner = owner else { return }
-        let converter = MarkDownConverter(configuration: configuration)
-
-        converter.didConvertElement = {
+        markdownViewTextView?.onDidConvertMarkDownItemToView = {
             [weak self] markDownItem, view in
             self?.onDidConvertMarkDownItemToView?(markDownItem, view)
         }
 
-        owner.markDownView = converter.convert(owner.markDownItems)
-        owner.markDownView?.isUserInteractionEnabled = true
+        markdownAttributedStringTextView?.onDidConvertMarkDownItemToAttributedString = {
+            [weak self] markDownItem, string in
+            self?.onDidConvertMarkDownItemToAttributedString?(markDownItem, string)
+        }
+
+        markdownAttributedStringTextView?.onDidPreconfigureTextView = {
+            [weak self] in
+            self?.onDidPreconfigureTextView?($0)
+        }
+
+        configureViews()
     }
 
-    func configureViewHierarchy() {
-        guard let owner = owner, let markDownView = owner.markDownView else { return }
-        owner.addSubview(markDownView)
+    public override init(frame: CGRect) {
+        markDownView = MarkdownViewTextView(flavor: ContentfulFlavor(), styling: .init())
+        super.init(frame: frame)
+        configureViews()
     }
 
-    func configureViewLayout() {
-        guard let owner = owner, let markDownView = owner.markDownView else { return }
+    required public init?(coder aDecoder: NSCoder) {
+        markDownView = MarkdownViewTextView(flavor: ContentfulFlavor(), styling: .init())
+        super.init(coder: aDecoder)
+        configureViews()
+    }
 
-        let views: [String: Any] = [
-            "markDownView": markDownView
-        ]
+    public func add(rule: Rule) {
+        markDownView.add(rule: rule)
+    }
 
-        var constraints: [NSLayoutConstraint] = []
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownView]|", options: [], metrics: [:], views: views)
-        constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]|", options: [], metrics: [:], views: views)
-        owner.addConstraints(constraints)
+    public func add(inlineRule: InlineRule) {
+        markDownView.add(inlineRule: inlineRule)
+    }
+
+    public func addViewLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
+        guard let markDownView = markDownView as? MarkdownViewTextView else {
+            debugPrint("MarkyMark Warning: Using \(#function) on MarkDownTextView when initialized with MarkDownConfiguration.attributedString has no effect. Consider using addAttributedStringLayoutBlockBuilder instead.")
+            return
+        }
+
+        markDownView.addViewLayoutBlockBuilder(layoutBlockBuilder)
+    }
+
+    public func addAttributedStringLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
+        guard let markDownView = markDownView as? MarkdownAttributedStringTextView else {
+            debugPrint("MarkyMark Warning: Using \(#function) on MarkDownTextView when initialized with MarkDownConfiguration.view has no effect. Consider using addViewLayoutBlockBuilder instead.")
+            return
+        }
+        markDownView.addViewLayoutBlockBuilder(layoutBlockBuilder)
+    }
+
+    public func addInlineLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
+        (markDownView as? MarkdownViewTextView)?.addInlineLayoutBlockBuilder(layoutBlockBuilder)
+        (markDownView as? MarkdownAttributedStringTextView)?.addInlineLayoutBlockBuilder(layoutBlockBuilder)
     }
 }
 
-private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
-
-    private weak var owner: MarkDownTextView?
-
-    private let configuration: MarkDownToAttributedStringConverterConfiguration
-
-    init(owner: MarkDownTextView) {
-        self.owner = owner
-        configuration = MarkDownToAttributedStringConverterConfiguration(styling: owner.styling)
-    }
-
-    open func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
-        configuration.addLayoutBlockBuilder(layoutBlockBuilder)
-    }
+extension MarkDownTextView: CanConfigureViews {
 
     func configureViewProperties() {
-        guard let owner = owner  else { return }
-        let converter = MarkDownConverter(configuration: configuration)
-        let attributedString = converter.convert(owner.markDownItems)
-
-        let textView = UITextView()
-        textView.isScrollEnabled = false
-        textView.isEditable = false
-
-        textView.attributedText = attributedString
-        textView.dataDetectorTypes = [.phoneNumber, .link]
-        textView.attributedText = attributedString
-
-        textView.tintColor = owner.styling.linkStyling.textColor
-        textView.translatesAutoresizingMaskIntoConstraints = false
-
-        owner.onDidPreconfigureTextView?(textView)
-
-        owner.markDownView = textView
+        markDownView.translatesAutoresizingMaskIntoConstraints = false
     }
 
     func configureViewHierarchy() {
-        guard let owner = owner, let markDownView = owner.markDownView else { return }
-        owner.addSubview(markDownView)
+        addSubview(markDownView)
     }
 
     func configureViewLayout() {
-        guard let owner = owner, let markDownView = owner.markDownView else { return }
-
         let views: [String: Any] = [
             "markDownView": markDownView
         ]
@@ -217,6 +143,7 @@ private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
         var constraints: [NSLayoutConstraint] = []
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "H:|[markDownView]|", options: [], metrics: [:], views: views)
         constraints += NSLayoutConstraint.constraints(withVisualFormat: "V:|[markDownView]|", options: [], metrics: [:], views: views)
-        owner.addConstraints(constraints)
+        addConstraints(constraints)
     }
 }
+

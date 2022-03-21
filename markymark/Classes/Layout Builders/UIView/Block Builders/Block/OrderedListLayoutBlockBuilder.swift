@@ -5,10 +5,11 @@
 
 import Foundation
 
-class OrderedListViewLayoutBlockBuilder: ListViewLayoutBlockBuilder {
+open class OrderedListViewLayoutBlockBuilder: ListViewLayoutBlockBuilder {
 
     // MARK: LayoutBuilder
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return OrderedListMarkDownItem.self
     }
 }

@@ -6,15 +6,15 @@
 import Foundation
 import UIKit
 
-class LinkViewLayoutBlockBuilder: ContainerAttributedStringBlockBuilder {
+open class LinkViewLayoutBlockBuilder: ContainerAttributedStringBlockBuilder {
 
     // MARK: LayoutBuilder
 
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return LinkMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling?) -> NSMutableAttributedString {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling?) -> NSMutableAttributedString {
         let linkMarkDownItem = markDownItem as! LinkMarkDownItem
 
         let attributedString = super.build(markDownItem, asPartOfConverter: converter, styling: styling)
