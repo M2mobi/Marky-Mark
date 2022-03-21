@@ -33,9 +33,21 @@ https://github.com/M2Mobi/Marky-Mark
 ## Simple usage
 
 ### View with default styling
+
 ```swift
 let markDownView = MarkDownTextView()
 markDownView.text = "# Header\nParagraph"
+```
+
+MarkDownTextView can be used with two configurations, either `view` or `attributedString`. In both cases the paragraphs will be rendered as `attributedString`, but when using the `view` configuration each 'block' (each new line in the markdown text is considered a block) will be rendered as view. The `view` option is recommended for better layout and flexibility but offers slightly less performance than the `attributedString` option. The default configuration is `view`.
+
+
+```swift
+let markDownView = MarkDownTextView(markDownConfiguration: .view)
+```
+
+```swift
+let markDownView = MarkDownTextView(markDownConfiguration: .attributedString)
 ```
 
 ### View with modified styling
@@ -54,8 +66,8 @@ markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
 markDownView.text = "# Header\nParagraph"
 ```
 
-
 ## Supported tags in the Default Flavor
+
 Note: Different tags can be supported by either extending the ContentfulFlavor (default) or by implementing a class that comforms to `Flavor` and implement the required `Rule`'s
 
 ```
@@ -97,7 +109,6 @@ Code
 \```code```
 ```
 
-
 ### Customizing default style
 
 Default Styling instance
@@ -105,7 +116,9 @@ Default Styling instance
 ```swift
 var styling = DefaultStyling()
 ```
+
 #### Paragraphs (regular text)
+
 Markdown example: `Some text`
 
 ```swift
@@ -147,6 +160,7 @@ styling.headingStyling.textAlignment = .left
 ```
 
 #### linkStyling
+
 Markdown Example `[Google](http://www.google.com)`
 
 ```swift
@@ -159,6 +173,7 @@ styling.linkStyling.isUnderlined = true
 ```
 
 #### List styling
+
 Markdown Example:
 
 ```
@@ -214,6 +229,7 @@ _Please check the `DefaultStyling` class for more information_
 
 
 ## Advanced usage
+
 Advanced usage is only needed for very specific cases. Making subsets of styling, making different styling combinations, supporting different Markdown rules (syntax) or modifying certain views after that have been generated.
 
 ### Custom styling objects
@@ -250,38 +266,43 @@ MarkDownTextView(styling: CustomMarkyMarkStyling())
 ```
 
 ### Adding your own rules
+
 Adding a new rule requires three new classes of based on the following protocol:
 
-* `Rule` that can recoginizes the desired markdown syntax
+* `Rule` or `InlineRule` that can recoginizes the desired markdown syntax
 * `MarkDownItem` for your new element that will be created by your new rule
 * `LayoutBlockBuilder` that can convert your MarkDownItem to layout
 
-Add the rule to MarkyMark
-
-```swift
-markyMark.addRule(MyCustomRule())
-```
-
-Or when using the MarkdownTextView:
+To add a 'block' rule such as a Paragraph, List or Code Block:
 
 ```swift
 markdownTextView.add(rule: MyCustomRule())
 ```
 
-Add the block builder to your layout converter
+To add an 'inline' rule such as a Bold, Italic, Link:
 
 ```swift
-converter.addLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
+markdownTextView.add(inlineRule: MyCustomInlineRule())
 ```
 
-Or when using the MarkdownTextView use either of these options (depending on the configuration view or attributedString):
+Use either options to add a layout builder for a 'block' MarkDownItem created by a 'block' `Rule` (depending on the configuration view or attributedString):
+
+For view: 
 
 ```swift
 markdownTextView.addViewLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
 ```
 
+For attributedString:
+
 ```swift
 markdownTextView.addAttributedStringLayoutBlockBuilder(MyCustomLayoutBlockBuilder())
+```
+
+To add a layout builder for an inline item (MarkdownItem to attributedString) created be a `InlineRule`:
+
+```swift
+markdownTextView.addInlineLayoutBlockBuilder(MyCustomInlineLayoutBlockBuilder())
 ```
 
 If needed you can also add a custom styling class to the default styling
@@ -291,16 +312,9 @@ styling.addStyling(MyCustomStyling())
 ```
 
 ### Converter hook
-The converter has a callback method which is called every time a `MarkDownItem` is converted to layout. 
+The converter has a callback method which is called every time a `MarkDownItem` is converted to view.
 
-```swift
-converter.didConvertElement = {
-	markDownItem, view in
-	// Do something with markDownItem and / or view here
-}
-```
-
-When using the MarkdownTextView
+For view configuration: 
 
 ```swift
 markDownTextView.onDidConvertMarkDownItemToView = {
@@ -309,8 +323,19 @@ markDownTextView.onDidConvertMarkDownItemToView = {
 }
 ```
 
+or when using attributedString configuration:
+
+```swift
+markDownTextView.onDidConvertMarkDownItemToAttributedString = {
+    markDownItem, string in
+
+}
+```
+
 ### Link behavior
 By default Markymark opens URL's using `UIApplication.shared.delegate.open(_:open:options)`. links will only be openened when this method is implemented. Markymark allows changing this behavior by passing a custom URLOpener, an object that conforms to the `URLOpener` protocol.
+
+URLOpener can only be used with `view` configuration.
 
 ```swift
 let markDownView = MarkDownTextView()
