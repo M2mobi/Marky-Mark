@@ -6,15 +6,15 @@
 import Foundation
 import UIKit
 
-class ImageViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
+open class ImageViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
 
     // MARK: LayoutBuilder
 
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return ImageBlockMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let imageBlockMarkDownItem = markDownItem as! ImageBlockMarkDownItem
 
         let imageView = RemoteImageView(file: imageBlockMarkDownItem.file, altText: imageBlockMarkDownItem.altText)

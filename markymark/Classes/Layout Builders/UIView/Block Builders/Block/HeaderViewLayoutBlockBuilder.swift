@@ -5,15 +5,15 @@
 
 import UIKit
 
-class HeaderViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
+open class HeaderViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
     // MARK: LayoutBuilder
 
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return HeaderMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let headerMarkDownItem = markDownItem as! HeaderMarkDownItem
         let headerStyling = styling as? HeadingStyling
         headerStyling?.configureForLevel(headerMarkDownItem.level)

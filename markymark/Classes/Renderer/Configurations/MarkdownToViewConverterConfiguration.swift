@@ -16,12 +16,15 @@ open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<
         }
     }
 
+    private let inlineConverter: MarkDownConverterConfiguration<NSMutableAttributedString>
+
     public init(elementComposer: ElementComposer<UIView>, styling: Styling, urlOpener: URLOpener? = nil) {
         self.urlOpener = urlOpener
-        
+
+        inlineConverter = MarkDownToInlineAttributedStringConverterConfiguration(styling: styling)
         super.init(elementComposer: elementComposer, styling: styling)
 
-        let converter = MarkDownConverter(configuration: MarkDownToInlineAttributedStringConverterConfiguration(styling: styling))
+        let converter = MarkDownConverter(configuration: inlineConverter)
 
         addLayoutBlockBuilder(HeaderViewLayoutBlockBuilder(converter: converter))
         addLayoutBlockBuilder(ParagraphViewLayoutBlockBuilder(converter: converter))
@@ -41,6 +44,10 @@ open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<
     override open func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
         super.addLayoutBlockBuilder(layoutBlockBuilder)
         setUrlOpenerIfPossible(layoutBlockBuilder)
+    }
+
+    open func addInlineLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
+        inlineConverter.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 }
 

@@ -11,11 +11,14 @@ import UIKit
 
 open class MarkDownToAttributedStringConverterConfiguration: MarkDownConverterConfiguration<NSMutableAttributedString> {
 
-    public override init(elementComposer: ElementComposer<NSMutableAttributedString>, styling: Styling) {
+    private let inlineConverter: MarkDownConverterConfiguration<NSMutableAttributedString>
 
+    public override init(elementComposer: ElementComposer<NSMutableAttributedString>, styling: Styling) {
+        inlineConverter = MarkDownToInlineAttributedStringConverterConfiguration(styling: styling)
         super.init(elementComposer: elementComposer, styling: styling)
 
-        let converter = MarkDownConverter(configuration: MarkDownToInlineAttributedStringConverterConfiguration(styling: styling))
+
+        let converter = MarkDownConverter(configuration: inlineConverter)
 
         addLayoutBlockBuilder(HeaderAttributedStringLayoutBlockBuilder(converter: converter))
         addLayoutBlockBuilder(ParagraphAttributedStringLayoutBlockBuilder(converter: converter))
@@ -29,5 +32,9 @@ open class MarkDownToAttributedStringConverterConfiguration: MarkDownConverterCo
 
     public convenience init(styling: Styling) {
         self.init(elementComposer: AttributedStringComposer(), styling: styling)
+    }
+
+    open func addInlineLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<NSMutableAttributedString>) {
+        inlineConverter.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 }

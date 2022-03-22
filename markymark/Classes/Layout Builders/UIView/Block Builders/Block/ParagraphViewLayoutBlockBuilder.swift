@@ -5,15 +5,15 @@
 
 import UIKit
 
-class ParagraphViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
+open class ParagraphViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
     // MARK: LayoutBuilder
 
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return ParagraphMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let label = AttributedInteractiveLabel()
         label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
 

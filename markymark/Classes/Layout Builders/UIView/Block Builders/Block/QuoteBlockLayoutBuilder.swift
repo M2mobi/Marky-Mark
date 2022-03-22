@@ -6,15 +6,15 @@
 import Foundation
 import UIKit
 
-class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
+open class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
     // MARK: LayoutBuilder
 
-    override func relatedMarkDownItemType() -> MarkDownItem.Type {
+    override open func relatedMarkDownItemType() -> MarkDownItem.Type {
         return QuoteMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
         let label = AttributedInteractiveLabel()
         label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
 

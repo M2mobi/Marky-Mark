@@ -16,6 +16,9 @@ open class MarkyMark {
     /// Default rule to use if no other rule can be applied
     var defaultRule: Rule?
 
+    /// Array of rules to apply on top of the rules of the Flavor
+    var additionalInlineRules: [InlineRule] = []
+
     /// Default inline rule to use if no other rule can be applied
     var defaultInlineRule: InlineRule?
 
@@ -102,6 +105,16 @@ open class MarkyMark {
 
     open func addRule(_ rule: Rule) {
         additionalRules.append(rule)
+    }
+
+    /**
+     Adds a Markdown rule that will be used to recognize Markdown syntax
+
+     - parameter rule: InlineRule that can recoginize markdown syntax
+     */
+
+    open func addInlineRule(_ rule: InlineRule) {
+        additionalInlineRules.append(rule)
     }
 
     /**
@@ -205,7 +218,13 @@ open class MarkyMark {
     }
 
     func allInlineRules() -> [InlineRule] {
-        return flavor?.inlineRules ?? []
+        var rules = self.additionalInlineRules
+
+        if let flavor = flavor {
+            rules += flavor.inlineRules
+        }
+
+        return rules
     }
 
     /**

@@ -5,6 +5,6 @@
 
 import Foundation
 
-protocol CanSetURLOpener {
+public protocol CanSetURLOpener {
     func set(urlOpener: URLOpener?)
 }

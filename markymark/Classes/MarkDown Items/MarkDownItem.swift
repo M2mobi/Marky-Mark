@@ -17,7 +17,7 @@ open class MarkDownItem {
         self.lines = lines
     }
 
-    func allowsChildMarkDownItems() -> Bool {
+    open func allowsChildMarkDownItems() -> Bool {
         return true
     }
 }
