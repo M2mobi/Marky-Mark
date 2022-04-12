@@ -89,6 +89,23 @@ class LinkRuleTests: XCTestCase {
                 NSRange(location: 38, length: 45)
             ]
         )
+
+        XCTAssertEqual(
+            sut.getAllMatches([#"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com "a11y title")"#]),
+            [
+                NSRange(location: 0, length: 55),
+                NSRange(location: 61, length: 45)
+            ]
+        )
+
+        XCTAssertEqual(
+            sut.getAllMatches([#"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com "a11y title") and even more [https://www.apple.com](https://www.apple.com "Apple-aria-label")"#]),
+            [
+                NSRange(location: 0, length: 55),
+                NSRange(location: 61, length: 45),
+                NSRange(location: 121, length: 65)
+            ]
+        )
     }
 
     func test_ParsesItem_When_InputMatches() throws {
