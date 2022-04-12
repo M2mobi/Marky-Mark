@@ -20,6 +20,7 @@ class LinkRuleTests: XCTestCase {
         XCTAssertFalse((sut.recognizesLines(["![Alt text](image.png)"])))
         XCTAssertTrue(sut.recognizesLines([#"[Alt text](image.png "some title")"#]))
         XCTAssertTrue(sut.recognizesLines([#"[Alt text](https://www.website.com/ "some-test")"#]))
+        XCTAssertTrue(sut.recognizesLines([#"[Alt text](https://www.website.com/ "some"test"with"quotation"marks")"#]))
     }
 
     func test_DoesNotRecognizeLines_When_PrefixedWithExclamationMark() {
@@ -35,15 +36,7 @@ class LinkRuleTests: XCTestCase {
         XCTAssert(sut.getAllMatches(["![Google](https://www.google.com)"]).isEmpty)
     }
 
-    func testCreateMarkDownItemWithLinesCreatesCorrectItem() {
-        // Act
-        let markDownItem = sut.createMarkDownItemWithLines(["[Google](http://www.google.com)"])
-
-        // Assert
-        XCTAssert(markDownItem is LinkMarkDownItem)
-    }
-
-    func testCreateMarkDownItemContainsCorrectLink() {
+    func test_MarkDownItemContainsCorrectLink_When_CreatingMarkDownItemWithLines() {
         // Act
         let markDownItem = sut.createMarkDownItemWithLines(["[Google](http://www.google.com)"])
         let markDownItem2 = sut.createMarkDownItemWithLines(["[Youtube](http://www.youtube.com)"])
@@ -55,19 +48,21 @@ class LinkRuleTests: XCTestCase {
         XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).url, "http://www.youtube.com")
     }
 
-    func testCreateMarkDownItemContainsCorrectLinkWhenUsingAriaLabel() {
+    func test_MarkDownItemContainsCorrectLink_When_CreatingMarkdownItemWithLinesUsingAriaLabel() {
         // Act
         let markDownItem = sut.createMarkDownItemWithLines([#"[Google](http://www.google.com "Google")"#])
         let markDownItem2 = sut.createMarkDownItemWithLines([#"[Youtube](http://www.youtube.com "You-tube")"#])
 
         // Assert
         XCTAssertEqual((markDownItem as! LinkMarkDownItem).content, "Google")
+        XCTAssertEqual((markDownItem as! LinkMarkDownItem).title, "Google")
         XCTAssertEqual((markDownItem as! LinkMarkDownItem).url, "http://www.google.com")
         XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).content, "Youtube")
+        XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).title, "You-tube")
         XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).url, "http://www.youtube.com")
     }
 
-    func testGetAllMatches() {
+    func test_GetsAllMatches_When_ProvidingLinks() {
         // Arrange
         let expectedMatchesRange = NSRange(location: 0, length: 32)
         let expectedMatchesRange2 = NSRange(location: 38, length: 32)
@@ -81,18 +76,17 @@ class LinkRuleTests: XCTestCase {
             sut.getAllMatches(["[Google](https://www.google.com) test [Google](https://www.google.com)"]),
             [expectedMatchesRange, expectedMatchesRange2]
         )
-
-        XCTAssertEqual(
-            sut.getAllMatches([#"[Google](https://www.google.com) test [Google](https://www.google.com "a11y title")"#]),
-            [
-                NSRange(location: 0, length: 32),
-                NSRange(location: 38, length: 45)
-            ]
-        )
     }
 
     func test_GetsAllMatches_When_ProvidingLinksWithAdditionalTitleValues() {
         // Act + Assert
+        XCTAssertEqual(
+            sut.getAllMatches([#"[http://www.google.com](http://www.google.com "title"with"lots"of"quotationmarks")"#]),
+            [
+                NSRange(location: 0, length: 82)
+            ]
+        )
+
         XCTAssertEqual(
             sut.getAllMatches([#"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com "a11y title")"#]),
             [
@@ -115,7 +109,10 @@ class LinkRuleTests: XCTestCase {
         // Act + Assert
         XCTAssertTrue(sut.getAllMatches([#"[Google](https://www.google.com great-url-aria-label")"#]).isEmpty)
         XCTAssertTrue(sut.getAllMatches([#"[Google](https://www.google.com great url aria label")"#]).isEmpty)
+    }
 
+    func test_OnlyMatchesFirstLink_When_ProvidingOneCorrectLinkAndOneFaulty() {
+        // Act + Assert
         XCTAssertEqual(
             sut.getAllMatches([#"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com a11y title")"#]),
             [
@@ -145,6 +142,11 @@ class LinkRuleTests: XCTestCase {
             (
                 #"[plain link](http://www.google.com "1234567890!@#$%^&*()")"#,
                 "1234567890!@#$%^&*()",
+                #line
+            ),
+            (
+                #"[http://www.google.com](http://www.google.com "title"with"lots"of"quotationmarks")"#,
+                #"title"with"lots"of"quotationmarks"#,
                 #line
             ),
             (
