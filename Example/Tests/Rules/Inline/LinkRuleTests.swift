@@ -48,7 +48,7 @@ class LinkRuleTests: XCTestCase {
         XCTAssertEqual((markDownItem2 as! LinkMarkDownItem).url, "http://www.youtube.com")
     }
 
-    func test_MarkDownItemContainsCorrectLink_When_CreatingMarkdownItemWithLinesUsingAriaLabel() {
+    func test_MarkDownItemContainsCorrectLink_When_CreatingMarkdownItemWithLinesUsingLinkTitle() {
         // Act
         let markDownItem = sut.createMarkDownItemWithLines([#"[Google](http://www.google.com "Google")"#])
         let markDownItem2 = sut.createMarkDownItemWithLines([#"[Youtube](http://www.youtube.com "You-tube")"#])
@@ -88,42 +88,42 @@ class LinkRuleTests: XCTestCase {
         )
 
         XCTAssertEqual(
-            sut.getAllMatches([#"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com "a11y title")"#]),
+            sut.getAllMatches([#"[Google](https://www.google.com "great-url-title") test [Google](https://www.google.com "a11y title")"#]),
             [
-                NSRange(location: 0, length: 55),
-                NSRange(location: 61, length: 45)
+                NSRange(location: 0, length: 50),
+                NSRange(location: 56, length: 45)
             ]
         )
 
         XCTAssertEqual(
-            sut.getAllMatches([#"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com "a11y title") and even more [https://www.apple.com](https://www.apple.com "Apple-aria-label") test"#]),
+            sut.getAllMatches([#"[Google](https://www.google.com "great-url-title") test [Google](https://www.google.com "a11y title") and even more [https://www.apple.com](https://www.apple.com "Apple-aria-label") test"#]),
             [
-                NSRange(location: 0, length: 55),
-                NSRange(location: 61, length: 45),
-                NSRange(location: 121, length: 65)
+                NSRange(location: 0, length: 50),
+                NSRange(location: 56, length: 45),
+                NSRange(location: 116, length: 65)
             ]
         )
     }
 
     func test_FailsToMatch_When_ProvidingLinksWithIncorrectSyntax() {
         // Act + Assert
-        XCTAssertTrue(sut.getAllMatches([#"[Google](https://www.google.com great-url-aria-label")"#]).isEmpty)
-        XCTAssertTrue(sut.getAllMatches([#"[Google](https://www.google.com great url aria label")"#]).isEmpty)
+        XCTAssertTrue(sut.getAllMatches([#"[Google](https://www.google.com great-url-title")"#]).isEmpty)
+        XCTAssertTrue(sut.getAllMatches([#"[Google](https://www.google.com great url title")"#]).isEmpty)
     }
 
     func test_OnlyMatchesFirstLink_When_ProvidingOneCorrectLinkAndOneFaulty() {
         // Act + Assert
         XCTAssertEqual(
-            sut.getAllMatches([#"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com a11y title")"#]),
+            sut.getAllMatches([#"[Google](https://www.google.com "great-url-title") test [Google](https://www.google.com a11y title")"#]),
             [
-                NSRange(location: 0, length: 55)
+                NSRange(location: 0, length: 50)
             ]
         )
     }
 
     func test_ParsesAdditionalTitleItems_When_InputMatches() throws {
         // Arrange
-        let cases: [(String, String, UInt)] = [
+        let cases: [(String, String?, UInt)] = [
             (
                 #"[Google w/ title](http://www.google.com "with custom title")"#,
                 "with custom title",
@@ -151,7 +151,7 @@ class LinkRuleTests: XCTestCase {
             ),
             (
                 #"[plain link](http://www.google.com)"#,
-                "",
+                nil,
                 #line
             )
         ]
@@ -232,7 +232,7 @@ class LinkRuleTests: XCTestCase {
 
     func test_LinkItemsAreCorrect_When_CreatingMarkDownItemsWithContent() throws {
         // Arrange
-        let input = #"[Google](https://www.google.com "great-url-aria-label") test [Google](https://www.google.com "a11y title") and even more [https://www.apple.com](https://www.apple.com "Apple-aria-label") test"#
+        let input = #"[Google](https://www.google.com "great-url-title") test [Google](https://www.google.com "a11y title") and even more [https://www.apple.com](https://www.apple.com "Apple-title") test"#
         let markyMark = MarkyMark(build: {
             $0.setFlavor(ContentfulFlavor())
         })
@@ -244,7 +244,7 @@ class LinkRuleTests: XCTestCase {
         let linkMarkDownItem1 = try XCTUnwrap(paragraphItem?.markDownItems?[0] as? LinkMarkDownItem)
         XCTAssertEqual(linkMarkDownItem1.content, "Google")
         XCTAssertEqual(linkMarkDownItem1.url, "https://www.google.com")
-        XCTAssertEqual(linkMarkDownItem1.title, "great-url-aria-label")
+        XCTAssertEqual(linkMarkDownItem1.title, "great-url-title")
 
         let linkMarkDownItem2 = try XCTUnwrap(paragraphItem?.markDownItems?[2] as? LinkMarkDownItem)
         XCTAssertEqual(linkMarkDownItem2.content, "Google")
@@ -254,6 +254,6 @@ class LinkRuleTests: XCTestCase {
         let linkMarkDownItem3 = try XCTUnwrap(paragraphItem?.markDownItems?[4] as? LinkMarkDownItem)
         XCTAssertEqual(linkMarkDownItem3.content, "https://www.apple.com")
         XCTAssertEqual(linkMarkDownItem3.url, "https://www.apple.com")
-        XCTAssertEqual(linkMarkDownItem3.title, "Apple-aria-label")
+        XCTAssertEqual(linkMarkDownItem3.title, "Apple-title")
     }
 }

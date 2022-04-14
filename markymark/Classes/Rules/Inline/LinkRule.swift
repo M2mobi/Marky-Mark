@@ -18,14 +18,14 @@ open class LinkRule: InlineRegexRule {
     // MARK: Rule
 
     open func createMarkDownItemWithLines(_ lines: [String]) -> MarkDownItem {
-        let title: String? = lines.first?.subStringWithExpression(expression, ofGroup: 4)
+        let title: String? = lines.first?.optionalSubStringWithExpression(expression, ofGroup: 4)
         let url: String? = lines.first?.subStringWithExpression(expression, ofGroup: 2)
         let content: String? = lines.first?.subStringWithExpression(expression, ofGroup: 1)
 
         return LinkMarkDownItem(
             lines: lines,
             content: content ?? "",
-            title: title ?? "",
+            title: title,
             url: url ?? ""
         )
     }

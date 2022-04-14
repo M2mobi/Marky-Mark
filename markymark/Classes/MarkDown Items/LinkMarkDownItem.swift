@@ -7,10 +7,10 @@ import Foundation
 
 open class LinkMarkDownItem: MarkDownItem {
 
-    let title: String
+    let title: String?
     let url: String
 
-    public init(lines: [String], content: String, title: String, url: String) {
+    public init(lines: [String], content: String, title: String?, url: String) {
         self.url = url
         self.title = title
         super.init(lines: lines, content: content)
