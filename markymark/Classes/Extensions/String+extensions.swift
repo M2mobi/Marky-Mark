@@ -20,16 +20,24 @@ extension String {
         return subString(startIndex, endIndex)
     }
 
+    func optionalSubString(_ range: NSRange) -> String? {
+        guard range.location != NSNotFound else { return nil }
+        return subString(range)
+    }
+
     public func subStringWithExpression(_ expression: NSRegularExpression, ofGroup group: Int) -> String {
-        var subString = ""
+        optionalSubStringWithExpression(expression, ofGroup: group) ?? ""
+    }
+
+    public func optionalSubStringWithExpression(_ expression: NSRegularExpression, ofGroup group: Int) -> String? {
         let range = NSRange(location: 0, length: self.length())
         let results = expression.matches(in: self, options: [], range: range)
 
         if let result = results.first {
-            subString = self.subString(result.range(at: group))
+            return optionalSubString(result.range(at: group))
         }
 
-        return subString
+        return nil
     }
 
     /**

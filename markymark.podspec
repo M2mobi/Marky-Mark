@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name             = "markymark"
-  s.version          = "10.1.3"
+  s.version          = "10.1.4"
   s.summary          = "Markdown parser for iOS"
   s.description      = <<-DESC
 Marky Mark is a parser written in Swift that converts markdown into native views. The way it looks is highly customizable and the supported markdown syntax and tags are easy to extend.
@@ -12,7 +12,6 @@ Marky Mark is a parser written in Swift that converts markdown into native views
   s.source           = { :git => "https://github.com/M2Mobi/Marky-Mark.git", :tag => s.version.to_s }
 
   s.ios.deployment_target = '8.0'
-  s.swift_version = '4.2'
 
   s.source_files = 'markymark/Classes/**/*{.swift}'
 end
