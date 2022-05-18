@@ -16,7 +16,12 @@ public enum MarkDownConfiguration {
 @IBDesignable
 open class MarkDownTextView: UIView {
 
-    public var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
+    public var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)? {
+        didSet {
+            (viewConfiguration as? MarkDownAsViewViewConfiguration)?.onDidConvertMarkDownItemToView = onDidConvertMarkDownItemToView
+        }
+    }
+
     public var onDidPreconfigureTextView:((_ textView: UITextView) -> Void)?
 
     public private(set) var styling: DefaultStyling
