@@ -40,7 +40,7 @@ open class MarkDownConverter<T> {
     func convertToElements(_ markDownItems: [MarkDownItem], applicableStyling: ItemStyling? = nil, renderContext: RenderContext) -> [T] {
 
         var elements: [T] = []
-        // TODO: Sc
+
         for markDownItem in markDownItems {
 
             let layoutBlockBuilder = self.configuration.layoutBlockBuilderForMarkDownItemType(type(of: markDownItem))

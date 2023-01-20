@@ -27,8 +27,9 @@ class CodeViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
         let label = AttributedInteractiveLabel()
         label.numberOfLines = 0
         label.text = codeBlockMarkDownItem.content
+        label.font = (styling as? BaseFontStylingRule)?.baseFont
 
-        if let textStyle = stylingRule?.textStyle, renderContext.hasScalableFonts == true {
+        if let textStyle = stylingRule?.textStyle, renderContext.hasScalableFonts {
             label.font = label.font.scaledFont(textStyle: textStyle)
         }
 

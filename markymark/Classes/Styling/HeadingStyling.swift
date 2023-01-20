@@ -34,9 +34,7 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
         .title3
     ]
 
-
     public var maximumPointSizeForLevels: [CGFloat] = []
-
 
     public var baseFont: UIFont? {
         return fontsForLevels.elementForLevel(level)
