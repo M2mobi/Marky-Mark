@@ -14,10 +14,15 @@ class ListAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBlockB
         return UnorderedListMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> NSMutableAttributedString {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
 
-        let listAttributedString = getListAttributedString(listMarkDownItem, styling: styling)
+        let listAttributedString = getListAttributedString(listMarkDownItem, styling: styling, renderContext: renderContext)
 
         return listAttributedString
     }
@@ -37,7 +42,7 @@ private extension ListAttributedStringLayoutBlockBuilder {
      - returns: A view containing all list items of given markDownItem
      */
 
-    func getListAttributedString(_ listMarkDownItem: ListMarkDownItem, styling: ItemStyling, level: CGFloat = 0) -> NSMutableAttributedString {
+    func getListAttributedString(_ listMarkDownItem: ListMarkDownItem, styling: ItemStyling, level: CGFloat = 0, renderContext: RenderContext) -> NSMutableAttributedString {
 
         let listAttributedString = NSMutableAttributedString()
 
@@ -53,13 +58,24 @@ private extension ListAttributedStringLayoutBlockBuilder {
                 range: listItemAttributedString.fullRange()
             )
 
-            let attributedString = attributedStringForMarkDownItem(listItem, styling: styling)
+            let attributedString = attributedStringForMarkDownItem(
+                listItem, styling: styling,
+                renderContext: renderContext
+            )
+
             listItemAttributedString.append(attributedString)
             listItemAttributedString.append(NSAttributedString(string: "\n"))
             listAttributedString.append(listItemAttributedString)
 
             if let nestedListItems = listItem.listItems, nestedListItems.count > 0 {
-                listAttributedString.append(getListAttributedString(listItem, styling: styling, level: level + 1))
+                listAttributedString.append(
+                    getListAttributedString(
+                        listItem,
+                        styling: styling,
+                        level: level + 1,
+                        renderContext: renderContext
+                    )
+                )
             }
         }
 

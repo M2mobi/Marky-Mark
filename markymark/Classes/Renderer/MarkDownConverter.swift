@@ -24,8 +24,8 @@ open class MarkDownConverter<T> {
      
      - returns: type T containing all converted items composed together. Often a String or UIView
      */
-    open func convert(_ markDownItems: [MarkDownItem]) -> T {
-        return configuration.elementComposer.compose(convertToElements(markDownItems))
+    open func convert(_ markDownItems: [MarkDownItem], renderContext: RenderContext) -> T {
+        return configuration.elementComposer.compose(convertToElements(markDownItems, renderContext: renderContext))
     }
 
     /**
@@ -37,10 +37,10 @@ open class MarkDownConverter<T> {
      ´
      - returns: An array of displayable objects of type T
      */
-    func convertToElements(_ markDownItems: [MarkDownItem], applicableStyling: ItemStyling? = nil) -> [T] {
+    func convertToElements(_ markDownItems: [MarkDownItem], applicableStyling: ItemStyling? = nil, renderContext: RenderContext) -> [T] {
 
         var elements: [T] = []
-
+        // TODO: Sc
         for markDownItem in markDownItems {
 
             let layoutBlockBuilder = self.configuration.layoutBlockBuilderForMarkDownItemType(type(of: markDownItem))
@@ -49,7 +49,12 @@ open class MarkDownConverter<T> {
             styling.parent = applicableStyling
 
             if let layoutBlockBuilder = layoutBlockBuilder, type(of: markDownItem) == layoutBlockBuilder.relatedMarkDownItemType() {
-                let element = layoutBlockBuilder.build(markDownItem, asPartOfConverter: self, styling: styling)
+                let element = layoutBlockBuilder.build(
+                    markDownItem,
+                    asPartOfConverter: self,
+                    styling: styling,
+                    renderContext: renderContext
+                )
                 didConvertElement?(markDownItem, element)
 
                 elements.append(element)

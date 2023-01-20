@@ -49,7 +49,7 @@ private extension SimpleMarkDownViewController {
             UIImage(named: "square")
         ]
 
-        markDownView.styling.paragraphStyling.baseFont = .systemFont(ofSize: 14)
+        markDownView.hasScalableFonts = true
 
         markDownView.text = getMarkDownString()
         return markDownView

@@ -212,6 +212,26 @@ styling.quoteStyling
 ```
 _Please check the `DefaultStyling` class for more information_
 
+### Accessibility: Dynamic Type (font scaling)
+
+To enable Dynamic Type on MarkDownTextView:
+
+```
+    markDownView.hasScalableFonts = true
+```
+
+In some cases you may want to configure a maximum size for each font (default is `nil`).
+An example on how to limit the font-size for paragraphs
+
+```
+    markDownView.styling.paragraphStyling.maximumPointSize = 26
+```
+
+To set maximumPointSize for headings you can set 'maximumPointSizeForLevels' on headingStyling. The following example sets the maximum size for heading1, heading2, heading3:
+
+```
+    markDownView.styling.headingStyling.maximumPointSizeForLevels = [36, 20, 18]
+```
 
 ## Advanced usage
 Advanced usage is only needed for very specific cases. Making subsets of styling, making different styling combinations, supporting different Markdown rules (syntax) or modifying certain views after that have been generated.

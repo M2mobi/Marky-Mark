@@ -28,18 +28,31 @@ open class MarkDownTextView: UIView {
         }
     }
 
+    public var hasScalableFonts: Bool = false {
+        didSet {
+            renderContext.hasScalableFonts = hasScalableFonts
+        }
+    }
+
     public var urlOpener: URLOpener? {
         didSet {
-            (viewConfiguration as? MarkDownAsViewViewConfiguration)?.urlOpener = urlOpener
-            render(withMarkdownText: text)
+            renderContext.urlOpener = urlOpener
         }
     }
 
     fileprivate var markDownView: UIView?
     fileprivate var markDownItems: [MarkDownItem] = []
+
+    private var renderContext: RenderContext = RenderContext() {
+        didSet {
+            viewConfiguration?.set(renderContext: renderContext)
+            render(withMarkdownText: text)
+        }
+    }
+
     private let markyMark: MarkyMark
 
-    private var viewConfiguration: CanConfigureViews?
+    private var viewConfiguration: (CanConfigureViews & HasRenderContext)?
 
     public init(markDownConfiguration: MarkDownConfiguration = .view, flavor: Flavor = ContentfulFlavor(), styling: DefaultStyling = DefaultStyling()) {
 
@@ -62,6 +75,8 @@ open class MarkDownTextView: UIView {
         case .attributedString:
             viewConfiguration = MarkDownAsAttributedStringViewConfiguration(owner: self)
         }
+
+        observeCategorySizeChange()
     }
 
     public override init(frame: CGRect) {
@@ -73,6 +88,7 @@ open class MarkDownTextView: UIView {
         super.init(frame: frame)
 
         viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+        observeCategorySizeChange()
     }
 
     required public init?(coder aDecoder: NSCoder) {
@@ -84,6 +100,7 @@ open class MarkDownTextView: UIView {
         super.init(coder: aDecoder)
 
         viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+        observeCategorySizeChange()
     }
 
     public func add(rule: Rule) {
@@ -109,17 +126,29 @@ open class MarkDownTextView: UIView {
         markDownItems = markyMark.parseMarkDown(markdownText)
         viewConfiguration?.configureViews()
     }
-}
 
-private class MarkDownAsViewViewConfiguration: CanConfigureViews {
-
-    var urlOpener: URLOpener? {
-        didSet {
-            configuration.urlOpener = urlOpener
-        }
+    private func observeCategorySizeChange() {
+        NotificationCenter.default.addObserver(self, selector: #selector(handleCategorySizeChange), name: UIContentSizeCategory.didChangeNotification, object: nil)
     }
 
+    @objc private func handleCategorySizeChange() {
+        render(withMarkdownText: text)
+    }
+
+    deinit {
+        NotificationCenter.default.removeObserver(self, name: UIContentSizeCategory.didChangeNotification, object: nil)
+    }
+}
+
+private class MarkDownAsViewViewConfiguration: CanConfigureViews, HasRenderContext {
+
     var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
+
+    private var renderContext: RenderContext = .init() {
+        didSet {
+            configuration.renderContext = renderContext
+        }
+    }
 
     private let configuration: MarkdownToViewConverterConfiguration
 
@@ -127,7 +156,11 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews {
 
     init(owner: MarkDownTextView) {
         self.owner = owner
-        configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, urlOpener: urlOpener)
+        configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, renderContext: renderContext)
+    }
+
+    func set(renderContext: RenderContext) {
+        self.renderContext = renderContext
     }
 
     func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
@@ -143,7 +176,7 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews {
             self?.onDidConvertMarkDownItemToView?(markDownItem, view)
         }
 
-        owner.markDownView = converter.convert(owner.markDownItems)
+        owner.markDownView = converter.convert(owner.markDownItems, renderContext: renderContext)
         owner.markDownView?.isUserInteractionEnabled = true
     }
 
@@ -166,11 +199,13 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews {
     }
 }
 
-private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
+private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews, HasRenderContext {
 
     private weak var owner: MarkDownTextView?
 
     private let configuration: MarkDownToAttributedStringConverterConfiguration
+
+    private var renderContext: RenderContext = .init()
 
     init(owner: MarkDownTextView) {
         self.owner = owner
@@ -181,10 +216,14 @@ private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews {
         configuration.addLayoutBlockBuilder(layoutBlockBuilder)
     }
 
+    func set(renderContext: RenderContext) {
+        self.renderContext = renderContext
+    }
+
     func configureViewProperties() {
         guard let owner = owner  else { return }
         let converter = MarkDownConverter(configuration: configuration)
-        let attributedString = converter.convert(owner.markDownItems)
+        let attributedString = converter.convert(owner.markDownItems, renderContext: renderContext)
 
         let textView = UITextView()
         textView.isScrollEnabled = false

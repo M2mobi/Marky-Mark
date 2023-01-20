@@ -14,7 +14,12 @@ class InlineImageAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttri
         return ImageMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> NSMutableAttributedString {
         let imageMarkDownItem = markDownItem as! ImageMarkDownItem
 
         let attachment = TextAttachment()

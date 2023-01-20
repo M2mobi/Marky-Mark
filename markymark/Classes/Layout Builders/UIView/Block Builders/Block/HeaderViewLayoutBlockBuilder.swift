@@ -13,16 +13,27 @@ class HeaderViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder
         return HeaderMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<UIView>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> UIView {
         let headerMarkDownItem = markDownItem as! HeaderMarkDownItem
         let headerStyling = styling as? HeadingStyling
         headerStyling?.configureForLevel(headerMarkDownItem.level)
 
         let label = AttributedInteractiveLabel()
         label.numberOfLines = 0
-        label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: headerStyling ?? styling)
+        label.markDownAttributedString = attributedStringForMarkDownItem(
+            markDownItem,
+            styling: headerStyling ?? styling,
+            renderContext: renderContext
+        )
 
-        if let urlOpener = urlOpener {
+        label.adjustsFontForContentSizeCategory = renderContext.hasScalableFonts
+
+        if let urlOpener = renderContext.urlOpener {
             label.urlOpener = urlOpener
         }
 

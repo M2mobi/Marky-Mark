@@ -14,7 +14,12 @@ class ImageViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
         return ImageBlockMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<UIView>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> UIView {
         let imageBlockMarkDownItem = markDownItem as! ImageBlockMarkDownItem
 
         let imageView = RemoteImageView(file: imageBlockMarkDownItem.file, altText: imageBlockMarkDownItem.altText)

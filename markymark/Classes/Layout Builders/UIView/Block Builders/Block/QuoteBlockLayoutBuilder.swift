@@ -14,11 +14,22 @@ class QuoteBlockLayoutBuilder: InlineAttributedStringViewLayoutBlockBuilder {
         return QuoteMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<UIView>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> UIView {
         let label = AttributedInteractiveLabel()
-        label.markDownAttributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
+        label.markDownAttributedString = attributedStringForMarkDownItem(
+            markDownItem,
+            styling: styling,
+            renderContext: renderContext
+        )
 
-        if let urlOpener = urlOpener {
+        label.adjustsFontForContentSizeCategory = renderContext.hasScalableFonts
+
+        if let urlOpener = renderContext.urlOpener {
             label.urlOpener = urlOpener
         }
 

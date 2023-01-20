@@ -82,7 +82,12 @@ private extension MarkdownAttributedLabel {
         let configuration = MarkDownToAttributedStringConverterConfiguration(styling: styling)
         let converter = MarkDownConverter(configuration: configuration)
 
-        return converter.convert(markDownItems)
+        return converter.convert(
+            markDownItems,
+            renderContext: .init(
+                hasScalableFonts: adjustsFontForContentSizeCategory
+            )
+        )
     }
 
     func markyMarkTextAlignment(ofTextAlignment textAlignment: NSTextAlignment) -> TextAlignment {

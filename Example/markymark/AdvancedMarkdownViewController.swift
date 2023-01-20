@@ -23,7 +23,7 @@ class AdvancedMarkdownViewController: UIViewController {
             "view": view,
             "scrollView": scrollView,
             "markDownView": markDownView
-            ]
+        ]
 
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         markDownView.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +94,7 @@ private extension AdvancedMarkdownViewController {
             }
         }
 
-        return converter.convert(markDownItems)
+        return converter.convert(markDownItems, renderContext: .init())
     }
 
     func getMarkDownString() -> String {

@@ -22,14 +22,28 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
     public var fontsForLevels = [
         UIFont.systemFont(ofSize: 24),
         UIFont.systemFont(ofSize: 18),
-        UIFont.boldSystemFont(ofSize: 16),
+        UIFont.systemFont(ofSize: 16),
         UIFont.systemFont(ofSize: 15),
         UIFont.systemFont(ofSize: 14),
         UIFont.systemFont(ofSize: 13)
     ]
 
+    public var textStyleForLevels: [UIFont.TextStyle] = [
+        .title1,
+        .title2,
+        .title3
+    ]
+
+
+    public var maximumPointSizeForLevels: [CGFloat] = []
+
+
     public var baseFont: UIFont? {
         return fontsForLevels.elementForLevel(level)
+    }
+
+    public var textStyle: UIFont.TextStyle? {
+        textStyleForLevels.elementForLevel(level)
     }
 
     public var textColorsForLevels: [UIColor] = [
@@ -46,6 +60,10 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
 
     public var contentInsets: UIEdgeInsets {
         return contentInsetsForLevels.elementForLevel(level) ?? UIEdgeInsets()
+    }
+
+    public var maximumPointSize: CGFloat? {
+        maximumPointSizeForLevels.elementForLevel(level)
     }
 
     public var isBold = false
@@ -66,11 +84,11 @@ public class HeadingStyling: ItemStyling, TextColorStylingRule, BaseFontStylingR
 private extension Array {
 
     func elementForLevel(_ level: Int) -> Element? {
-        if level <= 0 {
+        if level <= 0, count > 0 {
             return self[0]
         }
 
-        if level > count {
+        if level >= count {
             return last
         }
 

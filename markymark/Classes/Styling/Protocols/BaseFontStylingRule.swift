@@ -8,6 +8,19 @@ import UIKit
 public protocol BaseFontStylingRule: ItemStyling {
 
     var baseFont: UIFont? { get }
+    var textStyle: UIFont.TextStyle? { get }
+    var maximumPointSize: CGFloat? { get }
+}
+
+public extension BaseFontStylingRule {
+
+    var textStyle: UIFont.TextStyle? {
+        nil
+    }
+
+    var maximumPointSize: CGFloat? {
+        nil
+    }
 }
 
 extension ItemStyling {
@@ -21,9 +34,26 @@ extension ItemStyling {
         return nil
     }
 
-    func neededFont() -> UIFont? {
+    func neededTextStyle() -> UIFont.TextStyle? {
+        for styling in stylingWithPrecedingStyling() {
+            if let styling = styling as? BaseFontStylingRule, styling.textStyle != nil {
+                return styling.textStyle
+            }
+        }
+        return nil
+    }
 
-        var font: UIFont? = neededBaseFont()
+    func neededMaximumPointSize() -> CGFloat? {
+        for styling in stylingWithPrecedingStyling() {
+            if let styling = styling as? BaseFontStylingRule, styling.maximumPointSize != nil {
+                return styling.maximumPointSize
+            }
+        }
+        return nil
+    }
+
+    func neededFont(hasScalableFonts: Bool) -> UIFont? {
+        var font: UIFont?
 
         if shouldFontBeBold() && shouldFontBeItalic() {
             font = font?.makeItalicBold()
@@ -37,7 +67,16 @@ extension ItemStyling {
             font = font?.changeSize(textSize)
         }
 
-        return font
+        font = font ?? neededBaseFont()
+
+        if let textStyle = neededTextStyle(), hasScalableFonts {
+            return font?.scaledFont(
+                textStyle: textStyle,
+                maximumPointSize: neededMaximumPointSize()
+            )
+        } else {
+            return font
+        }
     }
 }
 

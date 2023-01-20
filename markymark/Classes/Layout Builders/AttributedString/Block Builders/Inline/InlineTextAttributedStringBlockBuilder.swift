@@ -13,10 +13,21 @@ class InlineTextAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttrib
         return InlineTextMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> NSMutableAttributedString {
 
         let content: String = applyCapitalization(content: markDownItem.content, capitalization: styling.neededCapitalization())
-        return NSMutableAttributedString(string: content, attributes: StringAttributesBuilder().attributesForStyling(styling))
+        return NSMutableAttributedString(
+            string: content,
+            attributes: StringAttributesBuilder().attributesForStyling(
+                styling,
+                hasScalableFonts: renderContext.hasScalableFonts
+            )
+        )
     }
 }
 

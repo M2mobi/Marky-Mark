@@ -10,14 +10,14 @@ import UIKit
 
 open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<UIView> {
 
-    public var urlOpener: URLOpener? {
+    public var renderContext: RenderContext? {
         didSet {
             markDownItemToLayoutBuilderMap.values.forEach(setUrlOpenerIfPossible)
         }
     }
 
-    public init(elementComposer: ElementComposer<UIView>, styling: Styling, urlOpener: URLOpener? = nil) {
-        self.urlOpener = urlOpener
+    public init(elementComposer: ElementComposer<UIView>, styling: Styling, renderContext: RenderContext? = nil) {
+        self.renderContext = renderContext
         
         super.init(elementComposer: elementComposer, styling: styling)
 
@@ -34,8 +34,8 @@ open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<
         addLayoutBlockBuilder(ImageViewLayoutBlockBuilder())
     }
 
-    public convenience init(styling: Styling, urlOpener: URLOpener? = nil) {
-        self.init(elementComposer: ViewAppenderComposer(), styling: styling, urlOpener: urlOpener)
+    public convenience init(styling: Styling, renderContext: RenderContext? = nil) {
+        self.init(elementComposer: ViewAppenderComposer(), styling: styling, renderContext: renderContext)
     }
 
     override open func addLayoutBlockBuilder(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
@@ -47,6 +47,8 @@ open class MarkdownToViewConverterConfiguration: MarkDownConverterConfiguration<
 private extension MarkdownToViewConverterConfiguration {
 
     func setUrlOpenerIfPossible(_ layoutBlockBuilder: LayoutBlockBuilder<UIView>) {
-        (layoutBlockBuilder as? CanSetURLOpener)?.set(urlOpener: urlOpener)
+        if let renderContext = renderContext {
+            (layoutBlockBuilder as? HasRenderContext)?.set(renderContext: renderContext)
+        }
     }
 }

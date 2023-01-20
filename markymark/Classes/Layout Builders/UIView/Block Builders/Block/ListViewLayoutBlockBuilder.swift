@@ -14,10 +14,15 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
         return UnorderedListMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<UIView>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> UIView {
         let listMarkDownItem = markDownItem as! ListMarkDownItem
 
-        let listView = getListView(listMarkDownItem, styling: styling)
+        let listView = getListView(listMarkDownItem, styling: styling, renderContext: renderContext)
 
         let spacing: UIEdgeInsets? = (styling as? ContentInsetStylingRule)?.contentInsets
         return ContainerView(view: listView, spacing: spacing)
@@ -35,7 +40,7 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
      - returns: A view containing all list items of given markDownItem
      */
 
-    private func getListView(_ listMarkDownItem: ListMarkDownItem, styling: ItemStyling) -> UIView {
+    private func getListView(_ listMarkDownItem: ListMarkDownItem, styling: ItemStyling, renderContext: RenderContext) -> UIView {
 
         let listView = ListView(styling: styling)
 
@@ -44,27 +49,53 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
             let bulletStyling = styling as? BulletStylingRule
             let listStyling = styling as? ListItemStylingRule
 
-            let attributedString = attributedStringForMarkDownItem(listItem, styling: styling)
+            let attributedString = attributedStringForMarkDownItem(
+                listItem,
+                styling: styling,
+                renderContext: renderContext
+            )
+
             let listItemView = ListItemView(
                 listMarkDownItem: listItem,
                 styling: bulletStyling,
                 attributedText: attributedString,
-                urlOpener: urlOpener
+                renderContext: renderContext
             )
 
-            listItemView.bottomSpace = (listStyling?.bottomListItemSpacing ?? 0)
+            listItemView.bottomSpace = getScaledBottomSpace(
+                listStyling: listStyling,
+                renderContext: renderContext
+            )
 
             listView.addSubview(listItemView)
 
             if let nestedListItems = listItem.listItems, nestedListItems.count > 0 {
-                let nestedListView = getListView(listItem, styling: styling)
-                listView.addSubview(nestedListView)
+                let nestedListView = getListView(
+                    listItem,
+                    styling: styling,
+                    renderContext: renderContext
+                )
 
+                listView.addSubview(nestedListView)
             }
 
         }
 
         return listView
+    }
+
+    private func getScaledBottomSpace(
+        listStyling: ListItemStylingRule?,
+        renderContext: RenderContext
+    ) -> CGFloat {
+        let space = (listStyling?.bottomListItemSpacing ?? 0)
+
+        if renderContext.hasScalableFonts == true, let textStyle = listStyling?.neededTextStyle() {
+            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
+            return fontMetrics.scaledValue(for: space)
+        } else {
+            return space
+        }
     }
 
 }

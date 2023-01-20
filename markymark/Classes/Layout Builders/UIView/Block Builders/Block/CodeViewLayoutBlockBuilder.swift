@@ -14,16 +14,29 @@ class CodeViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
         return CodeBlockMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<UIView>, styling: ItemStyling) -> UIView {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<UIView>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> UIView {
         let codeBlockMarkDownItem = markDownItem as! CodeBlockMarkDownItem
+
+        let stylingRule = (styling as? BaseFontStylingRule)
 
         let label = AttributedInteractiveLabel()
         label.numberOfLines = 0
         label.text = codeBlockMarkDownItem.content
-        label.font = (styling as? BaseFontStylingRule)?.baseFont
+
+        if let textStyle = stylingRule?.textStyle, renderContext.hasScalableFonts == true {
+            label.font = label.font.scaledFont(textStyle: textStyle)
+        }
+
         label.textColor = (styling as? TextColorStylingRule)?.textColor
 
-        if let urlOpener = urlOpener {
+        label.adjustsFontForContentSizeCategory = renderContext.hasScalableFonts
+
+        if let urlOpener = renderContext.urlOpener {
             label.urlOpener = urlOpener
         }
 
