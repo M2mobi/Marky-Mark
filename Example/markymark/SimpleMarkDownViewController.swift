@@ -49,10 +49,6 @@ private extension SimpleMarkDownViewController {
             UIImage(named: "square")
         ]
 
-        markDownView.styling.paragraphStyling.maximumPointSize = 10
-        markDownView.styling.headingStyling.maximumPointSizeForLevels = [10]
-        markDownView.styling.listStyling.maximumPointSize = nil
-
         markDownView.hasScalableFonts = true
 
         markDownView.text = getMarkDownString()
