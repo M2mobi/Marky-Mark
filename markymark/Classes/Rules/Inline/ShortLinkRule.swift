@@ -33,6 +33,7 @@ open class ShortLinkRule: InlineRule {
         return LinkMarkDownItem(
             lines: lines,
             content: url ?? "",
+            title: url ?? "",
             url: url ?? ""
         )
     }
