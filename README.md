@@ -94,7 +94,7 @@ Links
 
 Code 
 `code`
-\```code```
+```code```
 ```
 
 
@@ -250,7 +250,7 @@ struct CustomMarkyMarkStyling: Styling {
 }
 ```
 
-You can implement `CustomHeaderStyling` by checking how other `Styling` objects have been implemented, like ``HeaderStyling`. 
+You can implement `CustomHeaderStyling` by checking how other `Styling` objects have been implemented, like `HeaderStyling`. 
 Make sure your `CustomHeaderStyling` comforms to all styling rules you'd like your custom styling to support. i.e. comform to `TextColorStylingRule` to support textStyle of your custom styling.
 
 Each styling rule can be applied to a markDownItem by comforming to `ItemStyling` and implement the required method like this:
