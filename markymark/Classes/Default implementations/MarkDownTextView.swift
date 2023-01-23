@@ -28,6 +28,7 @@ open class MarkDownTextView: UIView {
         }
     }
 
+    @IBInspectable
     public var hasScalableFonts: Bool = false {
         didSet {
             renderContext.hasScalableFonts = hasScalableFonts

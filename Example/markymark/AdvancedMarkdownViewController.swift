@@ -94,7 +94,7 @@ private extension AdvancedMarkdownViewController {
             }
         }
 
-        return converter.convert(markDownItems, renderContext: .init())
+        return converter.convert(markDownItems, renderContext: .init(hasScalableFonts: true))
     }
 
     func getMarkDownString() -> String {

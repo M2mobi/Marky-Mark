@@ -53,7 +53,7 @@ extension ItemStyling {
     }
 
     func neededFont(hasScalableFonts: Bool) -> UIFont? {
-        var font: UIFont?
+        var font: UIFont? = neededBaseFont()
 
         if shouldFontBeBold() && shouldFontBeItalic() {
             font = font?.makeItalicBold()
@@ -66,8 +66,6 @@ extension ItemStyling {
         if let textSize = neededTextSize() {
             font = font?.changeSize(textSize)
         }
-
-        font = font ?? neededBaseFont()
 
         if let textStyle = neededTextStyle(), hasScalableFonts {
             return font?.scaledFont(

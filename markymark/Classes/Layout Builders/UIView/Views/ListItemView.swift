@@ -67,12 +67,17 @@ class ListItemView: UIView {
 
     func getScaledBulletSize() -> CGSize? {
         guard let styling = styling else { return nil }
+        let hasScalableFonts = renderContext?.hasScalableFonts == true
 
-        if renderContext?.hasScalableFonts == true, let textStyle = styling.neededTextStyle() {
-            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
+        if
+            renderContext?.hasScalableFonts == true,
+            let originalPointSize = styling.neededBaseFont()?.pointSize,
+            let newPointSize = styling.neededFont(hasScalableFonts: hasScalableFonts)?.pointSize {
+            let scaleFactor = newPointSize / originalPointSize
+
             return .init(
-                width: fontMetrics.scaledValue(for: styling.bulletViewSize.width),
-                height: fontMetrics.scaledValue(for: styling.bulletViewSize.height)
+                width: styling.bulletViewSize.width * scaleFactor,
+                height: styling.bulletViewSize.height * scaleFactor
             )
         } else {
             return styling.bulletViewSize
@@ -109,7 +114,10 @@ class ListItemView: UIView {
 
             if let font = styling.bulletFont {
                 if renderContext?.hasScalableFonts == true, let textStyle = styling.neededTextStyle() {
-                    bulletLabel.font = font.scaledFont(textStyle: textStyle)
+                    bulletLabel.font = font.scaledFont(
+                        textStyle: textStyle,
+                        maximumPointSize: styling.neededMaximumPointSize()
+                    )
                 } else {
                     bulletLabel.font = font
                 }
