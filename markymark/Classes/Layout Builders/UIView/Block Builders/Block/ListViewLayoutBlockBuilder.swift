@@ -88,7 +88,7 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
         listStyling: ListItemStylingRule?,
         renderContext: RenderContext
     ) -> CGFloat {
-        let space = (listStyling?.bottomListItemSpacing ?? 0)
+        let space = listStyling?.bottomListItemSpacing ?? 0
 
         if renderContext.hasScalableFonts == true, let textStyle = listStyling?.neededTextStyle() {
             let fontMetrics = UIFontMetrics(forTextStyle: textStyle)

@@ -70,9 +70,10 @@ class ListItemView: UIView {
         let hasScalableFonts = renderContext?.hasScalableFonts == true
 
         if
-            renderContext?.hasScalableFonts == true,
+            hasScalableFonts,
             let originalPointSize = styling.neededBaseFont()?.pointSize,
-            let newPointSize = styling.neededFont(hasScalableFonts: hasScalableFonts)?.pointSize {
+            let newPointSize = styling.neededFont(hasScalableFonts: hasScalableFonts)?.pointSize
+        {
             let scaleFactor = newPointSize / originalPointSize
 
             return .init(

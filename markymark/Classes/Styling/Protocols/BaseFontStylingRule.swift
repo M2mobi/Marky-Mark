@@ -31,6 +31,7 @@ extension ItemStyling {
                 return styling.baseFont
             }
         }
+
         return nil
     }
 
@@ -40,6 +41,7 @@ extension ItemStyling {
                 return styling.textStyle
             }
         }
+
         return nil
     }
 
@@ -49,6 +51,7 @@ extension ItemStyling {
                 return styling.maximumPointSize
             }
         }
+
         return nil
     }
 
