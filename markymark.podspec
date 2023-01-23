@@ -11,7 +11,7 @@ Marky Mark is a parser written in Swift that converts markdown into native views
   s.author           = { "M2Mobi" => "info@m2mobi.com" }
   s.source           = { :git => "https://github.com/M2Mobi/Marky-Mark.git", :tag => s.version.to_s }
 
-  s.ios.deployment_target = '8.0'
+  s.ios.deployment_target = '11.0'
 
   s.source_files = 'markymark/Classes/**/*{.swift}'
 end

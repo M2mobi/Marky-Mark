@@ -7,11 +7,11 @@ import UIKit
 
 struct StringAttributesBuilder {
 
-    func attributesForStyling(_ styling: ItemStyling) -> [NSAttributedString.Key: Any] {
+    func attributesForStyling(_ styling: ItemStyling, hasScalableFonts: Bool) -> [NSAttributedString.Key: Any] {
 
         var attributes = [NSAttributedString.Key: Any]()
 
-        if let font = styling.neededFont() {
+        if let font = styling.neededFont(hasScalableFonts: hasScalableFonts) {
 
             attributes[.font] = font
         }

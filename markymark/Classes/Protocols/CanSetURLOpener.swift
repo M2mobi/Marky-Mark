@@ -5,6 +5,6 @@
 
 import Foundation
 
-protocol CanSetURLOpener {
-    func set(urlOpener: URLOpener?)
+public protocol HasRenderContext {
+    func set(renderContext: RenderContext)
 }

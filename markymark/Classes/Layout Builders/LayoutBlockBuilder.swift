@@ -24,7 +24,12 @@ open class LayoutBlockBuilder<T> {
      - returns: T
      */
 
-    open func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<T>, styling: ItemStyling) -> T {
+    open func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<T>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> T {
         fatalError("\(String(describing: self)): Implement build")
     }
 

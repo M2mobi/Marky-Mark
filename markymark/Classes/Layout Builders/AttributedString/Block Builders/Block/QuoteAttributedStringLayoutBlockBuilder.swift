@@ -17,9 +17,18 @@ class QuoteAttributedStringLayoutBlockBuilder: InlineAttributedStringLayoutBlock
         return QuoteMarkDownItem.self
     }
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling) -> NSMutableAttributedString {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> NSMutableAttributedString {
         let paragraphStyling = styling as? QuoteStyling
-        let attributedString = attributedStringForMarkDownItem(markDownItem, styling: styling)
+        let attributedString = attributedStringForMarkDownItem(
+            markDownItem,
+            styling: styling,
+            renderContext: renderContext
+        )
 
         return attributedStringWithContentInset(attributedString, contentInset: paragraphStyling?.contentInsets ?? UIEdgeInsets())
     }

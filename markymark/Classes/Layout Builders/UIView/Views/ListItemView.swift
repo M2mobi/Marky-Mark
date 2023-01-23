@@ -21,21 +21,25 @@ class ListItemView: UIView {
 
     var styling: BulletStylingRule?
 
+    private let renderContext: RenderContext?
+
     init(
         listMarkDownItem: ListMarkDownItem,
         styling: BulletStylingRule?,
         attributedText: NSAttributedString,
-        urlOpener: URLOpener? = nil
+        renderContext: RenderContext? = nil
     ) {
         self.listMarkDownItem = listMarkDownItem
         self.styling = styling
+        self.renderContext = renderContext
 
         super.init(frame: CGRect())
 
         label.markDownAttributedString = attributedText
         label.numberOfLines = 0
+        label.adjustsFontForContentSizeCategory = renderContext?.hasScalableFonts ?? false
 
-        if let urlOpener = urlOpener {
+        if let urlOpener = renderContext?.urlOpener {
             label.urlOpener = urlOpener
         }
 
@@ -46,10 +50,10 @@ class ListItemView: UIView {
 
         label.sizeToFit()
 
-        if let styling = styling {
-            label.frame.size.width = frame.size.width - styling.bulletViewSize.width
-            label.frame.origin.x = styling.bulletViewSize.width
-            bullet?.frame = CGRect(x: 0, y: 0, width: styling.bulletViewSize.width, height: styling.bulletViewSize.height)
+        if let bulletSize = getScaledBulletSize() {
+            label.frame.size.width = frame.size.width - bulletSize.width
+            label.frame.origin.x = bulletSize.width
+            bullet?.frame = CGRect(x: 0, y: 0, width: bulletSize.width, height: bulletSize.height)
         } else {
             label.frame.size.width = frame.size.width
         }
@@ -59,6 +63,26 @@ class ListItemView: UIView {
 
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+
+    func getScaledBulletSize() -> CGSize? {
+        guard let styling = styling else { return nil }
+        let hasScalableFonts = renderContext?.hasScalableFonts == true
+
+        if
+            hasScalableFonts,
+            let originalPointSize = styling.neededBaseFont()?.pointSize,
+            let newPointSize = styling.neededFont(hasScalableFonts: hasScalableFonts)?.pointSize
+        {
+            let scaleFactor = newPointSize / originalPointSize
+
+            return .init(
+                width: styling.bulletViewSize.width * scaleFactor,
+                height: styling.bulletViewSize.height * scaleFactor
+            )
+        } else {
+            return styling.bulletViewSize
+        }
     }
 
     // MARK: Private
@@ -90,7 +114,14 @@ class ListItemView: UIView {
         if let styling = styling {
 
             if let font = styling.bulletFont {
-                bulletLabel.font = font
+                if renderContext?.hasScalableFonts == true, let textStyle = styling.neededTextStyle() {
+                    bulletLabel.font = font.scaledFont(
+                        textStyle: textStyle,
+                        maximumPointSize: styling.neededMaximumPointSize()
+                    )
+                } else {
+                    bulletLabel.font = font
+                }
             }
 
             if let color = styling.bulletColor {

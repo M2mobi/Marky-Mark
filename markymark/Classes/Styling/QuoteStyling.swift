@@ -14,7 +14,10 @@ open class QuoteStyling: ItemStyling, ContentInsetStylingRule, TextColorStylingR
         return markDownItem is QuoteMarkDownItem
     }
 
-    open var baseFont: UIFont? = .systemFont(ofSize: UIFont.systemFontSize)
+    open var baseFont: UIFont? = .systemFont(ofSize: 17)
+    open var textStyle: UIFont.TextStyle? = .body
+    open var maximumPointSize: CGFloat?
+
     open var textColor: UIColor? = .gray
     open var isItalic: Bool = true
 

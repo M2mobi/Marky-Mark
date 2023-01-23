@@ -7,7 +7,7 @@ import UIKit
 
 class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
 
-    private(set) var urlOpener: URLOpener?
+    private(set) var renderContext: RenderContext?
 
     private let converter: MarkDownConverter<NSMutableAttributedString>
 
@@ -16,11 +16,21 @@ class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
         super.init()
     }
 
-    func attributedStringForMarkDownItem(_ markdownItem: MarkDownItem, styling: ItemStyling) -> NSMutableAttributedString {
+    func attributedStringForMarkDownItem(
+        _ markdownItem: MarkDownItem,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
 
         if let markDownItems = markdownItem.markDownItems {
-            for subString in converter.convertToElements(markDownItems, applicableStyling: styling) {
+            let elements = converter.convertToElements(
+                markDownItems,
+                applicableStyling: styling,
+                renderContext: renderContext
+            )
+
+            for subString in elements {
                 string.append(subString)
             }
         }
@@ -29,10 +39,10 @@ class InlineAttributedStringViewLayoutBlockBuilder: LayoutBlockBuilder<UIView> {
     }
 }
 
-extension InlineAttributedStringViewLayoutBlockBuilder: CanSetURLOpener {
+extension InlineAttributedStringViewLayoutBlockBuilder: HasRenderContext {
 
-    func set(urlOpener: URLOpener?) {
-        self.urlOpener = urlOpener
+    func set(renderContext: RenderContext) {
+        self.renderContext = renderContext
     }
 }
 

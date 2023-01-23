@@ -9,13 +9,23 @@ class ContainerAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttribu
 
     // MARK: LayoutBlockBuilder
 
-    override func build(_ markDownItem: MarkDownItem, asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>, styling: ItemStyling?) -> NSMutableAttributedString {
+    override func build(
+        _ markDownItem: MarkDownItem,
+        asPartOfConverter converter: MarkDownConverter<NSMutableAttributedString>,
+        styling: ItemStyling?,
+        renderContext: RenderContext
+    ) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
 
         if let markDownItems = markDownItem.markDownItems {
 
-            for subString in converter.convertToElements(markDownItems, applicableStyling: styling) {
+            let elements = converter.convertToElements(
+                markDownItems,
+                applicableStyling: styling,
+                renderContext: renderContext
+            )
 
+            for subString in elements {
                 string.append(subString)
             }
         }

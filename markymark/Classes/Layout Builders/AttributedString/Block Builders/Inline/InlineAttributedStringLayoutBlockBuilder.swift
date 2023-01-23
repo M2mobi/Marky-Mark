@@ -18,11 +18,21 @@ class InlineAttributedStringLayoutBlockBuilder: LayoutBlockBuilder<NSMutableAttr
         super.init()
     }
 
-    func attributedStringForMarkDownItem(_ markdownItem: MarkDownItem, styling: ItemStyling) -> NSMutableAttributedString {
+    func attributedStringForMarkDownItem(
+        _ markdownItem: MarkDownItem,
+        styling: ItemStyling,
+        renderContext: RenderContext
+    ) -> NSMutableAttributedString {
         let string = NSMutableAttributedString()
 
         if let markDownItems = markdownItem.markDownItems {
-            for subString in converter.convertToElements(markDownItems, applicableStyling: styling) {
+            let elements = converter.convertToElements(
+                markDownItems,
+                applicableStyling: styling,
+                renderContext: renderContext
+            )
+
+            for subString in elements {
                 string.append(subString)
             }
         }
