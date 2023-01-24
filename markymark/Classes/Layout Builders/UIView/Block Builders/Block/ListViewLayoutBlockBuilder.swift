@@ -90,12 +90,11 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
     ) -> CGFloat {
         let space = listStyling?.bottomListItemSpacing ?? 0
 
-        if renderContext.hasScalableFonts == true, let textStyle = listStyling?.neededTextStyle() {
-            let fontMetrics = UIFontMetrics(forTextStyle: textStyle)
-            return fontMetrics.scaledValue(for: space)
-        } else {
-            return space
-        }
+        let hasScalableFonts = renderContext.hasScalableFonts == true
+
+        let scaleFactor = listStyling?.scaleFactor(hasScalableFonts: hasScalableFonts) ?? 1
+
+        return space * scaleFactor
     }
 
 }

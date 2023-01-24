@@ -79,6 +79,20 @@ extension ItemStyling {
             return font
         }
     }
+
+    func scaleFactor(hasScalableFonts: Bool) -> CGFloat {
+        if
+            hasScalableFonts,
+            let originalPointSize = neededBaseFont()?.pointSize,
+            let newPointSize = neededFont(hasScalableFonts: hasScalableFonts)?.pointSize
+        {
+            let scaleFactor = newPointSize / originalPointSize
+
+            return scaleFactor
+        } else {
+            return 1
+        }
+    }
 }
 
 private extension UIFont {

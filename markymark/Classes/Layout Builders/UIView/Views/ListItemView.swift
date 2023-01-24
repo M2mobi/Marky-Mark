@@ -69,20 +69,14 @@ class ListItemView: UIView {
         guard let styling = styling else { return nil }
         let hasScalableFonts = renderContext?.hasScalableFonts == true
 
-        if
-            hasScalableFonts,
-            let originalPointSize = styling.neededBaseFont()?.pointSize,
-            let newPointSize = styling.neededFont(hasScalableFonts: hasScalableFonts)?.pointSize
-        {
-            let scaleFactor = newPointSize / originalPointSize
+        let scaleFactor = styling.scaleFactor(
+            hasScalableFonts: hasScalableFonts
+        )
 
-            return .init(
-                width: styling.bulletViewSize.width * scaleFactor,
-                height: styling.bulletViewSize.height * scaleFactor
-            )
-        } else {
-            return styling.bulletViewSize
-        }
+        return .init(
+            width: styling.bulletViewSize.width * scaleFactor,
+            height: styling.bulletViewSize.height * scaleFactor
+        )
     }
 
     // MARK: Private
