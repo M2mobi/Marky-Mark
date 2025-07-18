@@ -24,7 +24,6 @@ class ListView: UIView {
         var previousView: UIView?
 
         for subview in subviews {
-
             var y: CGFloat = 0
             var x: CGFloat = 0
             let width: CGFloat = frame.size.width
@@ -47,7 +46,6 @@ class ListView: UIView {
     }
 
     override var intrinsicContentSize: CGSize {
-
         var height: CGFloat = 0
 
         for subview in subviews {
@@ -56,5 +54,4 @@ class ListView: UIView {
 
         return CGSize(width: frame.size.width, height: height)
     }
-
 }
