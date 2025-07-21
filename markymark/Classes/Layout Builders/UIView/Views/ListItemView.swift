@@ -33,7 +33,7 @@ class ListItemView: UIView {
         self.styling = styling
         self.renderContext = renderContext
 
-        super.init(frame: CGRect())
+        super.init(frame: .zero)
 
         label.markDownAttributedString = attributedText
         label.numberOfLines = 0
@@ -47,7 +47,6 @@ class ListItemView: UIView {
     }
 
     override func layoutSubviews() {
-
         label.sizeToFit()
 
         if let bulletSize = getScaledBulletSize() {
@@ -66,7 +65,8 @@ class ListItemView: UIView {
     }
 
     func getScaledBulletSize() -> CGSize? {
-        guard let styling = styling else { return nil }
+        guard let styling else { return nil }
+
         let hasScalableFonts = renderContext?.hasScalableFonts == true
 
         let scaleFactor = styling.scaleFactor(
@@ -87,8 +87,8 @@ class ListItemView: UIView {
 
     private func setUpLayout() {
         bullet = getBulletView()
-        if let bullet = bullet {
 
+        if let bullet {
             addSubview(label)
             addSubview(bullet)
         }
@@ -105,8 +105,7 @@ class ListItemView: UIView {
             return getImageBulletView()
         }
 
-        if let styling = styling {
-
+        if let styling {
             if let font = styling.bulletFont {
                 if renderContext?.hasScalableFonts == true, let textStyle = styling.neededTextStyle() {
                     bulletLabel.font = font.scaledFont(
@@ -129,18 +128,25 @@ class ListItemView: UIView {
     }
 
     private func getImageBulletView() -> UIView {
-        guard let styling = styling, let images = styling.bulletImages, images.count > 0 else { return UIView() }
+        guard
+            let styling,
+            let images = styling.bulletImages,
+            images.count > 0
+        else { return UIView() }
 
         let imageIndex = listMarkDownItem.level % images.count
 
         let bulletImageView = UIImageView(image: images[imageIndex])
         bulletImageView.contentMode = .center
         return bulletImageView
-
     }
 
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 0, height: self.label.frame.size.height + bottomSpace)
-    }
+        let labelX = getScaledBulletSize()?.width ?? 0
+        let availableWidth = bounds.width - labelX
 
+        let height = label.systemLayoutSizeFitting(CGSize(width: availableWidth, height: UIView.layoutFittingCompressedSize.height), withHorizontalFittingPriority: .required, verticalFittingPriority: .fittingSizeLevel).height
+
+        return CGSize(width: frame.width, height: height + bottomSpace)
+    }
 }
