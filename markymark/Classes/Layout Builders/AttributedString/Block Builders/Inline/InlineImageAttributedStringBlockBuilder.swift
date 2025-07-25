@@ -38,8 +38,6 @@ class InlineImageAttributedStringBlockBuilder: LayoutBlockBuilder<NSMutableAttri
             return NSMutableAttributedString()
         }
 
-        let mutableAttributedString = NSAttributedString(attachment: attachment)
-
-        return mutableAttributedString as! NSMutableAttributedString
+        return NSMutableAttributedString(attachment: attachment)
     }
 }
