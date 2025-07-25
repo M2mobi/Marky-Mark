@@ -96,5 +96,4 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
         return space * scaleFactor
     }
-
 }
