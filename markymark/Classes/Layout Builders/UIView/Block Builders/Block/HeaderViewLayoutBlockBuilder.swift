@@ -24,13 +24,14 @@ class HeaderViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder
         headerStyling?.configureForLevel(headerMarkDownItem.level)
 
         let label = AttributedInteractiveLabel()
-        label.numberOfLines = 0
+
         label.markDownAttributedString = attributedStringForMarkDownItem(
             markDownItem,
             styling: headerStyling ?? styling,
             renderContext: renderContext
         )
 
+        label.accessibilityTraits.insert(.header)
         label.adjustsFontForContentSizeCategory = renderContext.hasScalableFonts
 
         if let urlOpener = renderContext.urlOpener {

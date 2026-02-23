@@ -27,7 +27,8 @@ class ListItemView: UIView {
         listMarkDownItem: ListMarkDownItem,
         styling: BulletStylingRule?,
         attributedText: NSAttributedString,
-        renderContext: RenderContext? = nil
+        renderContext: RenderContext? = nil,
+        accessibilityLabel: String? = nil
     ) {
         self.listMarkDownItem = listMarkDownItem
         self.styling = styling
@@ -44,6 +45,7 @@ class ListItemView: UIView {
         }
 
         setUpLayout()
+        setUpAccessibilityProperties(accessibilityLabel: accessibilityLabel)
     }
 
     override func layoutSubviews() {
@@ -91,6 +93,14 @@ class ListItemView: UIView {
         if let bullet {
             addSubview(label)
             addSubview(bullet)
+        }
+    }
+
+    private func setUpAccessibilityProperties(accessibilityLabel: String?) {
+        isAccessibilityElement = true
+
+        if let accessibilityLabel {
+            self.accessibilityLabel = accessibilityLabel
         }
     }
 

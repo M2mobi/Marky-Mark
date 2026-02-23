@@ -12,6 +12,7 @@ class ListView: UIView {
     init(styling: ItemStyling) {
         self.styling = styling
         super.init(frame: CGRect())
+        accessibilityContainerType = .list
     }
 
     required init?(coder aDecoder: NSCoder) {
