@@ -45,7 +45,10 @@ class ListItemView: UIView {
         }
 
         setUpLayout()
-        setUpAccessibilityProperties(accessibilityLabel: accessibilityLabel)
+        
+        setUpAccessibilityProperties(
+            accessibilityLabel: accessibilityLabel ?? attributedText.string
+        )
     }
 
     override func layoutSubviews() {
@@ -96,7 +99,7 @@ class ListItemView: UIView {
         }
     }
 
-    private func setUpAccessibilityProperties(accessibilityLabel: String?) {
+    private func setUpAccessibilityProperties(accessibilityLabel: String) {
         isAccessibilityElement = true
         self.accessibilityLabel = accessibilityLabel
     }
