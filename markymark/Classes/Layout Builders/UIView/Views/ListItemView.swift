@@ -98,10 +98,7 @@ class ListItemView: UIView {
 
     private func setUpAccessibilityProperties(accessibilityLabel: String?) {
         isAccessibilityElement = true
-
-        if let accessibilityLabel {
-            self.accessibilityLabel = accessibilityLabel
-        }
+        self.accessibilityLabel = accessibilityLabel
     }
 
     private func getBulletView() -> UIView {

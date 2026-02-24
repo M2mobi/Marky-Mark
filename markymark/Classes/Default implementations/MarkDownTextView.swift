@@ -44,7 +44,7 @@ open class MarkDownTextView: UIView {
     fileprivate var markDownView: UIView?
     fileprivate var markDownItems: [MarkDownItem] = []
 
-    private var renderContext: RenderContext = RenderContext() {
+    private var renderContext: RenderContext {
         didSet {
             viewConfiguration?.set(renderContext: renderContext)
             render(withMarkdownText: text)
@@ -55,18 +55,24 @@ open class MarkDownTextView: UIView {
 
     private var viewConfiguration: (CanConfigureViews & HasRenderContext)?
 
-    public init(markDownConfiguration: MarkDownConfiguration = .view, flavor: Flavor = ContentfulFlavor(), styling: DefaultStyling = DefaultStyling()) {
-
-        markyMark = MarkyMark(build: {
-            $0.setFlavor(flavor)
-        })
-
+    public init(
+        markDownConfiguration: MarkDownConfiguration = .view,
+        flavor: Flavor = ContentfulFlavor(),
+        styling: DefaultStyling = DefaultStyling(),
+        renderContext: RenderContext = .init()
+    ) {
+        markyMark = MarkyMark(build: { $0.setFlavor(flavor) })
         self.styling = styling
+        self.renderContext = renderContext
         super.init(frame: CGRect())
 
         switch markDownConfiguration {
         case .view:
-            let markDownToViewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+            let markDownToViewConfiguration = MarkDownAsViewViewConfiguration(
+                owner: self,
+                renderContext: renderContext
+            )
+
             markDownToViewConfiguration.onDidConvertMarkDownItemToView = {
                 [weak self] markDownItem, view in
                 self?.onDidConvertMarkDownItemToView?(markDownItem, view)
@@ -86,9 +92,13 @@ open class MarkDownTextView: UIView {
         })
 
         styling = DefaultStyling()
+        renderContext = .init()
         super.init(frame: frame)
 
-        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+        viewConfiguration = MarkDownAsViewViewConfiguration(
+            owner: self,
+            renderContext: renderContext
+        )
         observeCategorySizeChange()
     }
 
@@ -98,9 +108,14 @@ open class MarkDownTextView: UIView {
         })
 
         styling = DefaultStyling()
+        renderContext = .init()
         super.init(coder: aDecoder)
 
-        viewConfiguration = MarkDownAsViewViewConfiguration(owner: self)
+        viewConfiguration = MarkDownAsViewViewConfiguration(
+            owner: self,
+            renderContext: renderContext
+        )
+        
         observeCategorySizeChange()
     }
 
@@ -145,7 +160,7 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews, HasRenderConte
 
     var onDidConvertMarkDownItemToView:((_ markDownItem: MarkDownItem, _ view: UIView) -> Void)?
 
-    private var renderContext: RenderContext = .init() {
+    private var renderContext: RenderContext {
         didSet {
             configuration.renderContext = renderContext
         }
@@ -155,9 +170,17 @@ private class MarkDownAsViewViewConfiguration: CanConfigureViews, HasRenderConte
 
     private weak var owner: MarkDownTextView?
 
-    init(owner: MarkDownTextView) {
+    init(
+        owner: MarkDownTextView,
+        renderContext: RenderContext
+    ) {
         self.owner = owner
-        configuration = MarkdownToViewConverterConfiguration(styling: owner.styling, renderContext: renderContext)
+        self.renderContext = renderContext
+
+        configuration = MarkdownToViewConverterConfiguration(
+            styling: owner.styling,
+            renderContext: renderContext
+        )
     }
 
     func set(renderContext: RenderContext) {
@@ -206,10 +229,15 @@ private class MarkDownAsAttributedStringViewConfiguration: CanConfigureViews, Ha
 
     private let configuration: MarkDownToAttributedStringConverterConfiguration
 
-    private var renderContext: RenderContext = .init()
+    private var renderContext: RenderContext
 
-    init(owner: MarkDownTextView) {
+    init(
+        owner: MarkDownTextView,
+        renderContext: RenderContext = .init()
+    ) {
         self.owner = owner
+        self.renderContext = renderContext
+
         configuration = MarkDownToAttributedStringConverterConfiguration(styling: owner.styling)
     }
 

@@ -57,7 +57,7 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
             let itemAccessibilityLabel = [
                 attributedString.string,
-                MarkyMarkAccessibilityConfig.shared.listItemAccessibilityLabelPostfix?(itemIndex, listItems.count)
+                renderContext.accessibilityConfig?.listItemAccessibilityLabelPostfix?(itemIndex, listItems.count)
             ]
             .compactMap { $0 }
             .joined(separator: ", ")
