@@ -33,19 +33,19 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
     /**
      Loops recursively through all listItems to create
      vertically appended list of ListItemView's
-     
+
      - parameter listMarkDownItem: MarkDownItem to loop through
      - parameter styling:          Styling to apply to each list item
-     
+
      - returns: A view containing all list items of given markDownItem
      */
 
     private func getListView(_ listMarkDownItem: ListMarkDownItem, styling: ItemStyling, renderContext: RenderContext) -> UIView {
-
         let listView = ListView(styling: styling)
 
-        for listItem in listMarkDownItem.listItems ?? [] {
+        guard let listItems = listMarkDownItem.listItems else { return listView }
 
+        for (itemIndex, listItem) in listItems.enumerated() {
             let bulletStyling = styling as? BulletStylingRule
             let listStyling = styling as? ListItemStylingRule
 
@@ -55,11 +55,19 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
                 renderContext: renderContext
             )
 
+            let itemAccessibilityLabel = [
+                attributedString.string,
+                renderContext.accessibilityConfig?.listItemAccessibilityLabelPostfix?(itemIndex, listItems.count)
+            ]
+            .compactMap { $0 }
+            .joined(separator: ", ")
+
             let listItemView = ListItemView(
                 listMarkDownItem: listItem,
                 styling: bulletStyling,
                 attributedText: attributedString,
-                renderContext: renderContext
+                renderContext: renderContext,
+                accessibilityLabel: itemAccessibilityLabel
             )
 
             listItemView.bottomSpace = getScaledBottomSpace(
@@ -78,7 +86,6 @@ class ListViewLayoutBlockBuilder: InlineAttributedStringViewLayoutBlockBuilder {
 
                 listView.addSubview(nestedListView)
             }
-
         }
 
         return listView

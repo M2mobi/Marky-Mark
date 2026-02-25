@@ -28,10 +28,16 @@ open class AttributedInteractiveLabel: UILabel {
             linksAttributes = mutableAttributedString.extractLinkAttributes()
 
             self.attributedText = mutableAttributedString
+
+            configureViewProperties()
         }
     }
 
     public var urlOpener: URLOpener = DefaultURLOpener()
+
+    private lazy var tapGesture: UITapGestureRecognizer = {
+        .init(target: self, action: #selector(didTap))
+    }()
 
     public init() {
         super.init(frame: CGRect())
@@ -130,9 +136,23 @@ open class AttributedInteractiveLabel: UILabel {
 extension AttributedInteractiveLabel {
 
     public func configureViewProperties() {
-        isUserInteractionEnabled = true
         numberOfLines = 0
-        addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(didTap(_:))))
+        accessibilityLabel = attributedText?.string
+        configureTapGesture()
+    }
+
+    public func configureTapGesture() {
+        if linksAttributes.contains(where: { $0.1 != nil }) {
+            if gestureRecognizers?.contains(tapGesture) != true {
+                addGestureRecognizer(tapGesture)
+                isUserInteractionEnabled = true
+                accessibilityTraits = .link
+            }
+        } else {
+            removeGestureRecognizer(tapGesture)
+            isUserInteractionEnabled = false
+            accessibilityTraits = .staticText
+        }
     }
 }
 
