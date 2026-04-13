@@ -54,6 +54,14 @@ open class AttributedInteractiveLabel: UILabel {
         configureViewProperties()
     }
 
+    open override func accessibilityActivate() -> Bool {
+        if let url = linksAttributes.compactMap({ $0.1 }).first {
+            urlOpener.open(url: url)
+            return true
+        }
+        return false
+    }
+
     @objc func didTap(_ tapGesture: UITapGestureRecognizer) {
         guard let view = tapGesture.view else { return }
 
